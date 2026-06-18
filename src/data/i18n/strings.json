@@ -1,0 +1,1142 @@
+{
+  "common.save": {
+    "en": "Save",
+    "ms": "Simpan",
+    "zh": "保存"
+  },
+  "common.cancel": {
+    "en": "Cancel",
+    "ms": "Batal",
+    "zh": "取消"
+  },
+  "common.submit": {
+    "en": "Submit",
+    "ms": "Hantar",
+    "zh": "提交"
+  },
+  "common.back": {
+    "en": "Back",
+    "ms": "Kembali",
+    "zh": "返回"
+  },
+  "common.next": {
+    "en": "Next",
+    "ms": "Seterusnya",
+    "zh": "下一步"
+  },
+  "common.close": {
+    "en": "Close",
+    "ms": "Tutup",
+    "zh": "关闭"
+  },
+  "common.delete": {
+    "en": "Delete",
+    "ms": "Padam",
+    "zh": "删除"
+  },
+  "common.edit": {
+    "en": "Edit",
+    "ms": "Sunting",
+    "zh": "编辑"
+  },
+  "common.loading": {
+    "en": "Loading...",
+    "ms": "Memuatkan...",
+    "zh": "加载中..."
+  },
+  "common.error": {
+    "en": "Error",
+    "ms": "Ralat",
+    "zh": "错误"
+  },
+  "common.retry": {
+    "en": "Retry",
+    "ms": "Cuba lagi",
+    "zh": "重试"
+  },
+  "common.confirm": {
+    "en": "Confirm",
+    "ms": "Sahkan",
+    "zh": "确认"
+  },
+  "common.search": {
+    "en": "Search",
+    "ms": "Cari",
+    "zh": "搜索"
+  },
+  "common.filter": {
+    "en": "Filter",
+    "ms": "Tapis",
+    "zh": "筛选"
+  },
+  "common.clear": {
+    "en": "Clear",
+    "ms": "Kosongkan",
+    "zh": "清除"
+  },
+  "common.noResults": {
+    "en": "No results",
+    "ms": "Tiada hasil",
+    "zh": "无结果"
+  },
+  "nav.create": {
+    "en": "Create",
+    "ms": "Cipta",
+    "zh": "创建"
+  },
+  "nav.dashboard": {
+    "en": "Dashboard",
+    "ms": "Papan Pemuka",
+    "zh": "仪表板"
+  },
+  "nav.settings": {
+    "en": "Settings",
+    "ms": "Tetapan",
+    "zh": "设置"
+  },
+  "nav.history": {
+    "en": "History",
+    "ms": "Sejarah",
+    "zh": "历史"
+  },
+  "nav.ask": {
+    "en": "Ask",
+    "ms": "Tanya",
+    "zh": "询问"
+  },
+  "nav.home": {
+    "en": "Home",
+    "ms": "Laman Utama",
+    "zh": "首页"
+  },
+  "nav.guide": {
+    "en": "Guide",
+    "ms": "Panduan",
+    "zh": "指南"
+  },
+  "nav.openApp": {
+    "en": "Open app",
+    "ms": "Buka aplikasi",
+    "zh": "打开应用"
+  },
+  "landing.heroTitle": {
+    "en": "Not sure if e-invoicing applies to you? Start here.",
+    "ms": "Tidak pasti jika e-invois terpakai kepada anda? Mula di sini.",
+    "zh": "不确定电子发票是否适用于您？从这里开始。"
+  },
+  "landing.heroSubtitle": {
+    "en": "Malaysian e-invoice made easy — snap, speak, submit.",
+    "ms": "E-invois Malaysia dipermudahkan — snap, sebut, hantar.",
+    "zh": "马来西亚电子发票，简单易用 — 拍照、说话、提交。"
+  },
+  "landing.heroCtaScope": {
+    "en": "Am I in scope?",
+    "ms": "Adakah saya dalam skop?",
+    "zh": "我是否在范围内？"
+  },
+  "landing.heroCtaCreate": {
+    "en": "Create an invoice",
+    "ms": "Cipta invois",
+    "zh": "创建发票"
+  },
+  "landing.goToDashboard": {
+    "en": "Go to dashboard",
+    "ms": "Pergi ke papan pemuka",
+    "zh": "前往仪表板"
+  },
+  "landing.feature1Title": {
+    "en": "Private & Local-First",
+    "ms": "Peribadi & Setempat-Dulu",
+    "zh": "隐私优先 & 本地优先"
+  },
+  "landing.feature1Desc": {
+    "en": "Your invoice data never leaves your device unless you choose Drive backup.",
+    "ms": "Data invois anda tidak meninggalkan peranti anda melainkan anda memilih sandaran Drive.",
+    "zh": "您的发票数据不会离开设备，除非您选择云端备份。"
+  },
+  "landing.feature2Title": {
+    "en": "MyInvois-Valid Output",
+    "ms": "Keluaran Sah-MyInvois",
+    "zh": "MyInvois 合规输出"
+  },
+  "landing.feature2Desc": {
+    "en": "Full UBL 2.1 JSON format with QR code as required by IRBM.",
+    "ms": "Format JSON UBL 2.1 penuh dengan kod QR seperti dikehendaki oleh LHDNM.",
+    "zh": "完整的 UBL 2.1 JSON 格式及 QR 码，符合 IRBM 要求。"
+  },
+  "landing.feature3Title": {
+    "en": "Free",
+    "ms": "Percuma",
+    "zh": "免费"
+  },
+  "landing.feature3Desc": {
+    "en": "Free to use. No subscriptions, no hidden fees.",
+    "ms": "Percuma untuk digunakan. Tiada langganan, tiada yuran tersembunyi.",
+    "zh": "免费使用。无订阅，无隐藏费用。"
+  },
+  "landing.painTitle": {
+    "en": "One path is painful. One is not.",
+    "ms": "Satu jalan menyakitkan. Satu lagi tidak.",
+    "zh": "一条路很痛苦。另一条不是。"
+  },
+  "landing.portalTitle": {
+    "en": "The MyInvois Portal Way",
+    "ms": "Cara Portal MyInvois",
+    "zh": "MyInvois 门户方式"
+  },
+  "landing.portalItem1": {
+    "en": "≈2000 classification codes to manually choose from",
+    "ms": "≈2000 kod klasifikasi untuk dipilih secara manual",
+    "zh": "≈2000 个分类代码需手动选择"
+  },
+  "landing.portalItem2": {
+    "en": "5-step wizard with multiple screens per invoice",
+    "ms": "Wizard 5 langkah dengan pelbagai skrin setiap invois",
+    "zh": "每张发票需经过 5 步向导多屏操作"
+  },
+  "landing.portalItem3": {
+    "en": "Manual buyer TIN validation",
+    "ms": "Pengesahan TIN pembeli secara manual",
+    "zh": "手动验证买家 TIN"
+  },
+  "landing.portalItem4": {
+    "en": "7-day submission window pressure",
+    "ms": "Tekanan tempoh penghantaran 7 hari",
+    "zh": "7 天提交窗口的压力"
+  },
+  "landing.senangTitle": {
+    "en": "The SenangInvoice Way",
+    "ms": "Cara SenangInvoice",
+    "zh": "SenangInvoice 方式"
+  },
+  "landing.senangItem1": {
+    "en": "Snap, voice, or manual input in seconds",
+    "ms": "Snap, suara, atau input manual dalam beberapa saat",
+    "zh": "拍照、语音或手动输入，几秒完成"
+  },
+  "landing.senangItem2": {
+    "en": "AI auto-classification matches your items",
+    "ms": "Pengelasan automatik AI memadankan item anda",
+    "zh": "AI 自动分类匹配您的项目"
+  },
+  "landing.senangItem3": {
+    "en": "Single-click submit to MyInvois",
+    "ms": "Satu klik hantar ke MyInvois",
+    "zh": "一键提交至 MyInvois"
+  },
+  "landing.senangItem4": {
+    "en": "QR code + PDF generated instantly",
+    "ms": "Kod QR + PDF dijana serta-merta",
+    "zh": "即时生成 QR 码 + PDF"
+  },
+  "landing.guideTitle": {
+    "en": "Everything you need to know",
+    "ms": "Semua yang anda perlu tahu",
+    "zh": "您需要了解的一切"
+  },
+  "landing.readyTitle": {
+    "en": "Ready to begin?",
+    "ms": "Sedia untuk bermula?",
+    "zh": "准备好开始了吗？"
+  },
+  "landing.readySubtitle": {
+    "en": "Join thousands of Malaysian businesses submitting e-invoices the easy way.",
+    "ms": "Sertai ribuan perniagaan Malaysia yang menghantar e-invois dengan cara mudah.",
+    "zh": "加入成千上万家以简单方式提交电子发票的马来西亚企业。"
+  },
+  "landing.firstInvoiceCta": {
+    "en": "Create your first invoice",
+    "ms": "Cipta invois pertama anda",
+    "zh": "创建您的第一张发票"
+  },
+  "landing.fullGuideCta": {
+    "en": "Read the full guide",
+    "ms": "Baca panduan penuh",
+    "zh": "阅读完整指南"
+  },
+  "landing.footerText": {
+    "en": "Local-first · Your data stays on your device",
+    "ms": "Setempat-dulu · Data anda kekal di peranti anda",
+    "zh": "本地优先 · 您的数据保留在您的设备上"
+  },
+  "create.title": {
+    "en": "Create Invoice",
+    "ms": "Cipta Invois",
+    "zh": "创建发票"
+  },
+  "create.subtitle": {
+    "en": "Snap a receipt, speak your items, or enter manually",
+    "ms": "Snap resit, sebut item anda, atau masukkan secara manual",
+    "zh": "拍照收据、说出您的项目或手动输入"
+  },
+  "create.cameraTab": {
+    "en": "Camera",
+    "ms": "Kamera",
+    "zh": "相机"
+  },
+  "create.voiceTab": {
+    "en": "Voice",
+    "ms": "Suara",
+    "zh": "语音"
+  },
+  "create.manualTab": {
+    "en": "Manual",
+    "ms": "Manual",
+    "zh": "手动"
+  },
+  "create.captureHint": {
+    "en": "Take a photo of your receipt",
+    "ms": "Ambil gambar resit anda",
+    "zh": "拍摄您的收据照片"
+  },
+  "create.captureHint2": {
+    "en": "Tap to open camera, or drag an image here",
+    "ms": "Ketik untuk buka kamera, atau seret imej ke sini",
+    "zh": "点击打开相机，或拖拽图片到此处"
+  },
+  "create.takePhoto": {
+    "en": "Take Photo",
+    "ms": "Ambil Gambar",
+    "zh": "拍照"
+  },
+  "create.retakeCamera": {
+    "en": "Retake (Camera)",
+    "ms": "Ambil Semula (Kamera)",
+    "zh": "重拍（相机）"
+  },
+  "create.retakeFile": {
+    "en": "Retake (File)",
+    "ms": "Ambil Semula (Fail)",
+    "zh": "重拍（文件）"
+  },
+  "create.startScan": {
+    "en": "Start Scan",
+    "ms": "Mula Imbas",
+    "zh": "开始扫描"
+  },
+  "create.speakItems": {
+    "en": "Speak your items",
+    "ms": "Sebut item anda",
+    "zh": "说出您的项目"
+  },
+  "create.speakItemsHint": {
+    "en": "Say e.g. \"2 nasi lemak at 5 ringgit each\"",
+    "ms": "Sebut cth. \"2 nasi lemak pada 5 ringgit setiap satu\"",
+    "zh": "例如说 \"2份椰浆饭，每份5令吉\""
+  },
+  "create.startRecording": {
+    "en": "Start Recording",
+    "ms": "Mula Rakam",
+    "zh": "开始录音"
+  },
+  "create.stop": {
+    "en": "Stop",
+    "ms": "Berhenti",
+    "zh": "停止"
+  },
+  "create.listening": {
+    "en": "Listening...",
+    "ms": "Mendengar...",
+    "zh": "正在聆听..."
+  },
+  "create.capture": {
+    "en": "Capture",
+    "ms": "Tangkap",
+    "zh": "拍摄"
+  },
+  "create.lineItems": {
+    "en": "Line Items",
+    "ms": "Item Baris",
+    "zh": "行项目"
+  },
+  "create.lineItemsCount": {
+    "en": "Line Items ({n})",
+    "ms": "Item Baris ({n})",
+    "zh": "行项目 ({n})"
+  },
+  "create.editItems": {
+    "en": "Edit Items",
+    "ms": "Sunting Item",
+    "zh": "编辑项目"
+  },
+  "create.editItemsHint": {
+    "en": "(click a row to expand)",
+    "ms": "(klik baris untuk kembangkan)",
+    "zh": "(点击行展开)"
+  },
+  "create.generateButton": {
+    "en": "Generate Invoice",
+    "ms": "Jana Invois",
+    "zh": "生成发票"
+  },
+  "create.addLine": {
+    "en": "Add Line",
+    "ms": "Tambah Baris",
+    "zh": "添加行"
+  },
+  "create.added": {
+    "en": "✓ Added",
+    "ms": "✓ Ditambah",
+    "zh": "✓ 已添加"
+  },
+  "create.itemDescription": {
+    "en": "Item description",
+    "ms": "Penerangan item",
+    "zh": "项目描述"
+  },
+  "create.qty": {
+    "en": "Qty",
+    "ms": "Kuantiti",
+    "zh": "数量"
+  },
+  "create.unitPrice": {
+    "en": "Unit Price (RM)",
+    "ms": "Harga Seunit (RM)",
+    "zh": "单价 (RM)"
+  },
+  "create.extracting": {
+    "en": "Extracting line items...",
+    "ms": "Mengekstrak item baris...",
+    "zh": "正在提取行项目..."
+  },
+  "create.error": {
+    "en": "Extraction error. Please try again.",
+    "ms": "Ralat pengekstrakan. Sila cuba lagi.",
+    "zh": "提取错误。请重试。"
+  },
+  "create.advancedOptions": {
+    "en": "Advanced Options",
+    "ms": "Pilihan Lanjutan",
+    "zh": "高级选项"
+  },
+  "dashboard.title": {
+    "en": "Senang Invoice",
+    "ms": "Senang Invoice",
+    "zh": "Senang Invoice"
+  },
+  "dashboard.subtitle": {
+    "en": "Malaysian e-invoice made easy",
+    "ms": "E-invois Malaysia dipermudahkan",
+    "zh": "马来西亚电子发票，简单易用"
+  },
+  "dashboard.invoices": {
+    "en": "Invoices",
+    "ms": "Invois",
+    "zh": "发票"
+  },
+  "dashboard.validated": {
+    "en": "Validated",
+    "ms": "Disahkan",
+    "zh": "已验证"
+  },
+  "dashboard.total": {
+    "en": "Total",
+    "ms": "Jumlah",
+    "zh": "总计"
+  },
+  "dashboard.searchPlaceholder": {
+    "en": "Search invoices...",
+    "ms": "Cari invois...",
+    "zh": "搜索发票..."
+  },
+  "dashboard.sortDate": {
+    "en": "Date",
+    "ms": "Tarikh",
+    "zh": "日期"
+  },
+  "dashboard.sortAmount": {
+    "en": "Amount",
+    "ms": "Jumlah",
+    "zh": "金额"
+  },
+  "dashboard.sortBusiness": {
+    "en": "Business",
+    "ms": "Perniagaan",
+    "zh": "企业"
+  },
+  "dashboard.today": {
+    "en": "Today",
+    "ms": "Hari ini",
+    "zh": "今天"
+  },
+  "dashboard.thisMonth": {
+    "en": "This Month",
+    "ms": "Bulan ini",
+    "zh": "本月"
+  },
+  "dashboard.clearFilter": {
+    "en": "Clear",
+    "ms": "Kosongkan",
+    "zh": "清除"
+  },
+  "dashboard.noInvoices": {
+    "en": "No invoices yet",
+    "ms": "Belum ada invois",
+    "zh": "暂无发票"
+  },
+  "dashboard.noInvoicesDesc": {
+    "en": "Create your first e-invoice to see it here.",
+    "ms": "Cipta e-invois pertama anda untuk melihatnya di sini.",
+    "zh": "创建您的第一张电子发票即可在此查看。"
+  },
+  "dashboard.createInvoice": {
+    "en": "Create Invoice",
+    "ms": "Cipta Invois",
+    "zh": "创建发票"
+  },
+  "settings.title": {
+    "en": "Settings",
+    "ms": "Tetapan",
+    "zh": "设置"
+  },
+  "settings.subtitle": {
+    "en": "Configure your Senang Invoice",
+    "ms": "Konfigurasi Senang Invoice anda",
+    "zh": "配置您的 Senang Invoice"
+  },
+  "settings.sellerProfile": {
+    "en": "Seller Profile",
+    "ms": "Profil Penjual",
+    "zh": "卖家资料"
+  },
+  "settings.sellerProfileDesc": {
+    "en": "Business name, TIN, address",
+    "ms": "Nama perniagaan, TIN, alamat",
+    "zh": "企业名称、TIN、地址"
+  },
+  "settings.llmKeys": {
+    "en": "LLM API Keys",
+    "ms": "Kunci API LLM",
+    "zh": "LLM API 密钥"
+  },
+  "settings.llmKeysDesc": {
+    "en": "Stored locally. Priority runs top-to-bottom.",
+    "ms": "Disimpan setempat. Keutamaan dari atas ke bawah.",
+    "zh": "本地存储。优先级从上到下。"
+  },
+  "settings.myinvoisCreds": {
+    "en": "MyInvois API Credentials",
+    "ms": "Kelayakan API MyInvois",
+    "zh": "MyInvois API 凭证"
+  },
+  "settings.myinvoisCredsDesc": {
+    "en": "Your own ERP credentials. Stored only on this device, used to submit e-invoices as you.",
+    "ms": "Kelayakan ERP anda sendiri. Disimpan hanya pada peranti ini, digunakan untuk menghantar e-invois sebagai anda.",
+    "zh": "您自己的 ERP 凭证。仅存储在此设备上，用于以您的身份提交电子发票。"
+  },
+  "settings.language": {
+    "en": "Language",
+    "ms": "Bahasa",
+    "zh": "语言"
+  },
+  "settings.demoMode": {
+    "en": "Demo Mode",
+    "ms": "Mod Demo",
+    "zh": "演示模式"
+  },
+  "settings.demoModeDesc": {
+    "en": "Show demo data bar at top of page",
+    "ms": "Papar bar data demo di bahagian atas halaman",
+    "zh": "在页面顶部显示演示数据栏"
+  },
+  "settings.unlock": {
+    "en": "Unlock",
+    "ms": "Buka Kunci",
+    "zh": "解锁"
+  },
+  "settings.wrongPassword": {
+    "en": "Wrong password",
+    "ms": "Kata laluan salah",
+    "zh": "密码错误"
+  },
+  "settings.googleDriveSync": {
+    "en": "Google Drive Sync",
+    "ms": "Segerak Google Drive",
+    "zh": "Google Drive 同步"
+  },
+  "settings.googleDriveSyncDesc": {
+    "en": "Back up your invoices to Google Drive.",
+    "ms": "Sandarkan invois anda ke Google Drive.",
+    "zh": "将您的发票备份到 Google Drive。"
+  },
+  "settings.checkStatus": {
+    "en": "Check Status",
+    "ms": "Semak Status",
+    "zh": "检查状态"
+  },
+  "settings.connectDrive": {
+    "en": "Connect Drive",
+    "ms": "Sambung Drive",
+    "zh": "连接 Drive"
+  },
+  "settings.disconnectDrive": {
+    "en": "Disconnect",
+    "ms": "Putuskan Sambungan",
+    "zh": "断开连接"
+  },
+  "settings.connected": {
+    "en": "Connected to Google Drive ✓",
+    "ms": "Disambungkan ke Google Drive ✓",
+    "zh": "已连接到 Google Drive ✓"
+  },
+  "settings.notConnected": {
+    "en": "Not connected",
+    "ms": "Tidak disambungkan",
+    "zh": "未连接"
+  },
+  "settings.addKey": {
+    "en": "Add Key",
+    "ms": "Tambah Kunci",
+    "zh": "添加密钥"
+  },
+  "settings.keyAdded": {
+    "en": "Key added ✓",
+    "ms": "Kunci ditambah ✓",
+    "zh": "密钥已添加 ✓"
+  },
+  "settings.save": {
+    "en": "Saved ✓",
+    "ms": "Disimpan ✓",
+    "zh": "已保存 ✓"
+  },
+  "settings.editKey": {
+    "en": "Edit",
+    "ms": "Sunting",
+    "zh": "编辑"
+  },
+  "settings.deleteKey": {
+    "en": "Delete",
+    "ms": "Padam",
+    "zh": "删除"
+  },
+  "settings.active": {
+    "en": "Active",
+    "ms": "Aktif",
+    "zh": "活跃"
+  },
+  "settings.paused": {
+    "en": "Paused",
+    "ms": "Dijeda",
+    "zh": "已暂停"
+  },
+  "settings.fallback": {
+    "en": "Fallback",
+    "ms": "Sandaran",
+    "zh": "后备"
+  },
+  "settings.primary": {
+    "en": "Primary",
+    "ms": "Utama",
+    "zh": "主要"
+  },
+  "settings.howToGetKey": {
+    "en": "How to get a {provider} key",
+    "ms": "Cara mendapatkan kunci {provider}",
+    "zh": "如何获取 {provider} 密钥"
+  },
+  "settings.fullRegistrationGuide": {
+    "en": "Full registration guide",
+    "ms": "Panduan pendaftaran penuh",
+    "zh": "完整注册指南"
+  },
+  "profile.title": {
+    "en": "Seller Profile",
+    "ms": "Profil Penjual",
+    "zh": "卖家资料"
+  },
+  "profile.subtitle": {
+    "en": "Your business details for e-invoicing",
+    "ms": "Butiran perniagaan anda untuk e-invois",
+    "zh": "您的电子发票企业详情"
+  },
+  "profile.businessName": {
+    "en": "Business Name",
+    "ms": "Nama Perniagaan",
+    "zh": "企业名称"
+  },
+  "profile.tin": {
+    "en": "TIN",
+    "ms": "TIN",
+    "zh": "TIN"
+  },
+  "profile.sstReg": {
+    "en": "SST Reg No",
+    "ms": "No Pendaftaran SST",
+    "zh": "SST 注册号"
+  },
+  "profile.msicCode": {
+    "en": "MSIC Code",
+    "ms": "Kod MSIC",
+    "zh": "MSIC 代码"
+  },
+  "profile.address": {
+    "en": "Address",
+    "ms": "Alamat",
+    "zh": "地址"
+  },
+  "profile.phone": {
+    "en": "Phone",
+    "ms": "Telefon",
+    "zh": "电话"
+  },
+  "profile.email": {
+    "en": "Email",
+    "ms": "E-mel",
+    "zh": "电子邮件"
+  },
+  "profile.saveProfile": {
+    "en": "Save Profile",
+    "ms": "Simpan Profil",
+    "zh": "保存资料"
+  },
+  "profile.savedProfile": {
+    "en": "Saved ✓",
+    "ms": "Disimpan ✓",
+    "zh": "已保存 ✓"
+  },
+  "profile.profileSaved": {
+    "en": "Profile saved successfully",
+    "ms": "Profil berjaya disimpan",
+    "zh": "资料保存成功"
+  },
+  "profile.couldNotSave": {
+    "en": "Could not save profile. Please try again.",
+    "ms": "Tidak dapat menyimpan profil. Sila cuba lagi.",
+    "zh": "无法保存资料。请重试。"
+  },
+  "invoice.seller": {
+    "en": "Seller",
+    "ms": "Penjual",
+    "zh": "卖家"
+  },
+  "invoice.buyer": {
+    "en": "Buyer",
+    "ms": "Pembeli",
+    "zh": "买家"
+  },
+  "invoice.generalPublic": {
+    "en": "General Public",
+    "ms": "Orang Awam",
+    "zh": "公众"
+  },
+  "invoice.namedBuyer": {
+    "en": "Named Buyer",
+    "ms": "Pembeli Bernama",
+    "zh": "指定买家"
+  },
+  "invoice.lineItems": {
+    "en": "Line Items",
+    "ms": "Item Baris",
+    "zh": "行项目"
+  },
+  "invoice.subtotal": {
+    "en": "Subtotal",
+    "ms": "Subjumlah",
+    "zh": "小计"
+  },
+  "invoice.tax": {
+    "en": "Tax",
+    "ms": "Cukai",
+    "zh": "税金"
+  },
+  "invoice.total": {
+    "en": "Total",
+    "ms": "Jumlah",
+    "zh": "总计"
+  },
+  "invoice.uuid": {
+    "en": "UUID",
+    "ms": "UUID",
+    "zh": "UUID"
+  },
+  "invoice.scanToVerify": {
+    "en": "Scan to verify",
+    "ms": "Imbas untuk sahkan",
+    "zh": "扫码验证"
+  },
+  "invoice.notFound": {
+    "en": "Invoice not found",
+    "ms": "Invois tidak dijumpai",
+    "zh": "未找到发票"
+  },
+  "invoice.notFoundDesc": {
+    "en": "This invoice may have been deleted or the link is invalid.",
+    "ms": "Invois ini mungkin telah dipadam atau pautan tidak sah.",
+    "zh": "此发票可能已被删除或链接无效。"
+  },
+  "invoice.goHome": {
+    "en": "Go Home",
+    "ms": "Pergi ke Laman Utama",
+    "zh": "返回首页"
+  },
+  "invoice.invoice": {
+    "en": "Invoice",
+    "ms": "Invois",
+    "zh": "发票"
+  },
+  "invoice.statusDraft": {
+    "en": "Draft",
+    "ms": "Draf",
+    "zh": "草稿"
+  },
+  "invoice.statusValidated": {
+    "en": "Validated",
+    "ms": "Disahkan",
+    "zh": "已验证"
+  },
+  "invoice.statusSynced": {
+    "en": "Synced to Drive",
+    "ms": "Disegerak ke Drive",
+    "zh": "已同步到 Drive"
+  },
+  "invoice.tinBuyerWarning": {
+    "en": "⚠ General Public TIN requires consolidated invoice (code 004). Change classification or use a named buyer.",
+    "ms": "⚠ TIN Orang Awam memerlukan invois disatukan (kod 004). Tukar klasifikasi atau gunakan pembeli bernama.",
+    "zh": "⚠ 公众 TIN 需要合并发票（代码 004）。请更改分类或使用指定买家。"
+  },
+  "invoice.buyerLabel": {
+    "en": "Buyer",
+    "ms": "Pembeli",
+    "zh": "买家"
+  },
+  "invoice.buyerName": {
+    "en": "Buyer Name",
+    "ms": "Nama Pembeli",
+    "zh": "买家名称"
+  },
+  "invoice.buyerTin": {
+    "en": "Buyer TIN",
+    "ms": "TIN Pembeli",
+    "zh": "买家 TIN"
+  },
+  "invoice.invoiceNumber": {
+    "en": "Invoice Number",
+    "ms": "Nombor Invois",
+    "zh": "发票号码"
+  },
+  "review.description": {
+    "en": "Description",
+    "ms": "Penerangan",
+    "zh": "描述"
+  },
+  "review.quantity": {
+    "en": "Quantity",
+    "ms": "Kuantiti",
+    "zh": "数量"
+  },
+  "review.unitPrice": {
+    "en": "Unit Price (RM)",
+    "ms": "Harga Seunit (RM)",
+    "zh": "单价 (RM)"
+  },
+  "review.item": {
+    "en": "Item",
+    "ms": "Item",
+    "zh": "项目"
+  },
+  "review.price": {
+    "en": "Price",
+    "ms": "Harga",
+    "zh": "价格"
+  },
+  "review.amount": {
+    "en": "Amount",
+    "ms": "Jumlah",
+    "zh": "金额"
+  },
+  "ask.title": {
+    "en": "Ask",
+    "ms": "Tanya",
+    "zh": "询问"
+  },
+  "ask.subtitle": {
+    "en": "Ask about Malaysian e-invoicing",
+    "ms": "Tanya tentang e-invois Malaysia",
+    "zh": "询问马来西亚电子发票相关问题"
+  },
+  "ask.placeholder": {
+    "en": "Ask about e-invoicing...",
+    "ms": "Tanya tentang e-invois...",
+    "zh": "询问电子发票相关问题..."
+  },
+  "ask.send": {
+    "en": "Send",
+    "ms": "Hantar",
+    "zh": "发送"
+  },
+  "ask.emptyTitle": {
+    "en": "Ask Senang Invoice",
+    "ms": "Tanya Senang Invoice",
+    "zh": "询问 Senang Invoice"
+  },
+  "ask.emptyDesc": {
+    "en": "Questions about e-invoicing, exemptions, classification codes, or compliance.",
+    "ms": "Soalan tentang e-invois, pengecualian, kod klasifikasi, atau pematuhan.",
+    "zh": "有关电子发票、豁免、分类代码或合规性的问题。"
+  },
+  "ask.scopeCheck": {
+    "en": "Scope Check",
+    "ms": "Semakan Skop",
+    "zh": "范围检查"
+  },
+  "ask.scopeCheckTitle": {
+    "en": "E-Invoice Scope Check",
+    "ms": "Semakan Skop E-Invois",
+    "zh": "电子发票范围检查"
+  },
+  "ask.scopeCheckDesc": {
+    "en": "Check if your business must comply with e-invoicing.",
+    "ms": "Semak jika perniagaan anda mesti mematuhi e-invois.",
+    "zh": "检查您的企业是否必须遵守电子发票规定。"
+  },
+  "ask.annualTurnover": {
+    "en": "Annual Turnover (RM)",
+    "ms": "Pusing Ganti Tahunan (RM)",
+    "zh": "年营业额 (RM)"
+  },
+  "ask.corporateGroupLabel": {
+    "en": "Part of a corporate group with RM1m+ combined turnover",
+    "ms": "Sebahagian daripada kumpulan korporat dengan pusing ganti gabungan RM1j+",
+    "zh": "属于营业额合计超过 100 万令吉的企业集团"
+  },
+  "ask.checkScope": {
+    "en": "Check Scope",
+    "ms": "Semak Skop",
+    "zh": "检查范围"
+  },
+  "ask.inScope": {
+    "en": "In Scope",
+    "ms": "Dalam Skop",
+    "zh": "在范围内"
+  },
+  "ask.exempt": {
+    "en": "Exempt",
+    "ms": "Dikecualikan",
+    "zh": "豁免"
+  },
+  "ask.suggested1": {
+    "en": "Am I exempt from e-invoicing?",
+    "ms": "Adakah saya dikecualikan daripada e-invois?",
+    "zh": "我是否豁免电子发票？"
+  },
+  "ask.suggested2": {
+    "en": "What is the consolidated invoice rule?",
+    "ms": "Apakah peraturan invois disatukan?",
+    "zh": "什么是合并发票规则？"
+  },
+  "ask.suggested3": {
+    "en": "How do I correct an invoice?",
+    "ms": "Bagaimana saya membetulkan invois?",
+    "zh": "如何更正发票？"
+  },
+  "ask.suggested4": {
+    "en": "What are the penalties for non-compliance?",
+    "ms": "Apakah penalti untuk ketidakpatuhan?",
+    "zh": "不合规的处罚是什么？"
+  },
+  "errors.networkError": {
+    "en": "Network error. Please check your connection.",
+    "ms": "Ralat rangkaian. Sila semak sambungan anda.",
+    "zh": "网络错误。请检查您的连接。"
+  },
+  "errors.llmError": {
+    "en": "LLM request failed. Check your API key.",
+    "ms": "Permintaan LLM gagal. Semak kunci API anda.",
+    "zh": "LLM 请求失败。请检查您的 API 密钥。"
+  },
+  "errors.extractionError": {
+    "en": "Extraction failed. Try a clearer image or different input.",
+    "ms": "Pengekstrakan gagal. Cuba imej yang lebih jelas atau input berbeza.",
+    "zh": "提取失败。请尝试更清晰的图像或其他输入。"
+  },
+  "errors.mappingError": {
+    "en": "Classification mapping failed. Please set codes manually.",
+    "ms": "Pemetaan klasifikasi gagal. Sila tetapkan kod secara manual.",
+    "zh": "分类映射失败。请手动设置代码。"
+  },
+  "errors.submissionError": {
+    "en": "Submission failed. Check MyInvois credentials.",
+    "ms": "Penghantaran gagal. Semak kelayakan MyInvois.",
+    "zh": "提交失败。请检查 MyInvois 凭证。"
+  },
+  "errors.sessionExpired": {
+    "en": "Session expired. Please sign in again.",
+    "ms": "Sesi tamat. Sila daftar masuk semula.",
+    "zh": "会话已过期。请重新登录。"
+  },
+  "numbering.title": {
+    "en": "Numbering Presets",
+    "ms": "Praset Nombor",
+    "zh": "编号预设"
+  },
+  "numbering.addPreset": {
+    "en": "Add Preset",
+    "ms": "Tambah Praset",
+    "zh": "添加预设"
+  },
+  "numbering.editPreset": {
+    "en": "Edit Preset",
+    "ms": "Sunting Praset",
+    "zh": "编辑预设"
+  },
+  "numbering.deletePreset": {
+    "en": "Delete Preset",
+    "ms": "Padam Praset",
+    "zh": "删除预设"
+  },
+  "numbering.setDefault": {
+    "en": "Set Default",
+    "ms": "Tetapkan Lalai",
+    "zh": "设为默认"
+  },
+  "numbering.pattern": {
+    "en": "Pattern",
+    "ms": "Corak",
+    "zh": "模式"
+  },
+  "numbering.customTokens": {
+    "en": "Custom Tokens",
+    "ms": "Token Tersuai",
+    "zh": "自定义令牌"
+  },
+  "numbering.resetCounter": {
+    "en": "Reset Counter",
+    "ms": "Tetapkan Semula Kaunter",
+    "zh": "重置计数器"
+  },
+  "numbering.livePreview": {
+    "en": "Live preview",
+    "ms": "Pratonton langsung",
+    "zh": "实时预览"
+  },
+  "numbering.setAsDefault": {
+    "en": "Set as default",
+    "ms": "Tetapkan sebagai lalai",
+    "zh": "设为默认"
+  },
+  "numbering.nextNumber": {
+    "en": "Next",
+    "ms": "Seterusnya",
+    "zh": "下一个"
+  },
+  "numbering.presetName": {
+    "en": "Preset Name",
+    "ms": "Nama Praset",
+    "zh": "预设名称"
+  },
+  "numbering.tokenLabel": {
+    "en": "Label",
+    "ms": "Label",
+    "zh": "标签"
+  },
+  "numbering.tokenDefault": {
+    "en": "Default Value",
+    "ms": "Nilai Lalai",
+    "zh": "默认值"
+  },
+  "numbering.tokenName": {
+    "en": "Token Name",
+    "ms": "Nama Token",
+    "zh": "令牌名称"
+  },
+  "numbering.noPresets": {
+    "en": "No numbering presets configured. Add one to start numbering invoices.",
+    "ms": "Tiada praset nombor dikonfigurasi. Tambah satu untuk mula menomborkan invois.",
+    "zh": "未配置编号预设。添加一个以开始为发票编号。"
+  },
+  "dashboard.tabActive": {
+    "en": "Active",
+    "ms": "Aktif",
+    "zh": "活跃"
+  },
+  "dashboard.tabArchived": {
+    "en": "Archived",
+    "ms": "Diarkib",
+    "zh": "已归档"
+  },
+  "dashboard.tabTrash": {
+    "en": "Trash",
+    "ms": "Tong Sampah",
+    "zh": "回收站"
+  },
+  "invoice.archive": {
+    "en": "Archive",
+    "ms": "Arkib",
+    "zh": "归档"
+  },
+  "invoice.unarchive": {
+    "en": "Unarchive",
+    "ms": "Nyaharkib",
+    "zh": "取消归档"
+  },
+  "invoice.delete": {
+    "en": "Delete",
+    "ms": "Padam",
+    "zh": "删除"
+  },
+  "invoice.restore": {
+    "en": "Restore",
+    "ms": "Pulihkan",
+    "zh": "恢复"
+  },
+  "invoice.deleteNow": {
+    "en": "Delete Now",
+    "ms": "Padam Sekarang",
+    "zh": "立即删除"
+  },
+  "invoice.editWarning": {
+    "en": "You're editing a validated invoice. The MyInvois record won't change. For official corrections, issue a credit/debit note.",
+    "ms": "Anda sedang menyunting invois yang disahkan. Rekod MyInvois tidak akan berubah. Untuk pembetulan rasmi, keluarkan nota kredit/debit.",
+    "zh": "您正在编辑已验证的发票。MyInvois 记录不会改变。如需正式更正，请签发贷方/借方通知单。"
+  },
+  "invoice.daysUntilPermanent": {
+    "en": "{days} days until permanent deletion",
+    "ms": "{days} hari sehingga pemadaman kekal",
+    "zh": "距离永久删除还有 {days} 天"
+  },
+  "trash.emptyTitle": {
+    "en": "Trash is empty",
+    "ms": "Tong sampah kosong",
+    "zh": "回收站为空"
+  },
+  "trash.emptyDesc": {
+    "en": "Deleted invoices appear here for 30 days before permanent removal.",
+    "ms": "Invois yang dipadam muncul di sini selama 30 hari sebelum pemadaman kekal.",
+    "zh": "已删除的发票在此保留 30 天后永久删除。"
+  },
+  "archived.emptyTitle": {
+    "en": "No archived invoices",
+    "ms": "Tiada invois diarkib",
+    "zh": "无已归档发票"
+  },
+  "archived.emptyDesc": {
+    "en": "Archived invoices will appear here.",
+    "ms": "Invois yang diarkib akan muncul di sini.",
+    "zh": "已归档的发票将显示在此处。"
+  },
+  "sync.synced": {
+    "en": "Synced",
+    "ms": "Disegerak",
+    "zh": "已同步"
+  },
+  "sync.modified": {
+    "en": "Modified",
+    "ms": "Diubahsuai",
+    "zh": "已修改"
+  },
+  "sync.notBackedUp": {
+    "en": "Not backed up",
+    "ms": "Tidak disandarkan",
+    "zh": "未备份"
+  },
+  "create.numberPreview": {
+    "en": "Preview",
+    "ms": "Pratonton",
+    "zh": "预览"
+  },
+  "create.numberEditable": {
+    "en": "Number (editable)",
+    "ms": "Nombor (boleh disunting)",
+    "zh": "编号（可编辑）"
+  }
+}

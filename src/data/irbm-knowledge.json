@@ -1,0 +1,179 @@
+[
+  {
+    "id": "exemption",
+    "topic": "RM1m exemption rule",
+    "text": "Businesses with annual turnover below RM1,000,000 are permanently exempt from mandatory e-invoicing, provided they are NOT part of a corporate group whose combined turnover meets or exceeds RM1,000,000. Exempt businesses may voluntarily opt in to the e-invoicing system at any time. Once opted in, the business must continue to comply with all e-invoicing requirements as if they were mandatory."
+  },
+  {
+    "id": "phases",
+    "topic": "Implementation phases",
+    "text": "Malaysian e-invoicing rolls out in three phases: Phase 1 (August 2024) targets businesses with annual turnover exceeding RM100 million. Phase 2 (January 2025) expands to businesses with turnover exceeding RM25 million. Phase 3 (July 2025) covers all remaining businesses with turnover above RM1 million. By July 2025, all businesses above the RM1 million threshold must be fully compliant with e-invoicing requirements."
+  },
+  {
+    "id": "consolidated",
+    "topic": "Consolidated invoice rules",
+    "text": "Consolidated e-invoices are permitted only for B2C (business-to-consumer) transactions. Transactions must be aggregated within a maximum period of 7 calendar days. The buyer TIN must be set to the General Public TIN (EI00000000010). Each individual transaction within the consolidation must not exceed RM10,000. The IRBM classification code for consolidated invoices must be 004."
+  },
+  {
+    "id": "non-consolidatable",
+    "topic": "Non-consolidatable categories",
+    "text": "Ten categories of transactions are explicitly prohibited from using consolidated e-invoices: automotive, aviation, luxury goods, construction services, licensed customs agents, petroleum, jewelry, insurance and takaful, private healthcare facilities, and telecommunications. These industries must issue individual e-invoices for every transaction regardless of the transaction value or customer type."
+  },
+  {
+    "id": "correction",
+    "topic": "72-hour correction window",
+    "text": "Sellers are permitted to cancel or amend a validated e-invoice within 72 hours of its validation timestamp on the MyInvois platform. After the 72-hour window has elapsed, direct cancellation or amendment is no longer possible. Instead, the seller must issue a credit note (to reduce amounts) or debit note (to increase amounts) referencing the original e-invoice."
+  },
+  {
+    "id": "penalties",
+    "topic": "Penalties for non-compliance",
+    "text": "Non-compliance with e-invoicing requirements under Malaysian tax law carries a fine not exceeding RM200,000, or imprisonment for a term not exceeding 2 years, or both. These penalties apply per infraction, meaning multiple violations can result in cumulative fines and sentences. Businesses should ensure timely compliance to avoid enforcement actions by IRBM."
+  },
+  {
+    "id": "tin-format",
+    "topic": "TIN format requirements",
+    "text": "Malaysian Tax Identification Numbers (TIN) begin with a prefix letter indicating the entity type: C for companies, and other prefix letters for different entity categories. The prefix is followed by 8 to 12 digits. The special General Public TIN used for consolidated B2C invoices is EI00000000010. All TINs must be validated against IRBM records before submission."
+  },
+  {
+    "id": "ubl",
+    "topic": "UBL 2.1 format",
+    "text": "Malaysian e-invoices use the UBL (Universal Business Language) 2.1 standard in JSON format for submission to the MyInvois platform. Required fields include supplier party details, customer party details, invoice line items with descriptions and amounts, monetary totals, and tax information. The MyInvois platform validates the structure and content before issuing a unique identifier and validation timestamp."
+  },
+  {
+    "id": "qr-code",
+    "topic": "QR code requirement",
+    "text": "Every validated e-invoice must contain a QR code that links to the MyInvois validation page. The QR code URL follows the format: {baseUrl}/{uuid}/share/{longId}, where baseUrl is the MyInvois portal domain, uuid is the unique invoice identifier, and longId is the long validation identifier. This QR code allows any party to verify the authenticity of the e-invoice."
+  },
+  {
+    "id": "classification",
+    "topic": "IRBM classification codes",
+    "text": "IRBM defines 45 classification codes for categorizing e-invoice line items. Notable codes include 001 for breastfeeding equipment, 004 for consolidated invoices, 022 for food and beverage, and 039 for construction materials. Every invoice line item must include the appropriate classification code. Using an incorrect classification code may result in validation rejection by the MyInvois platform."
+  },
+  {
+    "id": "classification-categories",
+    "topic": "Classification code categories explained",
+    "text": "IRBM classification codes are grouped by industry: Agriculture (001-003), Food & Beverage (004-022), Retail & Wholesale (010-017), Construction & Materials (038-043), Professional Services (023-027), Transportation (028-033), Utilities & Telecom (034-037), Healthcare (005-006), Education (007), Financial Services (044-045). Code 022 covers restaurants, cafes, catering, and food stalls. Code 004 is reserved for consolidated B2C invoices only and must not be used for individual invoices. Code 001 covers breastfeeding equipment and baby nutrition products which may qualify for tax exemptions."
+  },
+  {
+    "id": "how-to-choose-code",
+    "topic": "How to select the right classification code",
+    "text": "To select the correct IRBM classification code: identify your main business activity first (e.g., restaurant = 022 food & beverage), then check if a more specific code applies (e.g., selling packaged food to retailers = 010 wholesale, not 022). For mixed invoices with items from different categories, each line item gets its own code. Common mistakes: using 004 for non-consolidated invoices, using 022 for food manufacturing instead of retail, using 022 for selling groceries instead of 010. When in doubt, choose the code that best matches your primary registered MSIC business code with IRBM."
+  },
+  {
+    "id": "b2b-b2c-b2g",
+    "topic": "B2B vs B2C vs B2G e-invoices",
+    "text": "B2B (business-to-business) invoices require the buyer's TIN, business registration number (BRN), and full company details. B2C (business-to-consumer) invoices use the General Public TIN EI00000000010 and do not need individual buyer details — they can be consolidated monthly or within 7-day windows. B2G (business-to-government) invoices go to government agencies and require the agency's TIN and ministry code. B2G invoices cannot be consolidated and must follow additional procurement rules. Always verify the buyer type before generating the invoice to avoid TIN validation errors."
+  },
+  {
+    "id": "credit-debit-notes",
+    "topic": "Credit notes and debit notes",
+    "text": "Credit notes are issued to reduce the amount of a previously validated e-invoice (e.g., returns, discounts, corrections). Debit notes increase the amount (e.g., additional charges, price adjustments). Both must reference the original e-invoice's UUID and longId. Credit/debit notes are themselves e-invoices and go through the same validation process. They cannot be issued after 72 hours of the original invoice validation — within 72 hours you can directly cancel or amend. Each credit/debit note generates its own UUID, longId, and QR code independent of the original."
+  },
+  {
+    "id": "self-billed",
+    "topic": "Self-billed e-invoices",
+    "text": "Self-billed e-invoices are issued by the buyer instead of the seller, typically when the buyer is a larger entity and the seller is a small supplier who may not have e-invoicing capability. Common scenarios: payments to agents, dealers, distributors; goods sold by auction; payments to freelancers and gig workers. The buyer must obtain prior approval from IRBM to issue self-billed e-invoices. The self-billed invoice must clearly indicate 'Self-Billed' in the document and include both the buyer's and seller's TIN. Self-billed invoices follow the same UBL 2.1 format and validation rules."
+  },
+  {
+    "id": "common-errors",
+    "topic": "Common validation errors and fixes",
+    "text": "Frequent MyInvois validation rejections: ERR236 (TIN not found — verify buyer's TIN with IRBM e-TIN portal), ERR237 (General TIN used for B2B — use buyer's actual TIN, not EI00000000010), ERR300 (invalid classification code — check the code exists in the 45-code list), ERR301 (consolidation period exceeds 7 days — aggregate within 7 calendar days), ERR302 (individual transaction in consolidation exceeds RM10,000 — split into separate invoices), ERR400 (missing mandatory fields — ensure supplier TIN, buyer TIN, invoice date, line item descriptions, and totals are all present), ERR500 (UBL schema violation — validate JSON structure against MyInvois UBL 2.1 schema before submission)."
+  },
+  {
+    "id": "voluntary-opt-in",
+    "topic": "Voluntary opt-in for exempt businesses",
+    "text": "Businesses below RM1 million annual turnover can voluntarily join the e-invoicing system. Benefits of opting in: builds compliance readiness for future growth, improves record-keeping and accounting efficiency, may be preferred by larger B2B clients who need e-invoices from suppliers, and demonstrates tax transparency. To opt in: register on the MyInvois portal, complete e-invoicing onboarding, obtain or verify your TIN, and begin issuing e-invoices immediately. Once opted in, you cannot temporarily stop — you must continue complying. There is no opt-out mechanism. Consider cash flow impact since e-invoicing may affect tax filing timelines."
+  },
+  {
+    "id": "foreign-currency",
+    "topic": "Foreign currency e-invoices",
+    "text": "E-invoices can be issued in foreign currencies for international transactions. The invoice must include both the foreign currency amount and the Ringgit Malaysia (MYR) equivalent using the daily exchange rate published by Bank Negara Malaysia on the transaction date. The tax totals must be calculated in MYR. The UBL 2.1 format supports multiple currencies through the DocumentCurrencyCode and TaxCurrencyCode fields. Always use Bank Negara's official rate, not commercial bank rates, to avoid discrepancies during IRBM audit."
+  },
+  {
+    "id": "record-keeping",
+    "topic": "Record keeping requirements",
+    "text": "Businesses must retain e-invoice records for 7 years from the date of the invoice, as required under the Income Tax Act 1967. Records must include: the validated e-invoice (UBL 2.1 JSON), the validation response from MyInvois (UUID, longId, timestamp), and the supplier and buyer copies of the invoice. Electronic storage is acceptable but must be readily accessible and printable if requested by IRBM. Cloud backups are recommended. Failure to produce records during an audit may result in penalties even if the original e-invoice was valid. Self-billed invoice records must be retained by both the issuer and recipient."
+  },
+  {
+    "id": "payment-timeline",
+    "topic": "E-invoice submission timeline",
+    "text": "E-invoices must be submitted to MyInvois within 7 calendar days from the date of the transaction (invoice date). The 7-day window is strict — late submission may result in penalties. For consolidated B2C invoices, the aggregation period is also 7 calendar days, and the consolidated invoice must be submitted within 7 days after the end of the aggregation period. The MyInvois validation is near-instant (typically under 5 seconds). Once validated, the e-invoice is considered issued and the QR code becomes active. The validation timestamp is the official issuance date for tax purposes."
+  },
+  {
+    "id": "registration-procedure",
+    "topic": "How to register for MyInvois",
+    "text": "Step 1: Ensure your business has a valid TIN from IRBM (check at https://mytax.hasil.gov.my). Step 2: Register on the MyInvois portal at https://myinvois.hasil.gov.my using your company's MyTax credentials or digital certificate. Step 3: Complete the e-invoice profile — enter your business details, MSIC code, SST registration number (if applicable), and primary contact. Step 4: Configure your e-invoice settings: choose submission method (portal manual entry, spreadsheet upload, or API integration), set default classification codes for your common items, and add authorized users. Step 5: Test with the MyInvois sandbox environment before going live. Step 6: Start issuing e-invoices. The entire registration process typically takes 1-3 business days."
+  },
+  {
+    "id": "issuance-workflow",
+    "topic": "Step-by-step e-invoice issuance process",
+    "text": "Step 1: Capture transaction details — date, buyer TIN (or EI00000000010 for B2C), line items with descriptions, quantities, unit prices, and classification codes. Step 2: Calculate totals — sum of line amounts, applicable taxes (SST 6% or 10% depending on category, or 0% for exempt items), and grand total. Step 3: Generate the UBL 2.1 JSON document following the MyInvois schema — include supplier party, customer party, invoice line items, tax totals, and legal monetary totals. Step 4: Submit the JSON to MyInvois via portal, spreadsheet upload, or API. MyInvois validates the document in under 5 seconds. Step 5: On success — MyInvois returns a UUID, longId, and validation timestamp. Step 6: Generate the QR code using the format {baseUrl}/{uuid}/share/{longId} and embed it in the final invoice document (PDF, print, or digital). Step 7: Deliver the validated e-invoice with QR code to the buyer — and keep a copy for your 7-year records."
+  },
+  {
+    "id": "portal-usage",
+    "topic": "How to use the MyInvois portal",
+    "text": "The MyInvois portal at myinvois.hasil.gov.my provides three ways to issue e-invoices: Manual Entry — fill out a web form line by line, suitable for low-volume users (1-10 invoices per month). Spreadsheet Upload — download the IRBM template CSV, fill in your invoice data, and batch upload. API Integration — connect your accounting/POS software directly to the MyInvois API for automated submission (requires API credentials from IRBM). The portal also lets you: view all issued and received e-invoices, download validated JSON and PDF copies, check invoice status, cancel or amend within 72 hours, issue credit/debit notes, and run reports. The portal is desktop-optimized and requires a stable internet connection. There is no mobile app."
+  },
+  {
+    "id": "api-integration",
+    "topic": "API integration procedure",
+    "text": "To integrate with the MyInvois API: Step 1 — Apply for API access on the MyInvois portal and obtain a Client ID and Client Secret. Step 2 — Implement OAuth 2.0 client credentials flow to get access tokens. Step 3 — Use the token to call MyInvois API endpoints: POST /api/v1.0/documentsubmissions to submit e-invoices, GET /api/v1.0/documents/{uuid} to check status, PUT /api/v1.0/documents/{uuid} to cancel or amend within 72 hours. Step 4 — Handle API responses: HTTP 202 means accepted and queued for validation, HTTP 200 means validated successfully, HTTP 400/422 means validation errors (check error codes like ERR236, ERR237). Step 5 — Implement retry logic for transient failures and exponential backoff. The sandbox environment is at preprod.myinvois.hasil.gov.my for testing. Production requires a digital certificate issued by a IRBM-accredited Certificate Authority."
+  },
+  {
+    "id": "app-how-to-create",
+    "topic": "How to create an invoice in SenangInvoice",
+    "text": "To create an invoice in this app: Step 1 — Tap the + button at the bottom to open the Create screen. Step 2 — Choose a capture mode: Camera (take a photo of a receipt), Voice (speak your items like 'nasi lemak 3 ringgit 5.50, teh tarik 2 ringgit 2.20'), or Manual (type items by hand). Step 3 — The AI will extract line items from your input — review and edit them if needed. The auto-categorizer will suggest IRBM classification codes for each item with a confidence score (High/Medium/Low) — tap to accept or change. Step 4 — Select the buyer type: General Public (B2C) or TIN-based (B2B). For B2B, enter the buyer's TIN, company name, and ID. Step 5 — Choose a numbering preset and fill in any custom token values (e.g., Department, Branch). The invoice number is auto-generated but you can also type a custom number. Step 6 — Optionally expand Advanced Options to add discount, payment terms, due date, supplier reference, or notes. Step 7 — Tap Generate — the app builds a UBL 2.1 e-invoice, runs validation, and creates a PDF with QR code. The finished invoice appears on the Home screen. You need at least one LLM API key set up in Settings for the AI extraction to work."
+
+  },
+  {
+    "id": "app-capture-modes",
+    "topic": "Capture modes — Camera, Voice, Manual",
+    "text": "SenangInvoice offers three ways to capture invoice data: Camera mode — click 'Take Photo' to open your webcam (desktop) or phone camera (mobile). A live viewfinder appears — position the receipt in frame and click Capture. Review the preview, then click 'Start Scan' to begin OCR and AI extraction. On mobile, the native camera app opens instead. Voice mode — tap the microphone and speak your items naturally in any language (Malay, English, Mandarin, or mixed). Example: 'nasi goreng 3 pinggan 8 ringgit, teh o ais 2 gelas 3 ringgit, roti canai 4 keping 2 ringgit'. Manual mode — type each item, quantity, and price in a form. All three modes feed into the same AI extraction pipeline. Camera and Voice require an active LLM key in Settings."
+  },
+  {
+    "id": "app-ai-extraction",
+    "topic": "How the AI extraction works",
+    "text": "When you capture a receipt, the app sends it to RapidOCR (a local Python server running PaddleOCR models via ONNX Runtime) which reads all text from the image. The OCR text is then passed to the AI (Gemini or DeepSeek by default) which extracts: item description, quantity, unit price. The AI then maps each item to the correct IRBM classification code (e.g., food items = code 022). It also selects the right unit of measure (UOM) code and tax type. You can review and edit all AI-generated values before generating the invoice. The AI needs a working LLM API key — set this up in Settings under LLM API Keys. You can add keys from Gemini, DeepSeek, Anthropic (Claude), OpenAI, or a local Ollama instance. The app tries your primary key first and automatically falls back to backup keys if the first one fails."
+  },
+  {
+    "id": "app-auto-categorizer",
+    "topic": "Auto-categorization with confidence scores",
+    "text": "SenangInvoice can automatically categorize your invoice line items with the correct IRBM classification codes. When you capture items via Camera, Voice, or Manual mode, the AI assigns each item a classification code (e.g., food items = 022, construction materials = 039) and displays a confidence score (Low, Medium, or High) next to the suggested code. High confidence (green) means the AI is very certain — you can accept it without review. Medium confidence (yellow) means the AI is fairly certain but you should verify. Low confidence (red) means the AI is unsure — you should manually select the correct code from the full 45-code picker list. You can tap any confidence badge to see why the AI made its choice (which keywords it matched). The auto-categorizer learns from your corrections over time (stored locally on your device) so accuracy improves with use. Auto-categorization requires an active LLM API key in Settings."
+  },
+  {
+    "id": "app-language",
+    "topic": "Language support and switching",
+    "text": "SenangInvoice supports four languages for the app interface: English, Bahasa Melayu, 中文 (Simplified Chinese), and தமிழ் (Tamil). To change the language, go to Settings and tap the Language selector — the app switches immediately without a restart. The language setting affects all UI text: field labels, buttons, help text, error messages, and the Ask chat's default response language. Note: the language setting does NOT affect invoice document content — invoice descriptions, item names, and buyer details appear exactly as you entered them. The AI extraction works in all four languages and mixed-language (rojak) input. The language preference is stored locally on your device in IndexedDB and persists across sessions."
+  },
+  {
+    "id": "app-numbering-presets",
+    "topic": "Invoice numbering presets",
+    "text": "SenangInvoice uses a flexible preset system for invoice numbers so every business can match their existing books. Manage presets in Settings > Numbering Presets. Five default presets are provided: Simple Sequential (INV-0001, INV-0002), Year-Month Sequence (2026-06-001), Year Sequence (2026/0001), Branch Name ({branch}-001), and Department + Category (INV-{dept}-{cat}-01). Each preset has a pattern string with tokens: {seq:0000} for auto-increment (zero-padded to width), {YYYY} for 4-digit year, {MM} for 2-digit month, {DD} for 2-digit day, and any custom tokens you define (e.g., {dept}, {branch}, {doctor}). Custom tokens have a label and optional default value. The counter can reset never, yearly, or monthly. One preset is the default (star). To create an invoice, pick a preset from the dropdown on the Create page, fill in custom token values, see the live preview, and optionally override the number. Numbering presets are stored locally in IndexedDB on your device."
+  },
+  {
+    "id": "app-seller-profile",
+    "topic": "Setting up your seller profile",
+    "text": "Your seller profile is the business information that appears on every invoice. To set it up: go to Settings then tap Seller Profile. Enter your business name (registered name), Tax Identification Number or TIN (starts with C for companies), SST registration number (format: W10-XXXX-XXXXXXXX), MSIC code (5-digit business classification code, e.g., 56111 for restaurants), business address, phone number, and email. This information is stored locally on your device in IndexedDB — it is not sent to any server. You must complete your profile before creating invoices because the TIN and business name are mandatory fields in every UBL 2.1 e-invoice."
+  },
+  {
+    "id": "app-ask-feature",
+    "topic": "How to use the Ask (chat) feature",
+    "text": "The Ask screen is an AI chat that answers questions about Malaysian e-invoicing. Tap the Ask tab at the bottom. Type a question in any language — Malay, English, Mandarin, or mixed rojak. Examples: 'adakah perniagaan saya perlu e-invois?', 'what is the penalty for late submission?', 'macam mana nak buat consolidated invoice?', '什么RM1百万豁免规则？'. The AI answers based on official IRBM guidelines. The Scope Check card on the Ask screen lets you enter your annual turnover to check if your business falls under mandatory e-invoicing (above RM1 million) or is exempt. The Ask feature needs an LLM API key configured in Settings to work."
+  },
+  {
+    "id": "app-demo-mode",
+    "topic": "Demo mode and sample data",
+    "text": "Demo mode lets you explore SenangInvoice with preloaded sample data — no real data needed. To activate: go to Settings, scroll to Demo Mode, enter the password 'unlock', and tap Unlock. A yellow bar appears at the top of every page. Tap Generate to load two sample invoices from Kedai Kopi Senang (a fictional coffee shop): one B2C invoice for Nasi Lemak and Teh Tarik (RM20.90), and one B2B invoice for catering to Syarikat Ali Sdn Bhd (RM750.00). The demo also loads a sample seller profile and LLM API keys from your environment variables. Tap Clear on the yellow bar to delete all demo data. Tap the X button to hide the bar. Demo mode is useful for testing, demonstrations, and learning the app flow without entering real business information."
+  },
+  {
+    "id": "app-llm-keys",
+    "topic": "Managing LLM API keys",
+    "text": "LLM API keys power the AI features — extraction, classification, mapping, and the Ask chat. Set up keys in Settings under LLM API Keys. Tap to expand the section. Add a key: choose a provider (Gemini, DeepSeek, Anthropic, OpenAI, or Ollama local), give it a label (e.g., 'My Gemini Key'), paste the API key, enter the model name (or tap Fetch to list available models), optionally set a custom base URL if using a proxy. Mark a key as 'Fallback' to make it the last-resort backup. Drag keys to reorder priority — keys are tried top-to-bottom. Toggle keys Active or Paused. Edit any key by tapping it and then tapping Edit. Keys are stored only on your device in IndexedDB — they never leave your browser except when sent to the AI provider's API for processing."
+  },
+  {
+    "id": "app-invoice-history",
+    "topic": "Viewing and managing invoices",
+    "text": "All your invoices appear on the Home screen organized into three tabs: Active (default, shows current invoices), Archived (hidden from active list, reversible), and Trash (deleted invoices kept for 30 days before permanent removal). Each invoice card shows: status badge (Validated with green check, Draft in gray), sync status (green cloud = backed up to Drive, amber = modified not pushed, gray = never backed up), invoice date, buyer name or 'General Public', and total amount. Card action buttons let you Edit (modify metadata), Archive/Unarchive, or Delete. Tap any invoice to view full details — seller and buyer information, line items with classification codes, totals, and the QR code badge. On the detail page, tap Edit to modify notes, discount, payment terms, supplier reference, and buyer details. A warning appears if you edit a validated invoice since the MyInvois record won't be changed. Use the SearchBar to find invoices by description or buyer name. Use the DateFilter to filter by date range. The StatTile cards at the top show total invoices, validated count, and total value. Bulk select mode (tap the select button) lets you archive, delete, or restore multiple invoices at once. Invoices are stored locally in IndexedDB — no server upload, no cloud sync unless you enable Google Drive backup in Settings. Invoice numbering is fully configurable — you can create custom presets with tokens for year, month, sequence, department, or branch in Settings > Numbering Presets."
+
+  }
+]

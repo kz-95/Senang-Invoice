@@ -1,0 +1,298 @@
+{
+  "articles": [
+    {
+      "slug": "do-i-need-einvoice",
+      "title": "Do I even need e-invoicing?",
+      "summary": "Who must comply, the RM thresholds, and how to check.",
+      "icon": "scope",
+      "next": "register-mytax",
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "What is e-invoicing?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Malaysia's Inland Revenue Board (IRBM) is rolling out mandatory e-invoicing for all businesses. An e-invoice is a digital document that captures a transaction in a structured format (UBL 2.1 JSON) and must be validated by the MyInvois system before it is considered legally valid."
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "text": "E-invoicing is not just a PDF. The IRBM requires a specific structured format (UBL 2.1) that the MyInvois system validates and stamps with a unique UUID and QR validation link — only then is the invoice legally valid."
+        },
+        {
+          "type": "heading",
+          "text": "Who must comply?"
+        },
+        {
+          "type": "paragraph",
+          "text": "The RM1 million annual turnover threshold determines who must issue e-invoices. If your business revenue exceeds RM1 million in a financial year, you are required to adopt e-invoicing. The threshold applies per corporate group — if your group of companies collectively exceeds RM1 million, all entities within the group must comply."
+        },
+        {
+          "type": "heading",
+          "text": "Implementation timeline"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "August 2024 — Businesses with annual turnover exceeding RM100 million",
+            "January 2025 — Businesses with annual turnover exceeding RM25 million",
+            "July 2025 — All remaining businesses exceeding RM1 million, plus voluntary adopters"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "text": "The July 2025 phase covers most SMEs. If your business earns above RM1 million annually, you must be compliant by this date. Penalties for non-compliance can reach RM200,000 and up to 2 years imprisonment."
+        },
+        {
+          "type": "heading",
+          "text": "What if I'm below the threshold?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Even if your turnover is below RM1 million, you can voluntarily opt in. The IRBM encourages voluntary adoption — there is no penalty for joining early, and you benefit from getting your systems ready before it becomes mandatory. Once you opt in, you cannot opt out."
+        },
+        {
+          "type": "heading",
+          "text": "Quick self-check"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ask yourself these three questions: (1) Is my annual revenue above RM1 million? (2) Am I part of a corporate group that collectively exceeds RM1 million? (3) Do I want to voluntarily adopt now? If you answered yes to any of these, you need e-invoicing."
+        },
+        {
+          "type": "cta",
+          "label": "Next: Register on MyTax",
+          "href": "/guide/register-mytax"
+        }
+      ]
+    },
+    {
+      "slug": "register-mytax",
+      "title": "Register on MyTax",
+      "summary": "Digital certificate, TIN, and role setup on the MyTax portal.",
+      "icon": "register",
+      "next": "get-myinvois-access",
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Step 1: Access the MyTax portal"
+        },
+        {
+          "type": "paragraph",
+          "text": "Go to the official MyTax portal at mytax.hasil.gov.my. If you already have an account (for tax filing), you can use your existing credentials. If not, you'll need to register as a new user."
+        },
+        {
+          "type": "heading",
+          "text": "Step 2: Obtain your Tax Identification Number (TIN)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Your TIN is the unique identifier used by IRBM for all tax matters. For businesses registered in Malaysia, it starts with a prefix letter (for example 'C' for a company) followed by digits. You need this TIN to set up your MyInvois access. Note: the special TIN EI00000000010 is reserved for consolidated 'general public' invoices — it is not your personal or company TIN."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "text": "If you don't know your TIN, check your company's Form CP600 or your most recent tax return. You can also find it on the MyTax portal under your profile."
+        },
+        {
+          "type": "heading",
+          "text": "Step 3: Obtain a digital certificate"
+        },
+        {
+          "type": "paragraph",
+          "text": "MyTax issues a free digital certificate that authenticates you when logging in to the e-invoicing portals. Apply for it in the MyTax portal — individuals can use the Individual digital certificate (IC only, no company documents needed). This free login certificate is all you need to reach MyInvois and register for API credentials. A separate paid signing certificate from a licensed CA is only required for the cryptographically-signed invoice format, which SenangInvoice's standard sandbox submission does not use."
+        },
+        {
+          "type": "heading",
+          "text": "Step 4: Assign the right role"
+        },
+        {
+          "type": "paragraph",
+          "text": "In MyTax, you need to assign the e-Invoice Representative role to the person who will manage your e-invoicing submissions. This role grants access to the MyInvois portal and API. Only users with this role can generate the client ID and client secret needed for API integration."
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "text": "The role assignment can take up to 48 hours to be processed by IRBM. Plan ahead and complete this step early."
+        },
+        {
+          "type": "heading",
+          "text": "Step 5: Verify your registration"
+        },
+        {
+          "type": "paragraph",
+          "text": "After completing all steps, log out and log back into MyTax to confirm your e-Invoice Representative role is active. You should see the e-Invoicing section in your dashboard. If not, contact IRBM support through the portal."
+        },
+        {
+          "type": "cta",
+          "label": "Next: Get MyInvois Access",
+          "href": "/guide/get-myinvois-access"
+        }
+      ]
+    },
+    {
+      "slug": "get-myinvois-access",
+      "title": "Get MyInvois Access",
+      "summary": "Portal setup, ERP registration, and API credentials.",
+      "icon": "access",
+      "next": "your-first-invoice",
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "What is MyInvois?"
+        },
+        {
+          "type": "paragraph",
+          "text": "MyInvois is the IRBM's official e-invoicing platform. It validates all e-invoices against the required UBL 2.1 format and assigns each invoice a unique UUID, digital signature, and QR code. Every Malaysian e-invoice must pass through MyInvois validation."
+        },
+        {
+          "type": "heading",
+          "text": "Accessing the MyInvois portal"
+        },
+        {
+          "type": "paragraph",
+          "text": "Once your MyTax registration is complete and your e-Invoice Representative role is active, go to myinvois.hasil.gov.my. Log in using your MyTax credentials. The portal offers three ways to submit invoices: (1) Manual entry through the web form, (2) Spreadsheet upload for batch invoices, and (3) API integration for automated submission."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "text": "SenangInvoice uses the API integration method, which means you submit invoices directly from the app without needing to log into the MyInvois portal each time."
+        },
+        {
+          "type": "heading",
+          "text": "ERP Registration"
+        },
+        {
+          "type": "paragraph",
+          "text": "To use the API, you need to register SenangInvoice (or any other invoicing software) as your ERP system in MyInvois. Navigate to the ERP Registration section in the portal. You'll need to provide a system name, description, and your digital certificate."
+        },
+        {
+          "type": "heading",
+          "text": "Obtaining your Client ID and Client Secret"
+        },
+        {
+          "type": "paragraph",
+          "text": "After ERP registration, MyInvois generates two credentials: a Client ID and a Client Secret. The Client ID identifies your ERP system. The Client Secret is the password that authenticates your API calls. Store the Client Secret securely — it is shown only once."
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "text": "Download and save your Client Secret immediately after generation. If you lose it, you'll need to regenerate a new one through the MyInvois portal."
+        },
+        {
+          "type": "heading",
+          "text": "Entering credentials in SenangInvoice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Open SenangInvoice and go to Settings → MyInvois Credentials. Enter a Label (any name for this business), your Client ID, and your Client Secret. SenangInvoice stores them only on your device and uses them to submit invoices to the MyInvois API as you."
+        },
+        {
+          "type": "heading",
+          "text": "Testing in the sandbox"
+        },
+        {
+          "type": "paragraph",
+          "text": "IRBM provides a sandbox environment for testing. In SenangInvoice, you can toggle between sandbox and production modes in Settings. We recommend testing a few invoices in the sandbox first to confirm everything works before switching to production."
+        },
+        {
+          "type": "cta",
+          "label": "Next: Your First Invoice",
+          "href": "/guide/your-first-invoice"
+        }
+      ]
+    },
+    {
+      "slug": "your-first-invoice",
+      "title": "Your First Invoice",
+      "summary": "Create and submit an e-invoice using SenangInvoice.",
+      "icon": "invoice",
+      "next": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Setting up your seller profile"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before creating your first invoice, set up your seller profile. Go to Settings → Profile and fill in your business name, TIN, SST number (if applicable), MSIC code, and business address. This information appears on every invoice you issue."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "text": "Your MSIC (Malaysia Standard Industrial Classification) code determines your IRBM classification code. If you're unsure of your code, SenangInvoice can suggest codes based on your industry."
+        },
+        {
+          "type": "heading",
+          "text": "Creating an invoice"
+        },
+        {
+          "type": "paragraph",
+          "text": "In SenangInvoice, tap the + button to create a new invoice. You have three capture modes: (1) Camera — snap a photo of a receipt or paper invoice and AI extracts the details, (2) Voice — speak the invoice line items aloud, and (3) Manual — type in the details directly."
+        },
+        {
+          "type": "heading",
+          "text": "Filling in the required fields"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Buyer information — Choose B2B (with TIN), B2C (general public), or B2G (government). For B2B, enter the buyer's TIN.",
+            "Line items — Add each product or service with description, quantity, unit price, and IRBM classification code.",
+            "Tax details — The system calculates SST and totals automatically based on your profile settings.",
+            "Review totals — Check the subtotal, tax amounts, and grand total before submission."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "AI-powered classification"
+        },
+        {
+          "type": "paragraph",
+          "text": "IRBM requires every invoice line item to carry a classification code (one of 45 standard codes). SenangInvoice uses AI to analyze your item descriptions and suggest the correct code. You can review and adjust the suggestion before submitting."
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "text": "IRBM publishes a fixed list of e-invoice classification codes. SenangInvoice ships the full catalog and its AI suggests the right code for each line item, so you don't have to memorise them — you just confirm or adjust."
+        },
+        {
+          "type": "heading",
+          "text": "Submitting to MyInvois"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you submit, SenangInvoice builds the UBL 2.1 JSON and sends it to the MyInvois API. MyInvois validates the invoice and returns a unique UUID, a long ID, and a QR validation link. The validated invoice with its QR code is then ready to share with your buyer."
+        },
+        {
+          "type": "heading",
+          "text": "72-hour correction window"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you notice a mistake after submission, you have 72 hours to cancel or amend the invoice through the MyInvois system. After 72 hours, you must issue a credit note or debit note, which creates a new invoice linked to the original by UUID."
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "text": "Always double-check buyer details, amounts, and classification codes before submitting. A credit/debit note correction after 72 hours creates additional paperwork and may delay payment."
+        },
+        {
+          "type": "heading",
+          "text": "What's next?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Once your invoice is validated, you can download the PDF with QR code, share it via email or messaging apps, and optionally back it up to Google Drive. Your invoices are stored locally on your device and synced to Drive if you've set up backup."
+        },
+        {
+          "type": "cta",
+          "label": "Start creating invoices",
+          "href": "/create"
+        }
+      ]
+    }
+  ]
+}

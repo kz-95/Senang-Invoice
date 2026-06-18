@@ -1,0 +1,6 @@
+{
+  "name": "senanginvoice-node",
+  "private": true,
+  "type": "commonjs",
+  "main": "index.js"
+}

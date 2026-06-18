@@ -1,0 +1,78 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# production build
+build/
+
+# env files
+.env
+.env.local
+.env.*.local
+
+# PWA generated files
+public/sw.js
+public/workbox-*.js
+public/worker-*.js
+public/fallback-*.js
+public/sw.js.map
+public/workbox-*.js.map
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+docs/
+index.html
+
+# playwright
+e2e/
+playwright-report/
+test-results/
+.playwright/
+playwright.config.ts
+test-e2e.bat
+
+# agent / IDE state
+.omc/
+.claude/
+.kilo/
+AGENTS.md
+
+# optional local scripts
+scripts/ocr_server.py
+scripts/ocr_requirements.txt
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# vitest (not needed for build)
+vitest.config.ts
+vitest.setup.ts
+**/*.test.ts
+**/*.test.tsx
+**/__tests__/
+# test coverage
+coverage/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# logs
+*.log
+
+# APK packaging (Node.js server)
+nodejs/services/
+nodejs/node_modules/
+android/release.jks
+android/keystore.properties

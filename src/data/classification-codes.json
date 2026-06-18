@@ -1,0 +1,362 @@
+[
+  {
+    "code": "001",
+    "description": "Breastfeeding equipment",
+    "category": "Goods",
+    "keywords": ["breastfeeding", "pump", "baby", "feeding", "nursing", "maternity", "infant"],
+    "examples": ["breast pump", "nursing cover", "milk storage bag"],
+    "useWhen": "Use for breastfeeding-specific equipment and maternity nursing products"
+  },
+  {
+    "code": "002",
+    "description": "Child care centres and kindergartens fees",
+    "category": "Services",
+    "keywords": ["childcare", "kindergarten", "daycare", "preschool", "nursery", "taska", "tadika"],
+    "examples": ["monthly childcare fee", "kindergarten tuition", "daycare center"],
+    "useWhen": "Use for fees paid to registered childcare centres and kindergartens"
+  },
+  {
+    "code": "003",
+    "description": "Computer, smartphone or tablet",
+    "category": "Goods",
+    "keywords": ["computer", "laptop", "smartphone", "tablet", "pc", "desktop", "notebook", "phone", "iphone", "android", "ipad", "macbook", "gadget", "electronics"],
+    "examples": ["Dell laptop", "iPhone 15", "Samsung tablet", "iPad", "MacBook Pro", "Lenovo ThinkPad"],
+    "useWhen": "Use for purchase of computers, laptops, smartphones, tablets and similar computing devices"
+  },
+  {
+    "code": "004",
+    "description": "Consolidated e-Invoice",
+    "category": "General",
+    "keywords": ["consolidated", "summary", "aggregated", "batch"],
+    "examples": ["consolidated monthly invoice", "summary batch invoice"],
+    "useWhen": "Use ONLY for consolidated B2C e-invoices (code 004 is reserved)"
+  },
+  {
+    "code": "005",
+    "description": "Construction materials (as specified under Fourth Schedule of the Lembaga Pembangunan Industri Pembinaan Malaysia Act 1994)",
+    "category": "Goods",
+    "keywords": ["construction", "building", "material", "cement", "steel", "brick", "timber", "sand", "aggregate", "concrete"],
+    "examples": ["cement bags", "steel bars", "bricks", "sand", "concrete mix", "timber planks"],
+    "useWhen": "Use for construction materials listed under CIDB Act Fourth Schedule"
+  },
+  {
+    "code": "006",
+    "description": "Disbursement",
+    "category": "General",
+    "keywords": ["disbursement", "reimbursement", "out-of-pocket", "expense", "recovery"],
+    "examples": ["travel reimbursement", "out-of-pocket expense recovery"],
+    "useWhen": "Use for disbursements and reimbursements recovered from clients"
+  },
+  {
+    "code": "007",
+    "description": "Donation",
+    "category": "General",
+    "keywords": ["donation", "charity", "contribution", "zakat", "waqf", "sedekah", "giving"],
+    "examples": ["charity donation", "zakat contribution", "waqf donation"],
+    "useWhen": "Use for donations, charity contributions, zakat, and waqf"
+  },
+  {
+    "code": "008",
+    "description": "e-Commerce - Goods",
+    "category": "Goods",
+    "keywords": ["ecommerce", "online", "goods", "shopee", "lazada", "digital", "marketplace"],
+    "examples": ["Shopee order", "Lazada purchase", "online store goods"],
+    "useWhen": "Use for goods sold through e-commerce platforms and online marketplaces"
+  },
+  {
+    "code": "009",
+    "description": "e-Commerce - Services",
+    "category": "Services",
+    "keywords": ["ecommerce", "online", "services", "digital", "platform", "subscription", "saas"],
+    "examples": ["Shopee services", "online booking", "digital platform fee"],
+    "useWhen": "Use for services sold through e-commerce platforms"
+  },
+  {
+    "code": "010",
+    "description": "Education fees",
+    "category": "Services",
+    "keywords": ["education", "tuition", "school", "university", "college", "training", "course", "workshop", "seminar"],
+    "examples": ["school fees", "university tuition", "training course", "workshop fee"],
+    "useWhen": "Use for education fees including tuition, training courses, and workshops"
+  },
+  {
+    "code": "011",
+    "description": "Electricity",
+    "category": "Goods",
+    "keywords": ["electricity", "power", "utility", "tnb", "energy", "electric", "bill"],
+    "examples": ["TNB electricity bill", "power utility", "electric bill"],
+    "useWhen": "Use for electricity and power utility bills"
+  },
+  {
+    "code": "012",
+    "description": "Employment agency fees",
+    "category": "Services",
+    "keywords": ["employment", "recruitment", "agency", "hiring", "staffing", "headhunter", "job"],
+    "examples": ["recruitment agency fee", "headhunter service", "staffing agency"],
+    "useWhen": "Use for fees paid to employment and recruitment agencies"
+  },
+  {
+    "code": "013",
+    "description": "Farm produce",
+    "category": "Goods",
+    "keywords": ["farm", "produce", "agriculture", "vegetable", "fruit", "crop", "harvest", "livestock", "plantation"],
+    "examples": ["fresh vegetables", "fruits", "paddy", "harvested crops"],
+    "useWhen": "Use for agricultural farm produce and harvested crops"
+  },
+  {
+    "code": "014",
+    "description": "Fertiliser and pesticide",
+    "category": "Goods",
+    "keywords": ["fertilizer", "pesticide", "agriculture", "chemical", "herbicide", "insecticide", "farming"],
+    "examples": ["NPK fertilizer", "weed killer", "pest spray", "agriculture chemical"],
+    "useWhen": "Use for fertilizers, pesticides, herbicides, and agricultural chemicals"
+  },
+  {
+    "code": "015",
+    "description": "Financial services",
+    "category": "Services",
+    "keywords": ["finance", "banking", "insurance", "investment", "loan", "mortgage", "takaful", "broker", "advisory"],
+    "examples": ["bank processing fee", "investment advisory", "loan processing", "mortgage fee"],
+    "useWhen": "Use for financial services, banking, insurance, and investment advisory"
+  },
+  {
+    "code": "016",
+    "description": "Food and beverages",
+    "category": "Goods",
+    "keywords": ["food", "beverage", "drink", "meal", "restaurant", "catering", "grocery", "snack", "cooking"],
+    "examples": ["restaurant meal", "catering service", "grocery items", "cooked food"],
+    "useWhen": "Use for food and beverage items including restaurant meals and catering"
+  },
+  {
+    "code": "017",
+    "description": "Freight and delivery charges",
+    "category": "Services",
+    "keywords": ["freight", "delivery", "shipping", "courier", "logistics", "transport", "postage", "parcel"],
+    "examples": ["courier delivery fee", "shipping charge", "freight cost", "postage"],
+    "useWhen": "Use for freight, delivery, courier, and shipping charges"
+  },
+  {
+    "code": "018",
+    "description": "Goods and services tax (GST)",
+    "category": "General",
+    "keywords": ["gst", "tax", "goods and services tax"],
+    "examples": ["GST charge", "tax amount"],
+    "useWhen": "Use for Goods and Services Tax line items (historical/transitional)"
+  },
+  {
+    "code": "019",
+    "description": "Healthcare - Medical",
+    "category": "Services",
+    "keywords": ["healthcare", "medical", "doctor", "hospital", "clinic", "treatment", "surgery", "medicine", "diagnosis"],
+    "examples": ["doctor consultation", "hospital bill", "medical treatment", "diagnosis fee"],
+    "useWhen": "Use for medical healthcare services and treatments"
+  },
+  {
+    "code": "020",
+    "description": "Healthcare - Optical",
+    "category": "Goods",
+    "keywords": ["optical", "eyewear", "glasses", "spectacle", "lens", "optometrist", "eye", "vision"],
+    "examples": ["prescription glasses", "contact lens", "eye test", "optical frame"],
+    "useWhen": "Use for optical products, eyewear, and optometry services"
+  },
+  {
+    "code": "021",
+    "description": "Healthcare - Dental",
+    "category": "Services",
+    "keywords": ["dental", "dentist", "tooth", "braces", "orthodontic", "oral", "cavity", "clinic"],
+    "examples": ["dental checkup", "tooth filling", "braces", "dental surgery"],
+    "useWhen": "Use for dental services and treatments"
+  },
+  {
+    "code": "022",
+    "description": "Healthcare - Others",
+    "category": "Services",
+    "keywords": ["healthcare", "other", "wellness", "therapy", "physio", "alternative", "acupuncture", "chiropractor"],
+    "examples": ["physiotherapy", "acupuncture", "wellness treatment", "alternative medicine"],
+    "useWhen": "Use for healthcare services not covered by medical, optical, or dental codes"
+  },
+  {
+    "code": "023",
+    "description": "Hotel accommodation",
+    "category": "Services",
+    "keywords": ["hotel", "accommodation", "lodging", "resort", "homestay", "airbnb", "booking", "stay", "room"],
+    "examples": ["hotel room booking", "resort stay", "Airbnb", "homestay accommodation"],
+    "useWhen": "Use for hotel, resort, and accommodation lodging"
+  },
+  {
+    "code": "024",
+    "description": "Information and Communication Technology (ICT) equipment and services",
+    "category": "Goods",
+    "keywords": ["ict", "it", "technology", "software", "hardware", "network", "server", "router", "printer", "telecom"],
+    "examples": ["software license", "IT equipment", "network router", "server hardware"],
+    "useWhen": "Use for ICT equipment, software, hardware, networking, and telecom"
+  },
+  {
+    "code": "025",
+    "description": "Insurance",
+    "category": "Services",
+    "keywords": ["insurance", "takaful", "policy", "premium", "coverage", "protection", "underwriting"],
+    "examples": ["insurance premium", "takaful contribution", "policy fee"],
+    "useWhen": "Use for insurance and takaful premiums, policies, and coverage"
+  },
+  {
+    "code": "026",
+    "description": "Intellectual property",
+    "category": "Services",
+    "keywords": ["intellectual property", "ip", "patent", "trademark", "copyright", "license", "royalty", "franchise"],
+    "examples": ["patent registration", "trademark fee", "copyright license", "royalty payment"],
+    "useWhen": "Use for intellectual property rights, patents, trademarks, and copyrights"
+  },
+  {
+    "code": "027",
+    "description": "Interest / profit receipts from conventional or Islamic banking",
+    "category": "Services",
+    "keywords": ["interest", "profit", "banking", "islamic", "conventional", "dividend", "return", "riba"],
+    "examples": ["bank interest income", "Islamic profit receipt", "dividend income"],
+    "useWhen": "Use for interest or profit receipts from banking and financial institutions"
+  },
+  {
+    "code": "028",
+    "description": "Jewellery, watches, and related accessories",
+    "category": "Goods",
+    "keywords": ["jewellery", "jewelry", "watch", "accessory", "gold", "silver", "diamond", "gem", "precious", "luxury"],
+    "examples": ["gold necklace", "diamond ring", "luxury watch", "silver bracelet"],
+    "useWhen": "Use for jewellery, watches, precious metals, and luxury accessories"
+  },
+  {
+    "code": "029",
+    "description": "Legal and professional fees",
+    "category": "Services",
+    "keywords": ["legal", "professional", "lawyer", "attorney", "consultant", "auditor", "accountant", "notary", "firm"],
+    "examples": ["lawyer fee", "auditor service", "consultant fee", "notary charge"],
+    "useWhen": "Use for legal, accounting, consulting, and professional service fees"
+  },
+  {
+    "code": "030",
+    "description": "Leisure and entertainment",
+    "category": "Services",
+    "keywords": ["leisure", "entertainment", "recreation", "movie", "cinema", "concert", "theme park", "gaming", "tourism"],
+    "examples": ["movie ticket", "concert ticket", "theme park entry", "gaming"],
+    "useWhen": "Use for leisure, entertainment, recreation, and tourism activities"
+  },
+  {
+    "code": "031",
+    "description": "Livestock",
+    "category": "Goods",
+    "keywords": ["livestock", "animal", "cattle", "sheep", "goat", "chicken", "poultry", "aquaculture", "breeding"],
+    "examples": ["cattle purchase", "chicken livestock", "goat", "sheep", "aquaculture stock"],
+    "useWhen": "Use for livestock animals including cattle, poultry, and aquaculture"
+  },
+  {
+    "code": "032",
+    "description": "Maintenance and repair services",
+    "category": "Services",
+    "keywords": ["maintenance", "repair", "service", "fix", "servicing", "overhaul", "upkeep"],
+    "examples": ["equipment repair", "building maintenance", "machine servicing"],
+    "useWhen": "Use for maintenance, repair, and servicing of equipment and property"
+  },
+  {
+    "code": "033",
+    "description": "Medical equipment",
+    "category": "Goods",
+    "keywords": ["medical", "equipment", "device", "instrument", "hospital", "supply", "surgical", "diagnostic"],
+    "examples": ["surgical instrument", "diagnostic device", "hospital equipment", "medical device"],
+    "useWhen": "Use for medical equipment, devices, instruments, and hospital supplies"
+  },
+  {
+    "code": "034",
+    "description": "Motor vehicle (including motorcycle)",
+    "category": "Goods",
+    "keywords": ["motor", "vehicle", "car", "motorcycle", "bike", "automobile", "truck", "lorry", "van", "bus"],
+    "examples": ["Proton car", "Honda motorcycle", "Perodua", "Toyota", "lorry", "van"],
+    "useWhen": "Use for motor vehicles including cars, motorcycles, trucks, and buses"
+  },
+  {
+    "code": "035",
+    "description": "Newspaper, journal, magazine, and publication",
+    "category": "Goods",
+    "keywords": ["newspaper", "journal", "magazine", "publication", "print", "media", "subscription", "periodical"],
+    "examples": ["newspaper subscription", "academic journal", "magazine", "periodical"],
+    "useWhen": "Use for newspapers, journals, magazines, and printed publications"
+  },
+  {
+    "code": "036",
+    "description": "Oil and petroleum products",
+    "category": "Goods",
+    "keywords": ["oil", "petroleum", "petrol", "diesel", "fuel", "gas", "lubricant", "petronas", "shell"],
+    "examples": ["petrol fuel", "diesel", "engine oil", "lubricant", "petroleum product"],
+    "useWhen": "Use for oil, petroleum, fuel, diesel, and lubricant products"
+  },
+  {
+    "code": "037",
+    "description": "Others",
+    "category": "General",
+    "keywords": ["other", "miscellaneous", "general", "various", "uncategorized", "unknown", "unclassified", "misc"],
+    "examples": ["miscellaneous items", "general purchase", "uncategorized goods"],
+    "useWhen": "Use as catch-all when no other classification code is appropriate"
+  },
+  {
+    "code": "038",
+    "description": "Pharmaceutical products",
+    "category": "Goods",
+    "keywords": ["pharmaceutical", "medicine", "drug", "pharmacy", "prescription", "supplement", "vitamin", "medication"],
+    "examples": ["prescription medicine", "pharmacy drug", "vitamin supplement", "medication"],
+    "useWhen": "Use for pharmaceutical products, medicines, drugs, and supplements"
+  },
+  {
+    "code": "039",
+    "description": "Private retirement scheme contribution and deferred annuity premium",
+    "category": "Services",
+    "keywords": ["retirement", "pension", "annuity", "prs", "deferred", "epf", "kwsp", "contribution"],
+    "examples": ["PRS contribution", "deferred annuity", "retirement scheme", "private pension"],
+    "useWhen": "Use for PRS contributions and deferred annuity premium payments"
+  },
+  {
+    "code": "040",
+    "description": "Raw materials",
+    "category": "Goods",
+    "keywords": ["raw", "material", "ingredient", "component", "feedstock", "unprocessed", "commodity"],
+    "examples": ["raw steel", "unprocessed timber", "raw rubber", "feedstock material"],
+    "useWhen": "Use for raw materials, unprocessed commodities, and feedstock"
+  },
+  {
+    "code": "041",
+    "description": "Real property",
+    "category": "Goods",
+    "keywords": ["real", "property", "land", "building", "real estate", "house", "apartment", "condo", "commercial"],
+    "examples": ["land purchase", "building", "house", "apartment", "shop lot", "commercial property"],
+    "useWhen": "Use for real property, land, buildings, and real estate transactions"
+  },
+  {
+    "code": "042",
+    "description": "Rental / lease",
+    "category": "Services",
+    "keywords": ["rental", "lease", "rent", "tenancy", "hire", "equipment rental", "space rental"],
+    "examples": ["office rental", "equipment lease", "vehicle rental", "space rental"],
+    "useWhen": "Use for rental and lease of property, equipment, and vehicles"
+  },
+  {
+    "code": "043",
+    "description": "Repair and maintenance of motor vehicle",
+    "category": "Services",
+    "keywords": ["repair", "maintenance", "motor", "vehicle", "car", "workshop", "service", "tyre", "engine"],
+    "examples": ["car repair", "vehicle service", "tyre change", "engine overhaul", "workshop"],
+    "useWhen": "Use for repair and maintenance services specifically for motor vehicles"
+  },
+  {
+    "code": "044",
+    "description": "Research and development",
+    "category": "Services",
+    "keywords": ["research", "development", "r&d", "innovation", "testing", "lab", "experiment", "prototype"],
+    "examples": ["R&D project", "research study", "product development", "lab testing"],
+    "useWhen": "Use for research and development activities, innovation, and testing"
+  },
+  {
+    "code": "045",
+    "description": "Subscription fees",
+    "category": "Services",
+    "keywords": ["subscription", "fee", "recurring", "membership", "saas", "software", "platform", "streaming", "cloud", "misc", "general", "uncategorised"],
+    "examples": ["SaaS subscription", "streaming service", "cloud platform fee", "membership fee", "software subscription"],
+    "useWhen": "Use for subscription fees, recurring payments, memberships, SaaS, and digital subscriptions; also serves as generic fallback"
+  }
+]
