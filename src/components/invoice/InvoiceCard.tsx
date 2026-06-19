@@ -130,7 +130,7 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
       {!isTrash && (
         <>
           <Link
-            href={`/invoice/${invoice.id}`}
+            href={`/invoice?id=${invoice.id}`}
             className="flex-1 min-w-[44px] h-[44px] flex items-center justify-center gap-1 text-xs text-teal-700 hover:bg-teal-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
             aria-label="Edit"
           >
@@ -198,7 +198,7 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
   return (
     <div className="rounded-2xl bg-white p-4 shadow-sm transition-all duration-150">
       <Link
-        href={`/invoice/${invoice.id}`}
+        href={`/invoice?id=${invoice.id}`}
         className="block rounded-lg hover:opacity-90 active:scale-[0.99] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
       >
         {summary}

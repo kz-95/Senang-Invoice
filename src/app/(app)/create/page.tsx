@@ -19,16 +19,16 @@ import { NoLlmBanner } from '@/components/common/NoLlmBanner'
 import { useT } from '@/hooks/useT'
 
 const PAYMENT_METHOD_OPTIONS = [
-  { value: '', label: '— Select —' },
-  { value: '01', label: '01 — Cash' },
-  { value: '02', label: '02 — Cheque' },
-  { value: '03', label: '03 — Credit Card' },
-  { value: '04', label: '04 — Debit Card' },
-  { value: '05', label: '05 — Digital Wallet / E-Money' },
-  { value: '06', label: '06 — Bank Transfer / FPX / GIRO' },
-  { value: '07', label: '07 — Direct Debit' },
-  { value: '08', label: '08 — Standing Instruction' },
-  { value: '99', label: '99 — Others' },
+  { value: '', label: '- Select -' },
+  { value: '01', label: '01 - Cash' },
+  { value: '02', label: '02 - Cheque' },
+  { value: '03', label: '03 - Credit Card' },
+  { value: '04', label: '04 - Debit Card' },
+  { value: '05', label: '05 - Digital Wallet / E-Money' },
+  { value: '06', label: '06 - Bank Transfer / FPX / GIRO' },
+  { value: '07', label: '07 - Direct Debit' },
+  { value: '08', label: '08 - Standing Instruction' },
+  { value: '99', label: '99 - Others' },
 ]
 
 export default function CreatePage() {
@@ -114,7 +114,7 @@ export default function CreatePage() {
     }
     const invoice = await finalize(options)
     if (invoice) {
-      router.push(`/invoice/${invoice.id}`)
+      router.push(`/invoice?id=${invoice.id}`)
     }
   }
 
@@ -157,7 +157,7 @@ export default function CreatePage() {
                   size="sm"
                   onClick={() => setEditingIndex(editingIndex === i ? null : i)}
                 >
-                  {lines[i].description.slice(0, 20)} — RM {formatMYR(lines[i].amount)}
+                  {lines[i].description.slice(0, 20)} - RM {formatMYR(lines[i].amount)}
                 </Button>
               </div>
             ))}

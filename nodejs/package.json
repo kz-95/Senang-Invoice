@@ -1,6 +1,14 @@
 {
   "name": "senanginvoice-node",
+  "version": "1.0.0",
   "private": true,
   "type": "commonjs",
-  "main": "index.js"
+  "main": "index.js",
+  "_moduleAliases": {
+    "@": "services"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.52.0",
+    "module-alias": "^2.2.3"
+  }
 }
