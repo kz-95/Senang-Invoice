@@ -1,5 +1,6 @@
 'use client'
 import { useMemo, useState, useCallback, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { useInvoiceListStore } from '@/stores/invoiceListStore'
 import { InvoiceList } from '@/components/invoice/InvoiceList'
 import { StatTile } from '@/components/dashboard/StatTile'
@@ -7,8 +8,11 @@ import { DateFilter } from '@/components/invoice/DateFilter'
 import { SearchBar, type SortField, type SortDir } from '@/components/invoice/SearchBar'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { Button } from '@/components/common/Button'
+import { ConfirmDialog } from '@/components/common/ConfirmDialog'
 import { invoiceRepository } from '@/services/data/invoiceRepository'
 import { syncRepository } from '@/services/data/syncRepository'
+import { isGoogleAuthenticated } from '@/services/drive/driveAuth'
+import { formatMYRWhole } from '@/lib/formatters'
 import { useT } from '@/hooks/useT'
 import type { Invoice } from '@/lib/types'
 
@@ -22,6 +26,7 @@ export default function HomePage() {
   const invoices = useInvoiceListStore(s => s.invoices)
   const loading = useInvoiceListStore(s => s.loading)
   const refresh = useInvoiceListStore(s => s.refresh)
+  const router = useRouter()
   const t = useT()
 
   const [activeTab, setActiveTab] = useState<TabId>('active')
@@ -37,12 +42,17 @@ export default function HomePage() {
   }, [])
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [selectMode, setSelectMode] = useState(false)
+  const [confirmHardDelete, setConfirmHardDelete] = useState(false)
+  const [confirming, setConfirming] = useState(false)
 
   useEffect(() => { refresh() }, [refresh])
 
   useEffect(() => {
     invoiceRepository.purgeExpired()
-    syncRepository.pullAllFromDrive().finally(() => refresh())
+    // Only pull from Drive if already signed in — never force the OAuth popup on load.
+    isGoogleAuthenticated().then(authed => {
+      if (authed) syncRepository.pullAllFromDrive().finally(() => refresh())
+    })
   }, [])
 
   useEffect(() => {
@@ -152,9 +162,15 @@ export default function HomePage() {
   }
 
   const handleBulkHardDelete = async () => {
-    for (const id of ids) {
-      await invoiceRepository.hardDelete(id)
+    setConfirming(true)
+    try {
+      for (const id of ids) {
+        await invoiceRepository.hardDelete(id)
+      }
+    } finally {
+      setConfirming(false)
     }
+    setConfirmHardDelete(false)
     exitSelectMode()
     refresh()
   }
@@ -172,11 +188,18 @@ export default function HomePage() {
         subtitle={t('dashboard.subtitle')}
         action={
           <div className="flex gap-1">
-            {!selectMode && (
+            {!selectMode ? (
               <button onClick={() => setSelectMode(true)} className="flex items-center justify-center w-11 h-11 rounded-full hover:bg-teal-50 active:bg-teal-100 transition-colors text-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" aria-label="Select">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
+              </button>
+            ) : (
+              <button onClick={exitSelectMode} className="flex items-center gap-1 h-11 px-3 rounded-full bg-teal-50 hover:bg-teal-100 active:bg-teal-200 transition-colors text-teal-700 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" aria-label="Cancel selection">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                Done
               </button>
             )}
             <button onClick={refresh} className="flex items-center justify-center w-11 h-11 rounded-full hover:bg-teal-50 active:bg-teal-100 transition-colors text-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" aria-label="Refresh">
@@ -193,7 +216,7 @@ export default function HomePage() {
       <div className="grid grid-cols-3 gap-2">
         <StatTile label={t('dashboard.invoices')} value={billableInvoices.length} icon={DocIcon} />
         <StatTile label={t('dashboard.validated')} value={validatedCount} icon={CheckIcon} />
-        <StatTile label={t('dashboard.total')} value={`RM${totalAmount.toFixed(0)}`} icon={RmIcon} />
+        <StatTile label={t('dashboard.total')} value={`RM ${formatMYRWhole(totalAmount)}`} icon={RmIcon} />
       </div>
 
       <SearchBar query={query} onQueryChange={setQuery} sortField={sortField} onSortFieldChange={setSortField} sortDir={sortDir} onSortDirToggle={toggleSortDir} />
@@ -232,7 +255,7 @@ export default function HomePage() {
           {activeTab === 'trash' && (
             <>
               <Button size="sm" variant="outline" onClick={handleBulkRestore}>Restore ({ids.length})</Button>
-              <Button size="sm" variant="ghost" onClick={handleBulkHardDelete}>Delete Forever ({ids.length})</Button>
+              <Button size="sm" variant="ghost" onClick={() => setConfirmHardDelete(true)}>Delete Forever ({ids.length})</Button>
             </>
           )}
           <Button size="sm" variant="ghost" onClick={exitSelectMode}>Cancel</Button>
@@ -248,12 +271,23 @@ export default function HomePage() {
       <InvoiceList
         invoices={tabInvoices}
         loading={loading}
-        onCreateClick={() => window.location.href = '/create'}
+        onCreateClick={() => router.push('/create')}
         tab={activeTab}
         selectMode={selectMode}
         selectedIds={selectedIds}
         onToggleSelect={toggleSelect}
         onRefresh={refresh}
+      />
+
+      <ConfirmDialog
+        open={confirmHardDelete}
+        danger
+        loading={confirming}
+        title={`Delete ${ids.length} invoice${ids.length !== 1 ? 's' : ''} forever?`}
+        message="This permanently removes the selected invoices. This cannot be undone."
+        confirmLabel="Delete Forever"
+        onConfirm={handleBulkHardDelete}
+        onCancel={() => setConfirmHardDelete(false)}
       />
     </div>
   )

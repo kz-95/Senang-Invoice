@@ -4,6 +4,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { invoiceRepository } from '@/services/data/invoiceRepository'
 import { toQrDataUrl } from '@/services/invoice/qrService'
 import type { Invoice } from '@/lib/types'
+import { formatMYR } from '@/lib/formatters'
 import { QrBadge } from '@/components/invoice/QrBadge'
 import { StatusPill } from '@/components/invoice/StatusPill'
 import { PageHeader } from '@/components/layout/PageHeader'
@@ -207,7 +208,7 @@ export default function InvoiceDetailPage() {
       {editMode && (
         <section className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
           <h3 className="text-sm font-semibold text-gray-700">Metadata</h3>
-          <Input label="Discount Amount (RM)" type="number" value={editDiscAmount} onChange={e => setEditDiscAmount(e.target.value)} />
+          <Input label="Discount Amount (RM)" type="number" inputMode="decimal" value={editDiscAmount} onChange={e => setEditDiscAmount(e.target.value)} />
           <Input label="Discount Reason" value={editDiscReason} onChange={e => setEditDiscReason(e.target.value)} />
           <Input label="Payment Method" value={editPayMethod} onChange={e => setEditPayMethod(e.target.value)} />
           <Input label="Payment Terms" value={editPayTerms} onChange={e => setEditPayTerms(e.target.value)} />
@@ -220,7 +221,7 @@ export default function InvoiceDetailPage() {
       {!editMode && (invoice.notes || invoice.discount || invoice.payment || invoice.supplierRef) && (
         <section className="bg-white rounded-lg border border-gray-200 p-4 space-y-1 text-sm">
           {invoice.notes && <p className="text-gray-600"><span className="font-medium">Notes:</span> {invoice.notes}</p>}
-          {invoice.discount && <p className="text-gray-600"><span className="font-medium">Discount:</span> RM {invoice.discount.amount.toFixed(2)}{invoice.discount.reason ? ` (${invoice.discount.reason})` : ''}</p>}
+          {invoice.discount && <p className="text-gray-600"><span className="font-medium">Discount:</span> RM {formatMYR(invoice.discount.amount)}{invoice.discount.reason ? ` (${invoice.discount.reason})` : ''}</p>}
           {invoice.payment?.method && <p className="text-gray-600"><span className="font-medium">Payment:</span> {invoice.payment.method}{invoice.payment.terms ? ` — ${invoice.payment.terms}` : ''}{invoice.payment.dueDate ? ` due ${invoice.payment.dueDate}` : ''}</p>}
           {invoice.supplierRef && <p className="text-gray-600"><span className="font-medium">Ref:</span> {invoice.supplierRef}</p>}
         </section>
@@ -232,9 +233,9 @@ export default function InvoiceDetailPage() {
       </section>
 
       <section className="bg-white rounded-lg border border-gray-200 p-4 flex flex-col items-end">
-        <p className="text-sm text-gray-600">{t('invoice.subtotal')}: RM {invoice.totals.subtotal.toFixed(2)}</p>
-        <p className="text-sm text-gray-600">{t('invoice.tax')}: RM {invoice.totals.taxTotal.toFixed(2)}</p>
-        <p className="text-lg font-bold text-teal-700">{t('invoice.total')}: RM {invoice.totals.total.toFixed(2)}</p>
+        <p className="text-sm text-gray-600 tabular-nums">{t('invoice.subtotal')}: RM {formatMYR(invoice.totals.subtotal)}</p>
+        <p className="text-sm text-gray-600 tabular-nums">{t('invoice.tax')}: RM {formatMYR(invoice.totals.taxTotal)}</p>
+        <p className="text-lg font-bold text-teal-700 tabular-nums">{t('invoice.total')}: RM {formatMYR(invoice.totals.total)}</p>
       </section>
 
       {qrDataUrl && invoice.validation && !isTrash && (

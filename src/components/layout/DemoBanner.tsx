@@ -58,10 +58,12 @@ export function DemoBanner() {
           </button>
           <button
             onClick={() => setDismissed(true)}
-            className="text-amber-400 hover:text-amber-600 text-xs ml-1"
+            className="flex items-center justify-center w-11 h-11 rounded-lg text-amber-400 hover:text-amber-600 hover:bg-amber-100"
             aria-label="Dismiss"
           >
-            ✕
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
         </div>
       </div>

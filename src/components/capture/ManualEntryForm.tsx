@@ -51,6 +51,7 @@ export function ManualEntryForm() {
         <Input
           aria-label="Quantity"
           type="number"
+          inputMode="decimal"
           placeholder={t('create.qty')}
           value={form.qty}
           onChange={e => setForm(prev => ({ ...prev, qty: e.target.value }))}
@@ -61,6 +62,7 @@ export function ManualEntryForm() {
         <Input
           aria-label="Unit price RM"
           type="number"
+          inputMode="decimal"
           placeholder={t('create.unitPrice')}
           value={form.unitPrice}
           onChange={e => setForm(prev => ({ ...prev, unitPrice: e.target.value }))}

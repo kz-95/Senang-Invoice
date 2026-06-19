@@ -28,12 +28,14 @@ export function LineItemEditor({ index }: LineItemEditorProps) {
         <Input
           label={t('review.quantity')}
           type="number"
+          inputMode="decimal"
           value={String(line.qty)}
           onChange={e => updateLine(index, { qty: Number(e.target.value) || 1 })}
         />
         <Input
           label={t('review.unitPrice')}
           type="number"
+          inputMode="decimal"
           step="0.01"
           value={String(line.unitPrice)}
           onChange={e => updateLine(index, { unitPrice: Number(e.target.value) || 0 })}

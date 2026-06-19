@@ -1,6 +1,7 @@
 'use client'
 import { useInvoiceStore } from '@/stores/invoiceStore'
 import { Button } from '@/components/common/Button'
+import { formatMYR } from '@/lib/formatters'
 import { useT } from '@/hooks/useT'
 
 export function ExtractedItemsTable() {
@@ -39,9 +40,9 @@ export function ExtractedItemsTable() {
                     </span>
                   )}
                 </td>
-                <td className="py-2 px-2">{line.qty}</td>
-                <td className="py-2 px-2">RM {line.unitPrice.toFixed(2)}</td>
-                <td className="py-2 px-2 font-medium">RM {line.amount.toFixed(2)}</td>
+                <td className="py-2 px-2 tabular-nums">{line.qty}</td>
+                <td className="py-2 px-2 tabular-nums">RM {formatMYR(line.unitPrice)}</td>
+                <td className="py-2 px-2 font-medium tabular-nums">RM {formatMYR(line.amount)}</td>
                 <td className="py-2 px-2">
                   <span
                     className={`inline-flex items-center gap-1 text-xs ${isLow ? 'text-amber-600' : 'text-green-600'}`}

@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { answer } from '@/services/ai/askService'
 import type { Lang } from '@/lib/types'
 
+function canUseEnvKeys(): boolean {
+  if (!process.env.SENANG_LLM_KEYS) return false
+  if (process.env.SENANG_ALLOW_ENV_LLM_KEYS === 'true') return true
+  return process.env.NODE_ENV !== 'production'
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json() as { message: string; history: Array<{ id: string; role: 'user'|'assistant'; text: string; lang: Lang; createdAt: string }> }
@@ -11,7 +17,7 @@ export async function POST(req: NextRequest) {
     const llmProvider = req.headers.get('x-llm-provider') ?? undefined
 
     // Degraded path — no LLM key anywhere
-    if (!llmKey && !process.env.SENANG_LLM_KEYS) {
+    if (!llmKey && !canUseEnvKeys()) {
       const result = await answer({ message: body.message, history: body.history ?? [] })
       return NextResponse.json(result)
     }
@@ -25,7 +31,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    if (process.env.SENANG_LLM_KEYS) {
+    if (canUseEnvKeys()) {
       const maxRetries = 6
       let lastError: Error | null = null
       for (let i = 0; i < maxRetries; i++) {

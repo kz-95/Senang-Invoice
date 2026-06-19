@@ -10,7 +10,8 @@ export function Fab() {
   return (
     <Link
       href="/create"
-      className="fixed bottom-20 right-4 z-30 flex items-center justify-center w-14 h-14 rounded-2xl bg-teal-600 text-white shadow-lg hover:bg-teal-700 active:bg-teal-800 active:scale-95 transition-all duration-150 lg:hidden"
+      className="fixed z-30 flex items-center justify-center w-14 h-14 rounded-2xl bg-teal-600 text-white shadow-lg hover:bg-teal-700 active:bg-teal-800 active:scale-95 transition-all duration-150 lg:hidden"
+      style={{ bottom: `calc(5rem + env(safe-area-inset-bottom, 0px))`, right: '1rem' }}
       aria-label="Create invoice"
     >
       <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">

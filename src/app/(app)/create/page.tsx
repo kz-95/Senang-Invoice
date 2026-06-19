@@ -10,11 +10,26 @@ import { useInvoiceStore } from '@/stores/invoiceStore'
 import { useProfileStore } from '@/stores/profileStore'
 import { profileRepository } from '@/services/data/profileRepository'
 import { formatInvoiceNumber, cloneDefaultPresets } from '@/lib/numbering'
+import { formatMYR } from '@/lib/formatters'
 import { Button } from '@/components/common/Button'
 import { Input } from '@/components/common/Input'
+import { Select } from '@/components/common/Select'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { NoLlmBanner } from '@/components/common/NoLlmBanner'
 import { useT } from '@/hooks/useT'
+
+const PAYMENT_METHOD_OPTIONS = [
+  { value: '', label: '— Select —' },
+  { value: '01', label: '01 — Cash' },
+  { value: '02', label: '02 — Cheque' },
+  { value: '03', label: '03 — Credit Card' },
+  { value: '04', label: '04 — Debit Card' },
+  { value: '05', label: '05 — Digital Wallet / E-Money' },
+  { value: '06', label: '06 — Bank Transfer / FPX / GIRO' },
+  { value: '07', label: '07 — Direct Debit' },
+  { value: '08', label: '08 — Standing Instruction' },
+  { value: '99', label: '99 — Others' },
+]
 
 export default function CreatePage() {
   const router = useRouter()
@@ -142,7 +157,7 @@ export default function CreatePage() {
                   size="sm"
                   onClick={() => setEditingIndex(editingIndex === i ? null : i)}
                 >
-                  {lines[i].description.slice(0, 20)} — RM {lines[i].amount.toFixed(2)}
+                  {lines[i].description.slice(0, 20)} — RM {formatMYR(lines[i].amount)}
                 </Button>
               </div>
             ))}
@@ -193,7 +208,7 @@ export default function CreatePage() {
               />
             ))}
 
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 tabular-nums">
               Preview: <span className="font-mono text-teal-700">{preview}</span>
             </p>
 
@@ -212,13 +227,24 @@ export default function CreatePage() {
               aria-expanded={showAdvanced}
               className="w-full text-left text-sm font-medium text-teal-700 flex items-center gap-1"
             >
-              {showAdvanced ? '\u25BE' : '\u25B8'} {t('create.advancedOptions')}
+              <svg
+                className={`w-4 h-4 transition-transform ${showAdvanced ? 'rotate-90' : ''}`}
+                fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+              {t('create.advancedOptions')}
             </button>
             {showAdvanced && (
               <div className="mt-2 space-y-3 border border-gray-200 rounded-lg p-3 bg-gray-50">
-                <Input label="Discount Amount (RM)" type="number" placeholder="0.00" value={discAmount} onChange={e => setDiscAmount(e.target.value)} />
+                <Input label="Discount Amount (RM)" type="number" inputMode="decimal" placeholder="0.00" value={discAmount} onChange={e => setDiscAmount(e.target.value)} />
                 <Input label="Discount Reason" placeholder="Promotional discount" value={discReason} onChange={e => setDiscReason(e.target.value)} />
-                <Input label="Payment Method" placeholder="01=Cash, 02=Card, 03=Bank Transfer" value={payMethod} onChange={e => setPayMethod(e.target.value)} />
+                <Select
+                  label="Payment Method"
+                  options={PAYMENT_METHOD_OPTIONS}
+                  value={payMethod}
+                  onChange={e => setPayMethod(e.target.value)}
+                />
                 <Input label="Payment Terms" placeholder="Net 30" value={payTerms} onChange={e => setPayTerms(e.target.value)} />
                 <Input label="Due Date" type="date" value={payDueDate} onChange={e => setPayDueDate(e.target.value)} />
                 <Input label="Supplier Reference" placeholder="Your internal ref" value={suppRef} onChange={e => setSuppRef(e.target.value)} />

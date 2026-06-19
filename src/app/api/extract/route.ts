@@ -3,6 +3,12 @@ import { extractLineItems } from '@/services/ai/extractionService'
 import { mapFields } from '@/services/ai/mappingService'
 import { getLlamaClient } from '@/services/ai/llmClient'
 
+function canUseEnvKeys(): boolean {
+  if (!process.env.SENANG_LLM_KEYS) return false
+  if (process.env.SENANG_ALLOW_ENV_LLM_KEYS === 'true') return true
+  return process.env.NODE_ENV !== 'production'
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json() as { imageBase64?: string; transcript?: string }
@@ -43,7 +49,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    if (process.env.SENANG_LLM_KEYS) {
+    if (canUseEnvKeys()) {
       const maxRetries = 6
       let lastError: Error | null = null
       for (let i = 0; i < maxRetries; i++) {
