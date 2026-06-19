@@ -37,6 +37,8 @@
   "exclude": [
     "node_modules",
     "capacitor.config.ts",
-    "tsconfig.node.json"
+    "tsconfig.node.json",
+    "playwright.config.ts",
+    "e2e"
   ]
 }
