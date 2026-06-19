@@ -16,7 +16,7 @@ When you add, remove, or change any feature, flow, or behavior in this app, upda
 - **IRBM regulation updates → update regulation chunks.** If tax rules, deadlines, thresholds, or codes change, update the relevant regulatory chunks.
 - **New features → add new chunks.** When you implement a feature that users will ask about, add app-specific knowledge chunks.
 - **Removed features → delete or deprecate chunks.** If a feature is removed (e.g., copilot), remove or mark deprecated its knowledge chunks.
-- **Keep topics and ids stable.** The `id` and `topic` fields are the chunk identity — don't rename them unless the topic fundamentally changes. Update `text` in place.
+- **Keep topics and ids stable.** The `id` and `topic` fields are the chunk identity - don't rename them unless the topic fundamentally changes. Update `text` in place.
 
 ## Knowledge Chunk Index
 
@@ -69,9 +69,9 @@ When you add, remove, or change any feature, flow, or behavior in this app, upda
 | `app-llm-keys` | Managing LLM keys | Add/edit/delete/reorder keys |
 | `app-invoice-history` | Invoice history | Home screen list, search, filter |
 | `app-auto-categorizer` | Auto-categorization | AI assigns classification codes with confidence scores |
-| `app-language` | Language settings | EN, MS, ZH, Tamil support |
+| `app-language` | Language settings | EN, MS, ZH (+ rojak fallback) |
 | `app-numbering-presets` | Numbering presets | Configurable invoice number patterns with custom tokens |
 
 ## Related Docs
 
-- `docs/rag-design.md` — RAG architecture, retriever algorithm, limitations
+- `docs/rag-design.md` - RAG architecture, retriever algorithm, limitations
