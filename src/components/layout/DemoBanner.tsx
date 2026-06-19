@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useInvoiceList } from '@/hooks/useInvoiceList'
 import { seedDemoData } from '@/lib/seed'
 import { invoiceRepository } from '@/services/data/invoiceRepository'
@@ -12,9 +12,13 @@ export function DemoBanner() {
   const { invoices, refresh } = useInvoiceList()
   const [loading, setLoading] = useState<'gen' | 'clear' | null>(null)
   const [dismissed, setDismissed] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const unlocked = useDemoStore(s => s.unlocked)
 
-  if (!unlocked || dismissed) return null
+  // Stores hydrate from client storage; defer to client to avoid SSR/client mismatch.
+  useEffect(() => setMounted(true), [])
+
+  if (!mounted || !unlocked || dismissed) return null
 
   const hasData = invoices.length > 0
 

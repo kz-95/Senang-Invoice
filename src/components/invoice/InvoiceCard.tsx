@@ -6,6 +6,7 @@ import { StatusPill } from './StatusPill'
 import { ConfirmDialog } from '@/components/common/ConfirmDialog'
 import { invoiceRepository } from '@/services/data/invoiceRepository'
 import { formatMYR } from '@/lib/formatters'
+import { useT } from '@/hooks/useT'
 
 interface InvoiceCardProps {
   invoice: Invoice
@@ -57,6 +58,7 @@ function getSyncBadge(invoice: Invoice): { label: React.ReactNode; color: string
 }
 
 export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect, onRefresh }: InvoiceCardProps) {
+  const t = useT()
   const [actionLoading, setActionLoading] = useState<string | null>(null)
   const [confirmHard, setConfirmHard] = useState(false)
   const date = new Date(invoice.createdAt).toLocaleDateString('en-MY', {
@@ -106,7 +108,7 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
       <div className="text-xs text-gray-500 mb-1">{date}</div>
       {isTrash && invoice.deletedAt && (
         <div className="text-xs text-amber-600 mb-1">
-          {daysUntilPermanent(invoice.deletedAt)} days until permanent deletion
+          {t('invoice.daysUntilPermanent', { days: daysUntilPermanent(invoice.deletedAt) })}
         </div>
       )}
       <div className="text-sm font-bold text-teal-700 tabular-nums">
@@ -118,7 +120,7 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
         </div>
       )}
       {invoice.editedFields && invoice.editedFields.length > 0 && !isTrash && (
-        <div className="mt-1 text-xs text-amber-600">Edited</div>
+        <div className="mt-1 text-xs text-amber-600">{t('invoice.edited')}</div>
       )}
     </>
   )
@@ -133,22 +135,22 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
             aria-label="Edit"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/></svg>
-            Edit
+            {t('common.edit')}
           </Link>
           {tab !== 'archived' ? (
             <button onClick={handleArchive} disabled={actionLoading === 'archive'} className="flex-1 min-w-[44px] h-[44px] flex items-center justify-center gap-1 text-xs text-teal-700 hover:bg-teal-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:opacity-50" aria-label="Archive">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
-              Archive
+              {t('invoice.archive')}
             </button>
           ) : (
             <button onClick={handleUnarchive} disabled={actionLoading === 'unarchive'} className="flex-1 min-w-[44px] h-[44px] flex items-center justify-center gap-1 text-xs text-teal-700 hover:bg-teal-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:opacity-50" aria-label="Unarchive">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15m0-3l-3-3m0 0l-3 3m3-3V15"/></svg>
-              Unarchive
+              {t('invoice.unarchive')}
             </button>
           )}
           <button onClick={handleDelete} disabled={actionLoading === 'delete'} className="flex-1 min-w-[44px] h-[44px] flex items-center justify-center gap-1 text-xs text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50" aria-label="Delete">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
-            Delete
+            {t('invoice.delete')}
           </button>
         </>
       )}
@@ -156,11 +158,11 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
         <>
           <button onClick={handleRestore} disabled={actionLoading === 'restore'} className="flex-1 min-w-[44px] h-[44px] flex items-center justify-center gap-1 text-xs text-teal-700 hover:bg-teal-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:opacity-50" aria-label="Restore">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"/></svg>
-            Restore
+            {t('invoice.restore')}
           </button>
-          <button onClick={() => setConfirmHard(true)} disabled={actionLoading === 'hardDelete'} className="flex-1 min-w-[44px] h-[44px] flex items-center justify-center gap-1 text-xs text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50" aria-label="Delete Forever">
+          <button onClick={() => setConfirmHard(true)} disabled={actionLoading === 'hardDelete'} className="flex-1 min-w-[44px] h-[44px] flex items-center justify-center gap-1 text-xs text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50" aria-label={t('invoice.deleteForever')}>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-            Delete Now
+            {t('invoice.deleteNow')}
           </button>
         </>
       )}
@@ -172,9 +174,9 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
       open={confirmHard}
       danger
       loading={actionLoading === 'hardDelete'}
-      title="Delete invoice forever?"
-      message={`Invoice ${invoice.number} will be permanently removed. This cannot be undone.`}
-      confirmLabel="Delete Forever"
+      title={t('invoice.confirmHardDeleteTitle')}
+      message={t('invoice.confirmHardDeleteMsg', { number: invoice.number })}
+      confirmLabel={t('invoice.deleteForever')}
       onConfirm={handleHardDelete}
       onCancel={() => setConfirmHard(false)}
     />
@@ -186,7 +188,7 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
         onClick={() => onToggleSelect?.(invoice.id)}
         tabIndex={0}
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggleSelect?.(invoice.id) } }}
-        className={`block rounded-xl bg-white p-4 shadow-sm cursor-pointer transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-teal-500 ${selected ? 'ring-2 ring-teal-500' : ''}`}
+        className={`block rounded-2xl bg-white p-4 shadow-sm cursor-pointer transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-teal-500 ${selected ? 'ring-2 ring-teal-500' : ''}`}
       >
         {summary}
       </div>
@@ -194,7 +196,7 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
   }
 
   return (
-    <div className="rounded-xl bg-white p-4 shadow-sm transition-all duration-150">
+    <div className="rounded-2xl bg-white p-4 shadow-sm transition-all duration-150">
       <Link
         href={`/invoice/${invoice.id}`}
         className="block rounded-lg hover:opacity-90 active:scale-[0.99] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"

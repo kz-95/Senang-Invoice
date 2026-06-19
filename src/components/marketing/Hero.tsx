@@ -27,7 +27,7 @@ export function Hero() {
         {/* Left column */}
         <div className="space-y-8">
           {/* Download CTA — primary */}
-          <div className="space-y-6">
+          <div id="download" className="scroll-mt-20 space-y-6">
             <h1 className="text-5xl font-bold leading-tight tracking-tight text-gray-900 lg:text-6xl">
               {t('landing.downloadAppNow')}
             </h1>
@@ -37,18 +37,18 @@ export function Hero() {
                   href={APK_DOWNLOAD_URL}
                   download
                   onClick={() => track('apk_download_click')}
-                  className="inline-flex items-center justify-center gap-3 rounded-2xl bg-teal-700 px-12 py-7 text-xl font-semibold text-white shadow-lg shadow-teal-700/20 transition-colors hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                  className="inline-flex items-center justify-center gap-3 rounded-2xl bg-teal-700 px-12 py-7 text-xl font-semibold text-white shadow-cta transition-colors hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                 >
                   {DownloadIcon}
-                  Download APK
+                  {t('landing.downloadApkShort')}
                 </a>
               ) : (
                 <span
                   aria-disabled="true"
-                  className="inline-flex cursor-not-allowed items-center justify-center gap-3 rounded-2xl bg-teal-700 px-12 py-7 text-xl font-semibold text-white shadow-lg shadow-teal-700/20"
+                  className="inline-flex cursor-not-allowed items-center justify-center gap-3 rounded-2xl bg-gray-200 px-12 py-7 text-xl font-semibold text-gray-500"
                 >
                   {DownloadIcon}
-                  Download APK
+                  {t('landing.apkComingSoon')}
                 </span>
               )}
 
@@ -58,7 +58,7 @@ export function Hero() {
                   className="inline-flex cursor-not-allowed items-center justify-center gap-3 rounded-2xl border-2 border-gray-200 px-12 py-7 text-xl font-semibold text-gray-400"
                 >
                   {PhoneIcon}
-                  Play Store coming soon
+                  {t('landing.playStoreComingSoon')}
                 </span>
               ) : (
                 <a
@@ -69,7 +69,7 @@ export function Hero() {
                   className="inline-flex items-center justify-center gap-3 rounded-2xl border-2 border-teal-700 px-12 py-7 text-xl font-semibold text-teal-700 transition-colors hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                 >
                   {PhoneIcon}
-                  Get it on Google Play
+                  {t('landing.playstoreGet')}
                 </a>
               )}
             </div>
@@ -78,18 +78,17 @@ export function Hero() {
           {/* Headline */}
           <div className="space-y-4">
             <h2 className="text-4xl font-bold leading-tight tracking-tight text-gray-900 lg:text-5xl">
-              Malaysian E-Invoice
-              <span className="block text-teal-700">Made Simple</span>
+              {t('landing.heroMainTitle')}
+              <span className="block text-teal-700">{t('landing.heroMainTitleAccent')}</span>
             </h2>
             <p className="max-w-xl text-lg leading-relaxed text-gray-600">
-              Comply with LHDN requirements effortlessly. Generate, manage, and send
-              e-invoices with QR codes in seconds.
+              {t('landing.heroDescription')}
             </p>
           </div>
 
           {/* Feature pills */}
           <div className="flex flex-wrap gap-3">
-            {['LHDN Compliant', 'QR Code Ready', 'Instant Generation'].map(label => (
+            {[t('landing.featurePillCompliant'), t('landing.featurePillQr'), t('landing.featurePillInstant')].map(label => (
               <div key={label} className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm ring-1 ring-gray-100">
                 {CheckIcon}
                 <span className="text-sm font-medium text-gray-900">{label}</span>
@@ -103,13 +102,13 @@ export function Hero() {
               href="/guide/do-i-need-einvoice"
               className="inline-flex items-center justify-center rounded-2xl border-2 border-teal-700 px-8 py-3 font-semibold text-teal-700 transition-colors hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
             >
-              Am I in scope?
+              {t('landing.heroCtaScope')}
             </Link>
             <Link
               href="/guide"
               className="inline-flex items-center justify-center rounded-2xl bg-teal-700 px-8 py-3 font-semibold text-white transition-colors hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
             >
-              View Guide
+              {t('landing.viewGuide')}
             </Link>
           </div>
         </div>
@@ -131,7 +130,7 @@ export function Hero() {
                       <p className="text-xs text-gray-500">Invoice #</p>
                       <p className="text-lg font-bold text-gray-900">INV-2024-001</p>
                     </div>
-                    <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-teal-700">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-teal-700">
                       {QrIcon}
                     </div>
                   </div>
@@ -151,9 +150,9 @@ export function Hero() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 rounded-xl bg-teal-50 p-3">
+                  <div className="flex items-center gap-3 rounded-lg bg-teal-50 p-3">
                     {CheckIcon}
-                    <p className="text-xs font-medium text-teal-700">LHDN Compliant & QR Verified</p>
+                    <p className="text-xs font-medium text-teal-700">{t('landing.lhdnQrVerified')}</p>
                   </div>
                 </div>
 

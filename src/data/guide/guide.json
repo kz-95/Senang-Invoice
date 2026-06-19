@@ -2,295 +2,574 @@
   "articles": [
     {
       "slug": "do-i-need-einvoice",
-      "title": "Do I even need e-invoicing?",
-      "summary": "Who must comply, the RM thresholds, and how to check.",
+      "title": {
+        "en": "Do I even need e-invoicing?",
+        "ms": "Adakah saya perlukan e-invois?",
+        "zh": "我需要电子发票吗？"
+      },
+      "summary": {
+        "en": "Who must comply, the RM thresholds, and how to check.",
+        "ms": "Siapa yang wajib mematuhi, ambang RM, dan cara menyemak.",
+        "zh": "谁必须合规、RM 门槛，以及如何查核。"
+      },
       "icon": "scope",
       "next": "register-mytax",
       "blocks": [
         {
           "type": "heading",
-          "text": "What is e-invoicing?"
+          "text": {
+            "en": "What is e-invoicing?",
+            "ms": "Apakah itu e-invois?",
+            "zh": "什么是电子发票？"
+          }
         },
         {
           "type": "paragraph",
-          "text": "Malaysia's Inland Revenue Board (IRBM) is rolling out mandatory e-invoicing for all businesses. An e-invoice is a digital document that captures a transaction in a structured format (UBL 2.1 JSON) and must be validated by the MyInvois system before it is considered legally valid."
+          "text": {
+            "en": "Malaysia's Inland Revenue Board (IRBM) is rolling out mandatory e-invoicing for all businesses. An e-invoice is a digital document that captures a transaction in a structured format (UBL 2.1 JSON) and must be validated by the MyInvois system before it is considered legally valid.",
+            "ms": "Lembaga Hasil Dalam Negeri (IRBM) Malaysia sedang melaksanakan e-invois secara wajib untuk semua perniagaan. E-invois ialah dokumen digital yang merakam transaksi dalam format berstruktur (UBL 2.1 JSON) dan mesti disahkan oleh sistem MyInvois sebelum ia dianggap sah dari segi undang-undang.",
+            "zh": "马来西亚内陆税收局（IRBM）正在向所有企业推行强制性电子发票。电子发票是一份以结构化格式（UBL 2.1 JSON）记录交易的数字文件，必须经 MyInvois 系统验证后才具有法律效力。"
+          }
         },
         {
           "type": "callout",
           "tone": "info",
-          "text": "E-invoicing is not just a PDF. The IRBM requires a specific structured format (UBL 2.1) that the MyInvois system validates and stamps with a unique UUID and QR validation link — only then is the invoice legally valid."
+          "text": {
+            "en": "E-invoicing is not just a PDF. The IRBM requires a specific structured format (UBL 2.1) that the MyInvois system validates and stamps with a unique UUID and QR validation link — only then is the invoice legally valid.",
+            "ms": "E-invois bukan sekadar PDF. IRBM memerlukan format berstruktur tertentu (UBL 2.1) yang disahkan oleh sistem MyInvois dan dicop dengan UUID unik serta pautan pengesahan QR — barulah invois itu sah dari segi undang-undang.",
+            "zh": "电子发票不仅仅是一份 PDF。IRBM 要求特定的结构化格式（UBL 2.1），由 MyInvois 系统验证并加盖唯一的 UUID 和二维码验证链接——此后发票才具有法律效力。"
+          }
         },
         {
           "type": "heading",
-          "text": "Who must comply?"
+          "text": {
+            "en": "Who must comply?",
+            "ms": "Siapa yang wajib mematuhi?",
+            "zh": "谁必须合规？"
+          }
         },
         {
           "type": "paragraph",
-          "text": "The RM1 million annual turnover threshold determines who must issue e-invoices. If your business revenue exceeds RM1 million in a financial year, you are required to adopt e-invoicing. The threshold applies per corporate group — if your group of companies collectively exceeds RM1 million, all entities within the group must comply."
+          "text": {
+            "en": "The RM1 million annual turnover threshold determines who must issue e-invoices. If your business revenue exceeds RM1 million in a financial year, you are required to adopt e-invoicing. The threshold applies per corporate group — if your group of companies collectively exceeds RM1 million, all entities within the group must comply.",
+            "ms": "Ambang pusing ganti tahunan RM1 juta menentukan siapa yang wajib mengeluarkan e-invois. Jika hasil perniagaan anda melebihi RM1 juta dalam satu tahun kewangan, anda dikehendaki mengamalkan e-invois. Ambang ini terpakai bagi setiap kumpulan korporat — jika kumpulan syarikat anda secara kolektif melebihi RM1 juta, semua entiti dalam kumpulan itu mesti mematuhi.",
+            "zh": "RM100 万的年营业额门槛决定了谁必须开具电子发票。如果您的企业在一个财政年度内收入超过 RM100 万，您就必须采用电子发票。该门槛按企业集团计算——如果您的公司集团合计超过 RM100 万，集团内所有实体都必须合规。"
+          }
         },
         {
           "type": "heading",
-          "text": "Implementation timeline"
+          "text": {
+            "en": "Implementation timeline",
+            "ms": "Garis masa pelaksanaan",
+            "zh": "实施时间表"
+          }
         },
         {
           "type": "steps",
           "items": [
-            "August 2024 — Businesses with annual turnover exceeding RM100 million",
-            "January 2025 — Businesses with annual turnover exceeding RM25 million",
-            "July 2025 — All remaining businesses exceeding RM1 million, plus voluntary adopters"
+            {
+              "en": "August 2024 — Businesses with annual turnover exceeding RM100 million",
+              "ms": "Ogos 2024 — Perniagaan dengan pusing ganti tahunan melebihi RM100 juta",
+              "zh": "2024 年 8 月 — 年营业额超过 RM1 亿的企业"
+            },
+            {
+              "en": "January 2025 — Businesses with annual turnover exceeding RM25 million",
+              "ms": "Januari 2025 — Perniagaan dengan pusing ganti tahunan melebihi RM25 juta",
+              "zh": "2025 年 1 月 — 年营业额超过 RM2,500 万的企业"
+            },
+            {
+              "en": "July 2025 — All remaining businesses exceeding RM1 million, plus voluntary adopters",
+              "ms": "Julai 2025 — Semua perniagaan lain yang melebihi RM1 juta, serta penggguna sukarela",
+              "zh": "2025 年 7 月 — 所有其余超过 RM100 万的企业，以及自愿采用者"
+            }
           ]
         },
         {
           "type": "callout",
           "tone": "warn",
-          "text": "The July 2025 phase covers most SMEs. If your business earns above RM1 million annually, you must be compliant by this date. Penalties for non-compliance can reach RM200,000 and up to 2 years imprisonment."
+          "text": {
+            "en": "The July 2025 phase covers most SMEs. If your business earns above RM1 million annually, you must be compliant by this date. Penalties for non-compliance can reach RM200,000 and up to 2 years imprisonment.",
+            "ms": "Fasa Julai 2025 merangkumi kebanyakan PKS. Jika perniagaan anda memperoleh melebihi RM1 juta setahun, anda mesti mematuhi menjelang tarikh ini. Penalti bagi ketidakpatuhan boleh mencecah RM200,000 dan penjara sehingga 2 tahun.",
+            "zh": "2025 年 7 月这一阶段涵盖了大多数中小企业。如果您的企业年收入超过 RM100 万，必须在此日期前合规。不合规的罚款最高可达 RM200,000，并可判处最长 2 年监禁。"
+          }
         },
         {
           "type": "heading",
-          "text": "What if I'm below the threshold?"
+          "text": {
+            "en": "What if I'm below the threshold?",
+            "ms": "Bagaimana jika saya di bawah ambang?",
+            "zh": "如果我低于门槛怎么办？"
+          }
         },
         {
           "type": "paragraph",
-          "text": "Even if your turnover is below RM1 million, you can voluntarily opt in. The IRBM encourages voluntary adoption — there is no penalty for joining early, and you benefit from getting your systems ready before it becomes mandatory. Once you opt in, you cannot opt out."
+          "text": {
+            "en": "Even if your turnover is below RM1 million, you can voluntarily opt in. The IRBM encourages voluntary adoption — there is no penalty for joining early, and you benefit from getting your systems ready before it becomes mandatory. Once you opt in, you cannot opt out.",
+            "ms": "Walaupun pusing ganti anda di bawah RM1 juta, anda boleh menyertai secara sukarela. IRBM menggalakkan penggunaan sukarela — tiada penalti untuk menyertai awal, dan anda mendapat manfaat dengan menyediakan sistem anda sebelum ia menjadi wajib. Setelah anda menyertai, anda tidak boleh menarik diri.",
+            "zh": "即使您的营业额低于 RM100 万，您也可以自愿加入。IRBM 鼓励自愿采用——提早加入不会有罚款，而且您能在它成为强制要求前先把系统准备好。一旦加入，便无法退出。"
+          }
         },
         {
           "type": "heading",
-          "text": "Quick self-check"
+          "text": {
+            "en": "Quick self-check",
+            "ms": "Semakan kendiri ringkas",
+            "zh": "快速自我查核"
+          }
         },
         {
           "type": "paragraph",
-          "text": "Ask yourself these three questions: (1) Is my annual revenue above RM1 million? (2) Am I part of a corporate group that collectively exceeds RM1 million? (3) Do I want to voluntarily adopt now? If you answered yes to any of these, you need e-invoicing."
+          "text": {
+            "en": "Ask yourself these three questions: (1) Is my annual revenue above RM1 million? (2) Am I part of a corporate group that collectively exceeds RM1 million? (3) Do I want to voluntarily adopt now? If you answered yes to any of these, you need e-invoicing.",
+            "ms": "Tanya diri anda tiga soalan ini: (1) Adakah hasil tahunan saya melebihi RM1 juta? (2) Adakah saya sebahagian daripada kumpulan korporat yang secara kolektif melebihi RM1 juta? (3) Adakah saya mahu menyertai secara sukarela sekarang? Jika anda menjawab ya kepada mana-mana soalan ini, anda memerlukan e-invois.",
+            "zh": "问自己这三个问题：（1）我的年收入是否超过 RM100 万？（2）我是否属于合计超过 RM100 万的企业集团？（3）我现在是否想自愿采用？如果其中任何一项答案为「是」，您就需要电子发票。"
+          }
         },
         {
           "type": "cta",
-          "label": "Next: Register on MyTax",
+          "label": {
+            "en": "Next: Register on MyTax",
+            "ms": "Seterusnya: Daftar di MyTax",
+            "zh": "下一步：在 MyTax 注册"
+          },
           "href": "/guide/register-mytax"
         }
       ]
     },
     {
       "slug": "register-mytax",
-      "title": "Register on MyTax",
-      "summary": "Digital certificate, TIN, and role setup on the MyTax portal.",
+      "title": {
+        "en": "Register on MyTax",
+        "ms": "Daftar di MyTax",
+        "zh": "在 MyTax 注册"
+      },
+      "summary": {
+        "en": "Digital certificate, TIN, and role setup on the MyTax portal.",
+        "ms": "Sijil digital, TIN, dan persediaan peranan di portal MyTax.",
+        "zh": "在 MyTax 门户上设置数字证书、TIN 和角色。"
+      },
       "icon": "register",
       "next": "get-myinvois-access",
       "blocks": [
         {
           "type": "heading",
-          "text": "Step 1: Access the MyTax portal"
+          "text": {
+            "en": "Step 1: Access the MyTax portal",
+            "ms": "Langkah 1: Akses portal MyTax",
+            "zh": "第 1 步：进入 MyTax 门户"
+          }
         },
         {
           "type": "paragraph",
-          "text": "Go to the official MyTax portal at mytax.hasil.gov.my. If you already have an account (for tax filing), you can use your existing credentials. If not, you'll need to register as a new user."
+          "text": {
+            "en": "Go to the official MyTax portal at mytax.hasil.gov.my. If you already have an account (for tax filing), you can use your existing credentials. If not, you'll need to register as a new user.",
+            "ms": "Pergi ke portal rasmi MyTax di mytax.hasil.gov.my. Jika anda sudah mempunyai akaun (untuk pemfailan cukai), anda boleh menggunakan kelayakan sedia ada. Jika tidak, anda perlu mendaftar sebagai pengguna baharu.",
+            "zh": "前往官方 MyTax 门户 mytax.hasil.gov.my。如果您已有账户（用于报税），可以使用现有的登录凭证。如果没有，则需要注册为新用户。"
+          }
         },
         {
           "type": "heading",
-          "text": "Step 2: Obtain your Tax Identification Number (TIN)"
+          "text": {
+            "en": "Step 2: Obtain your Tax Identification Number (TIN)",
+            "ms": "Langkah 2: Dapatkan Nombor Pengenalan Cukai (TIN) anda",
+            "zh": "第 2 步：获取您的税务识别号码（TIN）"
+          }
         },
         {
           "type": "paragraph",
-          "text": "Your TIN is the unique identifier used by IRBM for all tax matters. For businesses registered in Malaysia, it starts with a prefix letter (for example 'C' for a company) followed by digits. You need this TIN to set up your MyInvois access. Note: the special TIN EI00000000010 is reserved for consolidated 'general public' invoices — it is not your personal or company TIN."
+          "text": {
+            "en": "Your TIN is the unique identifier used by IRBM for all tax matters. For businesses registered in Malaysia, it starts with a prefix letter (for example 'C' for a company) followed by digits. You need this TIN to set up your MyInvois access. Note: the special TIN EI00000000010 is reserved for consolidated 'general public' invoices — it is not your personal or company TIN.",
+            "ms": "TIN anda ialah pengecam unik yang digunakan oleh IRBM untuk semua hal cukai. Bagi perniagaan yang berdaftar di Malaysia, ia bermula dengan huruf awalan (contohnya 'C' untuk syarikat) diikuti dengan digit. Anda memerlukan TIN ini untuk menyediakan akses MyInvois anda. Nota: TIN khas EI00000000010 dikhaskan untuk invois 'orang awam' yang disatukan — ia bukan TIN peribadi atau syarikat anda.",
+            "zh": "您的 TIN 是 IRBM 用于所有税务事项的唯一识别码。对于在马来西亚注册的企业，它以一个前缀字母（例如公司的「C」）开头，后接数字。您需要此 TIN 来设置 MyInvois 访问权限。注意：特殊 TIN EI00000000010 专用于合并的「一般公众」发票——它不是您的个人或公司 TIN。"
+          }
         },
         {
           "type": "callout",
           "tone": "tip",
-          "text": "If you don't know your TIN, check your company's Form CP600 or your most recent tax return. You can also find it on the MyTax portal under your profile."
+          "text": {
+            "en": "If you don't know your TIN, check your company's Form CP600 or your most recent tax return. You can also find it on the MyTax portal under your profile.",
+            "ms": "Jika anda tidak tahu TIN anda, semak Borang CP600 syarikat anda atau penyata cukai terbaharu anda. Anda juga boleh menemuinya di portal MyTax di bawah profil anda.",
+            "zh": "如果您不知道自己的 TIN，请查看公司的 Form CP600 或最近一次的报税表。您也可以在 MyTax 门户的个人资料中找到它。"
+          }
         },
         {
           "type": "heading",
-          "text": "Step 3: Obtain a digital certificate"
+          "text": {
+            "en": "Step 3: Obtain a digital certificate",
+            "ms": "Langkah 3: Dapatkan sijil digital",
+            "zh": "第 3 步：获取数字证书"
+          }
         },
         {
           "type": "paragraph",
-          "text": "MyTax issues a free digital certificate that authenticates you when logging in to the e-invoicing portals. Apply for it in the MyTax portal — individuals can use the Individual digital certificate (IC only, no company documents needed). This free login certificate is all you need to reach MyInvois and register for API credentials. A separate paid signing certificate from a licensed CA is only required for the cryptographically-signed invoice format, which SenangInvoice's standard sandbox submission does not use."
+          "text": {
+            "en": "MyTax issues a free digital certificate that authenticates you when logging in to the e-invoicing portals. Apply for it in the MyTax portal — individuals can use the Individual digital certificate (IC only, no company documents needed). This free login certificate is all you need to reach MyInvois and register for API credentials. A separate paid signing certificate from a licensed CA is only required for the cryptographically-signed invoice format, which SenangInvoice's standard sandbox submission does not use.",
+            "ms": "MyTax mengeluarkan sijil digital percuma yang mengesahkan anda semasa log masuk ke portal e-invois. Mohon untuknya di portal MyTax — individu boleh menggunakan sijil digital Individu (IC sahaja, tiada dokumen syarikat diperlukan). Sijil log masuk percuma ini sahaja yang anda perlukan untuk mencapai MyInvois dan mendaftar untuk kelayakan API. Sijil penandatanganan berbayar yang berasingan daripada CA berlesen hanya diperlukan untuk format invois yang ditandatangani secara kriptografi, yang tidak digunakan oleh penyerahan sandbox standard SenangInvoice.",
+            "zh": "MyTax 会签发一份免费的数字证书，用于在您登录电子发票门户时进行身份验证。请在 MyTax 门户中申请——个人可使用个人数字证书（仅需身份证，无需公司文件）。这份免费的登录证书足以让您访问 MyInvois 并注册 API 凭证。只有经过加密签名的发票格式才需要另行向持牌 CA 购买签名证书，而 SenangInvoice 的标准沙盒提交并不使用该格式。"
+          }
         },
         {
           "type": "heading",
-          "text": "Step 4: Assign the right role"
+          "text": {
+            "en": "Step 4: Assign the right role",
+            "ms": "Langkah 4: Tetapkan peranan yang betul",
+            "zh": "第 4 步：分配正确的角色"
+          }
         },
         {
           "type": "paragraph",
-          "text": "In MyTax, you need to assign the e-Invoice Representative role to the person who will manage your e-invoicing submissions. This role grants access to the MyInvois portal and API. Only users with this role can generate the client ID and client secret needed for API integration."
+          "text": {
+            "en": "In MyTax, you need to assign the e-Invoice Representative role to the person who will manage your e-invoicing submissions. This role grants access to the MyInvois portal and API. Only users with this role can generate the client ID and client secret needed for API integration.",
+            "ms": "Di MyTax, anda perlu menetapkan peranan Wakil e-Invois kepada orang yang akan menguruskan penyerahan e-invois anda. Peranan ini memberikan akses kepada portal dan API MyInvois. Hanya pengguna dengan peranan ini boleh menjana Client ID dan Client Secret yang diperlukan untuk integrasi API.",
+            "zh": "在 MyTax 中，您需要将电子发票代表（e-Invoice Representative）角色分配给负责管理电子发票提交的人员。该角色授予对 MyInvois 门户和 API 的访问权限。只有拥有此角色的用户才能生成 API 集成所需的 Client ID 和 Client Secret。"
+          }
         },
         {
           "type": "callout",
           "tone": "info",
-          "text": "The role assignment can take up to 48 hours to be processed by IRBM. Plan ahead and complete this step early."
+          "text": {
+            "en": "The role assignment can take up to 48 hours to be processed by IRBM. Plan ahead and complete this step early.",
+            "ms": "Penetapan peranan boleh mengambil masa sehingga 48 jam untuk diproses oleh IRBM. Rancang lebih awal dan selesaikan langkah ini segera.",
+            "zh": "角色分配最长可能需要 IRBM 处理 48 小时。请提前规划并尽早完成此步骤。"
+          }
         },
         {
           "type": "heading",
-          "text": "Step 5: Verify your registration"
+          "text": {
+            "en": "Step 5: Verify your registration",
+            "ms": "Langkah 5: Sahkan pendaftaran anda",
+            "zh": "第 5 步：验证您的注册"
+          }
         },
         {
           "type": "paragraph",
-          "text": "After completing all steps, log out and log back into MyTax to confirm your e-Invoice Representative role is active. You should see the e-Invoicing section in your dashboard. If not, contact IRBM support through the portal."
+          "text": {
+            "en": "After completing all steps, log out and log back into MyTax to confirm your e-Invoice Representative role is active. You should see the e-Invoicing section in your dashboard. If not, contact IRBM support through the portal.",
+            "ms": "Selepas menyelesaikan semua langkah, log keluar dan log masuk semula ke MyTax untuk mengesahkan peranan Wakil e-Invois anda aktif. Anda sepatutnya melihat bahagian e-Invois di papan pemuka anda. Jika tidak, hubungi sokongan IRBM melalui portal.",
+            "zh": "完成所有步骤后，退出并重新登录 MyTax，以确认您的电子发票代表角色已生效。您应该能在仪表板中看到电子发票（e-Invoicing）部分。如果没有，请通过门户联系 IRBM 支持。"
+          }
         },
         {
           "type": "cta",
-          "label": "Next: Get MyInvois Access",
+          "label": {
+            "en": "Next: Get MyInvois Access",
+            "ms": "Seterusnya: Dapatkan Akses MyInvois",
+            "zh": "下一步：获取 MyInvois 访问权限"
+          },
           "href": "/guide/get-myinvois-access"
         }
       ]
     },
     {
       "slug": "get-myinvois-access",
-      "title": "Get MyInvois Access",
-      "summary": "Portal setup, ERP registration, and API credentials.",
+      "title": {
+        "en": "Get MyInvois Access",
+        "ms": "Dapatkan Akses MyInvois",
+        "zh": "获取 MyInvois 访问权限"
+      },
+      "summary": {
+        "en": "Portal setup, ERP registration, and API credentials.",
+        "ms": "Persediaan portal, pendaftaran ERP, dan kelayakan API.",
+        "zh": "门户设置、ERP 注册和 API 凭证。"
+      },
       "icon": "access",
       "next": "your-first-invoice",
       "blocks": [
         {
           "type": "heading",
-          "text": "What is MyInvois?"
+          "text": {
+            "en": "What is MyInvois?",
+            "ms": "Apakah itu MyInvois?",
+            "zh": "什么是 MyInvois？"
+          }
         },
         {
           "type": "paragraph",
-          "text": "MyInvois is the IRBM's official e-invoicing platform. It validates all e-invoices against the required UBL 2.1 format and assigns each invoice a unique UUID, digital signature, and QR code. Every Malaysian e-invoice must pass through MyInvois validation."
+          "text": {
+            "en": "MyInvois is the IRBM's official e-invoicing platform. It validates all e-invoices against the required UBL 2.1 format and assigns each invoice a unique UUID, digital signature, and QR code. Every Malaysian e-invoice must pass through MyInvois validation.",
+            "ms": "MyInvois ialah platform e-invois rasmi IRBM. Ia mengesahkan semua e-invois terhadap format UBL 2.1 yang diperlukan dan memberikan setiap invois UUID unik, tandatangan digital, dan kod QR. Setiap e-invois Malaysia mesti melalui pengesahan MyInvois.",
+            "zh": "MyInvois 是 IRBM 的官方电子发票平台。它会根据所需的 UBL 2.1 格式验证所有电子发票，并为每张发票分配唯一的 UUID、数字签名和二维码。每张马来西亚电子发票都必须经过 MyInvois 验证。"
+          }
         },
         {
           "type": "heading",
-          "text": "Accessing the MyInvois portal"
+          "text": {
+            "en": "Accessing the MyInvois portal",
+            "ms": "Mengakses portal MyInvois",
+            "zh": "进入 MyInvois 门户"
+          }
         },
         {
           "type": "paragraph",
-          "text": "Once your MyTax registration is complete and your e-Invoice Representative role is active, go to myinvois.hasil.gov.my. Log in using your MyTax credentials. The portal offers three ways to submit invoices: (1) Manual entry through the web form, (2) Spreadsheet upload for batch invoices, and (3) API integration for automated submission."
+          "text": {
+            "en": "Once your MyTax registration is complete and your e-Invoice Representative role is active, go to myinvois.hasil.gov.my. Log in using your MyTax credentials. The portal offers three ways to submit invoices: (1) Manual entry through the web form, (2) Spreadsheet upload for batch invoices, and (3) API integration for automated submission.",
+            "ms": "Setelah pendaftaran MyTax anda selesai dan peranan Wakil e-Invois anda aktif, pergi ke myinvois.hasil.gov.my. Log masuk menggunakan kelayakan MyTax anda. Portal ini menawarkan tiga cara untuk menyerahkan invois: (1) Kemasukan manual melalui borang web, (2) Muat naik hamparan untuk invois berkelompok, dan (3) Integrasi API untuk penyerahan automatik.",
+            "zh": "在您的 MyTax 注册完成且电子发票代表角色生效后，前往 myinvois.hasil.gov.my。使用您的 MyTax 凭证登录。门户提供三种提交发票的方式：（1）通过网页表单手动输入，（2）批量发票的电子表格上传，以及（3）用于自动提交的 API 集成。"
+          }
         },
         {
           "type": "callout",
           "tone": "tip",
-          "text": "SenangInvoice uses the API integration method, which means you submit invoices directly from the app without needing to log into the MyInvois portal each time."
+          "text": {
+            "en": "SenangInvoice uses the API integration method, which means you submit invoices directly from the app without needing to log into the MyInvois portal each time.",
+            "ms": "SenangInvoice menggunakan kaedah integrasi API, yang bermaksud anda menyerahkan invois terus dari aplikasi tanpa perlu log masuk ke portal MyInvois setiap kali.",
+            "zh": "SenangInvoice 使用 API 集成方式，这意味着您可以直接从应用提交发票，无需每次都登录 MyInvois 门户。"
+          }
         },
         {
           "type": "heading",
-          "text": "ERP Registration"
+          "text": {
+            "en": "ERP Registration",
+            "ms": "Pendaftaran ERP",
+            "zh": "ERP 注册"
+          }
         },
         {
           "type": "paragraph",
-          "text": "To use the API, you need to register SenangInvoice (or any other invoicing software) as your ERP system in MyInvois. Navigate to the ERP Registration section in the portal. You'll need to provide a system name, description, and your digital certificate."
+          "text": {
+            "en": "To use the API, you need to register SenangInvoice (or any other invoicing software) as your ERP system in MyInvois. Navigate to the ERP Registration section in the portal. You'll need to provide a system name, description, and your digital certificate.",
+            "ms": "Untuk menggunakan API, anda perlu mendaftarkan SenangInvoice (atau mana-mana perisian invois lain) sebagai sistem ERP anda di MyInvois. Navigasi ke bahagian Pendaftaran ERP dalam portal. Anda perlu memberikan nama sistem, penerangan, dan sijil digital anda.",
+            "zh": "要使用 API，您需要在 MyInvois 中将 SenangInvoice（或任何其他开票软件）注册为您的 ERP 系统。在门户中导航到 ERP 注册部分。您需要提供系统名称、描述以及您的数字证书。"
+          }
         },
         {
           "type": "heading",
-          "text": "Obtaining your Client ID and Client Secret"
+          "text": {
+            "en": "Obtaining your Client ID and Client Secret",
+            "ms": "Mendapatkan Client ID dan Client Secret anda",
+            "zh": "获取您的 Client ID 和 Client Secret"
+          }
         },
         {
           "type": "paragraph",
-          "text": "After ERP registration, MyInvois generates two credentials: a Client ID and a Client Secret. The Client ID identifies your ERP system. The Client Secret is the password that authenticates your API calls. Store the Client Secret securely — it is shown only once."
+          "text": {
+            "en": "After ERP registration, MyInvois generates two credentials: a Client ID and a Client Secret. The Client ID identifies your ERP system. The Client Secret is the password that authenticates your API calls. Store the Client Secret securely — it is shown only once.",
+            "ms": "Selepas pendaftaran ERP, MyInvois menjana dua kelayakan: Client ID dan Client Secret. Client ID mengenal pasti sistem ERP anda. Client Secret ialah kata laluan yang mengesahkan panggilan API anda. Simpan Client Secret dengan selamat — ia hanya dipaparkan sekali sahaja.",
+            "zh": "完成 ERP 注册后，MyInvois 会生成两项凭证：Client ID 和 Client Secret。Client ID 用于标识您的 ERP 系统。Client Secret 是用于验证您 API 调用的密码。请妥善保存 Client Secret——它只会显示一次。"
+          }
         },
         {
           "type": "callout",
           "tone": "warn",
-          "text": "Download and save your Client Secret immediately after generation. If you lose it, you'll need to regenerate a new one through the MyInvois portal."
+          "text": {
+            "en": "Download and save your Client Secret immediately after generation. If you lose it, you'll need to regenerate a new one through the MyInvois portal.",
+            "ms": "Muat turun dan simpan Client Secret anda sebaik sahaja ia dijana. Jika anda kehilangannya, anda perlu menjana yang baharu melalui portal MyInvois.",
+            "zh": "生成后请立即下载并保存您的 Client Secret。如果遗失，您需要通过 MyInvois 门户重新生成一个新的。"
+          }
         },
         {
           "type": "heading",
-          "text": "Entering credentials in SenangInvoice"
+          "text": {
+            "en": "Entering credentials in SenangInvoice",
+            "ms": "Memasukkan kelayakan dalam SenangInvoice",
+            "zh": "在 SenangInvoice 中输入凭证"
+          }
         },
         {
           "type": "paragraph",
-          "text": "Open SenangInvoice and go to Settings → MyInvois Credentials. Enter a Label (any name for this business), your Client ID, and your Client Secret. SenangInvoice stores them only on your device and uses them to submit invoices to the MyInvois API as you."
+          "text": {
+            "en": "Open SenangInvoice and go to Settings → MyInvois Credentials. Enter a Label (any name for this business), your Client ID, and your Client Secret. SenangInvoice stores them only on your device and uses them to submit invoices to the MyInvois API as you.",
+            "ms": "Buka SenangInvoice dan pergi ke Tetapan → Kelayakan MyInvois. Masukkan Label (sebarang nama untuk perniagaan ini), Client ID anda, dan Client Secret anda. SenangInvoice menyimpannya hanya pada peranti anda dan menggunakannya untuk menyerahkan invois ke API MyInvois sebagai anda.",
+            "zh": "打开 SenangInvoice，进入 设置 → MyInvois 凭证。输入一个标签（为该企业取的任意名称）、您的 Client ID 和 Client Secret。SenangInvoice 仅将它们存储在您的设备上，并以您的身份用它们向 MyInvois API 提交发票。"
+          }
         },
         {
           "type": "heading",
-          "text": "Testing in the sandbox"
+          "text": {
+            "en": "Testing in the sandbox",
+            "ms": "Menguji dalam sandbox",
+            "zh": "在沙盒中测试"
+          }
         },
         {
           "type": "paragraph",
-          "text": "IRBM provides a sandbox environment for testing. In SenangInvoice, you can toggle between sandbox and production modes in Settings. We recommend testing a few invoices in the sandbox first to confirm everything works before switching to production."
+          "text": {
+            "en": "IRBM provides a sandbox environment for testing. In SenangInvoice, you can toggle between sandbox and production modes in Settings. We recommend testing a few invoices in the sandbox first to confirm everything works before switching to production.",
+            "ms": "IRBM menyediakan persekitaran sandbox untuk pengujian. Dalam SenangInvoice, anda boleh menukar antara mod sandbox dan pengeluaran di Tetapan. Kami mengesyorkan menguji beberapa invois dalam sandbox dahulu untuk memastikan semuanya berfungsi sebelum bertukar ke pengeluaran.",
+            "zh": "IRBM 提供沙盒环境用于测试。在 SenangInvoice 中，您可以在设置里切换沙盒和生产模式。我们建议先在沙盒中测试几张发票，确认一切正常后再切换到生产环境。"
+          }
         },
         {
           "type": "cta",
-          "label": "Next: Your First Invoice",
+          "label": {
+            "en": "Next: Your First Invoice",
+            "ms": "Seterusnya: Invois Pertama Anda",
+            "zh": "下一步：您的第一张发票"
+          },
           "href": "/guide/your-first-invoice"
         }
       ]
     },
     {
       "slug": "your-first-invoice",
-      "title": "Your First Invoice",
-      "summary": "Create and submit an e-invoice using SenangInvoice.",
+      "title": {
+        "en": "Your First Invoice",
+        "ms": "Invois Pertama Anda",
+        "zh": "您的第一张发票"
+      },
+      "summary": {
+        "en": "Create and submit an e-invoice using SenangInvoice.",
+        "ms": "Cipta dan serahkan e-invois menggunakan SenangInvoice.",
+        "zh": "使用 SenangInvoice 创建并提交电子发票。"
+      },
       "icon": "invoice",
       "next": null,
       "blocks": [
         {
           "type": "heading",
-          "text": "Setting up your seller profile"
+          "text": {
+            "en": "Setting up your seller profile",
+            "ms": "Menyediakan profil penjual anda",
+            "zh": "设置您的卖家资料"
+          }
         },
         {
           "type": "paragraph",
-          "text": "Before creating your first invoice, set up your seller profile. Go to Settings → Profile and fill in your business name, TIN, SST number (if applicable), MSIC code, and business address. This information appears on every invoice you issue."
+          "text": {
+            "en": "Before creating your first invoice, set up your seller profile. Go to Settings → Profile and fill in your business name, TIN, SST number (if applicable), MSIC code, and business address. This information appears on every invoice you issue.",
+            "ms": "Sebelum mencipta invois pertama anda, sediakan profil penjual anda. Pergi ke Tetapan → Profil dan isikan nama perniagaan, TIN, nombor SST (jika berkenaan), kod MSIC, dan alamat perniagaan anda. Maklumat ini muncul pada setiap invois yang anda keluarkan.",
+            "zh": "在创建您的第一张发票之前，请先设置卖家资料。进入 设置 → 资料，填写您的企业名称、TIN、SST 编号（如适用）、MSIC 代码和营业地址。这些信息会出现在您开具的每一张发票上。"
+          }
         },
         {
           "type": "callout",
           "tone": "tip",
-          "text": "Your MSIC (Malaysia Standard Industrial Classification) code determines your IRBM classification code. If you're unsure of your code, SenangInvoice can suggest codes based on your industry."
+          "text": {
+            "en": "Your MSIC (Malaysia Standard Industrial Classification) code determines your IRBM classification code. If you're unsure of your code, SenangInvoice can suggest codes based on your industry.",
+            "ms": "Kod MSIC (Pengelasan Perindustrian Standard Malaysia) anda menentukan kod pengelasan IRBM anda. Jika anda tidak pasti dengan kod anda, SenangInvoice boleh mencadangkan kod berdasarkan industri anda.",
+            "zh": "您的 MSIC（马来西亚标准工业分类）代码决定了您的 IRBM 分类代码。如果不确定自己的代码，SenangInvoice 可以根据您的行业推荐代码。"
+          }
         },
         {
           "type": "heading",
-          "text": "Creating an invoice"
+          "text": {
+            "en": "Creating an invoice",
+            "ms": "Mencipta invois",
+            "zh": "创建发票"
+          }
         },
         {
           "type": "paragraph",
-          "text": "In SenangInvoice, tap the + button to create a new invoice. You have three capture modes: (1) Camera — snap a photo of a receipt or paper invoice and AI extracts the details, (2) Voice — speak the invoice line items aloud, and (3) Manual — type in the details directly."
+          "text": {
+            "en": "In SenangInvoice, tap the + button to create a new invoice. You have three capture modes: (1) Camera — snap a photo of a receipt or paper invoice and AI extracts the details, (2) Voice — speak the invoice line items aloud, and (3) Manual — type in the details directly.",
+            "ms": "Dalam SenangInvoice, ketik butang + untuk mencipta invois baharu. Anda mempunyai tiga mod tangkapan: (1) Kamera — ambil foto resit atau invois kertas dan AI mengekstrak butirannya, (2) Suara — sebut item baris invois dengan kuat, dan (3) Manual — taipkan butiran secara terus.",
+            "zh": "在 SenangInvoice 中，点击 + 按钮创建新发票。您有三种采集模式：（1）相机——拍下收据或纸质发票的照片，由 AI 提取明细；（2）语音——大声说出发票的明细项目；（3）手动——直接输入明细。"
+          }
         },
         {
           "type": "heading",
-          "text": "Filling in the required fields"
+          "text": {
+            "en": "Filling in the required fields",
+            "ms": "Mengisi medan yang diperlukan",
+            "zh": "填写必填字段"
+          }
         },
         {
           "type": "steps",
           "items": [
-            "Buyer information — Choose B2B (with TIN), B2C (general public), or B2G (government). For B2B, enter the buyer's TIN.",
-            "Line items — Add each product or service with description, quantity, unit price, and IRBM classification code.",
-            "Tax details — The system calculates SST and totals automatically based on your profile settings.",
-            "Review totals — Check the subtotal, tax amounts, and grand total before submission."
+            {
+              "en": "Buyer information — Choose B2B (with TIN), B2C (general public), or B2G (government). For B2B, enter the buyer's TIN.",
+              "ms": "Maklumat pembeli — Pilih B2B (dengan TIN), B2C (orang awam), atau B2G (kerajaan). Untuk B2B, masukkan TIN pembeli.",
+              "zh": "买家信息——选择 B2B（含 TIN）、B2C（一般公众）或 B2G（政府）。对于 B2B，请输入买家的 TIN。"
+            },
+            {
+              "en": "Line items — Add each product or service with description, quantity, unit price, and IRBM classification code.",
+              "ms": "Item baris — Tambah setiap produk atau perkhidmatan dengan penerangan, kuantiti, harga seunit, dan kod pengelasan IRBM.",
+              "zh": "明细项目——添加每项产品或服务，包含描述、数量、单价和 IRBM 分类代码。"
+            },
+            {
+              "en": "Tax details — The system calculates SST and totals automatically based on your profile settings.",
+              "ms": "Butiran cukai — Sistem mengira SST dan jumlah secara automatik berdasarkan tetapan profil anda.",
+              "zh": "税务明细——系统会根据您的资料设置自动计算 SST 和合计金额。"
+            },
+            {
+              "en": "Review totals — Check the subtotal, tax amounts, and grand total before submission.",
+              "ms": "Semak jumlah — Periksa subjumlah, amaun cukai, dan jumlah besar sebelum penyerahan.",
+              "zh": "核对合计——提交前请检查小计、税额和总计。"
+            }
           ]
         },
         {
           "type": "heading",
-          "text": "AI-powered classification"
+          "text": {
+            "en": "AI-powered classification",
+            "ms": "Pengelasan berkuasa AI",
+            "zh": "AI 驱动的分类"
+          }
         },
         {
           "type": "paragraph",
-          "text": "IRBM requires every invoice line item to carry a classification code (one of 45 standard codes). SenangInvoice uses AI to analyze your item descriptions and suggest the correct code. You can review and adjust the suggestion before submitting."
+          "text": {
+            "en": "IRBM requires every invoice line item to carry a classification code (one of 45 standard codes). SenangInvoice uses AI to analyze your item descriptions and suggest the correct code. You can review and adjust the suggestion before submitting.",
+            "ms": "IRBM memerlukan setiap item baris invois membawa kod pengelasan (satu daripada 45 kod standard). SenangInvoice menggunakan AI untuk menganalisis penerangan item anda dan mencadangkan kod yang betul. Anda boleh menyemak dan melaraskan cadangan sebelum menyerahkan.",
+            "zh": "IRBM 要求每一项发票明细都带有一个分类代码（45 个标准代码之一）。SenangInvoice 使用 AI 分析您的项目描述并推荐正确的代码。您可以在提交前查看并调整建议。"
+          }
         },
         {
           "type": "callout",
           "tone": "info",
-          "text": "IRBM publishes a fixed list of e-invoice classification codes. SenangInvoice ships the full catalog and its AI suggests the right code for each line item, so you don't have to memorise them — you just confirm or adjust."
+          "text": {
+            "en": "IRBM publishes a fixed list of e-invoice classification codes. SenangInvoice ships the full catalog and its AI suggests the right code for each line item, so you don't have to memorise them — you just confirm or adjust.",
+            "ms": "IRBM menerbitkan senarai tetap kod pengelasan e-invois. SenangInvoice menyertakan katalog penuh dan AInya mencadangkan kod yang betul untuk setiap item baris, jadi anda tidak perlu menghafalnya — anda hanya perlu mengesahkan atau melaraskan.",
+            "zh": "IRBM 发布了一份固定的电子发票分类代码清单。SenangInvoice 内置完整目录，其 AI 会为每项明细推荐正确的代码，因此您无需死记硬背——只需确认或调整即可。"
+          }
         },
         {
           "type": "heading",
-          "text": "Submitting to MyInvois"
+          "text": {
+            "en": "Submitting to MyInvois",
+            "ms": "Menyerahkan ke MyInvois",
+            "zh": "提交至 MyInvois"
+          }
         },
         {
           "type": "paragraph",
-          "text": "When you submit, SenangInvoice builds the UBL 2.1 JSON and sends it to the MyInvois API. MyInvois validates the invoice and returns a unique UUID, a long ID, and a QR validation link. The validated invoice with its QR code is then ready to share with your buyer."
+          "text": {
+            "en": "When you submit, SenangInvoice builds the UBL 2.1 JSON and sends it to the MyInvois API. MyInvois validates the invoice and returns a unique UUID, a long ID, and a QR validation link. The validated invoice with its QR code is then ready to share with your buyer.",
+            "ms": "Apabila anda menyerahkan, SenangInvoice membina UBL 2.1 JSON dan menghantarnya ke API MyInvois. MyInvois mengesahkan invois dan mengembalikan UUID unik, ID panjang, dan pautan pengesahan QR. Invois yang disahkan beserta kod QRnya kemudian sedia untuk dikongsi dengan pembeli anda.",
+            "zh": "当您提交时，SenangInvoice 会构建 UBL 2.1 JSON 并将其发送到 MyInvois API。MyInvois 验证发票并返回唯一的 UUID、长 ID 和 QR 验证链接。经过验证、带二维码的发票随即可与您的买家分享。"
+          }
         },
         {
           "type": "heading",
-          "text": "72-hour correction window"
+          "text": {
+            "en": "72-hour correction window",
+            "ms": "Tetingkap pembetulan 72 jam",
+            "zh": "72 小时更正窗口"
+          }
         },
         {
           "type": "paragraph",
-          "text": "If you notice a mistake after submission, you have 72 hours to cancel or amend the invoice through the MyInvois system. After 72 hours, you must issue a credit note or debit note, which creates a new invoice linked to the original by UUID."
+          "text": {
+            "en": "If you notice a mistake after submission, you have 72 hours to cancel or amend the invoice through the MyInvois system. After 72 hours, you must issue a credit note or debit note, which creates a new invoice linked to the original by UUID.",
+            "ms": "Jika anda perasan kesilapan selepas penyerahan, anda mempunyai 72 jam untuk membatalkan atau meminda invois melalui sistem MyInvois. Selepas 72 jam, anda mesti mengeluarkan nota kredit atau nota debit, yang mencipta invois baharu yang dipautkan kepada yang asal melalui UUID.",
+            "zh": "如果您在提交后发现错误，可以在 72 小时内通过 MyInvois 系统取消或修改发票。超过 72 小时后，您必须开具贷项通知单或借项通知单，这会创建一张通过 UUID 与原始发票关联的新发票。"
+          }
         },
         {
           "type": "callout",
           "tone": "warn",
-          "text": "Always double-check buyer details, amounts, and classification codes before submitting. A credit/debit note correction after 72 hours creates additional paperwork and may delay payment."
+          "text": {
+            "en": "Always double-check buyer details, amounts, and classification codes before submitting. A credit/debit note correction after 72 hours creates additional paperwork and may delay payment.",
+            "ms": "Sentiasa semak semula butiran pembeli, amaun, dan kod pengelasan sebelum menyerahkan. Pembetulan nota kredit/debit selepas 72 jam mencipta kerja kertas tambahan dan mungkin melambatkan pembayaran.",
+            "zh": "提交前请务必再次核对买家信息、金额和分类代码。72 小时后通过贷项/借项通知单更正会增加额外的文书工作，并可能延迟付款。"
+          }
         },
         {
           "type": "heading",
-          "text": "What's next?"
+          "text": {
+            "en": "What's next?",
+            "ms": "Apa seterusnya?",
+            "zh": "接下来呢？"
+          }
         },
         {
           "type": "paragraph",
-          "text": "Once your invoice is validated, you can download the PDF with QR code, share it via email or messaging apps, and optionally back it up to Google Drive. Your invoices are stored locally on your device and synced to Drive if you've set up backup."
-        },
-        {
-          "type": "cta",
-          "label": "Start creating invoices",
-          "href": "/create"
+          "text": {
+            "en": "Once your invoice is validated, you can download the PDF with QR code, share it via email or messaging apps, and optionally back it up to Google Drive. Your invoices are stored locally on your device and synced to Drive if you've set up backup.",
+            "ms": "Setelah invois anda disahkan, anda boleh memuat turun PDF dengan kod QR, berkongsinya melalui e-mel atau aplikasi pemesejan, dan secara pilihan membuat sandaran ke Google Drive. Invois anda disimpan secara setempat pada peranti anda dan disegerakkan ke Drive jika anda telah menyediakan sandaran.",
+            "zh": "发票通过验证后，您可以下载带二维码的 PDF、通过电子邮件或即时通讯应用分享，并可选择备份到 Google Drive。您的发票存储在本地设备上，如果您已设置备份，则会同步到 Drive。"
+          }
         }
       ]
     }

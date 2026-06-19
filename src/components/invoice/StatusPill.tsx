@@ -9,8 +9,8 @@ export function StatusPill({ status }: StatusPillProps) {
 
   const labels: Record<InvoiceStatus, { text: string; className: string }> = {
     draft: { text: t('invoice.statusDraft'), className: 'bg-gray-100 text-gray-700' },
-    validated: { text: t('invoice.statusValidated'), className: 'bg-green-100 text-green-800' },
-    synced: { text: t('invoice.statusSynced'), className: 'bg-blue-100 text-blue-800' },
+    validated: { text: t('invoice.statusValidated'), className: 'bg-success-100 text-success-800' },
+    synced: { text: t('invoice.statusSynced'), className: 'bg-teal-100 text-teal-800' },
   }
   const { text, className } = labels[status]
   return (

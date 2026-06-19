@@ -155,7 +155,7 @@ export function OnboardingCarousel() {
               className="flex h-full flex-col items-center justify-center px-8 text-center"
               style={{ width: `${100 / slides.length}%` }}
             >
-              <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-3xl bg-teal-50 text-teal-700">
+              <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-teal-50 text-teal-700">
                 {slide.icon}
               </div>
               <h1 className="mb-3 text-3xl font-bold tracking-tight text-teal-900">

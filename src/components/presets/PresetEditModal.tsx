@@ -50,7 +50,7 @@ export function PresetEditModal({ preset, onClose, onSaved }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={onClose}>
       <div
-        className="bg-white rounded-xl shadow-xl max-w-md w-full mx-4 p-5 space-y-4"
+        className="bg-white rounded-2xl shadow-xl max-w-md w-full mx-4 p-5 space-y-4"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-label={isNew ? 'Create numbering preset' : `Edit ${preset?.name}`}

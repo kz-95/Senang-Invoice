@@ -29,7 +29,7 @@ export function DownloadCta() {
           href={APK_DOWNLOAD_URL}
           download
           onClick={() => track('apk_download_click')}
-          className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-teal-700 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-teal-700/20 transition-colors hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+          className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-teal-700 px-8 py-4 text-lg font-semibold text-white shadow-cta transition-colors hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
         >
           {AndroidIcon}
           {t('landing.downloadApk')}
