@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import { RevenueThresholdCalculator } from './RevenueThresholdCalculator'
 
 export interface Block {
   type: string
@@ -65,6 +66,8 @@ function renderBlock(block: Block, index: number, isFirstHeading: boolean) {
           </Link>
         </div>
       )
+    case 'calculator':
+      return <RevenueThresholdCalculator key={index} />
     default:
       return null
   }

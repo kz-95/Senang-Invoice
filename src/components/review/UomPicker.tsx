@@ -10,7 +10,7 @@ interface UomPickerProps {
 export function UomPicker({ value, onChange }: UomPickerProps) {
   const options = getAllUoms().map(u => ({
     value: u.code,
-    label: `${u.code} — ${u.description}`,
+    label: `${u.code} - ${u.description}`,
   }))
 
   return (

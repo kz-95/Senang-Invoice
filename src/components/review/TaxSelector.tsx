@@ -7,10 +7,10 @@ interface TaxSelectorProps {
 }
 
 const taxOptions = [
-  { value: '06', label: '06 — Exempt' },
-  { value: '01', label: '01 — Sales Tax' },
-  { value: '02', label: '02 — Service Tax' },
-  { value: 'E', label: 'E — Zero-Rated' },
+  { value: '06', label: '06 - Exempt' },
+  { value: '01', label: '01 - Sales Tax' },
+  { value: '02', label: '02 - Service Tax' },
+  { value: 'E', label: 'E - Zero-Rated' },
 ]
 
 export function TaxSelector({ value, onChange }: TaxSelectorProps) {

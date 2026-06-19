@@ -3,7 +3,7 @@
  *
  * Call `track(event, props)` anywhere. Events are forwarded to whichever
  * provider is present at runtime (Plausible, PostHog, or GA/gtag) and, if
- * configured, POSTed to an internal collector. No provider is hard-wired —
+ * configured, POSTed to an internal collector. No provider is hard-wired -
  * pick one later by injecting its snippet; this layer stays unchanged.
  */
 
@@ -17,8 +17,11 @@ export type FunnelEvent =
   | 'drive_skip'
   | 'profile_start'
   | 'profile_complete'
+  | 'download_now_click'
   | 'apk_download_click'
   | 'playstore_badge_click'
+  | 'welcome_step_view'
+  | 'guide_login_click'
   | 'first_invoice_created'
 
 export type AnalyticsProps = Record<string, string | number | boolean | null | undefined>
@@ -44,7 +47,7 @@ export function track(event: FunnelEvent, props: AnalyticsProps = {}): void {
     } else if (typeof w.gtag === 'function') {
       w.gtag('event', event, props)
     } else if (process.env.NODE_ENV !== 'production') {
-      // No provider yet — surface events in dev so the funnel is visible.
+      // No provider yet - surface events in dev so the funnel is visible.
       console.debug('[analytics]', event, props)
     }
   } catch {

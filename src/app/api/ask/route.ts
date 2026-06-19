@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     const llmBaseUrl = req.headers.get('x-llm-base-url') ?? undefined
     const llmProvider = req.headers.get('x-llm-provider') ?? undefined
 
-    // Degraded path — no LLM key anywhere
+    // Degraded path - no LLM key anywhere
     if (!llmKey && !canUseEnvKeys()) {
       const result = await answer({ message: body.message, history: body.history ?? [] })
       return NextResponse.json(result)
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
         }
       }
 
-      // All env keys exhausted — fall back to degraded
+      // All env keys exhausted - fall back to degraded
       const result = await answer({ message: body.message, history: body.history ?? [] })
       return NextResponse.json(result)
     }

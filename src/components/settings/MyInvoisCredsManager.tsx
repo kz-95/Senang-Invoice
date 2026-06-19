@@ -15,7 +15,7 @@ const STEPS = [
   'Log in to the MyInvois portal (preprod.myinvois.hasil.gov.my) with your IC.',
   'Open your Profile, then choose "View / Register ERP".',
   'Add a new ERP (any name, e.g. SenangInvoice) and pick a Client Secret expiry.',
-  'Click Register — copy the generated Client ID and Client Secret (secret shows once).',
+  'Click Register - copy the generated Client ID and Client Secret (secret shows once).',
   'Paste both here. They are stored only on this device.',
 ]
 

@@ -8,7 +8,7 @@ export interface ExtractionInput {
 
 const SYSTEM_PROMPT = `You are an expert at extracting line items from receipts and spoken input.
 Extract each item as a JSON array of objects with: description (string), qty (number), unitPrice (number).
-Do NOT include classificationCode, uom, taxType, taxAmount — leave those blank strings/zeros.
+Do NOT include classificationCode, uom, taxType, taxAmount - leave those blank strings/zeros.
 Return ONLY a valid JSON array, no markdown, no explanation.`
 
 export async function extractLineItems(

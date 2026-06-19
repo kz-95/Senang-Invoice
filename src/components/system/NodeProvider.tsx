@@ -16,7 +16,7 @@ export function NodeProvider({ children }: { children: React.ReactNode }) {
         // Dynamic import to avoid bundling Capacitor in web builds
         const { Capacitor } = await import('@capacitor/core')
         if (!Capacitor?.isNativePlatform?.()) {
-          // Not running natively — proceed immediately (uses same-origin /api/*)
+          // Not running natively - proceed immediately (uses same-origin /api/*)
           setReady(true)
           return
         }
@@ -44,13 +44,13 @@ export function NodeProvider({ children }: { children: React.ReactNode }) {
             retries++
             await new Promise((r) => setTimeout(r, baseDelay * Math.pow(1.5, retries)))
           }
-          // Max retries reached — proceed anyway (degraded mode)
+          // Max retries reached - proceed anyway (degraded mode)
           console.warn('[NodeProvider] Node server health check failed after max retries, proceeding in degraded mode')
           setReady(true)
         }
         await poll()
       } catch {
-        // Capacitor not available — web build, proceed immediately
+        // Capacitor not available - web build, proceed immediately
         setReady(true)
       }
     }

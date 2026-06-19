@@ -48,7 +48,7 @@ const providerSteps: Record<string, string[]> = {
   ],
   ollama: [
     'Install Ollama locally (ollama.com) and run a model.',
-    'No API key needed — leave the key blank.',
+    'No API key needed - leave the key blank.',
     'Set the URL to your local Ollama (default http://localhost:11434).',
   ],
 }
@@ -244,7 +244,7 @@ export function LlmKeyManager() {
 
       {expanded && (
         <>
-          {/* Key list — numbered, collapsible, draggable */}
+          {/* Key list - numbered, collapsible, draggable */}
           {keys.length > 0 && (
             <div className="space-y-1">
               {keys.map((k, idx) => {
@@ -399,7 +399,7 @@ export function LlmKeyManager() {
               onChange={e => setApiKey(e.target.value)}
               helperText={
                 provider === 'ollama'
-                  ? 'Ollama runs locally — no API key required. Leave blank.'
+                  ? 'Ollama runs locally - no API key required. Leave blank.'
                   : provider === 'anthropic'
                     ? 'Starts with sk-ant-api03-. Create at console.anthropic.com.'
                     : provider === 'deepseek'

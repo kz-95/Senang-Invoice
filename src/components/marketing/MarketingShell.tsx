@@ -1,6 +1,7 @@
 'use client'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { APP_NAME } from '@/lib/constants'
 import { LangToggle } from '@/components/common/LangToggle'
 import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton'
@@ -10,6 +11,10 @@ interface MarketingShellProps { children: ReactNode }
 
 export function MarketingShell({ children }: MarketingShellProps) {
   const t = useT()
+  const pathname = usePathname()
+  // On mobile, guide articles drop the Home/Download/Support/About bar so the
+  // reader stays focused (the bar is the sm:hidden block below).
+  const isGuideRoute = pathname?.startsWith('/guide') ?? false
 
   return (
     <div className="min-h-dvh bg-white flex flex-col">
@@ -34,12 +39,14 @@ export function MarketingShell({ children }: MarketingShellProps) {
           </div>
         </div>
 
-        <div className="sm:hidden flex items-center gap-4 px-4 pb-2">
-          <Link href="/" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.home')}</Link>
-          <Link href="/#download" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.download')}</Link>
-          <Link href="/support" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.support')}</Link>
-          <Link href="/about" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.about')}</Link>
-        </div>
+        {!isGuideRoute && (
+          <div className="sm:hidden flex items-center gap-4 px-4 pb-2">
+            <Link href="/" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.home')}</Link>
+            <Link href="/#download" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.download')}</Link>
+            <Link href="/support" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.support')}</Link>
+            <Link href="/about" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.about')}</Link>
+          </div>
+        )}
       </header>
 
       <main className="flex-1">

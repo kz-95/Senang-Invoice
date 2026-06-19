@@ -150,9 +150,9 @@
     "zh": "给我们发邮件"
   },
   "support.contactDesc": {
-    "en": "Questions, bugs, or feedback — reach us and we'll reply within 1–2 business days.",
-    "ms": "Soalan, pepijat, atau maklum balas — hubungi kami dan kami akan membalas dalam 1–2 hari bekerja.",
-    "zh": "有疑问、错误或反馈 — 联系我们，我们将在 1–2 个工作日内回复。"
+    "en": "Questions, bugs, or feedback - reach us and we'll reply within 1–2 business days.",
+    "ms": "Soalan, pepijat, atau maklum balas - hubungi kami dan kami akan membalas dalam 1–2 hari bekerja.",
+    "zh": "有疑问、错误或反馈 - 联系我们，我们将在 1–2 个工作日内回复。"
   },
   "support.guideTitle": {
     "en": "Read the guide",
@@ -180,9 +180,9 @@
     "zh": "我们的使命"
   },
   "about.missionDesc": {
-    "en": "Snap a receipt, speak your items, or type them in — and submit an LHDN-compliant e-invoice with a QR code in seconds. No portals, no spreadsheets.",
-    "ms": "Imbas resit, sebut item anda, atau taipkannya — dan hantar e-invois yang mematuhi LHDN dengan kod QR dalam beberapa saat. Tiada portal, tiada hamparan.",
-    "zh": "拍下收据、口述项目或直接输入 — 几秒内即可提交带二维码、符合 LHDN 规定的电子发票。无需门户，无需电子表格。"
+    "en": "Snap a receipt, speak your items, or type them in - and submit an LHDN-compliant e-invoice with a QR code in seconds. No portals, no spreadsheets.",
+    "ms": "Imbas resit, sebut item anda, atau taipkannya - dan hantar e-invois yang mematuhi LHDN dengan kod QR dalam beberapa saat. Tiada portal, tiada hamparan.",
+    "zh": "拍下收据、口述项目或直接输入 - 几秒内即可提交带二维码、符合 LHDN 规定的电子发票。无需门户，无需电子表格。"
   },
   "about.privacyTitle": {
     "en": "Private by design",
@@ -200,9 +200,9 @@
     "zh": "联系我们"
   },
   "about.contactDesc": {
-    "en": "Questions, bugs, or feedback — email us and we'll reply within 1–2 business days.",
-    "ms": "Soalan, pepijat, atau maklum balas — e-mel kami dan kami akan membalas dalam 1–2 hari bekerja.",
-    "zh": "有疑问、错误或反馈 — 给我们发邮件，我们将在 1–2 个工作日内回复。"
+    "en": "Questions, bugs, or feedback - email us and we'll reply within 1–2 business days.",
+    "ms": "Soalan, pepijat, atau maklum balas - e-mel kami dan kami akan membalas dalam 1–2 hari bekerja.",
+    "zh": "有疑问、错误或反馈 - 给我们发邮件，我们将在 1–2 个工作日内回复。"
   },
   "about.formName": {
     "en": "Your name",
@@ -245,9 +245,9 @@
     "zh": "查看电子发票是否适用于您"
   },
   "support.askDesc": {
-    "en": "Answer two quick questions — no account or AI key needed.",
-    "ms": "Jawab dua soalan ringkas — tiada akaun atau kunci AI diperlukan.",
-    "zh": "回答两个简单问题 — 无需账户或 AI 密钥。"
+    "en": "Answer two quick questions - no account or AI key needed.",
+    "ms": "Jawab dua soalan ringkas - tiada akaun atau kunci AI diperlukan.",
+    "zh": "回答两个简单问题 - 无需账户或 AI 密钥。"
   },
   "support.guideHint": {
     "en": "Or browse the full step-by-step guide:",
@@ -280,9 +280,9 @@
     "zh": "不确定电子发票是否适用于您？从这里开始。"
   },
   "landing.heroSubtitle": {
-    "en": "Malaysian e-invoice made easy — snap, speak, submit.",
-    "ms": "E-invois Malaysia dipermudahkan — snap, sebut, hantar.",
-    "zh": "马来西亚电子发票，简单易用 — 拍照、说话、提交。"
+    "en": "Malaysian e-invoice made easy - snap, speak, submit.",
+    "ms": "E-invois Malaysia dipermudahkan - snap, sebut, hantar.",
+    "zh": "马来西亚电子发票，简单易用 - 拍照、说话、提交。"
   },
   "landing.heroCtaScope": {
     "en": "Am I in scope?",
@@ -1315,8 +1315,8 @@
     "zh": "拍照、说话、提交"
   },
   "onboarding.welcomeDesc": {
-    "en": "Malaysian e-invoices made easy — no portal headaches, no spreadsheets.",
-    "ms": "E-invois Malaysia dipermudah — tanpa portal yang menyusahkan atau hamparan.",
+    "en": "Malaysian e-invoices made easy - no portal headaches, no spreadsheets.",
+    "ms": "E-invois Malaysia dipermudah - tanpa portal yang menyusahkan atau hamparan.",
     "zh": "轻松开具马来西亚电子发票，无需繁琐门户或表格。"
   },
   "onboarding.welcomeStep1": {
@@ -1444,6 +1444,118 @@
     "ms": "Play Store akan datang",
     "zh": "Play Store 即将推出"
   },
+  "landing.downloadChooseTitle": {
+    "en": "Choose how to install",
+    "ms": "Pilih cara pemasangan",
+    "zh": "选择安装方式"
+  },
+  "landing.downloadViaPlaystore": {
+    "en": "Google Play Store",
+    "ms": "Google Play Store",
+    "zh": "Google Play 商店"
+  },
+  "landing.downloadViaPlaystoreDesc": {
+    "en": "Recommended — installs and updates automatically",
+    "ms": "Disyorkan — pasang dan kemas kini automatik",
+    "zh": "推荐 — 自动安装和更新"
+  },
+  "landing.downloadViaApk": {
+    "en": "Standalone APK",
+    "ms": "APK Berdiri Sendiri",
+    "zh": "独立 APK"
+  },
+  "landing.downloadViaApkDesc": {
+    "en": "Direct download · install it yourself",
+    "ms": "Muat turun terus · pasang sendiri",
+    "zh": "直接下载 · 自行安装"
+  },
+  "guide.loginCta": {
+    "en": "Log In to Continue",
+    "ms": "Log Masuk untuk Teruskan",
+    "zh": "登录以继续"
+  },
+  "welcome.stepLabel": {
+    "en": "Step {n} of 3",
+    "ms": "Langkah {n} daripada 3",
+    "zh": "第 {n} 步，共 3 步"
+  },
+  "welcome.loginTitle": {
+    "en": "Sign in to get started",
+    "ms": "Log masuk untuk bermula",
+    "zh": "登录即可开始"
+  },
+  "calc.title": {
+    "en": "Quick revenue check",
+    "ms": "Semakan hasil pantas",
+    "zh": "快速收入查核"
+  },
+  "calc.subtitle": {
+    "en": "Enter your sales — we'll estimate your yearly revenue and tell you instantly.",
+    "ms": "Masukkan jualan anda — kami anggar hasil tahunan dan beritahu anda serta-merta.",
+    "zh": "输入您的销售额 — 我们将估算您的年收入并立即告知。"
+  },
+  "calc.inputLabel": {
+    "en": "Your average {period} sales",
+    "ms": "Purata jualan {period} anda",
+    "zh": "您的平均{period}销售额"
+  },
+  "calc.placeholder": {
+    "en": "e.g. 80,000",
+    "ms": "cth. 80,000",
+    "zh": "例如 80,000"
+  },
+  "calc.revenueHint": {
+    "en": "Enter revenue = total sales (the full amount customers pay), not your profit.",
+    "ms": "Masukkan hasil = jumlah jualan (keseluruhan amaun pelanggan bayar), bukan keuntungan anda.",
+    "zh": "请输入收入 = 总销售额（顾客支付的全部金额），而非您的利润。"
+  },
+  "calc.estimatedAnnual": {
+    "en": "Estimated annual revenue",
+    "ms": "Anggaran hasil tahunan",
+    "zh": "预估年收入"
+  },
+  "calc.resultRequired": {
+    "en": "Above RM1 million — e-invoicing required",
+    "ms": "Melebihi RM1 juta — e-invois diwajibkan",
+    "zh": "超过 RM100 万 — 需要电子发票"
+  },
+  "calc.resultExempt": {
+    "en": "Below RM1 million — currently exempt",
+    "ms": "Bawah RM1 juta — kini dikecualikan",
+    "zh": "低于 RM100 万 — 目前豁免"
+  },
+  "calc.requiredDetail": {
+    "en": "You are about {amount} over the RM1,000,000 threshold, so you have already hit it and are eligible for e-invoicing.",
+    "ms": "Anda kira-kira {amount} melebihi ambang RM1,000,000, jadi anda sudah mencapainya dan layak untuk e-invois.",
+    "zh": "您已超出 RM1,000,000 门槛约 {amount}，因此您已达标，需要使用电子发票。"
+  },
+  "calc.exemptDetail": {
+    "en": "You are about {amount} below the RM1,000,000 threshold, so you are safe for now.",
+    "ms": "Anda kira-kira {amount} di bawah ambang RM1,000,000, jadi anda selamat buat masa ini.",
+    "zh": "您距离 RM1,000,000 门槛还有约 {amount}，因此目前是安全的。"
+  },
+  "calc.breakdownTitle": {
+    "en": "Your sales broken down",
+    "ms": "Pecahan jualan anda",
+    "zh": "您的销售额明细"
+  },
+  "calc.disclaimer": {
+    "en": "Quick estimate only, not legal advice. The RM1 million threshold is measured per corporate group and IRBM rules can change.",
+    "ms": "Anggaran pantas sahaja, bukan nasihat undang-undang. Ambang RM1 juta diukur bagi setiap kumpulan korporat dan peraturan IRBM boleh berubah.",
+    "zh": "仅为快速估算，并非法律意见。RM100 万门槛按企业集团计算，且 IRBM 规则可能变动。"
+  },
+  "calc.period.day": { "en": "Day", "ms": "Hari", "zh": "每日" },
+  "calc.period.week": { "en": "Week", "ms": "Minggu", "zh": "每周" },
+  "calc.period.month": { "en": "Month", "ms": "Bulan", "zh": "每月" },
+  "calc.period.year": { "en": "Year", "ms": "Tahun", "zh": "每年" },
+  "calc.periodNoun.day": { "en": "daily", "ms": "harian", "zh": "每日" },
+  "calc.periodNoun.week": { "en": "weekly", "ms": "mingguan", "zh": "每周" },
+  "calc.periodNoun.month": { "en": "monthly", "ms": "bulanan", "zh": "每月" },
+  "calc.periodNoun.year": { "en": "yearly", "ms": "tahunan", "zh": "每年" },
+  "calc.per.day": { "en": "Per day", "ms": "Sehari", "zh": "每天" },
+  "calc.per.week": { "en": "Per week", "ms": "Seminggu", "zh": "每周" },
+  "calc.per.month": { "en": "Per month", "ms": "Sebulan", "zh": "每月" },
+  "calc.per.year": { "en": "Per year", "ms": "Setahun", "zh": "每年" },
   "landing.heroMainTitle": {
     "en": "Malaysian E-Invoice",
     "ms": "E-Invois Malaysia",

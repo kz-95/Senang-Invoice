@@ -13,7 +13,7 @@
         "zh": "谁必须合规、RM 门槛，以及如何查核。"
       },
       "icon": "scope",
-      "next": "register-mytax",
+      "next": "revenue-threshold-check",
       "blocks": [
         {
           "type": "heading",
@@ -35,9 +35,9 @@
           "type": "callout",
           "tone": "info",
           "text": {
-            "en": "E-invoicing is not just a PDF. The IRBM requires a specific structured format (UBL 2.1) that the MyInvois system validates and stamps with a unique UUID and QR validation link — only then is the invoice legally valid.",
-            "ms": "E-invois bukan sekadar PDF. IRBM memerlukan format berstruktur tertentu (UBL 2.1) yang disahkan oleh sistem MyInvois dan dicop dengan UUID unik serta pautan pengesahan QR — barulah invois itu sah dari segi undang-undang.",
-            "zh": "电子发票不仅仅是一份 PDF。IRBM 要求特定的结构化格式（UBL 2.1），由 MyInvois 系统验证并加盖唯一的 UUID 和二维码验证链接——此后发票才具有法律效力。"
+            "en": "E-invoicing is not just a PDF. The IRBM requires a specific structured format (UBL 2.1) that the MyInvois system validates and stamps with a unique UUID and QR validation link - only then is the invoice legally valid.",
+            "ms": "E-invois bukan sekadar PDF. IRBM memerlukan format berstruktur tertentu (UBL 2.1) yang disahkan oleh sistem MyInvois dan dicop dengan UUID unik serta pautan pengesahan QR - barulah invois itu sah dari segi undang-undang.",
+            "zh": "电子发票不仅仅是一份 PDF。IRBM 要求特定的结构化格式（UBL 2.1），由 MyInvois 系统验证并加盖唯一的 UUID 和二维码验证链接--此后发票才具有法律效力。"
           }
         },
         {
@@ -51,9 +51,9 @@
         {
           "type": "paragraph",
           "text": {
-            "en": "The RM1 million annual turnover threshold determines who must issue e-invoices. If your business revenue exceeds RM1 million in a financial year, you are required to adopt e-invoicing. The threshold applies per corporate group — if your group of companies collectively exceeds RM1 million, all entities within the group must comply.",
-            "ms": "Ambang pusing ganti tahunan RM1 juta menentukan siapa yang wajib mengeluarkan e-invois. Jika hasil perniagaan anda melebihi RM1 juta dalam satu tahun kewangan, anda dikehendaki mengamalkan e-invois. Ambang ini terpakai bagi setiap kumpulan korporat — jika kumpulan syarikat anda secara kolektif melebihi RM1 juta, semua entiti dalam kumpulan itu mesti mematuhi.",
-            "zh": "RM100 万的年营业额门槛决定了谁必须开具电子发票。如果您的企业在一个财政年度内收入超过 RM100 万，您就必须采用电子发票。该门槛按企业集团计算——如果您的公司集团合计超过 RM100 万，集团内所有实体都必须合规。"
+            "en": "The RM1 million annual turnover threshold determines who must issue e-invoices. If your business revenue exceeds RM1 million in a financial year, you are required to adopt e-invoicing. The threshold applies per corporate group - if your group of companies collectively exceeds RM1 million, all entities within the group must comply.",
+            "ms": "Ambang pusing ganti tahunan RM1 juta menentukan siapa yang wajib mengeluarkan e-invois. Jika hasil perniagaan anda melebihi RM1 juta dalam satu tahun kewangan, anda dikehendaki mengamalkan e-invois. Ambang ini terpakai bagi setiap kumpulan korporat - jika kumpulan syarikat anda secara kolektif melebihi RM1 juta, semua entiti dalam kumpulan itu mesti mematuhi.",
+            "zh": "RM100 万的年营业额门槛决定了谁必须开具电子发票。如果您的企业在一个财政年度内收入超过 RM100 万，您就必须采用电子发票。该门槛按企业集团计算--如果您的公司集团合计超过 RM100 万，集团内所有实体都必须合规。"
           }
         },
         {
@@ -68,19 +68,19 @@
           "type": "steps",
           "items": [
             {
-              "en": "August 2024 — Businesses with annual turnover exceeding RM100 million",
-              "ms": "Ogos 2024 — Perniagaan dengan pusing ganti tahunan melebihi RM100 juta",
-              "zh": "2024 年 8 月 — 年营业额超过 RM1 亿的企业"
+              "en": "August 2024 - Businesses with annual turnover exceeding RM100 million",
+              "ms": "Ogos 2024 - Perniagaan dengan pusing ganti tahunan melebihi RM100 juta",
+              "zh": "2024 年 8 月 - 年营业额超过 RM1 亿的企业"
             },
             {
-              "en": "January 2025 — Businesses with annual turnover exceeding RM25 million",
-              "ms": "Januari 2025 — Perniagaan dengan pusing ganti tahunan melebihi RM25 juta",
-              "zh": "2025 年 1 月 — 年营业额超过 RM2,500 万的企业"
+              "en": "January 2025 - Businesses with annual turnover exceeding RM25 million",
+              "ms": "Januari 2025 - Perniagaan dengan pusing ganti tahunan melebihi RM25 juta",
+              "zh": "2025 年 1 月 - 年营业额超过 RM2,500 万的企业"
             },
             {
-              "en": "July 2025 — All remaining businesses exceeding RM1 million, plus voluntary adopters",
-              "ms": "Julai 2025 — Semua perniagaan lain yang melebihi RM1 juta, serta penggguna sukarela",
-              "zh": "2025 年 7 月 — 所有其余超过 RM100 万的企业，以及自愿采用者"
+              "en": "July 2025 - All remaining businesses exceeding RM1 million, plus voluntary adopters",
+              "ms": "Julai 2025 - Semua perniagaan lain yang melebihi RM1 juta, serta penggguna sukarela",
+              "zh": "2025 年 7 月 - 所有其余超过 RM100 万的企业，以及自愿采用者"
             }
           ]
         },
@@ -104,9 +104,9 @@
         {
           "type": "paragraph",
           "text": {
-            "en": "Even if your turnover is below RM1 million, you can voluntarily opt in. The IRBM encourages voluntary adoption — there is no penalty for joining early, and you benefit from getting your systems ready before it becomes mandatory. Once you opt in, you cannot opt out.",
-            "ms": "Walaupun pusing ganti anda di bawah RM1 juta, anda boleh menyertai secara sukarela. IRBM menggalakkan penggunaan sukarela — tiada penalti untuk menyertai awal, dan anda mendapat manfaat dengan menyediakan sistem anda sebelum ia menjadi wajib. Setelah anda menyertai, anda tidak boleh menarik diri.",
-            "zh": "即使您的营业额低于 RM100 万，您也可以自愿加入。IRBM 鼓励自愿采用——提早加入不会有罚款，而且您能在它成为强制要求前先把系统准备好。一旦加入，便无法退出。"
+            "en": "Even if your turnover is below RM1 million, you can voluntarily opt in. The IRBM encourages voluntary adoption - there is no penalty for joining early, and you benefit from getting your systems ready before it becomes mandatory. Once you opt in, you cannot opt out.",
+            "ms": "Walaupun pusing ganti anda di bawah RM1 juta, anda boleh menyertai secara sukarela. IRBM menggalakkan penggunaan sukarela - tiada penalti untuk menyertai awal, dan anda mendapat manfaat dengan menyediakan sistem anda sebelum ia menjadi wajib. Setelah anda menyertai, anda tidak boleh menarik diri.",
+            "zh": "即使您的营业额低于 RM100 万，您也可以自愿加入。IRBM 鼓励自愿采用--提早加入不会有罚款，而且您能在它成为强制要求前先把系统准备好。一旦加入，便无法退出。"
           }
         },
         {
@@ -123,6 +123,175 @@
             "en": "Ask yourself these three questions: (1) Is my annual revenue above RM1 million? (2) Am I part of a corporate group that collectively exceeds RM1 million? (3) Do I want to voluntarily adopt now? If you answered yes to any of these, you need e-invoicing.",
             "ms": "Tanya diri anda tiga soalan ini: (1) Adakah hasil tahunan saya melebihi RM1 juta? (2) Adakah saya sebahagian daripada kumpulan korporat yang secara kolektif melebihi RM1 juta? (3) Adakah saya mahu menyertai secara sukarela sekarang? Jika anda menjawab ya kepada mana-mana soalan ini, anda memerlukan e-invois.",
             "zh": "问自己这三个问题：（1）我的年收入是否超过 RM100 万？（2）我是否属于合计超过 RM100 万的企业集团？（3）我现在是否想自愿采用？如果其中任何一项答案为「是」，您就需要电子发票。"
+          }
+        },
+        {
+          "type": "calculator"
+        },
+        {
+          "type": "cta",
+          "label": {
+            "en": "Next: Register on MyTax",
+            "ms": "Seterusnya: Daftar di MyTax",
+            "zh": "下一步：在 MyTax 注册"
+          },
+          "href": "/guide/register-mytax"
+        }
+      ]
+    },
+    {
+      "slug": "revenue-threshold-check",
+      "title": {
+        "en": "Do I earn over RM1 million?",
+        "ms": "Adakah saya mendapat lebih RM1 juta?",
+        "zh": "我的收入超过 RM100 万吗？"
+      },
+      "summary": {
+        "en": "A 30-second revenue check: are you above or below the RM1 million e-invoice threshold?",
+        "ms": "Semakan hasil 30 saat: adakah anda melebihi atau di bawah ambang e-invois RM1 juta?",
+        "zh": "30 秒收入查核：您高于还是低于 RM100 万电子发票门槛？"
+      },
+      "icon": "scope",
+      "next": "register-mytax",
+      "blocks": [
+        {
+          "type": "heading",
+          "text": {
+            "en": "The RM1 million rule",
+            "ms": "Peraturan RM1 juta",
+            "zh": "RM100 万规则"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Malaysia's e-invoice exemption threshold is RM1 million in annual turnover. If your total sales for the year are RM1,000,000 or less, you are currently exempt. If they exceed RM1,000,000, e-invoicing is required.",
+            "ms": "Ambang pengecualian e-invois Malaysia ialah pusing ganti tahunan RM1 juta. Jika jumlah jualan anda bagi tahun itu RM1,000,000 atau kurang, anda kini dikecualikan. Jika ia melebihi RM1,000,000, e-invois diwajibkan.",
+            "zh": "马来西亚电子发票豁免门槛为年营业额 RM100 万。如果您全年总销售额为 RM1,000,000 或以下，目前可获豁免。如果超过 RM1,000,000，则必须使用电子发票。"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "text": {
+            "en": "Important: \"revenue\" (turnover) means your total sales - every ringgit your customers pay you, based on the prices you charge. It is NOT your profit. A stall that sells RM1.2 million of food a year is over the threshold even if it only keeps RM100,000 after costs.",
+            "ms": "Penting: \"hasil\" (pusing ganti) bermaksud jumlah jualan anda - setiap ringgit yang pelanggan bayar, berdasarkan harga yang anda kenakan. Ia BUKAN keuntungan anda. Gerai yang menjual makanan bernilai RM1.2 juta setahun melebihi ambang walaupun hanya menyimpan RM100,000 selepas kos.",
+            "zh": "重要：\"收入\"（营业额）指您的总销售额 - 顾客按您定价支付给您的每一令吉。它不是您的利润。一个每年卖出 RM120 万食物的档口，即使扣除成本后只剩 RM100,000，也已超过门槛。"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "text": {
+            "en": "Simple formula: Estimated Annual Revenue = Average Monthly Sales x 12. If the result is over RM1,000,000, e-invoicing is likely required. If it is RM1,000,000 or below, you may qualify for exemption.",
+            "ms": "Formula mudah: Anggaran Hasil Tahunan = Purata Jualan Bulanan x 12. Jika hasilnya melebihi RM1,000,000, e-invois mungkin diwajibkan. Jika ia RM1,000,000 atau kurang, anda mungkin layak untuk pengecualian.",
+            "zh": "简单公式：预估年收入 = 平均月销售额 x 12。若结果超过 RM1,000,000，可能需要电子发票。若为 RM1,000,000 或以下，您可能符合豁免资格。"
+          }
+        },
+        {
+          "type": "calculator"
+        },
+        {
+          "type": "heading",
+          "text": {
+            "en": "The fast daily check",
+            "ms": "Semakan harian pantas",
+            "zh": "快速每日查核"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "RM1,000,000 divided by 365 = RM2,739.73 per day. That single number is the quickest test for restaurant, hawker, cafe and retail owners.",
+            "ms": "RM1,000,000 dibahagi 365 = RM2,739.73 sehari. Nombor tunggal itu ialah ujian terpantas untuk pemilik restoran, penjaja, kafe dan peruncitan.",
+            "zh": "RM1,000,000 除以 365 = 每天 RM2,739.73。这个数字是餐厅、小贩、咖啡馆和零售业主最快的检验标准。"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "text": {
+            "en": "Daily sales under RM2,740 usually means exempt. Daily sales over RM2,740 usually means you need e-invoice.",
+            "ms": "Jualan harian bawah RM2,740 biasanya bermaksud dikecualikan. Jualan harian melebihi RM2,740 biasanya bermaksud anda perlu e-invois.",
+            "zh": "每日销售额低于 RM2,740 通常表示豁免。每日销售额高于 RM2,740 通常表示您需要电子发票。"
+          }
+        },
+        {
+          "type": "heading",
+          "text": {
+            "en": "RM1 million in plain numbers",
+            "ms": "RM1 juta dalam nombor mudah",
+            "zh": "RM100 万的简单换算"
+          }
+        },
+        {
+          "type": "steps",
+          "items": [
+            { "en": "RM83,333 per month", "ms": "RM83,333 sebulan", "zh": "每月 RM83,333" },
+            { "en": "RM19,231 per week", "ms": "RM19,231 seminggu", "zh": "每周 RM19,231" },
+            { "en": "RM2,740 per day", "ms": "RM2,740 sehari", "zh": "每天 RM2,740" },
+            { "en": "RM114 per hour (24/7 average)", "ms": "RM114 sejam (purata 24/7)", "zh": "每小时 RM114（24/7 平均）" },
+            { "en": "RM347 per hour (8-hour workday)", "ms": "RM347 sejam (hari kerja 8 jam)", "zh": "每小时 RM347（8 小时工作日）" }
+          ]
+        },
+        {
+          "type": "heading",
+          "text": {
+            "en": "Quick daily sales check",
+            "ms": "Semakan jualan harian pantas",
+            "zh": "每日销售额快速查核"
+          }
+        },
+        {
+          "type": "steps",
+          "items": [
+            { "en": "50 customers/day x RM15 = RM273,750/year -> Exempt", "ms": "50 pelanggan/hari x RM15 = RM273,750/tahun -> Dikecualikan", "zh": "每天 50 位顾客 x RM15 = 每年 RM273,750 -> 豁免" },
+            { "en": "100 customers/day x RM15 = RM547,500/year -> Exempt", "ms": "100 pelanggan/hari x RM15 = RM547,500/tahun -> Dikecualikan", "zh": "每天 100 位顾客 x RM15 = 每年 RM547,500 -> 豁免" },
+            { "en": "150 customers/day x RM15 = RM821,250/year -> Exempt", "ms": "150 pelanggan/hari x RM15 = RM821,250/tahun -> Dikecualikan", "zh": "每天 150 位顾客 x RM15 = 每年 RM821,250 -> 豁免" },
+            { "en": "200 customers/day x RM15 = RM1,095,000/year -> e-Invoice required", "ms": "200 pelanggan/hari x RM15 = RM1,095,000/tahun -> E-invois diwajibkan", "zh": "每天 200 位顾客 x RM15 = 每年 RM1,095,000 -> 需要电子发票" }
+          ]
+        },
+        {
+          "type": "heading",
+          "text": {
+            "en": "Quick monthly sales check",
+            "ms": "Semakan jualan bulanan pantas",
+            "zh": "每月销售额快速查核"
+          }
+        },
+        {
+          "type": "steps",
+          "items": [
+            { "en": "RM50,000/month = RM600,000/year -> Exempt", "ms": "RM50,000/bulan = RM600,000/tahun -> Dikecualikan", "zh": "每月 RM50,000 = 每年 RM600,000 -> 豁免" },
+            { "en": "RM70,000/month = RM840,000/year -> Exempt", "ms": "RM70,000/bulan = RM840,000/tahun -> Dikecualikan", "zh": "每月 RM70,000 = 每年 RM840,000 -> 豁免" },
+            { "en": "RM83,333/month = RM999,996/year -> Exempt", "ms": "RM83,333/bulan = RM999,996/tahun -> Dikecualikan", "zh": "每月 RM83,333 = 每年 RM999,996 -> 豁免" },
+            { "en": "RM85,000/month = RM1,020,000/year -> e-Invoice required", "ms": "RM85,000/bulan = RM1,020,000/tahun -> E-invois diwajibkan", "zh": "每月 RM85,000 = 每年 RM1,020,000 -> 需要电子发票" },
+            { "en": "RM100,000/month = RM1,200,000/year -> e-Invoice required", "ms": "RM100,000/bulan = RM1,200,000/tahun -> E-invois diwajibkan", "zh": "每月 RM100,000 = 每年 RM1,200,000 -> 需要电子发票" }
+          ]
+        },
+        {
+          "type": "heading",
+          "text": {
+            "en": "Example: Nasi Kandar stall",
+            "ms": "Contoh: Gerai Nasi Kandar",
+            "zh": "例子：Nasi Kandar 档口"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Daily sales of RM3,500 x 365 = RM1,277,500 a year. Result: above RM1 million, so e-invoicing is required.",
+            "ms": "Jualan harian RM3,500 x 365 = RM1,277,500 setahun. Keputusan: melebihi RM1 juta, jadi e-invois diwajibkan.",
+            "zh": "每日销售额 RM3,500 x 365 = 每年 RM1,277,500。结果：超过 RM100 万，因此需要电子发票。"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "text": {
+            "en": "This is a quick estimate, not legal advice. The threshold is measured per corporate group, and IRBM rules can change - confirm your status with IRBM or your accountant.",
+            "ms": "Ini ialah anggaran pantas, bukan nasihat undang-undang. Ambang diukur bagi setiap kumpulan korporat, dan peraturan IRBM boleh berubah - sahkan status anda dengan IRBM atau akauntan anda.",
+            "zh": "这只是快速估算，并非法律意见。门槛按企业集团计算，且 IRBM 规则可能变动 - 请向 IRBM 或您的会计师确认您的状态。"
           }
         },
         {
@@ -178,9 +347,9 @@
         {
           "type": "paragraph",
           "text": {
-            "en": "Your TIN is the unique identifier used by IRBM for all tax matters. For businesses registered in Malaysia, it starts with a prefix letter (for example 'C' for a company) followed by digits. You need this TIN to set up your MyInvois access. Note: the special TIN EI00000000010 is reserved for consolidated 'general public' invoices — it is not your personal or company TIN.",
-            "ms": "TIN anda ialah pengecam unik yang digunakan oleh IRBM untuk semua hal cukai. Bagi perniagaan yang berdaftar di Malaysia, ia bermula dengan huruf awalan (contohnya 'C' untuk syarikat) diikuti dengan digit. Anda memerlukan TIN ini untuk menyediakan akses MyInvois anda. Nota: TIN khas EI00000000010 dikhaskan untuk invois 'orang awam' yang disatukan — ia bukan TIN peribadi atau syarikat anda.",
-            "zh": "您的 TIN 是 IRBM 用于所有税务事项的唯一识别码。对于在马来西亚注册的企业，它以一个前缀字母（例如公司的「C」）开头，后接数字。您需要此 TIN 来设置 MyInvois 访问权限。注意：特殊 TIN EI00000000010 专用于合并的「一般公众」发票——它不是您的个人或公司 TIN。"
+            "en": "Your TIN is the unique identifier used by IRBM for all tax matters. For businesses registered in Malaysia, it starts with a prefix letter (for example 'C' for a company) followed by digits. You need this TIN to set up your MyInvois access. Note: the special TIN EI00000000010 is reserved for consolidated 'general public' invoices - it is not your personal or company TIN.",
+            "ms": "TIN anda ialah pengecam unik yang digunakan oleh IRBM untuk semua hal cukai. Bagi perniagaan yang berdaftar di Malaysia, ia bermula dengan huruf awalan (contohnya 'C' untuk syarikat) diikuti dengan digit. Anda memerlukan TIN ini untuk menyediakan akses MyInvois anda. Nota: TIN khas EI00000000010 dikhaskan untuk invois 'orang awam' yang disatukan - ia bukan TIN peribadi atau syarikat anda.",
+            "zh": "您的 TIN 是 IRBM 用于所有税务事项的唯一识别码。对于在马来西亚注册的企业，它以一个前缀字母（例如公司的「C」）开头，后接数字。您需要此 TIN 来设置 MyInvois 访问权限。注意：特殊 TIN EI00000000010 专用于合并的「一般公众」发票--它不是您的个人或公司 TIN。"
           }
         },
         {
@@ -203,9 +372,9 @@
         {
           "type": "paragraph",
           "text": {
-            "en": "MyTax issues a free digital certificate that authenticates you when logging in to the e-invoicing portals. Apply for it in the MyTax portal — individuals can use the Individual digital certificate (IC only, no company documents needed). This free login certificate is all you need to reach MyInvois and register for API credentials. A separate paid signing certificate from a licensed CA is only required for the cryptographically-signed invoice format, which SenangInvoice's standard sandbox submission does not use.",
-            "ms": "MyTax mengeluarkan sijil digital percuma yang mengesahkan anda semasa log masuk ke portal e-invois. Mohon untuknya di portal MyTax — individu boleh menggunakan sijil digital Individu (IC sahaja, tiada dokumen syarikat diperlukan). Sijil log masuk percuma ini sahaja yang anda perlukan untuk mencapai MyInvois dan mendaftar untuk kelayakan API. Sijil penandatanganan berbayar yang berasingan daripada CA berlesen hanya diperlukan untuk format invois yang ditandatangani secara kriptografi, yang tidak digunakan oleh penyerahan sandbox standard SenangInvoice.",
-            "zh": "MyTax 会签发一份免费的数字证书，用于在您登录电子发票门户时进行身份验证。请在 MyTax 门户中申请——个人可使用个人数字证书（仅需身份证，无需公司文件）。这份免费的登录证书足以让您访问 MyInvois 并注册 API 凭证。只有经过加密签名的发票格式才需要另行向持牌 CA 购买签名证书，而 SenangInvoice 的标准沙盒提交并不使用该格式。"
+            "en": "MyTax issues a free digital certificate that authenticates you when logging in to the e-invoicing portals. Apply for it in the MyTax portal - individuals can use the Individual digital certificate (IC only, no company documents needed). This free login certificate is all you need to reach MyInvois and register for API credentials. A separate paid signing certificate from a licensed CA is only required for the cryptographically-signed invoice format, which SenangInvoice's standard sandbox submission does not use.",
+            "ms": "MyTax mengeluarkan sijil digital percuma yang mengesahkan anda semasa log masuk ke portal e-invois. Mohon untuknya di portal MyTax - individu boleh menggunakan sijil digital Individu (IC sahaja, tiada dokumen syarikat diperlukan). Sijil log masuk percuma ini sahaja yang anda perlukan untuk mencapai MyInvois dan mendaftar untuk kelayakan API. Sijil penandatanganan berbayar yang berasingan daripada CA berlesen hanya diperlukan untuk format invois yang ditandatangani secara kriptografi, yang tidak digunakan oleh penyerahan sandbox standard SenangInvoice.",
+            "zh": "MyTax 会签发一份免费的数字证书，用于在您登录电子发票门户时进行身份验证。请在 MyTax 门户中申请--个人可使用个人数字证书（仅需身份证，无需公司文件）。这份免费的登录证书足以让您访问 MyInvois 并注册 API 凭证。只有经过加密签名的发票格式才需要另行向持牌 CA 购买签名证书，而 SenangInvoice 的标准沙盒提交并不使用该格式。"
           }
         },
         {
@@ -343,9 +512,9 @@
         {
           "type": "paragraph",
           "text": {
-            "en": "After ERP registration, MyInvois generates two credentials: a Client ID and a Client Secret. The Client ID identifies your ERP system. The Client Secret is the password that authenticates your API calls. Store the Client Secret securely — it is shown only once.",
-            "ms": "Selepas pendaftaran ERP, MyInvois menjana dua kelayakan: Client ID dan Client Secret. Client ID mengenal pasti sistem ERP anda. Client Secret ialah kata laluan yang mengesahkan panggilan API anda. Simpan Client Secret dengan selamat — ia hanya dipaparkan sekali sahaja.",
-            "zh": "完成 ERP 注册后，MyInvois 会生成两项凭证：Client ID 和 Client Secret。Client ID 用于标识您的 ERP 系统。Client Secret 是用于验证您 API 调用的密码。请妥善保存 Client Secret——它只会显示一次。"
+            "en": "After ERP registration, MyInvois generates two credentials: a Client ID and a Client Secret. The Client ID identifies your ERP system. The Client Secret is the password that authenticates your API calls. Store the Client Secret securely - it is shown only once.",
+            "ms": "Selepas pendaftaran ERP, MyInvois menjana dua kelayakan: Client ID dan Client Secret. Client ID mengenal pasti sistem ERP anda. Client Secret ialah kata laluan yang mengesahkan panggilan API anda. Simpan Client Secret dengan selamat - ia hanya dipaparkan sekali sahaja.",
+            "zh": "完成 ERP 注册后，MyInvois 会生成两项凭证：Client ID 和 Client Secret。Client ID 用于标识您的 ERP 系统。Client Secret 是用于验证您 API 调用的密码。请妥善保存 Client Secret--它只会显示一次。"
           }
         },
         {
@@ -451,9 +620,9 @@
         {
           "type": "paragraph",
           "text": {
-            "en": "In SenangInvoice, tap the + button to create a new invoice. You have three capture modes: (1) Camera — snap a photo of a receipt or paper invoice and AI extracts the details, (2) Voice — speak the invoice line items aloud, and (3) Manual — type in the details directly.",
-            "ms": "Dalam SenangInvoice, ketik butang + untuk mencipta invois baharu. Anda mempunyai tiga mod tangkapan: (1) Kamera — ambil foto resit atau invois kertas dan AI mengekstrak butirannya, (2) Suara — sebut item baris invois dengan kuat, dan (3) Manual — taipkan butiran secara terus.",
-            "zh": "在 SenangInvoice 中，点击 + 按钮创建新发票。您有三种采集模式：（1）相机——拍下收据或纸质发票的照片，由 AI 提取明细；（2）语音——大声说出发票的明细项目；（3）手动——直接输入明细。"
+            "en": "In SenangInvoice, tap the + button to create a new invoice. You have three capture modes: (1) Camera - snap a photo of a receipt or paper invoice and AI extracts the details, (2) Voice - speak the invoice line items aloud, and (3) Manual - type in the details directly.",
+            "ms": "Dalam SenangInvoice, ketik butang + untuk mencipta invois baharu. Anda mempunyai tiga mod tangkapan: (1) Kamera - ambil foto resit atau invois kertas dan AI mengekstrak butirannya, (2) Suara - sebut item baris invois dengan kuat, dan (3) Manual - taipkan butiran secara terus.",
+            "zh": "在 SenangInvoice 中，点击 + 按钮创建新发票。您有三种采集模式：（1）相机--拍下收据或纸质发票的照片，由 AI 提取明细；（2）语音--大声说出发票的明细项目；（3）手动--直接输入明细。"
           }
         },
         {
@@ -468,24 +637,24 @@
           "type": "steps",
           "items": [
             {
-              "en": "Buyer information — Choose B2B (with TIN), B2C (general public), or B2G (government). For B2B, enter the buyer's TIN.",
-              "ms": "Maklumat pembeli — Pilih B2B (dengan TIN), B2C (orang awam), atau B2G (kerajaan). Untuk B2B, masukkan TIN pembeli.",
-              "zh": "买家信息——选择 B2B（含 TIN）、B2C（一般公众）或 B2G（政府）。对于 B2B，请输入买家的 TIN。"
+              "en": "Buyer information - Choose B2B (with TIN), B2C (general public), or B2G (government). For B2B, enter the buyer's TIN.",
+              "ms": "Maklumat pembeli - Pilih B2B (dengan TIN), B2C (orang awam), atau B2G (kerajaan). Untuk B2B, masukkan TIN pembeli.",
+              "zh": "买家信息--选择 B2B（含 TIN）、B2C（一般公众）或 B2G（政府）。对于 B2B，请输入买家的 TIN。"
             },
             {
-              "en": "Line items — Add each product or service with description, quantity, unit price, and IRBM classification code.",
-              "ms": "Item baris — Tambah setiap produk atau perkhidmatan dengan penerangan, kuantiti, harga seunit, dan kod pengelasan IRBM.",
-              "zh": "明细项目——添加每项产品或服务，包含描述、数量、单价和 IRBM 分类代码。"
+              "en": "Line items - Add each product or service with description, quantity, unit price, and IRBM classification code.",
+              "ms": "Item baris - Tambah setiap produk atau perkhidmatan dengan penerangan, kuantiti, harga seunit, dan kod pengelasan IRBM.",
+              "zh": "明细项目--添加每项产品或服务，包含描述、数量、单价和 IRBM 分类代码。"
             },
             {
-              "en": "Tax details — The system calculates SST and totals automatically based on your profile settings.",
-              "ms": "Butiran cukai — Sistem mengira SST dan jumlah secara automatik berdasarkan tetapan profil anda.",
-              "zh": "税务明细——系统会根据您的资料设置自动计算 SST 和合计金额。"
+              "en": "Tax details - The system calculates SST and totals automatically based on your profile settings.",
+              "ms": "Butiran cukai - Sistem mengira SST dan jumlah secara automatik berdasarkan tetapan profil anda.",
+              "zh": "税务明细--系统会根据您的资料设置自动计算 SST 和合计金额。"
             },
             {
-              "en": "Review totals — Check the subtotal, tax amounts, and grand total before submission.",
-              "ms": "Semak jumlah — Periksa subjumlah, amaun cukai, dan jumlah besar sebelum penyerahan.",
-              "zh": "核对合计——提交前请检查小计、税额和总计。"
+              "en": "Review totals - Check the subtotal, tax amounts, and grand total before submission.",
+              "ms": "Semak jumlah - Periksa subjumlah, amaun cukai, dan jumlah besar sebelum penyerahan.",
+              "zh": "核对合计--提交前请检查小计、税额和总计。"
             }
           ]
         },
@@ -509,9 +678,9 @@
           "type": "callout",
           "tone": "info",
           "text": {
-            "en": "IRBM publishes a fixed list of e-invoice classification codes. SenangInvoice ships the full catalog and its AI suggests the right code for each line item, so you don't have to memorise them — you just confirm or adjust.",
-            "ms": "IRBM menerbitkan senarai tetap kod pengelasan e-invois. SenangInvoice menyertakan katalog penuh dan AInya mencadangkan kod yang betul untuk setiap item baris, jadi anda tidak perlu menghafalnya — anda hanya perlu mengesahkan atau melaraskan.",
-            "zh": "IRBM 发布了一份固定的电子发票分类代码清单。SenangInvoice 内置完整目录，其 AI 会为每项明细推荐正确的代码，因此您无需死记硬背——只需确认或调整即可。"
+            "en": "IRBM publishes a fixed list of e-invoice classification codes. SenangInvoice ships the full catalog and its AI suggests the right code for each line item, so you don't have to memorise them - you just confirm or adjust.",
+            "ms": "IRBM menerbitkan senarai tetap kod pengelasan e-invois. SenangInvoice menyertakan katalog penuh dan AInya mencadangkan kod yang betul untuk setiap item baris, jadi anda tidak perlu menghafalnya - anda hanya perlu mengesahkan atau melaraskan.",
+            "zh": "IRBM 发布了一份固定的电子发票分类代码清单。SenangInvoice 内置完整目录，其 AI 会为每项明细推荐正确的代码，因此您无需死记硬背--只需确认或调整即可。"
           }
         },
         {

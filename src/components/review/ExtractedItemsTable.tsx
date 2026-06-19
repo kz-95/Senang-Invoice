@@ -35,7 +35,7 @@ export function ExtractedItemsTable() {
                 <td className="py-2 pr-2">
                   {line.description}
                   {isLow && (
-                    <span className="ml-1 text-amber-500 cursor-help" title={`Low confidence classification: ${(confidence * 100).toFixed(0)}% — check code ${line.classificationCode || 'N/A'}`}>
+                    <span className="ml-1 text-amber-500 cursor-help" title={`Low confidence classification: ${(confidence * 100).toFixed(0)}% - check code ${line.classificationCode || 'N/A'}`}>
                       &#9888;
                     </span>
                   )}

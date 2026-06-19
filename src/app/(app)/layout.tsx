@@ -3,7 +3,7 @@ import { AppShell } from '@/components/layout/AppShell'
 
 export const metadata: Metadata = {
   title: 'Senang Invoice',
-  description: 'Malaysian e-invoice made easy — snap, speak, submit.',
+  description: 'Malaysian e-invoice made easy - snap, speak, submit.',
   manifest: '/manifest.json',
 }
 
