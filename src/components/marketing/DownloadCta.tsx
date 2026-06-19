@@ -23,13 +23,13 @@ export function DownloadCta() {
   const apkReady = !!APK_DOWNLOAD_URL
 
   return (
-    <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+    <div className="flex w-full flex-col gap-3">
       {apkReady ? (
         <a
           href={APK_DOWNLOAD_URL}
           download
           onClick={() => track('apk_download_click')}
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-teal-700 px-7 py-3 font-semibold text-white shadow-md transition-colors hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+          className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-teal-700 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-teal-700/20 transition-colors hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
         >
           {AndroidIcon}
           {t('landing.downloadApk')}
@@ -37,7 +37,7 @@ export function DownloadCta() {
       ) : (
         <span
           aria-disabled="true"
-          className="inline-flex cursor-not-allowed items-center justify-center gap-2 rounded-lg bg-gray-200 px-7 py-3 font-semibold text-gray-500"
+          className="inline-flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-2xl bg-gray-200 px-8 py-4 text-lg font-semibold text-gray-500"
         >
           {AndroidIcon}
           {t('landing.apkComingSoon')}
@@ -47,7 +47,7 @@ export function DownloadCta() {
       {PLAYSTORE_COMING_SOON ? (
         <span
           aria-disabled="true"
-          className="inline-flex cursor-not-allowed items-center justify-center gap-2 rounded-lg border border-gray-200 px-7 py-3 font-medium text-gray-400"
+          className="inline-flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-2xl border border-gray-200 bg-white px-8 py-4 text-lg font-medium text-gray-400"
         >
           {PlayIcon}
           {t('landing.playstoreSoon')}
@@ -58,7 +58,7 @@ export function DownloadCta() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track('playstore_badge_click')}
-          className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-teal-700 px-7 py-3 font-semibold text-teal-700 transition-colors hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+          className="inline-flex w-full items-center justify-center gap-3 rounded-2xl border-2 border-teal-700 bg-white px-8 py-4 text-lg font-semibold text-teal-700 transition-colors hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
         >
           {PlayIcon}
           {t('landing.playstoreGet')}

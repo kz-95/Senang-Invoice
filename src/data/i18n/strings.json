@@ -1219,6 +1219,11 @@
     "ms": "Dapatkan aplikasi",
     "zh": "获取应用"
   },
+  "landing.downloadAppNow": {
+    "en": "Download the App Now!",
+    "ms": "Muat Turun Aplikasi Sekarang!",
+    "zh": "立即下载应用！"
+  },
   "landing.downloadApk": {
     "en": "Download APK (Android)",
     "ms": "Muat turun APK (Android)",
