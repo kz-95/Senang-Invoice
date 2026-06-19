@@ -13,7 +13,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.52.0",
     "dexie": "^4.0.11",
-    "next": "15.3.3",
+    "next": "15.3.8",
     "pdf-lib": "^1.17.1",
     "qrcode": "^1.5.4",
     "react": "^19.0.0",
