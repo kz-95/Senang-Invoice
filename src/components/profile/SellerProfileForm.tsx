@@ -4,6 +4,7 @@ import { useProfile } from '@/hooks/useProfile'
 import { profileRepository } from '@/services/data/profileRepository'
 import { Button } from '@/components/common/Button'
 import { Input } from '@/components/common/Input'
+import { track } from '@/lib/analytics'
 import { useT } from '@/hooks/useT'
 
 export function SellerProfileForm() {
@@ -70,6 +71,7 @@ export function SellerProfileForm() {
         stateCode: form.stateCode,
         numberingPresets: preservedPresets,
       })
+      track('profile_complete')
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
     } catch (err) {

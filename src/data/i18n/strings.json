@@ -1138,5 +1138,105 @@
     "en": "Number (editable)",
     "ms": "Nombor (boleh disunting)",
     "zh": "编号（可编辑）"
+  },
+  "onboarding.skip": {
+    "en": "Skip",
+    "ms": "Langkau",
+    "zh": "跳过"
+  },
+  "onboarding.next": {
+    "en": "Next",
+    "ms": "Seterusnya",
+    "zh": "下一步"
+  },
+  "onboarding.back": {
+    "en": "Back",
+    "ms": "Kembali",
+    "zh": "返回"
+  },
+  "onboarding.welcomeTitle": {
+    "en": "Snap. Speak. Submit.",
+    "ms": "Snap. Sebut. Hantar.",
+    "zh": "拍照、说话、提交"
+  },
+  "onboarding.welcomeDesc": {
+    "en": "Malaysian e-invoices made easy — no portal headaches, no spreadsheets.",
+    "ms": "E-invois Malaysia dipermudah — tanpa portal yang menyusahkan atau hamparan.",
+    "zh": "轻松开具马来西亚电子发票，无需繁琐门户或表格。"
+  },
+  "onboarding.welcomeStep1": {
+    "en": "Snap a receipt or speak your items",
+    "ms": "Snap resit atau sebut item anda",
+    "zh": "拍下收据或说出您的项目"
+  },
+  "onboarding.welcomeStep2": {
+    "en": "Review the auto-filled invoice",
+    "ms": "Semak invois yang diisi automatik",
+    "zh": "查看自动填写的发票"
+  },
+  "onboarding.welcomeStep3": {
+    "en": "Submit to MyInvois & get your QR",
+    "ms": "Hantar ke MyInvois & dapat QR anda",
+    "zh": "提交至 MyInvois 并获取二维码"
+  },
+  "onboarding.scopeTitle": {
+    "en": "Not sure it applies to you?",
+    "ms": "Tak pasti ia terpakai pada anda?",
+    "zh": "不确定是否适用于您？"
+  },
+  "onboarding.scopeDesc": {
+    "en": "E-invoicing rolls out in stages by revenue. Check in seconds whether you need it yet.",
+    "ms": "E-invois dilaksana berperingkat ikut pendapatan. Semak dalam beberapa saat sama ada anda perlu.",
+    "zh": "电子发票按营业额分阶段推行。几秒内查看您是否需要。"
+  },
+  "onboarding.scopeLink": {
+    "en": "Do I need e-invoicing? →",
+    "ms": "Adakah saya perlu e-invois? →",
+    "zh": "我需要电子发票吗？→"
+  },
+  "onboarding.driveTitle": {
+    "en": "Back up to Google Drive",
+    "ms": "Sandarkan ke Google Drive",
+    "zh": "备份到 Google Drive"
+  },
+  "onboarding.driveDesc": {
+    "en": "Your data stays on your device. Optionally back up to your own Google Drive so nothing is lost.",
+    "ms": "Data anda kekal pada peranti. Pilihan untuk sandar ke Google Drive anda supaya tiada yang hilang.",
+    "zh": "您的数据保存在设备上。可选择备份到您自己的 Google Drive，确保万无一失。"
+  },
+  "onboarding.driveConnect": {
+    "en": "Connect Google Drive",
+    "ms": "Sambung Google Drive",
+    "zh": "连接 Google Drive"
+  },
+  "onboarding.driveSkip": {
+    "en": "Skip for now",
+    "ms": "Langkau buat masa ini",
+    "zh": "暂时跳过"
+  },
+  "landing.getTheApp": {
+    "en": "Get the app",
+    "ms": "Dapatkan aplikasi",
+    "zh": "获取应用"
+  },
+  "landing.downloadApk": {
+    "en": "Download APK (Android)",
+    "ms": "Muat turun APK (Android)",
+    "zh": "下载 APK（安卓）"
+  },
+  "landing.apkComingSoon": {
+    "en": "APK coming soon",
+    "ms": "APK akan datang",
+    "zh": "APK 即将推出"
+  },
+  "landing.playstoreSoon": {
+    "en": "Coming soon on Google Play",
+    "ms": "Akan datang di Google Play",
+    "zh": "即将登陆 Google Play"
+  },
+  "landing.playstoreGet": {
+    "en": "Get it on Google Play",
+    "ms": "Dapatkan di Google Play",
+    "zh": "在 Google Play 获取"
   }
 }

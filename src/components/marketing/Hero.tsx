@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { profileRepository } from '@/services/data/profileRepository'
+import { DownloadCta } from './DownloadCta'
 import { useT } from '@/hooks/useT'
 
 export function Hero() {
@@ -39,6 +40,14 @@ export function Hero() {
             {t('landing.heroCtaCreate')}
           </Link>
         </div>
+
+        <div className="mt-10">
+          <p className="mb-3 text-sm font-medium uppercase tracking-wide text-gray-400">
+            {t('landing.getTheApp')}
+          </p>
+          <DownloadCta />
+        </div>
+
         {checked && isOnboarded && (
           <p className="mt-6">
             <Link

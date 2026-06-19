@@ -23,14 +23,17 @@ export function BottomNav() {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 lg:hidden pb-safe">
-      <div className="flex justify-around py-2">
+      <div className="flex justify-around py-1">
         {items.map(item => {
-          const active = pathname === item.href
+          const active = item.href === '/dashboard'
+            ? pathname === item.href
+            : pathname === item.href || pathname.startsWith(item.href + '/')
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-xs transition-colors ${active ? 'text-teal-700 font-semibold' : 'text-gray-500 hover:text-teal-600'}`}
+              aria-current={active ? 'page' : undefined}
+              className={`flex flex-1 min-h-[48px] flex-col items-center justify-center gap-0.5 rounded-lg px-3 py-1 text-xs transition-colors ${active ? 'text-teal-700 font-semibold' : 'text-gray-500 hover:text-teal-600'}`}
             >
               <span className="flex items-center justify-center">{icons[item.key]}</span>
               {item.label}
