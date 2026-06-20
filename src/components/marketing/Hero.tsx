@@ -84,14 +84,14 @@ export function Hero() {
         <div className="relative flex items-center justify-center">
           <div aria-hidden className="absolute h-96 w-96 rounded-full bg-gradient-to-br from-teal-100 to-teal-50 opacity-60 blur-3xl" />
 
-          <div className="relative z-10 w-full max-w-sm">
-            <div className="relative aspect-[9/19] overflow-hidden rounded-[3rem] border-8 border-gray-900 bg-white shadow-2xl">
+          <div className="relative z-10 w-full max-w-[260px]">
+            <div className="relative aspect-[9/18] overflow-hidden rounded-[3rem] border-8 border-gray-900 bg-white shadow-2xl">
               {/* notch */}
-              <div className="absolute left-1/2 top-0 z-20 h-7 w-40 -translate-x-1/2 rounded-b-3xl bg-gray-900" />
+              <div className="absolute left-1/2 top-0 z-20 h-6 w-32 -translate-x-1/2 rounded-b-3xl bg-gray-900" />
 
-              <div className="h-full bg-gradient-to-br from-teal-50 to-white p-6 pt-12">
+              <div className="h-full bg-gradient-to-br from-teal-50 to-white p-5 pt-9">
                 {/* invoice preview */}
-                <div className="space-y-4 rounded-2xl bg-white p-6 shadow-lg">
+                <div className="space-y-3 rounded-2xl bg-white p-5 shadow-lg">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-xs text-gray-500">Invoice #</p>
@@ -124,8 +124,8 @@ export function Hero() {
                 </div>
 
                 {/* bottom action */}
-                <div className="absolute inset-x-6 bottom-6">
-                  <div className="rounded-2xl bg-teal-700 py-4 text-center font-semibold text-white shadow-lg">
+                <div className="absolute inset-x-5 bottom-5">
+                  <div className="rounded-2xl bg-teal-700 py-3 text-center font-semibold text-white shadow-lg">
                     Generate Invoice
                   </div>
                 </div>
