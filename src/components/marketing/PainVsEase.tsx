@@ -24,7 +24,7 @@ export function PainVsEase() {
         {t('landing.painTitle')}
       </h2>
       <div className="grid md:grid-cols-2 gap-8">
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
           <h3 className="text-lg font-semibold text-gray-500 mb-4">
             {t('landing.portalTitle')}
           </h3>
@@ -39,7 +39,7 @@ export function PainVsEase() {
             ))}
           </ul>
         </div>
-        <div className="bg-teal-50 border border-teal-200 rounded-xl p-6">
+        <div className="bg-teal-50 border border-teal-200 rounded-2xl p-6">
           <h3 className="text-lg font-semibold text-teal-700 mb-4">
             {t('landing.senangTitle')}
           </h3>

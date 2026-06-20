@@ -12,14 +12,14 @@ export function CtaFooter() {
         {t('landing.readySubtitle')}
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <Link
-          href="/create"
-          className="inline-flex items-center justify-center px-8 py-3 bg-white text-teal-700 font-semibold rounded-lg hover:bg-teal-50 transition-colors shadow-md"
+        <span
+          aria-disabled="true"
+          className="inline-flex cursor-not-allowed items-center justify-center px-8 py-3 bg-teal-600 text-teal-200 font-semibold rounded-2xl"
         >
-          {t('landing.firstInvoiceCta')}
-        </Link>
+          {t('landing.downloadNow')}
+        </span>
         <Link
-          href="/guide"
+          href="/support"
           className="inline-flex items-center text-teal-100 hover:text-white transition-colors text-sm underline underline-offset-4"
         >
           {t('landing.fullGuideCta')}

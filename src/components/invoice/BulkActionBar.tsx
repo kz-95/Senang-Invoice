@@ -1,4 +1,5 @@
 'use client'
+import { useT } from '@/hooks/useT'
 
 interface BulkActionBarProps {
   selectedCount: number
@@ -19,6 +20,7 @@ export function BulkActionBar({
   mode,
   loading = false,
 }: BulkActionBarProps) {
+  const t = useT()
   if (selectedCount === 0) return null
 
   return (
@@ -35,7 +37,7 @@ export function BulkActionBar({
             </svg>
           </button>
           <span className="text-sm font-medium text-gray-700">
-            {selectedCount} selected
+            {t('invoice.selectedCount', { n: selectedCount })}
           </span>
         </div>
 
@@ -46,7 +48,7 @@ export function BulkActionBar({
               disabled={loading}
               className="px-3 py-1.5 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg disabled:opacity-50"
             >
-              Archive
+              {t('invoice.archive')}
             </button>
           )}
           {mode === 'archived' && onRestore && (
@@ -55,7 +57,7 @@ export function BulkActionBar({
               disabled={loading}
               className="px-3 py-1.5 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg disabled:opacity-50"
             >
-              Restore
+              {t('invoice.restore')}
             </button>
           )}
           <button
@@ -63,7 +65,7 @@ export function BulkActionBar({
             disabled={loading}
             className="px-3 py-1.5 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg disabled:opacity-50"
           >
-            {loading ? 'Working...' : mode === 'trash' ? 'Delete Forever' : 'Delete'}
+            {loading ? t('invoice.working') : mode === 'trash' ? t('invoice.deleteForever') : t('invoice.delete')}
           </button>
         </div>
       </div>

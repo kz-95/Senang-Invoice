@@ -28,7 +28,7 @@ export function CaptureModeSwitcher() {
       {/* Content card */}
       <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
         {/* Segmented control — inside card, at top */}
-        <div role="tablist" aria-label="Capture mode" className="mx-auto grid w-full max-w-2xl grid-cols-3 gap-1 mb-4 rounded-xl bg-gray-100 p-1">
+        <div role="tablist" aria-label="Capture mode" className="mx-auto grid w-full max-w-2xl grid-cols-3 gap-1 mb-4 rounded-lg bg-gray-100 p-1">
           {modes.map(m => {
             const active = captureMode === m.key
             return (
@@ -37,7 +37,7 @@ export function CaptureModeSwitcher() {
                 role="tab"
                 aria-selected={active}
                 onClick={() => setCaptureMode(m.key)}
-                className={`flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-1 ${
+                className={`flex min-h-[48px] items-center justify-center gap-1.5 rounded-lg text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-1 ${
                   active
                     ? 'bg-teal-700 text-white shadow-sm'
                     : 'bg-transparent text-gray-600 hover:bg-white'

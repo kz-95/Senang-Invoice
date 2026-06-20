@@ -21,8 +21,9 @@ export function MarketingShell({ children }: MarketingShellProps) {
 
           <nav className="hidden sm:flex items-center gap-6 ml-8">
             <Link href="/" className="text-sm text-teal-100 hover:text-white transition-colors">{t('nav.home')}</Link>
-            <Link href="/guide" className="text-sm text-teal-100 hover:text-white transition-colors">{t('nav.guide')}</Link>
-            <Link href="/dashboard" className="text-sm text-teal-100 hover:text-white transition-colors">{t('nav.openApp')}</Link>
+            <Link href="/#download" className="text-sm text-teal-100 hover:text-white transition-colors">{t('nav.download')}</Link>
+            <Link href="/support" className="text-sm text-teal-100 hover:text-white transition-colors">{t('nav.support')}</Link>
+            <Link href="/about" className="text-sm text-teal-100 hover:text-white transition-colors">{t('nav.about')}</Link>
           </nav>
 
           <div className="flex-1" />
@@ -35,8 +36,9 @@ export function MarketingShell({ children }: MarketingShellProps) {
 
         <div className="sm:hidden flex items-center gap-4 px-4 pb-2">
           <Link href="/" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.home')}</Link>
-          <Link href="/guide" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.guide')}</Link>
-          <Link href="/dashboard" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.openApp')}</Link>
+          <Link href="/#download" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.download')}</Link>
+          <Link href="/support" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.support')}</Link>
+          <Link href="/about" className="text-xs text-teal-100 hover:text-white transition-colors">{t('nav.about')}</Link>
         </div>
       </header>
 

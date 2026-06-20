@@ -21,7 +21,7 @@ export function SuggestedPrompts({ onSelect }: SuggestedPromptsProps) {
           key={s}
           type="button"
           onClick={() => onSelect(s)}
-          className="ripple min-h-[48px] rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-left text-sm text-gray-700 shadow-sm transition-colors hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+          className="ripple min-h-[48px] rounded-lg border border-gray-200 bg-white px-3.5 py-2.5 text-left text-sm text-gray-700 shadow-sm transition-colors hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
         >
           {s}
         </button>

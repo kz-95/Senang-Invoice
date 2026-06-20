@@ -96,7 +96,7 @@ export function CameraCapture({ onCapture }: CameraCaptureProps) {
   if (showWebcam) {
     return (
       <div className="space-y-3">
-        <div className="relative rounded-xl overflow-hidden bg-black">
+        <div className="relative rounded-2xl overflow-hidden bg-black">
           <video ref={videoRef} autoPlay playsInline muted className="w-full max-h-80 object-cover" aria-label="Camera preview" />
           <canvas ref={canvasRef} className="hidden" />
         </div>
@@ -125,7 +125,7 @@ export function CameraCapture({ onCapture }: CameraCaptureProps) {
 
       {preview ? (
         <div className="space-y-3">
-          <img src={preview} alt="Receipt preview" className="max-h-64 w-full rounded-xl object-contain bg-gray-50" />
+          <img src={preview} alt="Receipt preview" className="max-h-64 w-full rounded-2xl object-contain bg-gray-50" />
           <div className="flex gap-2">
             <Button type="button" variant="outline" size="sm" onClick={startWebcam} className="flex-1">
               {t('create.retakeCamera')}
@@ -162,7 +162,7 @@ export function CameraCapture({ onCapture }: CameraCaptureProps) {
             <p className="font-medium text-gray-900">{t('create.captureHint')}</p>
             <p className="mt-1 text-sm text-gray-500">{t('create.captureHint2')}</p>
           </div>
-          <span className="ripple mt-1 inline-flex min-h-[44px] items-center rounded-xl bg-teal-700 px-5 text-sm font-medium text-white">
+          <span className="ripple mt-1 inline-flex min-h-[44px] items-center rounded-lg bg-teal-700 px-5 text-sm font-medium text-white">
             {t('create.takePhoto')}
           </span>
         </button>

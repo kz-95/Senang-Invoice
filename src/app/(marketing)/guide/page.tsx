@@ -1,6 +1,17 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
 import guideData from '@/data/guide/guide.json'
+import { useUiStore } from '@/stores/uiStore'
+import { useT } from '@/hooks/useT'
+import { pickLoc, type Loc } from '@/lib/localize'
+
+interface IndexArticle {
+  slug: string
+  title: Loc
+  summary: Loc
+  icon: string
+}
 
 const icons: Record<string, React.JSX.Element> = {
   scope: (
@@ -26,23 +37,27 @@ const icons: Record<string, React.JSX.Element> = {
 }
 
 export default function GuidePage() {
+  const lang = useUiStore((s) => s.lang)
+  const t = useT()
+  const articles = guideData.articles as unknown as IndexArticle[]
+
   return (
     <section className="py-16 px-4 max-w-5xl mx-auto">
       <h1 className="text-3xl font-bold text-teal-900 text-center mb-10">
-        E-Invoicing Guide
+        {t('guide.indexTitle')}
       </h1>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {guideData.articles.map((article) => (
+        {articles.map((article) => (
           <Link
             key={article.slug}
             href={`/guide/${article.slug}`}
-            className="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-teal-300 hover:shadow-md transition-all"
+            className="group block bg-white border border-gray-200 rounded-2xl p-5 hover:border-teal-300 hover:shadow-md transition-all"
           >
             <div className="text-teal-600 mb-3 group-hover:text-teal-700 transition-colors">
               {icons[article.icon] ?? <span>?</span>}
             </div>
-            <h2 className="text-sm font-semibold text-gray-900 mb-1">{article.title}</h2>
-            <p className="text-xs text-gray-500 leading-relaxed">{article.summary}</p>
+            <h2 className="text-sm font-semibold text-gray-900 mb-1">{pickLoc(article.title, lang)}</h2>
+            <p className="text-xs text-gray-500 leading-relaxed">{pickLoc(article.summary, lang)}</p>
           </Link>
         ))}
       </div>

@@ -64,7 +64,7 @@ export function VoiceCapture({ onTranscript, variant = 'full', disabled = false 
         disabled={disabled}
         aria-label={listening ? 'Stop recording' : 'Record voice question'}
         aria-pressed={listening}
-        className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:opacity-50 ${
+        className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:opacity-50 ${
           listening
             ? 'animate-pulse border-red-300 bg-red-50 text-red-600'
             : 'border-gray-300 text-gray-500 hover:border-teal-300 hover:bg-teal-50 hover:text-teal-700'

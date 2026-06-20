@@ -32,6 +32,7 @@ MyInvois requires every business above RM1m turnover to submit UBL 2.1 e-invoice
 - **Local-first** — all data stays on-device in IndexedDB, no server, no account needed
 - **Offline PWA** — install on phone, works without internet
 - **Optional Google Drive backup** — push invoices to your own Drive
+- **Download-first landing page** with Support & About pages, translated guide articles (EN/MS/ZH), Formspree contact form
 
 ## Demo
 
