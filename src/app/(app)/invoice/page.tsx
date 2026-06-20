@@ -1,8 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { Suspense, useEffect, useState } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { invoiceRepository } from '@/services/data/invoiceRepository'
+import { syncRepository } from '@/services/data/syncRepository'
 import { toQrDataUrl } from '@/services/invoice/qrService'
+import { downloadInvoicePdf } from '@/services/invoice/pdfService'
 import type { Invoice } from '@/lib/types'
 import { formatMYR } from '@/lib/formatters'
 import { QrBadge } from '@/components/invoice/QrBadge'
@@ -15,11 +17,11 @@ import { Spinner } from '@/components/common/Spinner'
 import { ExtractedItemsTable } from '@/components/review/ExtractedItemsTable'
 import { useT } from '@/hooks/useT'
 
-export default function InvoiceDetailPage() {
-  const params = useParams()
+function InvoiceDetail() {
+  const searchParams = useSearchParams()
   const router = useRouter()
   const t = useT()
-  const id = params.id as string
+  const id = searchParams.get('id') ?? ''
 
   const [invoice, setInvoice] = useState<Invoice | null>(null)
   const [qrDataUrl, setQrDataUrl] = useState<string | null>(null)
@@ -113,7 +115,18 @@ export default function InvoiceDetailPage() {
   const handleDelete = async () => {
     if (!invoice) return
     await invoiceRepository.softDelete(invoice.id)
+    // Best-effort: trash the backed-up Drive file too. Never block deletion on it.
+    syncRepository.deleteFromDrive(invoice).catch(() => {})
     router.push('/')
+  }
+
+  const handleDownloadPdf = async () => {
+    if (!invoice) return
+    try {
+      await downloadInvoicePdf(invoice)
+    } catch (err) {
+      console.error('PDF download failed:', err)
+    }
   }
 
   const archiveActions = invoice && !invoice.deletedAt ? (
@@ -160,6 +173,7 @@ export default function InvoiceDetailPage() {
       {!isTrash && (
         <div className="flex gap-2 flex-wrap">
           {!editMode && <Button variant="outline" size="sm" onClick={startEdit}>Edit</Button>}
+          {!editMode && <Button variant="outline" size="sm" onClick={handleDownloadPdf}>Download PDF</Button>}
           {editMode && (
             <>
               <Button variant="primary" size="sm" onClick={saveEdit}>Save</Button>
@@ -222,7 +236,7 @@ export default function InvoiceDetailPage() {
         <section className="bg-white rounded-lg border border-gray-200 p-4 space-y-1 text-sm">
           {invoice.notes && <p className="text-gray-600"><span className="font-medium">Notes:</span> {invoice.notes}</p>}
           {invoice.discount && <p className="text-gray-600"><span className="font-medium">Discount:</span> RM {formatMYR(invoice.discount.amount)}{invoice.discount.reason ? ` (${invoice.discount.reason})` : ''}</p>}
-          {invoice.payment?.method && <p className="text-gray-600"><span className="font-medium">Payment:</span> {invoice.payment.method}{invoice.payment.terms ? ` — ${invoice.payment.terms}` : ''}{invoice.payment.dueDate ? ` due ${invoice.payment.dueDate}` : ''}</p>}
+          {invoice.payment?.method && <p className="text-gray-600"><span className="font-medium">Payment:</span> {invoice.payment.method}{invoice.payment.terms ? ` - ${invoice.payment.terms}` : ''}{invoice.payment.dueDate ? ` due ${invoice.payment.dueDate}` : ''}</p>}
           {invoice.supplierRef && <p className="text-gray-600"><span className="font-medium">Ref:</span> {invoice.supplierRef}</p>}
         </section>
       )}
@@ -247,5 +261,13 @@ export default function InvoiceDetailPage() {
         </section>
       )}
     </div>
+  )
+}
+
+export default function InvoiceDetailPage() {
+  return (
+    <Suspense fallback={<Spinner className="h-8 w-8 mx-auto mt-12" />}>
+      <InvoiceDetail />
+    </Suspense>
   )
 }

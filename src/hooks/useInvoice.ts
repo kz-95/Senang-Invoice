@@ -4,8 +4,6 @@ import { useInvoiceStore } from '@/stores/invoiceStore'
 import { useProfileStore } from '@/stores/profileStore'
 import { buildUbl } from '@/services/invoice/ublBuilder'
 import { myInvoisCredsRepository } from '@/services/data/myInvoisCredsRepository'
-import { toQrDataUrl } from '@/services/invoice/qrService'
-import { renderInvoicePdf } from '@/services/invoice/pdfService'
 import { invoiceRepository } from '@/services/data/invoiceRepository'
 import { profileRepository } from '@/services/data/profileRepository'
 import { syncRepository } from '@/services/data/syncRepository'
@@ -108,7 +106,6 @@ export function useInvoice() {
       }
 
       const isValid = validation.status === 'valid' || validation.status === 'mock'
-      const qrDataUrl = validation.qrLink ? await toQrDataUrl(validation.qrLink) : ''
 
       const invoice: Invoice = {
         id,
@@ -132,27 +129,12 @@ export function useInvoice() {
       }
 
       await invoiceRepository.save(invoice)
-      if (qrDataUrl) {
-        try {
-          const pdfBlobId = await renderInvoicePdf(invoice, qrDataUrl)
-          invoice.pdfBlobId = pdfBlobId
-          await invoiceRepository.save(invoice)
-        } catch (pdfErr) {
-          console.error('PDF generation failed:', pdfErr)
-        }
-      }
 
-      syncRepository.pushToDrive(invoice).then(() => {
-        invoiceRepository.getById(invoice.id).then(inv => {
-          if (inv) {
-            inv.sync = {
-              ...(inv.sync ?? {}),
-              driveSyncedAt: new Date().toISOString(),
-            }
-            invoiceRepository.save(inv)
-          }
-        })
-      }).catch(() => {
+      // PDF is generated on demand (pdfService.downloadInvoicePdf), not at finalize.
+      // Drive backup runs in the background; syncRepository persists sync metadata
+      // (driveFileId/driveSyncedAt). On failure, mark the invoice as locally modified
+      // so the next syncAll retries it.
+      syncRepository.pushToDrive(invoice).catch(() => {
         invoiceRepository.getById(invoice.id).then(inv => {
           if (inv) {
             inv.sync = {

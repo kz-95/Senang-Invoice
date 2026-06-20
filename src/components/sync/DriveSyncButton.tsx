@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Button } from '@/components/common/Button'
-import { pushToDrive } from '@/services/drive/driveSyncService'
+import { syncRepository } from '@/services/data/syncRepository'
 import { invoiceRepository } from '@/services/data/invoiceRepository'
 import type { Invoice } from '@/lib/types'
 
@@ -18,13 +18,13 @@ export function DriveSyncButton({ invoice }: DriveSyncButtonProps) {
     setSyncing(true)
     setError(null)
     try {
-      const result = await pushToDrive(invoice)
-      const updated: Invoice = {
-        ...invoice,
-        status: 'synced',
-        sync: { driveFileId: result.fileId, driveSyncedAt: new Date().toISOString() },
+      // syncRepository updates the existing Drive file in place and persists
+      // sync metadata (driveFileId/driveSyncedAt) without clobbering other fields.
+      await syncRepository.pushToDrive(invoice)
+      const current = await invoiceRepository.getById(invoice.id)
+      if (current) {
+        await invoiceRepository.save({ ...current, status: 'synced' })
       }
-      await invoiceRepository.save(updated)
       setSynced(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Sync failed')

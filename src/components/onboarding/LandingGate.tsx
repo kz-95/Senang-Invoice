@@ -1,19 +1,17 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { OnboardingCarousel } from './OnboardingCarousel'
 import { track } from '@/lib/analytics'
 import { ONBOARDING_ALWAYS_SHOW, ONBOARDING_FLAG } from '@/lib/constants'
 
 /**
  * Decides what a visitor to '/' sees:
  *  - Desktop (>=1024px): marketing page (renders underneath, gate returns null).
- *  - Mobile, not yet onboarded (or ALWAYS_SHOW): the onboarding carousel overlay.
+ *  - Mobile, not yet onboarded (or ALWAYS_SHOW): redirect into the /welcome flow.
  *  - Mobile, already onboarded: redirect into the app.
  */
 export function LandingGate() {
   const router = useRouter()
-  const [showCarousel, setShowCarousel] = useState(false)
 
   useEffect(() => {
     track('landing_view')
@@ -24,13 +22,8 @@ export function LandingGate() {
     if (!ONBOARDING_ALWAYS_SHOW) {
       try { done = localStorage.getItem(ONBOARDING_FLAG) === '1' } catch { /* ignore */ }
     }
-    if (done) {
-      router.replace('/dashboard')
-    } else {
-      setShowCarousel(true)
-    }
+    router.replace(done ? '/dashboard' : '/welcome/1')
   }, [router])
 
-  if (!showCarousel) return null
-  return <OnboardingCarousel />
+  return null
 }

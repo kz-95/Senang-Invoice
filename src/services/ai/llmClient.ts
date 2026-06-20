@@ -108,11 +108,11 @@ function rotateKey(): boolean {
     if (!_fallbackActive) {
       _fallbackActive = true
       _currentModel = getFallbackModel()
-      console.warn('[LLM] All keys failed with primary model — switching to fallback:', _currentModel)
+      console.warn('[LLM] All keys failed with primary model - switching to fallback:', _currentModel)
     } else {
       _fallbackActive = false
       _currentModel = getPrimaryModel()
-      console.warn('[LLM] All keys exhausted — resetting chain')
+      console.warn('[LLM] All keys exhausted - resetting chain')
     }
   }
   return true
@@ -141,7 +141,7 @@ function markCoolingDown(key: string): void {
 export function getLlamaClient(overrideKey?: string, overrideModel?: string, overrideBaseUrl?: string, overrideProvider?: string): LlmClient | null {
   if (overrideKey) {
     const provider = overrideProvider || detectProvider(overrideKey) || 'openai'
-    console.log(`[LLM] Using client key — provider=${provider} model=${overrideModel || '-'}`)
+    console.log(`[LLM] Using client key - provider=${provider} model=${overrideModel || '-'}`)
     if (provider === 'anthropic' || provider === 'claude') {
       return createAnthropicClient(overrideKey)
     }
@@ -160,7 +160,7 @@ export function getLlamaClient(overrideKey?: string, overrideModel?: string, ove
     return getLlamaClient()
   }
 
-  console.log(`[LLM] Using env key #${(_keyIndex % getApiKeys().length) + 1}/${getApiKeys().length} — provider=${entry.provider} model=${getCurrentModel()}`)
+  console.log(`[LLM] Using env key #${(_keyIndex % getApiKeys().length) + 1}/${getApiKeys().length} - provider=${entry.provider} model=${getCurrentModel()}`)
 
   if (entry.provider === 'anthropic') {
     return createAnthropicClient(entry.key)

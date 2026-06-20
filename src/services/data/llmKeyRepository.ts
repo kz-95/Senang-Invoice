@@ -39,7 +39,7 @@ export const llmKeyRepository = {
     const existing = await db.llmKeys.count()
     if (existing > 0) return
 
-    // SECURITY: never read keys from a NEXT_PUBLIC_* var here — this is client-side
+    // SECURITY: never read keys from a NEXT_PUBLIC_* var here - this is client-side
     // code, so the value would be inlined into the public browser bundle. Server
     // keys are seeded at runtime via the localhost-guarded /api/seed-keys route
     // (see src/lib/seed.ts). This env path is intentionally disabled.

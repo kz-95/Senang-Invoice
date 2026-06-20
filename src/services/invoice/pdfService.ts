@@ -1,6 +1,7 @@
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib'
 import { Invoice } from '@/lib/types'
 import { APP_NAME } from '@/lib/constants'
+import { toQrDataUrl } from './qrService'
 
 const TEAL = rgb(0.059, 0.463, 0.431) // #0f766e
 
@@ -78,7 +79,7 @@ export async function renderInvoicePdf(invoice: Invoice, qrDataUrl: string): Pro
     const qrImage = await pdfDoc.embedPng(pngBytes)
     page.drawImage(qrImage, { x: 40, y: y - 80, width: 80, height: 80 })
   } catch {
-    // QR embed failed — skip silently
+    // QR embed failed - skip silently
   }
   y -= 90
 
@@ -89,4 +90,24 @@ export async function renderInvoicePdf(invoice: Invoice, qrDataUrl: string): Pro
 
   const pdfBytes = await pdfDoc.save()
   return new Blob([pdfBytes as BlobPart], { type: 'application/pdf' })
+}
+
+/**
+ * Render an invoice PDF on demand and trigger a browser download.
+ * PDFs are no longer rendered/stored at finalize — this is the single
+ * generation path, invoked when the user actually wants the file.
+ */
+export async function downloadInvoicePdf(invoice: Invoice, fileName?: string): Promise<void> {
+  const qrDataUrl = invoice.validation?.qrLink ? await toQrDataUrl(invoice.validation.qrLink) : ''
+  const blob = await renderInvoicePdf(invoice, qrDataUrl)
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = fileName ?? `invoice-${invoice.number || invoice.id.slice(0, 8)}.pdf`
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
+  // Defer revoke: a.click() schedules the download asynchronously; revoking the
+  // blob URL in the same tick can abort the download in some browsers.
+  setTimeout(() => URL.revokeObjectURL(url), 1000)
 }

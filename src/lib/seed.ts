@@ -97,7 +97,7 @@ const SEED_KEY_META = [
 
 async function seedLlmKeys(): Promise<void> {
   // Keys come from the server-only SENANG_LLM_KEYS env var via a localhost-guarded
-  // route — NOT from NEXT_PUBLIC_* vars (which would be inlined into the browser
+  // route - NOT from NEXT_PUBLIC_* vars (which would be inlined into the browser
   // bundle and readable by anyone). See src/app/api/seed-keys/route.ts.
   let entries: Array<{ provider: string; apiKey: string }> = []
   try {
@@ -107,7 +107,7 @@ async function seedLlmKeys(): Promise<void> {
       entries = data.keys ?? []
     }
   } catch {
-    // No local backend reachable (offline / static export) — skip key seeding.
+    // No local backend reachable (offline / static export) - skip key seeding.
   }
 
   if (entries.length === 0) return

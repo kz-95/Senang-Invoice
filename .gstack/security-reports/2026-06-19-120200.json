@@ -40,9 +40,9 @@
       "line": 28,
       "description": "POST /api/ask and /api/extract fall back to process.env.SENANG_LLM_KEYS when the client doesn't provide its own x-llm-key header. These routes have NO authentication. If deployed publicly with SENANG_LLM_KEYS set, anyone on the internet can consume your server-side LLM credits by hitting these endpoints. The /api/seed-keys route is properly gated (SENANG_ALLOW_KEY_SEED=true in prod), but /api/ask and /api/extract are not.",
       "exploit_scenario": "1. Attacker discovers public deployment URL. 2. Sends POST /api/ask {\"message\":\"hi\"} without x-llm-key header. 3. Server falls back to SENANG_LLM_KEYS env var. 4. Attacker can repeatedly call with any message, consuming LLM credits at your expense. Repeat for /api/extract with base64 images.",
-      "impact": "Financial cost amplification — attacker can burn through LLM API credits. Each /api/ask call costs tokens; each /api/extract call processes an image + field mapping (2 LLM calls).",
-      "recommendation": "Option A (preferred): Require x-llm-key header for LLM usage in production. Only use SENANG_LLM_KEYS as fallback when NODE_ENV !== 'production'. Option B: Add rate limiting at edge (Vercel's built-in rate limiting or middleware-based). Option C: Document that SENANG_LLM_KEYS should NOT be set on public deploys — use client-supplied keys only.",
-      "playbook": "No incident — this is a pre-deployment hardening finding.",
+      "impact": "Financial cost amplification - attacker can burn through LLM API credits. Each /api/ask call costs tokens; each /api/extract call processes an image + field mapping (2 LLM calls).",
+      "recommendation": "Option A (preferred): Require x-llm-key header for LLM usage in production. Only use SENANG_LLM_KEYS as fallback when NODE_ENV !== 'production'. Option B: Add rate limiting at edge (Vercel's built-in rate limiting or middleware-based). Option C: Document that SENANG_LLM_KEYS should NOT be set on public deploys - use client-supplied keys only.",
+      "playbook": "No incident - this is a pre-deployment hardening finding.",
       "verification": "self-verified"
     },
     {
@@ -59,9 +59,9 @@
       "line": 3,
       "description": "const OCR_URL = process.env.OCR_SERVER_URL || 'http://localhost:8502/ocr'. The Next.js API route proxies user-provided base64 images to whatever URL is configured via OCR_SERVER_URL env var. The attacker cannot control the URL directly (it's set at deploy time), but a misconfigured deployment could point this at an internal service.",
       "exploit_scenario": "If an operator accidentally sets OCR_SERVER_URL to an internal service (e.g., http://internal-api:8080), the OCR route will proxy image data to that service on every request. The attacker cannot choose the target URL.",
-      "impact": "Negligible — URL is server-side env var, not user-controllable. Only a risk if the deployment configuration itself is wrong.",
+      "impact": "Negligible - URL is server-side env var, not user-controllable. Only a risk if the deployment configuration itself is wrong.",
       "recommendation": "Validate OCR_SERVER_URL on startup: ensure it's an external URL or explicitly allow-listed. Add an allowlist check in the route handler.",
-      "playbook": "N/A — deployment configuration concern only.",
+      "playbook": "N/A - deployment configuration concern only.",
       "verification": "self-verified"
     }
   ],

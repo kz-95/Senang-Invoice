@@ -27,7 +27,7 @@ export function CaptureModeSwitcher() {
     <div className="space-y-4">
       {/* Content card */}
       <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-        {/* Segmented control — inside card, at top */}
+        {/* Segmented control - inside card, at top */}
         <div role="tablist" aria-label="Capture mode" className="mx-auto grid w-full max-w-2xl grid-cols-3 gap-1 mb-4 rounded-lg bg-gray-100 p-1">
           {modes.map(m => {
             const active = captureMode === m.key

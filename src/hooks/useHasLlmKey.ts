@@ -9,7 +9,11 @@ export function useHasLlmKey(): boolean {
   const [has, setHas] = useState(true) // optimistic: assume yes until checked
 
   useEffect(() => {
-    llmKeyRepository.getAll().then(keys => setHas(keys.some(k => k.isActive)))
+    let active = true
+    llmKeyRepository.getAll().then(keys => {
+      if (active) setHas(keys.some(k => k.isActive))
+    })
+    return () => { active = false }
   }, [version])
 
   return has

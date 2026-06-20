@@ -24,7 +24,7 @@ export default function SupportPage() {
         <p className="mx-auto max-w-xl text-gray-600 leading-relaxed">{t('support.intro')}</p>
       </header>
 
-      {/* Non-LLM ask — rule-based scope check, no AI key needed */}
+      {/* Non-LLM ask - rule-based scope check, no AI key needed */}
       <div className="space-y-3">
         <h2 className="text-lg font-semibold text-gray-900">{t('support.askTitle')}</h2>
         <p className="text-sm text-gray-500">{t('support.askDesc')}</p>

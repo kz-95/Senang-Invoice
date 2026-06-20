@@ -6,15 +6,11 @@ interface DemoStoreState {
   unlocked: boolean
   unlock: () => void
   lock: () => void
-}
-
-const isUnlocked = () => {
-  if (typeof window === 'undefined') return false
-  return localStorage.getItem(DEMO_KEY) === '1'
+  rehydrate: () => void
 }
 
 export const useDemoStore = create<DemoStoreState>((set) => ({
-  unlocked: isUnlocked(),
+  unlocked: false,
 
   unlock: () => {
     localStorage.setItem(DEMO_KEY, '1')
@@ -24,5 +20,9 @@ export const useDemoStore = create<DemoStoreState>((set) => ({
   lock: () => {
     localStorage.removeItem(DEMO_KEY)
     set({ unlocked: false })
+  },
+
+  rehydrate: () => {
+    set({ unlocked: localStorage.getItem(DEMO_KEY) === '1' })
   },
 }))

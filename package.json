@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "ds:bundle": "node scripts/ds-bundle.mjs",
+    "build:node": "node scripts/build-node.mjs",
+    "build:apk-web": "node scripts/export-apk.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },

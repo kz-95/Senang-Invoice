@@ -25,7 +25,7 @@ export async function submitInvoice(
   }
   const { creds } = opts
   if (!creds || !creds.clientId || !creds.clientSecret || !creds.apiBase || !creds.portalBase) {
-    return errorResult('MyInvois sandbox credentials missing — add them in Settings or set SENANG_MYINVOIS_* in .env.local.')
+    return errorResult('MyInvois sandbox credentials missing - add them in Settings or set SENANG_MYINVOIS_* in .env.local.')
   }
   const factory = opts.clientFactory ?? createMyInvoisClient
   const client = factory(creds)

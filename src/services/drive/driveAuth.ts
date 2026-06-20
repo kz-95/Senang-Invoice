@@ -78,7 +78,7 @@ export async function getAccessToken(): Promise<string | null> {
           })
           finish(token)
         } else {
-          console.error('[Drive] OAuth failed — no token in response', response)
+          console.error('[Drive] OAuth failed - no token in response', response)
           finish(null, 'Google sign-in was cancelled or failed')
         }
       },

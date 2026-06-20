@@ -14,9 +14,13 @@ export function DemoBanner() {
   const [dismissed, setDismissed] = useState(false)
   const [mounted, setMounted] = useState(false)
   const unlocked = useDemoStore(s => s.unlocked)
+  const rehydrate = useDemoStore(s => s.rehydrate)
 
-  // Stores hydrate from client storage; defer to client to avoid SSR/client mismatch.
-  useEffect(() => setMounted(true), [])
+  // Defer localStorage read to client to avoid SSR/client mismatch.
+  useEffect(() => {
+    rehydrate()
+    setMounted(true)
+  }, [rehydrate])
 
   if (!mounted || !unlocked || dismissed) return null
 
@@ -43,7 +47,7 @@ export function DemoBanner() {
     <div className="bg-amber-50 border-b border-amber-200">
       <div className="max-w-2xl mx-auto px-4 py-1.5 flex items-center justify-between gap-2">
         <span className="text-xs text-amber-700">
-          {hasData ? `${invoices.length} invoice${invoices.length !== 1 ? 's' : ''}` : 'No data — load demo'}
+          {hasData ? `${invoices.length} invoice${invoices.length !== 1 ? 's' : ''}` : 'No data - load demo'}
         </span>
         <div className="flex items-center gap-1.5">
           <button

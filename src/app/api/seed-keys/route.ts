@@ -3,12 +3,12 @@ import { NextResponse } from 'next/server'
 /**
  * Returns the LLM keys for client-side seeding into Settings (IndexedDB).
  *
- * SECURITY: keys live ONLY in the server-side `SENANG_LLM_KEYS` env var — never
+ * SECURITY: keys live ONLY in the server-side `SENANG_LLM_KEYS` env var - never
  * in a `NEXT_PUBLIC_*` var (which Next.js would inline into the browser bundle).
  * This route hands them to the local client at runtime instead of build time.
  *
  * Gating is server-side only. We do NOT trust the Host header (or any other
- * client-supplied header) for the access decision — those are spoofable on a
+ * client-supplied header) for the access decision - those are spoofable on a
  * public deploy (`Host: localhost` would bypass a host check). Instead:
  *   - allowed automatically outside production (local `next dev`), and
  *   - in production, only when the operator explicitly opts in via

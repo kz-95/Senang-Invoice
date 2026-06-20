@@ -8,6 +8,7 @@ import { useT } from '@/hooks/useT'
 import { track } from '@/lib/analytics'
 import { getAccessToken } from '@/services/drive/driveAuth'
 import { ONBOARDING_ALWAYS_SHOW, ONBOARDING_FLAG } from '@/lib/constants'
+import { WELCOME_STEPS } from './welcomeSteps'
 
 const BoltIcon = (
   <svg className="h-10 w-10" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
@@ -25,7 +26,7 @@ const CloudIcon = (
   </svg>
 )
 
-interface Slide {
+interface StepMeta {
   key: string
   icon: ReactNode
   titleKey: string
@@ -33,55 +34,68 @@ interface Slide {
   bullets?: string[]
 }
 
-export function OnboardingCarousel() {
+/** The three onboarding steps, indexed by URL segment (1, 2, 3). */
+const STEPS: StepMeta[] = [
+  {
+    key: 'welcome',
+    icon: BoltIcon,
+    titleKey: 'onboarding.welcomeTitle',
+    descKey: 'onboarding.welcomeDesc',
+    bullets: ['onboarding.welcomeStep1', 'onboarding.welcomeStep2', 'onboarding.welcomeStep3'],
+  },
+  {
+    key: 'scope',
+    icon: ShieldIcon,
+    titleKey: 'onboarding.scopeTitle',
+    descKey: 'onboarding.scopeDesc',
+  },
+  {
+    key: 'drive',
+    icon: CloudIcon,
+    titleKey: 'onboarding.driveTitle',
+    descKey: 'onboarding.driveDesc',
+  },
+]
+
+// WELCOME_STEPS lives in ./welcomeSteps (non-client) so server pages can read it.
+// Guard against drift between that constant and the STEPS array here.
+if (STEPS.length !== WELCOME_STEPS) {
+  console.warn(`[WelcomeFlow] STEPS.length (${STEPS.length}) != WELCOME_STEPS (${WELCOME_STEPS})`)
+}
+
+/**
+ * One onboarding screen, addressable at /welcome/{step} (1-based).
+ * Step 3 ("drive") is the login screen: it connects Google Drive then enters the app.
+ */
+export function WelcomeFlow({ step }: { step: number }) {
   const router = useRouter()
   const t = useT()
-  const [index, setIndex] = useState(0)
   const [connecting, setConnecting] = useState(false)
   const startX = useRef<number | null>(null)
 
-  const slides: Slide[] = [
-    {
-      key: 'welcome',
-      icon: BoltIcon,
-      titleKey: 'onboarding.welcomeTitle',
-      descKey: 'onboarding.welcomeDesc',
-      bullets: ['onboarding.welcomeStep1', 'onboarding.welcomeStep2', 'onboarding.welcomeStep3'],
-    },
-    {
-      key: 'scope',
-      icon: ShieldIcon,
-      titleKey: 'onboarding.scopeTitle',
-      descKey: 'onboarding.scopeDesc',
-    },
-    {
-      key: 'drive',
-      icon: CloudIcon,
-      titleKey: 'onboarding.driveTitle',
-      descKey: 'onboarding.driveDesc',
-    },
-  ]
+  const index = step - 1
+  const slide = STEPS[index]
+  const isLast = step === WELCOME_STEPS
 
-  const last = slides.length - 1
-  const isLast = index === last
-
-  useEffect(() => { track('onboarding_start') }, [])
   useEffect(() => {
-    track('onboarding_slide_view', { index, slide: slides[index].key })
+    if (step === 1) track('onboarding_start')
+    track('welcome_step_view', { step, slide: slide.key })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index])
+  }, [step])
+
+  const goTo = (s: number) => router.push(`/welcome/${s}`)
 
   const finish = (via: 'complete' | 'skip') => {
     if (!ONBOARDING_ALWAYS_SHOW) {
       try { localStorage.setItem(ONBOARDING_FLAG, '1') } catch { /* ignore */ }
     }
-    track(via === 'skip' ? 'onboarding_skip' : 'onboarding_complete', { atSlide: slides[index].key })
+    track(via === 'skip' ? 'onboarding_skip' : 'onboarding_complete', { atSlide: slide.key })
     track('profile_start')
     router.push('/profile')
   }
 
-  const next = () => setIndex(i => Math.min(last, i + 1))
-  const back = () => setIndex(i => Math.max(0, i - 1))
+  const next = () => goTo(Math.min(WELCOME_STEPS, step + 1))
+  const back = () => goTo(Math.max(1, step - 1))
 
   const onConnectDrive = async () => {
     track('drive_connect_click')
@@ -89,7 +103,7 @@ export function OnboardingCarousel() {
     try {
       await getAccessToken()
     } catch {
-      // OAuth may be unavailable (testing mode) — proceed regardless.
+      // OAuth may be unavailable (testing mode) - proceed regardless.
     } finally {
       setConnecting(false)
       finish('complete')
@@ -101,8 +115,8 @@ export function OnboardingCarousel() {
     if (startX.current === null) return
     const dx = e.changedTouches[0].clientX - startX.current
     if (Math.abs(dx) > 50) {
-      if (dx < 0) next()
-      else back()
+      if (dx < 0 && !isLast) next()
+      else if (dx > 0 && step > 1) back()
     }
     startX.current = null
   }
@@ -115,13 +129,13 @@ export function OnboardingCarousel() {
         style={{ paddingTop: 'max(1rem, env(safe-area-inset-top))' }}
       >
         <div className="flex items-center gap-2" role="tablist" aria-label="Onboarding progress">
-          {slides.map((s, i) => (
-            <button
+          {STEPS.map((s, i) => (
+            <Link
               key={s.key}
+              href={`/welcome/${i + 1}`}
               role="tab"
               aria-selected={i === index}
-              aria-label={`Go to slide ${i + 1}`}
-              onClick={() => setIndex(i)}
+              aria-label={`Go to step ${i + 1}`}
               className={`h-2 rounded-full transition-all duration-300 motion-reduce:transition-none ${
                 i === index ? 'w-6 bg-teal-600' : 'w-2 bg-gray-300'
               }`}
@@ -139,57 +153,48 @@ export function OnboardingCarousel() {
         {isLast && <LangToggle className="text-gray-600 hover:bg-gray-100" />}
       </div>
 
-      {/* Slides */}
-      <div
-        className="relative flex-1 overflow-hidden"
+      {/* Step content */}
+      <section
+        id={`welcome-${step}`}
+        className="relative flex flex-1 flex-col items-center justify-center px-8 text-center"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        <div
-          className="flex h-full transition-transform duration-300 ease-out motion-reduce:transition-none"
-          style={{ width: `${slides.length * 100}%`, transform: `translateX(-${index * (100 / slides.length)}%)` }}
-        >
-          {slides.map(slide => (
-            <section
-              key={slide.key}
-              className="flex h-full flex-col items-center justify-center px-8 text-center"
-              style={{ width: `${100 / slides.length}%` }}
-            >
-              <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-teal-50 text-teal-700">
-                {slide.icon}
-              </div>
-              <h1 className="mb-3 text-3xl font-bold tracking-tight text-teal-900">
-                {t(slide.titleKey)}
-              </h1>
-              <p className="mx-auto max-w-xs text-base leading-relaxed text-gray-600">
-                {t(slide.descKey)}
-              </p>
-
-              {slide.bullets && (
-                <ul className="mx-auto mt-6 space-y-2 text-left">
-                  {slide.bullets.map(b => (
-                    <li key={b} className="flex items-center gap-3 text-sm text-gray-700">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-100 text-teal-700">
-                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                      </span>
-                      {t(b)}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              {slide.key === 'scope' && (
-                <Link
-                  href="/guide/do-i-need-einvoice"
-                  className="mt-6 text-sm font-medium text-teal-700 underline underline-offset-4 hover:text-teal-800"
-                >
-                  {t('onboarding.scopeLink')}
-                </Link>
-              )}
-            </section>
-          ))}
+        <span className="mb-4 text-xs font-medium uppercase tracking-wide text-gray-400">
+          {t('welcome.stepLabel', { n: step })}
+        </span>
+        <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-teal-50 text-teal-700">
+          {slide.icon}
         </div>
-      </div>
+        <h1 className="mb-3 text-3xl font-bold tracking-tight text-teal-900">
+          {t(isLast ? 'welcome.loginTitle' : slide.titleKey)}
+        </h1>
+        <p className="mx-auto max-w-xs text-base leading-relaxed text-gray-600">
+          {t(slide.descKey)}
+        </p>
+
+        {slide.bullets && (
+          <ul className="mx-auto mt-6 space-y-2 text-left">
+            {slide.bullets.map(b => (
+              <li key={b} className="flex items-center gap-3 text-sm text-gray-700">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-100 text-teal-700">
+                  <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                </span>
+                {t(b)}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {slide.key === 'scope' && (
+          <Link
+            href="/guide/do-i-need-einvoice"
+            className="mt-6 text-sm font-medium text-teal-700 underline underline-offset-4 hover:text-teal-800"
+          >
+            {t('onboarding.scopeLink')}
+          </Link>
+        )}
+      </section>
 
       {/* Bottom controls */}
       <div
@@ -200,7 +205,7 @@ export function OnboardingCarousel() {
           <div className="flex items-center justify-between gap-3">
             <button
               onClick={back}
-              disabled={index === 0}
+              disabled={step === 1}
               className="min-h-[48px] px-4 text-sm font-medium text-gray-500 disabled:invisible hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded-lg"
             >
               {t('onboarding.back')}

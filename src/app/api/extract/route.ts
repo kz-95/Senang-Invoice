@@ -64,10 +64,10 @@ export async function POST(req: NextRequest) {
       throw lastError ?? new Error('All LLM keys exhausted')
     }
 
-    // Degraded path — no LLM key anywhere, return fallback items
+    // Degraded path - no LLM key anywhere, return fallback items
     if (body.transcript || body.imageBase64) {
-      // We have raw input but can't AI-extract — return raw text hint
-      const rawText = body.transcript || (body.imageBase64 ? '[Image received — OCR text not available without AI key]' : '')
+      // We have raw input but can't AI-extract - return raw text hint
+      const rawText = body.transcript || (body.imageBase64 ? '[Image received - OCR text not available without AI key]' : '')
       return NextResponse.json({
         items: [],
         degraded: true,

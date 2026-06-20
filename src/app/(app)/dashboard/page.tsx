@@ -49,7 +49,7 @@ export default function HomePage() {
 
   useEffect(() => {
     invoiceRepository.purgeExpired()
-    // Only pull from Drive if already signed in — never force the OAuth popup on load.
+    // Only pull from Drive if already signed in - never force the OAuth popup on load.
     isGoogleAuthenticated().then(authed => {
       if (authed) syncRepository.pullAllFromDrive().finally(() => refresh())
     })

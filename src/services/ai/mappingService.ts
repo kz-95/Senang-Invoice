@@ -46,7 +46,7 @@ export async function mapFields(
   }
 
   const catalogText = allCandidates
-    .map(c => `${c.code}: ${c.description} — ${c.useWhen}`)
+    .map(c => `${c.code}: ${c.description} - ${c.useWhen}`)
     .join('\n')
 
   const rulesText = allRules.map(r => `${r.topic}:\n${r.text}`).join('\n\n')

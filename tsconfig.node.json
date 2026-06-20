@@ -3,14 +3,20 @@
     "target": "ES2022",
     "module": "commonjs",
     "moduleResolution": "node",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "outDir": "nodejs/services",
     "rootDir": "src",
+    "baseUrl": ".",
+    "paths": { "@/*": ["src/*"] },
+    "resolveJsonModule": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "declaration": false,
-    "sourceMap": false
+    "sourceMap": false,
+    "noEmit": false,
+    "incremental": false
   },
-  "include": ["src/services/**/*.ts"],
-  "exclude": ["src/services/**/*.test.ts", "src/services/**/*.test.tsx"]
+  "include": ["src/services/**/*.ts", "src/lib/**/*.ts"],
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts"]
 }

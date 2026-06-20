@@ -1,7 +1,7 @@
 {
   "name": "Senang Invoice",
   "short_name": "Senang Invoice",
-  "description": "Malaysian e-invoice made easy — snap, speak, submit.",
+  "description": "Malaysian e-invoice made easy - snap, speak, submit.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

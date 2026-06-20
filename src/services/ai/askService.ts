@@ -32,7 +32,7 @@ export async function answer(
   const chunks = retrieve(input.message, 3)
   const lang = detectLang(input.message)
 
-  // Degraded path — no LLM client available, return raw RAG chunks
+  // Degraded path - no LLM client available, return raw RAG chunks
   if (!client) {
     const chunkLines = chunks.map(c => `• **${c.topic}**: ${c.text}`).join('\n')
     const wrapper = lang === 'ms'
