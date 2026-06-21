@@ -82,6 +82,10 @@ echo === APK built! ===
 echo Running install...
 call "%~dp0\install-apk.bat"
 echo.
+echo Copy APK to public/ for marketing download...
+copy /y "android\app\build\outputs\apk\debug\app-arm64-v8a-debug.apk" "public\senang-invoice.apk" >nul
+echo   OK - APK at public/senang-invoice.apk
+echo.
 echo Step 5/5: Clean build cache for dev...
 echo   (This lets you run npm run dev without errors)
 if exist ".next" rmdir /s /q ".next"
