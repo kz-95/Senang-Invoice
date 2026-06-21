@@ -1164,6 +1164,11 @@
     "ms": "Muat turun terus untuk peranti Android",
     "zh": "直接下载适用于 Android 设备"
   },
+  "landing.apkComingSoon": {
+    "en": "APK download coming soon",
+    "ms": "Muat turun APK akan datang",
+    "zh": "APK 下载即将推出"
+  },
   "landing.heroMainTitle": {
     "en": "Malaysian e-Invoice",
     "ms": "e-Invois Malaysia",
