@@ -90,5 +90,6 @@ coverage/
 # APK packaging (Node.js server)
 nodejs/services/
 nodejs/node_modules/
+nodejs/.env.json
 android/release.jks
 android/keystore.properties

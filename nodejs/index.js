@@ -15,6 +15,26 @@ try {
   }
 }
 
+// Load baked env keys from .env.json (written by build-node.mjs during APK build).
+// These are the same keys from .env.local, baked into the APK so the Node.js
+// server has API keys on-device. Falls back to process.env for non-APK dev.
+const { existsSync, readFileSync } = require('node:fs')
+const { join } = require('node:path')
+const envJsonPath = join(__dirname, '.env.json')
+if (existsSync(envJsonPath)) {
+  try {
+    const baked = JSON.parse(readFileSync(envJsonPath, 'utf8'))
+    for (const [k, v] of Object.entries(baked)) {
+      if (!process.env[k]) process.env[k] = v
+    }
+    console.log('[senanginvoice-node] loaded baked env keys:', Object.keys(baked).join(', '))
+  } catch (e) {
+    console.warn('[senanginvoice-node] failed to load .env.json:', e.message)
+  }
+} else {
+  console.log('[senanginvoice-node] no .env.json — using process.env (dev mode)')
+}
+
 const http = require('http')
 
 const PORT = 3001
