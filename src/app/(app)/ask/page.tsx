@@ -11,9 +11,9 @@ export default function AskPage() {
   const t = useT()
 
   return (
-    <div className="flex h-[calc(100dvh-8.5rem)] min-h-[440px] flex-col">
+    <div className="flex flex-col flex-1 min-h-0 -mx-4 -mb-4">
       <NoLlmBanner context="ask" />
-      <div className="mb-3 flex items-start justify-between gap-3">
+      <div className="mb-3 px-4 flex items-start justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-gray-900">{t('ask.title')}</h2>
           <p className="mt-0.5 text-sm text-gray-500">{t('ask.subtitle')}</p>
@@ -29,7 +29,7 @@ export default function AskPage() {
       </div>
 
       {showScope && (
-        <div className="mb-3">
+        <div className="mb-3 px-4">
           <ScopeCheckCard />
         </div>
       )}

@@ -6,7 +6,6 @@ const labels: Record<Lang, string> = {
   en: "EN",
   ms: "MY",
   zh: "中文",
-  rojak: "ROJAK",
 };
 
 interface LangToggleProps {
@@ -19,8 +18,7 @@ export function LangToggle({ className }: LangToggleProps) {
   const nextLang: Record<Lang, Lang> = {
     en: "ms",
     ms: "zh",
-    zh: "rojak",
-    rojak: "en",
+    zh: "en",
   };
 
   const defaultClasses =

@@ -1,8 +1,24 @@
 import { getAllChunks, type Chunk } from './knowledgeStore'
 import { scoreByKeywords } from '@/services/compliance/classificationCatalog'
 
+/** Minimum word-match count before a chunk is considered relevant.
+ *  Prevents single-word queries from leaking random chunks. */
+const MIN_SCORE = 2
+
+/** Important short tokens that must survive the ≤2-char filter.
+ *  If a term matches one of these exactly (case-insensitive), keep it. */
+const KEEP_SHORT = new Set([
+  'b2b', 'b2c', 'b2g', 'ms', 'en', 'zh', 'my',  // buyer types, language codes, "MY"
+  'qr', 'ai', 'rm', 'id', 'tin', 'sst',          // tech/acronyms
+  '01', '02', '03', '04', '05', '06', '07', '08', '09', // tax/doc type codes
+])
+
 export function retrieve(query: string, k = 3): Chunk[] {
-  const queryTerms = query.toLowerCase().split(/\s+/).filter(t => t.length > 2)
+  const queryTerms = query
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(t => t.length > 2 || KEEP_SHORT.has(t))
+
   const chunks = getAllChunks()
 
   const scored = chunks.map(chunk => {
@@ -15,7 +31,7 @@ export function retrieve(query: string, k = 3): Chunk[] {
   })
 
   return scored
-    .filter(s => s.score > 0)
+    .filter(s => s.score >= MIN_SCORE)
     .sort((a, b) => b.score - a.score)
     .slice(0, k)
     .map(s => s.chunk)

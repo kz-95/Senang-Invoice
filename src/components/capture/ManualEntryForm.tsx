@@ -34,46 +34,45 @@ export function ManualEntryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-2">
       {error && (
         <p role="alert" className="text-sm text-red-600">{error}</p>
       )}
-      <div className="grid grid-cols-3 gap-2">
-        <div className="col-span-2">
-          <Input
-            aria-label="Item description"
-            placeholder={t('create.itemDescription')}
-            value={form.description}
-            onChange={e => setForm(prev => ({ ...prev, description: e.target.value }))}
-            required
-          />
-        </div>
+      <div className="space-y-2">
         <Input
-          aria-label="Quantity"
-          type="number"
-          inputMode="decimal"
-          placeholder={t('create.qty')}
-          value={form.qty}
-          onChange={e => setForm(prev => ({ ...prev, qty: e.target.value }))}
-          min="1"
-        />
-      </div>
-      <div className="flex items-center gap-2">
-        <Input
-          aria-label="Unit price RM"
-          type="number"
-          inputMode="decimal"
-          placeholder={t('create.unitPrice')}
-          value={form.unitPrice}
-          onChange={e => setForm(prev => ({ ...prev, unitPrice: e.target.value }))}
-          step="0.01"
-          min="0"
+          aria-label="Item description"
+          placeholder={t('create.itemDescription')}
+          value={form.description}
+          onChange={e => setForm(prev => ({ ...prev, description: e.target.value }))}
           required
-          className="flex-1"
         />
-        <Button type="submit" size="sm">
-          {added ? t('create.added') : t('create.addLine')}
-        </Button>
+        <div className="flex items-center gap-2">
+          <Input
+            aria-label="Quantity"
+            type="number"
+            inputMode="decimal"
+            placeholder={t('create.qty')}
+            value={form.qty}
+            onChange={e => setForm(prev => ({ ...prev, qty: e.target.value }))}
+            min="1"
+            containerClassName="w-20"
+          />
+          <Input
+            aria-label="Unit price RM"
+            type="number"
+            inputMode="decimal"
+            placeholder={t('create.unitPrice')}
+            value={form.unitPrice}
+            onChange={e => setForm(prev => ({ ...prev, unitPrice: e.target.value }))}
+            step="0.01"
+            min="0"
+            required
+            containerClassName="flex-1 min-w-0"
+          />
+          <Button type="submit" size="sm" className="shrink-0">
+            {added ? t('create.added') : t('create.addLine')}
+          </Button>
+        </div>
       </div>
     </form>
   )

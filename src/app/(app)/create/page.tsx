@@ -92,6 +92,7 @@ export default function CreatePage() {
     }
   }, [activePreset?.id])
 
+  const [toolboxOpen, setToolboxOpen] = useState(true)
   const [discAmount, setDiscAmount] = useState('')
   const [discReason, setDiscReason] = useState('')
   const [payMethod, setPayMethod] = useState('')
@@ -123,150 +124,175 @@ export default function CreatePage() {
   }
 
   return (
-    <div className="space-y-6 pb-32 lg:pb-24">
-      <PageHeader title={t('create.title')} subtitle={t('create.subtitle')} />
+    <div className="flex flex-col flex-1 min-h-0 -mx-4 -my-4">
+      {/* Scrollable content — items, editor, buyer, generate */}
+      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-6">
+        <PageHeader title={t('create.title')} subtitle={t('create.subtitle')} />
 
-      <NoLlmBanner context="create" />
+        <NoLlmBanner context="create" />
 
-      <section>
-        <CaptureModeSwitcher />
-      </section>
+        {lines.length === 0 && (
+          <div className="mt-4 text-center text-sm text-gray-500 bg-gray-50 border border-dashed border-gray-300 rounded-lg p-6">
+            <p className="font-medium text-gray-700 mb-1">{t('create.noItems')}</p>
+            <p>{t('create.noItemsHint')}</p>
+          </div>
+        )}
 
-      {lines.length === 0 && (
-        <div className="mt-4 text-center text-sm text-gray-500 bg-gray-50 border border-dashed border-gray-300 rounded-lg p-6">
-          <p className="font-medium text-gray-700 mb-1">No items yet</p>
-          <p>Add items using Camera, Voice, or Manual entry above.</p>
-        </div>
-      )}
+        {lines.length > 0 && (
+          <>
+            <section>
+              <h3 className="text-sm font-semibold text-gray-700 mb-2">{t('create.lineItemsCount', { n: lines.length })}</h3>
+              <ExtractedItemsTable />
+            </section>
 
-      {lines.length > 0 && (
-        <>
-          <section>
-            <h3 className="text-sm font-semibold text-gray-700 mb-2">{t('create.lineItemsCount', { n: lines.length })}</h3>
-            <ExtractedItemsTable />
-          </section>
+            <section className="space-y-3">
+              <h3 className="text-sm font-semibold text-gray-700">
+                {t('create.editItems')} {editingIndex !== null ? '' : t('create.editItemsHint')}
+              </h3>
+              {lines.map((_, i) => (
+                <div key={i} className="flex gap-2 items-center">
+                  <Button
+                    variant={editingIndex === i ? 'primary' : 'ghost'}
+                    size="sm"
+                    onClick={() => setEditingIndex(editingIndex === i ? null : i)}
+                  >
+                    {lines[i].description.slice(0, 20)} - RM {formatMYR(lines[i].amount)}
+                  </Button>
+                </div>
+              ))}
+              {editingIndex !== null && (
+                <div className="mt-3">
+                  <LineItemEditor index={editingIndex} />
+                </div>
+              )}
+            </section>
 
-          <section className="space-y-3">
-            <h3 className="text-sm font-semibold text-gray-700">
-              {t('create.editItems')} {editingIndex !== null ? '' : t('create.editItemsHint')}
-            </h3>
-            {lines.map((_, i) => (
-              <div key={i} className="flex gap-2 items-center">
-                <Button
-                  variant={editingIndex === i ? 'primary' : 'ghost'}
-                  size="sm"
-                  onClick={() => setEditingIndex(editingIndex === i ? null : i)}
+            <section>
+              <BuyerSelector />
+            </section>
+
+            <section className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-semibold text-gray-700">{t('invoice.invoiceNumber')}</h3>
+                <button
+                  type="button"
+                  onClick={() => router.push('/settings?tab=presets')}
+                  className="flex items-center justify-center w-11 h-11 rounded-full hover:bg-gray-100 text-gray-500"
+                  aria-label="Settings"
                 >
-                  {lines[i].description.slice(0, 20)} - RM {formatMYR(lines[i].amount)}
-                </Button>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </button>
               </div>
-            ))}
-            {editingIndex !== null && (
-              <div className="mt-3">
-                <LineItemEditor index={editingIndex} />
-              </div>
-            )}
-          </section>
 
-          <section>
-            <BuyerSelector />
-          </section>
+              <select
+                className="rounded-lg border border-gray-300 px-3 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-teal-700"
+                value={selectedPresetId}
+                onChange={e => setSelectedPresetId(e.target.value)}
+              >
+                {presets.map(p => (
+                  <option key={p.id} value={p.id}>{p.name}{p.isDefault ? ' \u2605' : ''}</option>
+                ))}
+              </select>
 
-          <section className="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
-            <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-gray-700">{t('invoice.invoiceNumber')}</h3>
+              {customTokenKeys.map(key => (
+                <Input
+                  key={key}
+                  label={activePreset.customTokens[key].label}
+                  value={tokenValues[key] ?? ''}
+                  onChange={updateToken(key)}
+                  placeholder={activePreset.customTokens[key].default || activePreset.customTokens[key].label}
+                />
+              ))}
+
+              <p className="text-xs text-gray-500 tabular-nums">
+                Preview: <span className="font-mono text-teal-700">{preview}</span>
+              </p>
+
+              <Input
+                label="Number (editable)"
+                value={invoiceNumber}
+                onChange={e => setInvoiceNumber(e.target.value)}
+                placeholder={preview}
+              />
+            </section>
+
+            <section>
               <button
                 type="button"
-                onClick={() => router.push('/settings?tab=presets')}
-                className="flex items-center justify-center w-11 h-11 rounded-full hover:bg-gray-100 text-gray-500"
-                aria-label="Settings"
+                onClick={() => setShowAdvanced(v => !v)}
+                aria-expanded={showAdvanced}
+                className="w-full text-left text-sm font-medium text-teal-700 flex items-center gap-1"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <svg
+                  className={`w-4 h-4 transition-transform ${showAdvanced ? 'rotate-90' : ''}`}
+                  fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
+                {t('create.advancedOptions')}
               </button>
-            </div>
+              {showAdvanced && (
+                <div className="mt-2 space-y-3 border border-gray-200 rounded-lg p-3 bg-gray-50">
+                  <Input label="Discount Amount (RM)" type="number" inputMode="decimal" placeholder="0.00" value={discAmount} onChange={e => setDiscAmount(e.target.value)} />
+                  <Input label="Discount Reason" placeholder="Promotional discount" value={discReason} onChange={e => setDiscReason(e.target.value)} />
+                  <Select
+                    label="Payment Method"
+                    options={PAYMENT_METHOD_OPTIONS}
+                    value={payMethod}
+                    onChange={e => setPayMethod(e.target.value)}
+                  />
+                  <Input label="Payment Terms" placeholder="Net 30" value={payTerms} onChange={e => setPayTerms(e.target.value)} />
+                  <Input label="Due Date" type="date" value={payDueDate} onChange={e => setPayDueDate(e.target.value)} />
+                  <Input label="Supplier Reference" placeholder="Your internal ref" value={suppRef} onChange={e => setSuppRef(e.target.value)} />
+                  <Input label="Notes" placeholder="Any remarks" value={noteText} onChange={e => setNoteText(e.target.value)} />
+                </div>
+              )}
+            </section>
 
-            <select
-              className="rounded-lg border border-gray-300 px-3 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-teal-700"
-              value={selectedPresetId}
-              onChange={e => setSelectedPresetId(e.target.value)}
-            >
-              {presets.map(p => (
-                <option key={p.id} value={p.id}>{p.name}{p.isDefault ? ' \u2605' : ''}</option>
-              ))}
-            </select>
-
-            {customTokenKeys.map(key => (
-              <Input
-                key={key}
-                label={activePreset.customTokens[key].label}
-                value={tokenValues[key] ?? ''}
-                onChange={updateToken(key)}
-                placeholder={activePreset.customTokens[key].default || activePreset.customTokens[key].label}
-              />
-            ))}
-
-            <p className="text-xs text-gray-500 tabular-nums">
-              Preview: <span className="font-mono text-teal-700">{preview}</span>
-            </p>
-
-            <Input
-              label="Number (editable)"
-              value={invoiceNumber}
-              onChange={e => setInvoiceNumber(e.target.value)}
-              placeholder={preview}
-            />
-          </section>
-
-          <section>
-            <button
-              type="button"
-              onClick={() => setShowAdvanced(v => !v)}
-              aria-expanded={showAdvanced}
-              className="w-full text-left text-sm font-medium text-teal-700 flex items-center gap-1"
-            >
-              <svg
-                className={`w-4 h-4 transition-transform ${showAdvanced ? 'rotate-90' : ''}`}
-                fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"
+            <div className="flex flex-col items-center gap-2 pb-4">
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={handleGenerate}
+                loading={loading}
+                disabled={lines.length === 0}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-              {t('create.advancedOptions')}
-            </button>
-            {showAdvanced && (
-              <div className="mt-2 space-y-3 border border-gray-200 rounded-lg p-3 bg-gray-50">
-                <Input label="Discount Amount (RM)" type="number" inputMode="decimal" placeholder="0.00" value={discAmount} onChange={e => setDiscAmount(e.target.value)} />
-                <Input label="Discount Reason" placeholder="Promotional discount" value={discReason} onChange={e => setDiscReason(e.target.value)} />
-                <Select
-                  label="Payment Method"
-                  options={PAYMENT_METHOD_OPTIONS}
-                  value={payMethod}
-                  onChange={e => setPayMethod(e.target.value)}
-                />
-                <Input label="Payment Terms" placeholder="Net 30" value={payTerms} onChange={e => setPayTerms(e.target.value)} />
-                <Input label="Due Date" type="date" value={payDueDate} onChange={e => setPayDueDate(e.target.value)} />
-                <Input label="Supplier Reference" placeholder="Your internal ref" value={suppRef} onChange={e => setSuppRef(e.target.value)} />
-                <Input label="Notes" placeholder="Any remarks" value={noteText} onChange={e => setNoteText(e.target.value)} />
-              </div>
-            )}
-          </section>
+                {t('create.generateButton')}
+              </Button>
+              {finalizeError && <p className="text-sm text-red-600">{finalizeError}</p>}
+            </div>
+          </>
+        )}
+      </div>
 
-          <div className="flex flex-col items-center gap-2 pb-8">
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={handleGenerate}
-              loading={loading}
-              disabled={lines.length === 0}
-            >
-              {t('create.generateButton')}
-            </Button>
-            {finalizeError && <p className="text-sm text-red-600">{finalizeError}</p>}
+      {/* Toolbox — pinned to bottom, collapsible */}
+      <div className="shrink-0 bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <button
+          type="button"
+          onClick={() => setToolboxOpen(v => !v)}
+          aria-expanded={toolboxOpen}
+          className="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
+        >
+          <span>{t('create.addItems')}</span>
+          <svg
+            className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${toolboxOpen ? 'rotate-180' : ''}`}
+            fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div
+          className="overflow-hidden transition-all duration-300 ease-in-out"
+          style={{ maxHeight: toolboxOpen ? 'min(50vh, 400px)' : '0' }}
+        >
+          <div className="px-4 pb-4 overflow-y-auto" style={{ maxHeight: 'min(50vh, 400px)' }}>
+            <CaptureModeSwitcher />
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </div>
   )
 }

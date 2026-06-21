@@ -1,12 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { extractLineItems } from '@/services/ai/extractionService'
 import { mapFields } from '@/services/ai/mappingService'
-import { getLlamaClient } from '@/services/ai/llmClient'
+import { getLlamaClient, isRateLimitError } from '@/services/ai/llmClient'
 
 function canUseEnvKeys(): boolean {
   if (!process.env.SENANG_LLM_KEYS) return false
   if (process.env.SENANG_ALLOW_ENV_LLM_KEYS === 'true') return true
   return process.env.NODE_ENV !== 'production'
+}
+
+function degradedExtract(body: { imageBase64?: string; transcript?: string }) {
+  const rawText = body.transcript
+    || (body.imageBase64 ? '[Image received - OCR text not available without AI key]' : '')
+  return NextResponse.json({ items: [], degraded: true, rawText })
 }
 
 export async function POST(req: NextRequest) {
@@ -45,6 +51,11 @@ export async function POST(req: NextRequest) {
         const items = await extractAndMap(llmKey, llmModel, llmBaseUrl, llmProvider)
         return NextResponse.json({ items })
       } catch (err) {
+        // 429/402 -> serve degraded result immediately, no retry.
+        if (isRateLimitError(err)) {
+          console.warn('[/api/extract] Client key rate limited (429/402), serving degraded result')
+          return degradedExtract(body)
+        }
         console.warn(`[/api/extract] Client key failed: ${(err as Error).message}, falling back to env keys...`)
       }
     }
@@ -57,25 +68,20 @@ export async function POST(req: NextRequest) {
           const items = await extractAndMap()
           return NextResponse.json({ items })
         } catch (err) {
+          // 429/402 -> stop rotating, serve degraded result immediately.
+          if (isRateLimitError(err)) {
+            console.warn('[/api/extract] Env key rate limited (429/402), serving degraded result')
+            return degradedExtract(body)
+          }
           lastError = err as Error
           console.warn(`[/api/extract] Env key ${i + 1}/${maxRetries}: ${lastError.message}`)
         }
       }
-      throw lastError ?? new Error('All LLM keys exhausted')
+      return degradedExtract(body)
     }
 
     // Degraded path - no LLM key anywhere, return fallback items
-    if (body.transcript || body.imageBase64) {
-      // We have raw input but can't AI-extract - return raw text hint
-      const rawText = body.transcript || (body.imageBase64 ? '[Image received - OCR text not available without AI key]' : '')
-      return NextResponse.json({
-        items: [],
-        degraded: true,
-        rawText,
-      })
-    }
-
-    return NextResponse.json({ items: [], degraded: true })
+    return degradedExtract(body)
   } catch (err) {
     const msg = err instanceof Error ? err.message : 'Extraction failed'
     console.error('[/api/extract]', msg)

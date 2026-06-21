@@ -2,7 +2,6 @@
 import { useCallback, useState } from 'react'
 import { useInvoiceStore } from '@/stores/invoiceStore'
 import { llmKeyRepository } from '@/services/data/llmKeyRepository'
-import { ocrImage } from '@/services/ocr/ocrService'
 import { apiBase } from '@/lib/apiBase'
 
 export function useExtraction() {
@@ -16,29 +15,28 @@ export function useExtraction() {
     setError(null)
     setOcrProgress('')
     try {
-      let transcript = input.transcript
-
       if (input.imageBase64) {
         setOcrProgress('Scanning receipt...')
-        transcript = await ocrImage(input.imageBase64)
-        setOcrProgress('')
       }
 
       const llmKey = await llmKeyRepository.getPrimaryKey()
       const headers: Record<string, string> = { 'Content-Type': 'application/json' }
-      if (llmKey) {
-        headers['x-llm-key'] = llmKey.apiKey
-        headers['x-llm-model'] = llmKey.model
-        headers['x-llm-provider'] = llmKey.provider
-        if (llmKey.baseUrl) {
-          headers['x-llm-base-url'] = llmKey.baseUrl
-        }
+      const activeKey = llmKey ?? {
+        provider: 'anthropic',
+        apiKey: process.env.NEXT_PUBLIC_LLM_FALLBACK_KEY ?? '',
+        model: 'claude-sonnet-4-20250514',
+      }
+      headers['x-llm-key'] = activeKey.apiKey
+      headers['x-llm-model'] = activeKey.model
+      headers['x-llm-provider'] = activeKey.provider
+      if (llmKey?.baseUrl) {
+        headers['x-llm-base-url'] = llmKey.baseUrl
       }
 
       const res = await fetch(`${apiBase()}/api/extract`, {
         method: 'POST',
         headers,
-        body: JSON.stringify({ transcript }),
+        body: JSON.stringify({ imageBase64: input.imageBase64, transcript: input.transcript }),
       })
       if (!res.ok) throw new Error('Extraction failed')
       const data = await res.json() as { items: Array<{ description: string; qty: number; unitPrice: number; uom: string; classificationCode: string; taxType: string; taxAmount: number }> }
@@ -47,9 +45,10 @@ export function useExtraction() {
         addLine(item)
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Extraction failed')
+      setError(err instanceof Error ? err.message : 'Scan failed')
     } finally {
       setLoading(false)
+      setOcrProgress('')
     }
   }, [addLine])
 

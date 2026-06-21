@@ -10,7 +10,7 @@ import { useT } from '@/hooks/useT'
 
 interface InvoiceCardProps {
   invoice: Invoice
-  tab?: 'active' | 'archived' | 'trash'
+  tab?: 'pending' | 'validated' | 'synced' | 'archived' | 'trash' | 'active'
   selectMode?: boolean
   selected?: boolean
   onToggleSelect?: (id: string) => void
@@ -61,11 +61,13 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
   const t = useT()
   const [actionLoading, setActionLoading] = useState<string | null>(null)
   const [confirmHard, setConfirmHard] = useState(false)
+  const [confirmSoftDelete, setConfirmSoftDelete] = useState(false)
   const date = new Date(invoice.createdAt).toLocaleDateString('en-MY', {
     day: 'numeric', month: 'short', year: 'numeric',
   })
   const syncBadge = getSyncBadge(invoice)
   const isTrash = tab === 'trash' || !!invoice.deletedAt
+  const isDemo = invoice.id.startsWith('demo-inv-')
 
   const run = async (key: string, fn: () => Promise<void>) => {
     setActionLoading(key)
@@ -75,7 +77,11 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
 
   const handleArchive = () => run('archive', () => invoiceRepository.archive(invoice.id))
   const handleUnarchive = () => run('unarchive', () => invoiceRepository.unarchive(invoice.id))
-  const handleDelete = () => run('delete', () => invoiceRepository.softDelete(invoice.id))
+  const handleDelete = () => setConfirmSoftDelete(true)
+  const handleSoftDeleteConfirm = async () => {
+    await run('delete', () => invoiceRepository.softDelete(invoice.id))
+    setConfirmSoftDelete(false)
+  }
   const handleRestore = () => run('restore', () => invoiceRepository.restoreFromTrash(invoice.id))
   const handleHardDelete = async () => {
     await run('hardDelete', () => invoiceRepository.hardDelete(invoice.id))
@@ -101,6 +107,11 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
         </div>
         <div className="flex items-center gap-2">
           {syncBadge && <span className={`text-xs ${syncBadge.color}`}>{syncBadge.label}</span>}
+          {isDemo && (
+            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 font-medium">
+              {t('invoice.example')}
+            </span>
+          )}
           <StatusPill status={invoice.status} />
         </div>
       </div>
@@ -205,6 +216,15 @@ export function InvoiceCard({ invoice, tab, selectMode, selected, onToggleSelect
       </Link>
       {actions}
       {confirmDialog}
+      <ConfirmDialog
+        open={confirmSoftDelete}
+        loading={actionLoading === 'delete'}
+        title={t('invoice.delete')}
+        message={t('invoice.confirmDeleteMsg', { number: invoice.number })}
+        confirmLabel={t('invoice.delete')}
+        onConfirm={handleSoftDeleteConfirm}
+        onCancel={() => setConfirmSoftDelete(false)}
+      />
     </div>
   )
 }

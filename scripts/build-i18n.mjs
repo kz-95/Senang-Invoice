@@ -8,8 +8,9 @@ const root = resolve(__dirname, '..')
 const csvPath = resolve(root, 'src', 'data', 'i18n', 'strings.csv')
 const jsonPath = resolve(root, 'src', 'data', 'i18n', 'strings.json')
 
-function parseCSVLine(line: string): string[] {
-  const fields: string[] = []
+/** @param {string} line @returns {string[]} */
+function parseCSVLine(line) {
+  const fields = []
   let current = ''
   let inQuotes = false
   for (let i = 0; i < line.length; i++) {
@@ -41,17 +42,19 @@ if (lines.length < 2) {
 }
 
 const headers = parseCSVLine(lines[0])
-// headers: key, en, ms, zh, rojak
-const langColumns = headers.slice(1) // ['en','ms','zh','rojak']
+// headers: key, en, ms, zh
+const langColumns = headers.slice(1) // ['en','ms','zh']
 
-const result: Record<string, Record<string, string>> = {}
+/** @type {Record<string, Record<string, string>>} */
+const result = {}
 
 for (const line of lines.slice(1)) {
   const vals = parseCSVLine(line)
   const key = vals[0]
   if (!key) continue
 
-  const row: Record<string, string> = {}
+  /** @type {Record<string, string>} */
+  const row = {}
   for (let i = 0; i < langColumns.length; i++) {
     const val = vals[i + 1] ?? ''
     if (val !== '') {

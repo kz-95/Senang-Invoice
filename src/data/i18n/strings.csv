@@ -1,4 +1,4 @@
-key,en,ms,zh,rojak
+key,en,ms,zh
 common.save,Save,Simpan,保存,
 common.cancel,Cancel,Batal,取消,
 common.submit,Submit,Hantar,提交,
@@ -72,6 +72,7 @@ create.lineItems,Line Items,Item Baris,行项目,
 create.lineItemsCount,Line Items ({n}),Item Baris ({n}),行项目 ({n}),
 create.editItems,Edit Items,Sunting Item,编辑项目,
 create.editItemsHint,(click a row to expand),(klik baris untuk kembangkan),(点击行展开),
+create.addItems,Add Items,Tambah Item,添加项目,
 create.generateButton,Generate Invoice,Jana Invois,生成发票,
 create.addLine,Add Line,Tambah Baris,添加行,
 create.added,✓ Added,✓ Ditambah,✓ 已添加,
@@ -85,9 +86,9 @@ dashboard.subtitle,Malaysian e-invoice made easy,E-invois Malaysia dipermudahkan
 dashboard.invoices,Invoices,Invois,发票,
 dashboard.validated,Validated,Disahkan,已验证,
 dashboard.total,Total,Jumlah,总计,
-dashboard.tabActive,Active,Aktif,活跃,Aktif
-dashboard.tabArchived,Archived,Diarkib,已归档,Diarkib
-dashboard.tabTrash,Trash,Sampah,回收站,Sampah
+dashboard.tabActive,Active,Aktif,活跃
+dashboard.tabArchived,Archived,Diarkib,已归档
+dashboard.tabTrash,Trash,Sampah,回收站
 dashboard.searchPlaceholder,Search invoices...,Cari invois...,搜索发票...,
 dashboard.sortDate,Date,Tarikh,日期,
 dashboard.sortAmount,Amount,Jumlah,金额,
@@ -193,3 +194,30 @@ errors.extractionError,Extraction failed. Try a clearer image or different input
 errors.mappingError,Classification mapping failed. Please set codes manually.,Pemetaan klasifikasi gagal. Sila tetapkan kod secara manual.,分类映射失败。请手动设置代码。,
 errors.submissionError,Submission failed. Check MyInvois credentials.,Penghantaran gagal. Semak kelayakan MyInvois.,提交失败。请检查 MyInvois 凭证。,
 errors.sessionExpired,Session expired. Please sign in again.,Sesi tamat. Sila daftar masuk semula.,会话已过期。请重新登录。,
+invoice.downloadPdf,Download PDF,Muat Turun PDF,下载 PDF,
+dashboard.bukkuExport,Export to Bukku,Eksport ke Bukku,导出至 Bukku,
+onboarding.skip,Skip,Langkau,跳过
+welcome.stepLabel,Step {n} of 3,Langkah {n} daripada 3,第 {n} 步，共 3 步
+welcome.loginTitle,Back up to Google Drive,Sandar ke Google Drive,备份到 Google Drive
+onboarding.welcomeTitle,Invoicing made easy,Penginvoisan dipermudah,轻松开发票
+onboarding.welcomeDesc,"Snap, speak, or type — get a MyInvois-ready e-invoice in seconds.","Imbas, sebut, atau taip — dapatkan e-invois sedia MyInvois dalam beberapa saat.",拍照、语音或输入，几秒内生成符合 MyInvois 的电子发票。
+onboarding.welcomeStep1,"Capture by photo, voice, or manual entry","Tangkap melalui foto, suara, atau kemasukan manual",通过照片、语音或手动输入
+onboarding.welcomeStep2,Auto-categorized and validated,Dikategori dan disahkan automatik,自动分类并验证
+onboarding.welcomeStep3,Submit to MyInvois with one tap,Hantar ke MyInvois dengan satu ketikan,一键提交至 MyInvois
+onboarding.scopeTitle,Do you need e-invoicing?,Adakah anda perlukan e-invois?,您需要电子发票吗？
+onboarding.scopeDesc,LHDN is rolling out e-invoicing in phases. Check whether it applies to you yet.,LHDN melaksanakan e-invois secara berperingkat. Semak sama ada ia terpakai kepada anda.,内陆税收局正分阶段推行电子发票，查看是否已适用于您。
+onboarding.scopeLink,Check if I need it,Semak jika saya perlukannya,查看我是否需要
+onboarding.driveTitle,Your data stays yours,Data anda kekal milik anda,您的数据归您所有
+onboarding.driveDesc,Invoices are stored on your device and backed up to your own Google Drive.,Invois disimpan pada peranti anda dan disandarkan ke Google Drive anda sendiri.,发票存储在您的设备上，并备份到您自己的 Google Drive。
+onboarding.back,Back,Kembali,返回
+onboarding.next,Next,Seterusnya,下一步
+onboarding.driveConnect,Connect Google Drive,Sambung Google Drive,连接 Google Drive
+onboarding.driveSkip,Skip for now,Langkau buat masa ini,暂时跳过
+demo.seeding,Seeding example data...,Menyemai data contoh...,正在生成示例数据...
+demo.loaded,"{n} example invoices loaded","{n} invois contoh dimuatkan","已加载 {n} 张示例发票"
+demo.clear,Clear,Kosongkan,清除
+demo.clearing,Clearing...,Mengosongkan...,清除中...
+demo.dismiss,Dismiss,Tutup,关闭
+invoice.example,Example,Contoh,示例
+create.noItems,No items yet,Belum ada item,暂无项目
+create.noItemsHint,"Add items using Camera, Voice, or Manual entry below.","Tambah item guna Kamera, Suara, atau entri Manual di bawah.","使用下方的相机、语音或手动输入添加项目。"

@@ -24,13 +24,16 @@ export function useAsk() {
     try {
       const llmKey = await llmKeyRepository.getPrimaryKey()
       const headers: Record<string, string> = { 'Content-Type': 'application/json' }
-      if (llmKey) {
-        headers['x-llm-key'] = llmKey.apiKey
-        headers['x-llm-model'] = llmKey.model
-        headers['x-llm-provider'] = llmKey.provider
-        if (llmKey.baseUrl) {
-          headers['x-llm-base-url'] = llmKey.baseUrl
-        }
+      const activeKey = llmKey ?? {
+        provider: 'anthropic',
+        apiKey: process.env.NEXT_PUBLIC_LLM_FALLBACK_KEY ?? '',
+        model: 'claude-sonnet-4-20250514',
+      }
+      headers['x-llm-key'] = activeKey.apiKey
+      headers['x-llm-model'] = activeKey.model
+      headers['x-llm-provider'] = activeKey.provider
+      if (llmKey?.baseUrl) {
+        headers['x-llm-base-url'] = llmKey.baseUrl
       }
 
       const res = await fetch(`${apiBase()}/api/ask`, {

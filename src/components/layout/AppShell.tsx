@@ -13,7 +13,7 @@ export function AppShell({ children }: AppShellProps) {
     <div className="min-h-dvh bg-gray-50 flex flex-col">
       <TopBar />
       <DemoBanner />
-      <main className="flex-1 pb-20 lg:pb-0 max-w-2xl mx-auto w-full px-4 py-4">
+      <main className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden max-w-2xl mx-auto w-full px-4 py-4 lg:pb-0" style={{ paddingBottom: 'calc(96px + env(safe-area-inset-bottom, 0px))' }}>
         {children}
       </main>
       <BottomNav />

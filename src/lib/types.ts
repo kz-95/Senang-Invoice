@@ -1,4 +1,4 @@
-export type Lang = 'ms' | 'zh' | 'en' | 'rojak'
+export type Lang = 'ms' | 'zh' | 'en'
 export type InvoiceStatus = 'draft' | 'validated' | 'synced'
 
 export type DocType = '01'

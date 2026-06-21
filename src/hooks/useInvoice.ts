@@ -2,6 +2,7 @@
 import { useCallback, useState } from 'react'
 import { useInvoiceStore } from '@/stores/invoiceStore'
 import { useProfileStore } from '@/stores/profileStore'
+import { useUiStore } from '@/stores/uiStore'
 import { buildUbl } from '@/services/invoice/ublBuilder'
 import { myInvoisCredsRepository } from '@/services/data/myInvoisCredsRepository'
 import { invoiceRepository } from '@/services/data/invoiceRepository'
@@ -29,13 +30,18 @@ export function useInvoice() {
 
     const { lines, buyer } = useInvoiceStore.getState()
     const { profile } = useProfileStore.getState()
+    const addToast = useUiStore.getState().addToast
 
     if (!profile) {
-      setError('Seller profile required')
+      const msg = 'Seller profile required. Set up your profile in Settings first.'
+      setError(msg)
+      addToast({ id: crypto.randomUUID(), message: msg, type: 'error' })
       return null
     }
     if (lines.length === 0) {
-      setError('At least one line item required')
+      const msg = 'At least one line item required'
+      setError(msg)
+      addToast({ id: crypto.randomUUID(), message: msg, type: 'error' })
       return null
     }
 
@@ -50,7 +56,9 @@ export function useInvoice() {
       const presets = profile.numberingPresets
       const activePreset = presets.find(p => p.isDefault) ?? presets[0]
       if (!activePreset) {
-        setError('No numbering preset configured')
+        const msg = 'No numbering preset configured'
+        setError(msg)
+        addToast({ id: crypto.randomUUID(), message: msg, type: 'error' })
         return null
       }
 
@@ -101,7 +109,9 @@ export function useInvoice() {
       })
       const validation = (await res.json()) as import('@/lib/types').ValidationResult
       if (!res.ok || validation.error) {
-        setError(validation.error ?? 'Submission failed')
+        const msg = validation.error ?? 'Submission failed — check MyInvois credentials in Settings'
+        setError(msg)
+        useUiStore.getState().addToast({ id: crypto.randomUUID(), message: msg, type: 'error' })
         return null
       }
 
@@ -149,7 +159,9 @@ export function useInvoice() {
       useInvoiceStore.getState().reset()
       return invoice
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Finalization failed')
+      const msg = err instanceof Error ? err.message : 'Finalization failed'
+      setError(msg)
+      useUiStore.getState().addToast({ id: crypto.randomUUID(), message: msg, type: 'error' })
       return null
     } finally {
       setLoading(false)

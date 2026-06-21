@@ -109,6 +109,11 @@
     "ms": "Laman Utama",
     "zh": "首页"
   },
+  "nav.profile": {
+    "en": "Profile",
+    "ms": "Profil",
+    "zh": "个人资料"
+  },
   "nav.guide": {
     "en": "Guide",
     "ms": "Panduan",
@@ -119,170 +124,70 @@
     "ms": "Buka aplikasi",
     "zh": "打开应用"
   },
-  "nav.download": {
-    "en": "Download",
-    "ms": "Muat Turun",
-    "zh": "下载"
-  },
-  "nav.support": {
-    "en": "Support",
-    "ms": "Sokongan",
-    "zh": "支持"
-  },
-  "nav.about": {
-    "en": "About Us",
-    "ms": "Tentang Kami",
-    "zh": "关于我们"
-  },
-  "support.title": {
-    "en": "Support",
-    "ms": "Sokongan",
-    "zh": "支持"
-  },
-  "support.intro": {
-    "en": "Need a hand with SenangInvoice? We're here to help you get compliant and invoicing fast.",
-    "ms": "Perlukan bantuan dengan SenangInvoice? Kami sedia membantu anda mematuhi peraturan dan menghantar invois dengan pantas.",
-    "zh": "使用 SenangInvoice 需要帮助吗？我们随时协助您快速合规并开具发票。"
-  },
-  "support.contactTitle": {
-    "en": "Email us",
-    "ms": "E-mel kami",
-    "zh": "给我们发邮件"
-  },
-  "support.contactDesc": {
-    "en": "Questions, bugs, or feedback - reach us and we'll reply within 1–2 business days.",
-    "ms": "Soalan, pepijat, atau maklum balas - hubungi kami dan kami akan membalas dalam 1–2 hari bekerja.",
-    "zh": "有疑问、错误或反馈 - 联系我们，我们将在 1–2 个工作日内回复。"
-  },
-  "support.guideTitle": {
-    "en": "Read the guide",
-    "ms": "Baca panduan",
-    "zh": "阅读指南"
-  },
-  "support.guideDesc": {
-    "en": "Step-by-step help on e-invoicing scope, MyTax registration, and MyInvois access.",
-    "ms": "Bantuan langkah demi langkah tentang skop e-invois, pendaftaran MyTax, dan akses MyInvois.",
-    "zh": "关于电子发票范围、MyTax 注册和 MyInvois 访问的分步帮助。"
-  },
-  "about.title": {
-    "en": "About Us",
-    "ms": "Tentang Kami",
-    "zh": "关于我们"
-  },
-  "about.intro": {
-    "en": "SenangInvoice makes Malaysian e-invoicing simple for small businesses and freelancers.",
-    "ms": "SenangInvoice memudahkan e-invois Malaysia untuk perniagaan kecil dan pekerja bebas.",
-    "zh": "SenangInvoice 让马来西亚的中小企业和自由职业者轻松开具电子发票。"
-  },
-  "about.missionTitle": {
-    "en": "Our mission",
-    "ms": "Misi kami",
-    "zh": "我们的使命"
-  },
-  "about.missionDesc": {
-    "en": "Snap a receipt, speak your items, or type them in - and submit an LHDN-compliant e-invoice with a QR code in seconds. No portals, no spreadsheets.",
-    "ms": "Imbas resit, sebut item anda, atau taipkannya - dan hantar e-invois yang mematuhi LHDN dengan kod QR dalam beberapa saat. Tiada portal, tiada hamparan.",
-    "zh": "拍下收据、口述项目或直接输入 - 几秒内即可提交带二维码、符合 LHDN 规定的电子发票。无需门户，无需电子表格。"
-  },
-  "about.privacyTitle": {
-    "en": "Private by design",
-    "ms": "Privasi secara reka bentuk",
-    "zh": "隐私优先设计"
-  },
-  "about.privacyDesc": {
-    "en": "Your data stays on your device, with optional Google Drive sync you control. You bring your own MyInvois credentials.",
-    "ms": "Data anda kekal pada peranti anda, dengan penyegerakan Google Drive pilihan yang anda kawal. Anda membawa kelayakan MyInvois anda sendiri.",
-    "zh": "您的数据保留在您的设备上，并可选择由您掌控的 Google Drive 同步。您使用自己的 MyInvois 凭证。"
-  },
-  "about.contactTitle": {
-    "en": "Contact us",
-    "ms": "Hubungi kami",
-    "zh": "联系我们"
-  },
-  "about.contactDesc": {
-    "en": "Questions, bugs, or feedback - email us and we'll reply within 1–2 business days.",
-    "ms": "Soalan, pepijat, atau maklum balas - e-mel kami dan kami akan membalas dalam 1–2 hari bekerja.",
-    "zh": "有疑问、错误或反馈 - 给我们发邮件，我们将在 1–2 个工作日内回复。"
-  },
-  "about.formName": {
-    "en": "Your name",
-    "ms": "Nama anda",
-    "zh": "您的姓名"
-  },
-  "about.formEmail": {
-    "en": "Your email",
-    "ms": "E-mel anda",
-    "zh": "您的邮箱"
-  },
-  "about.formMessage": {
-    "en": "Message",
-    "ms": "Mesej",
-    "zh": "留言"
-  },
-  "about.formSend": {
-    "en": "Send message",
-    "ms": "Hantar mesej",
-    "zh": "发送留言"
-  },
-  "about.formSending": {
-    "en": "Sending...",
-    "ms": "Menghantar...",
-    "zh": "发送中..."
-  },
-  "about.formSuccess": {
-    "en": "Thanks! We'll get back to you soon.",
-    "ms": "Terima kasih! Kami akan menghubungi anda tidak lama lagi.",
-    "zh": "谢谢！我们会尽快回复您。"
-  },
-  "about.formError": {
-    "en": "Something went wrong. Please try again or email us directly.",
-    "ms": "Sesuatu tidak kena. Sila cuba lagi atau e-mel kami terus.",
-    "zh": "出了点问题。请重试或直接给我们发邮件。"
-  },
-  "support.askTitle": {
-    "en": "Check if e-invoicing applies to you",
-    "ms": "Semak sama ada e-invois terpakai kepada anda",
-    "zh": "查看电子发票是否适用于您"
-  },
-  "support.askDesc": {
-    "en": "Answer two quick questions - no account or AI key needed.",
-    "ms": "Jawab dua soalan ringkas - tiada akaun atau kunci AI diperlukan.",
-    "zh": "回答两个简单问题 - 无需账户或 AI 密钥。"
-  },
-  "support.guideHint": {
-    "en": "Or browse the full step-by-step guide:",
-    "ms": "Atau layari panduan langkah demi langkah penuh:",
-    "zh": "或浏览完整的分步指南："
-  },
-  "guide.backToGuide": {
-    "en": "Back to guide",
-    "ms": "Kembali ke panduan",
-    "zh": "返回指南"
-  },
-  "guide.nextArticle": {
-    "en": "Next article",
-    "ms": "Artikel seterusnya",
-    "zh": "下一篇文章"
-  },
-  "guide.indexTitle": {
-    "en": "E-Invoicing Guide",
-    "ms": "Panduan E-Invois",
-    "zh": "电子发票指南"
-  },
-  "landing.downloadNow": {
-    "en": "Download Now",
-    "ms": "Muat Turun Sekarang",
-    "zh": "立即下载"
-  },
   "landing.heroTitle": {
     "en": "Not sure if e-invoicing applies to you? Start here.",
     "ms": "Tidak pasti jika e-invois terpakai kepada anda? Mula di sini.",
     "zh": "不确定电子发票是否适用于您？从这里开始。"
   },
   "landing.heroSubtitle": {
-    "en": "Malaysian e-invoice made easy - snap, speak, submit.",
-    "ms": "E-invois Malaysia dipermudahkan - snap, sebut, hantar.",
-    "zh": "马来西亚电子发票，简单易用 - 拍照、说话、提交。"
+    "en": "Malaysian e-invoice made easy - snap",
+    "ms": "speak",
+    "zh": "马来西亚电子发票 - 轻松搞定"
+  },
+  "landing.downloadAppNow": {
+    "en": "Download App Now",
+    "ms": "Muat Turun Aplikasi",
+    "zh": "立即下载应用"
+  },
+  "landing.downloadNow": {
+    "en": "Download Now",
+    "ms": "Muat Turun",
+    "zh": "立即下载"
+  },
+  "landing.heroMainTitle": {
+    "en": "Malaysian e-Invoice",
+    "ms": "e-Invois Malaysia",
+    "zh": "马来西亚电子发票"
+  },
+  "landing.heroMainTitleAccent": {
+    "en": "Made Easy",
+    "ms": "Dipermudahkan",
+    "zh": "轻松搞定"
+  },
+  "landing.heroDescription": {
+    "en": "Snap a receipt, speak your items, or type them in. Senang Inv handles LHDN MyInvois submission, classification codes, QR codes, and PDF generation — so you don't have to.",
+    "ms": "Gambar resit, sebut item anda, atau taip. Senang Inv uruskan penyerahan MyInvois LHDN, kod klasifikasi, kod QR, dan penjanaan PDF — supaya anda tidak perlu.",
+    "zh": "拍照收据、说出项目或手动输入。Senang Inv 为您处理 LHDN MyInvois 提交、分类代码、二维码和 PDF 生成。"
+  },
+  "landing.featurePillCompliant": {
+    "en": "LHDN Compliant",
+    "ms": "Patuh LHDN",
+    "zh": "符合 LHDN 标准"
+  },
+  "landing.featurePillQr": {
+    "en": "QR Code Ready",
+    "ms": "Kod QR Sedia",
+    "zh": "支持二维码"
+  },
+  "landing.featurePillInstant": {
+    "en": "Instant Validation",
+    "ms": "Pengesahan Segera",
+    "zh": "即时验证"
+  },
+  "landing.viewGuide": {
+    "en": "View Full Guide",
+    "ms": "Lihat Panduan Penuh",
+    "zh": "查看完整指南"
+  },
+  "landing.lhdnQrVerified": {
+    "en": "LHDN QR Verified",
+    "ms": "QR LHDN Disahkan",
+    "zh": "LHDN 二维码已验证"
+  },
+  "landing.heroSubtitle": {
+    "en": "Malaysian e-invoice made easy - snap",
+    "ms": "speak",
+    "zh": "submit."
   },
   "landing.heroCtaScope": {
     "en": "Am I in scope?",
@@ -325,9 +230,9 @@
     "zh": "免费"
   },
   "landing.feature3Desc": {
-    "en": "Free to use. No subscriptions, no hidden fees.",
-    "ms": "Percuma untuk digunakan. Tiada langganan, tiada yuran tersembunyi.",
-    "zh": "免费使用。无订阅，无隐藏费用。"
+    "en": "Free to use. No subscriptions",
+    "ms": "no hidden fees.",
+    "zh": "Percuma untuk digunakan. Tiada langganan"
   },
   "landing.painTitle": {
     "en": "One path is painful. One is not.",
@@ -365,9 +270,9 @@
     "zh": "SenangInvoice 方式"
   },
   "landing.senangItem1": {
-    "en": "Snap, voice, or manual input in seconds",
-    "ms": "Snap, suara, atau input manual dalam beberapa saat",
-    "zh": "拍照、语音或手动输入，几秒完成"
+    "en": "Snap",
+    "ms": "voice",
+    "zh": "or manual input in seconds"
   },
   "landing.senangItem2": {
     "en": "AI auto-classification matches your items",
@@ -420,9 +325,9 @@
     "zh": "创建发票"
   },
   "create.subtitle": {
-    "en": "Snap a receipt, speak your items, or enter manually",
-    "ms": "Snap resit, sebut item anda, atau masukkan secara manual",
-    "zh": "拍照收据、说出您的项目或手动输入"
+    "en": "Snap a receipt",
+    "ms": "speak your items",
+    "zh": "or enter manually"
   },
   "create.cameraTab": {
     "en": "Camera",
@@ -445,9 +350,9 @@
     "zh": "拍摄您的收据照片"
   },
   "create.captureHint2": {
-    "en": "Tap to open camera, or drag an image here",
-    "ms": "Ketik untuk buka kamera, atau seret imej ke sini",
-    "zh": "点击打开相机，或拖拽图片到此处"
+    "en": "Tap to open camera",
+    "ms": "or drag an image here",
+    "zh": "Ketik untuk buka kamera"
   },
   "create.takePhoto": {
     "en": "Take Photo",
@@ -555,19 +460,24 @@
     "zh": "正在提取行项目..."
   },
   "create.error": {
-    "en": "Extraction error. Please try again.",
-    "ms": "Ralat pengekstrakan. Sila cuba lagi.",
-    "zh": "提取错误。请重试。"
+    "en": "{error}. Try again",
+    "ms": "or switch to Manual entry.",
+    "zh": "{error}. Cuba lagi"
+  },
+  "create.addItems": {
+    "en": "Add Items",
+    "ms": "Tambah Item",
+    "zh": "添加项目"
   },
   "create.advancedOptions": {
-    "en": "Advanced Options",
-    "ms": "Pilihan Lanjutan",
-    "zh": "高级选项"
+    "en": "Advanced Options (Discount, Payment)",
+    "ms": "Pilihan Lanjutan (Diskaun, Bayaran)",
+    "zh": "高级选项（折扣、付款）"
   },
   "dashboard.title": {
-    "en": "Senang Invoice",
-    "ms": "Senang Invoice",
-    "zh": "Senang Invoice"
+    "en": "Invoices",
+    "ms": "Invois",
+    "zh": "发票"
   },
   "dashboard.subtitle": {
     "en": "Malaysian e-invoice made easy",
@@ -588,6 +498,31 @@
     "en": "Total",
     "ms": "Jumlah",
     "zh": "总计"
+  },
+  "dashboard.tabPending": {
+    "en": "Pending",
+    "ms": "Tertunda",
+    "zh": "待处理"
+  },
+  "dashboard.tabValidated": {
+    "en": "Validated",
+    "ms": "Disahkan",
+    "zh": "已验证"
+  },
+  "dashboard.tabSynced": {
+    "en": "Synced",
+    "ms": "Disegerak",
+    "zh": "已同步"
+  },
+  "dashboard.tabArchived": {
+    "en": "Archived",
+    "ms": "Diarkib",
+    "zh": "已归档"
+  },
+  "dashboard.tabTrash": {
+    "en": "Trash",
+    "ms": "Sampah",
+    "zh": "回收站"
   },
   "dashboard.searchPlaceholder": {
     "en": "Search invoices...",
@@ -618,6 +553,11 @@
     "en": "This Month",
     "ms": "Bulan ini",
     "zh": "本月"
+  },
+  "dashboard.thisYear": {
+    "en": "This Year",
+    "ms": "Tahun ini",
+    "zh": "今年"
   },
   "dashboard.clearFilter": {
     "en": "Clear",
@@ -655,9 +595,9 @@
     "zh": "卖家资料"
   },
   "settings.sellerProfileDesc": {
-    "en": "Business name, TIN, address",
-    "ms": "Nama perniagaan, TIN, alamat",
-    "zh": "企业名称、TIN、地址"
+    "en": "Business name",
+    "ms": "TIN",
+    "zh": "address"
   },
   "settings.llmKeys": {
     "en": "LLM API Keys",
@@ -675,9 +615,9 @@
     "zh": "MyInvois API 凭证"
   },
   "settings.myinvoisCredsDesc": {
-    "en": "Your own ERP credentials. Stored only on this device, used to submit e-invoices as you.",
-    "ms": "Kelayakan ERP anda sendiri. Disimpan hanya pada peranti ini, digunakan untuk menghantar e-invois sebagai anda.",
-    "zh": "您自己的 ERP 凭证。仅存储在此设备上，用于以您的身份提交电子发票。"
+    "en": "Your own ERP credentials. Stored only on this device",
+    "ms": "used to submit e-invoices as you.",
+    "zh": "Kelayakan ERP anda sendiri. Disimpan hanya pada peranti ini"
   },
   "settings.language": {
     "en": "Language",
@@ -964,11 +904,6 @@
     "ms": "TIN Pembeli",
     "zh": "买家 TIN"
   },
-  "invoice.invoiceNumber": {
-    "en": "Invoice Number",
-    "ms": "Nombor Invois",
-    "zh": "发票号码"
-  },
   "review.description": {
     "en": "Description",
     "ms": "Penerangan",
@@ -1025,9 +960,9 @@
     "zh": "询问 Senang Invoice"
   },
   "ask.emptyDesc": {
-    "en": "Questions about e-invoicing, exemptions, classification codes, or compliance.",
-    "ms": "Soalan tentang e-invois, pengecualian, kod klasifikasi, atau pematuhan.",
-    "zh": "有关电子发票、豁免、分类代码或合规性的问题。"
+    "en": "Questions about e-invoicing",
+    "ms": "exemptions",
+    "zh": "classification codes"
   },
   "ask.scopeCheck": {
     "en": "Scope Check",
@@ -1119,100 +1054,15 @@
     "ms": "Sesi tamat. Sila daftar masuk semula.",
     "zh": "会话已过期。请重新登录。"
   },
-  "numbering.title": {
-    "en": "Numbering Presets",
-    "ms": "Praset Nombor",
-    "zh": "编号预设"
+  "invoice.downloadPdf": {
+    "en": "Download PDF",
+    "ms": "Muat Turun PDF",
+    "zh": "下载 PDF"
   },
-  "numbering.addPreset": {
-    "en": "Add Preset",
-    "ms": "Tambah Praset",
-    "zh": "添加预设"
-  },
-  "numbering.editPreset": {
-    "en": "Edit Preset",
-    "ms": "Sunting Praset",
-    "zh": "编辑预设"
-  },
-  "numbering.deletePreset": {
-    "en": "Delete Preset",
-    "ms": "Padam Praset",
-    "zh": "删除预设"
-  },
-  "numbering.setDefault": {
-    "en": "Set Default",
-    "ms": "Tetapkan Lalai",
-    "zh": "设为默认"
-  },
-  "numbering.pattern": {
-    "en": "Pattern",
-    "ms": "Corak",
-    "zh": "模式"
-  },
-  "numbering.customTokens": {
-    "en": "Custom Tokens",
-    "ms": "Token Tersuai",
-    "zh": "自定义令牌"
-  },
-  "numbering.resetCounter": {
-    "en": "Reset Counter",
-    "ms": "Tetapkan Semula Kaunter",
-    "zh": "重置计数器"
-  },
-  "numbering.livePreview": {
-    "en": "Live preview",
-    "ms": "Pratonton langsung",
-    "zh": "实时预览"
-  },
-  "numbering.setAsDefault": {
-    "en": "Set as default",
-    "ms": "Tetapkan sebagai lalai",
-    "zh": "设为默认"
-  },
-  "numbering.nextNumber": {
-    "en": "Next",
-    "ms": "Seterusnya",
-    "zh": "下一个"
-  },
-  "numbering.presetName": {
-    "en": "Preset Name",
-    "ms": "Nama Praset",
-    "zh": "预设名称"
-  },
-  "numbering.tokenLabel": {
-    "en": "Label",
-    "ms": "Label",
-    "zh": "标签"
-  },
-  "numbering.tokenDefault": {
-    "en": "Default Value",
-    "ms": "Nilai Lalai",
-    "zh": "默认值"
-  },
-  "numbering.tokenName": {
-    "en": "Token Name",
-    "ms": "Nama Token",
-    "zh": "令牌名称"
-  },
-  "numbering.noPresets": {
-    "en": "No numbering presets configured. Add one to start numbering invoices.",
-    "ms": "Tiada praset nombor dikonfigurasi. Tambah satu untuk mula menomborkan invois.",
-    "zh": "未配置编号预设。添加一个以开始为发票编号。"
-  },
-  "dashboard.tabActive": {
-    "en": "Active",
-    "ms": "Aktif",
-    "zh": "活跃"
-  },
-  "dashboard.tabArchived": {
-    "en": "Archived",
-    "ms": "Diarkib",
-    "zh": "已归档"
-  },
-  "dashboard.tabTrash": {
-    "en": "Trash",
-    "ms": "Tong Sampah",
-    "zh": "回收站"
+  "invoice.daysUntilPermanent": {
+    "en": "Deleted in {days} day(s)",
+    "ms": "Dipadam dalam {days} hari",
+    "zh": "{days} 天后永久删除"
   },
   "invoice.archive": {
     "en": "Archive",
@@ -1239,125 +1089,115 @@
     "ms": "Padam Sekarang",
     "zh": "立即删除"
   },
-  "invoice.editWarning": {
+  "invoice.deleteForever": {
+    "en": "Delete Forever",
+    "ms": "Padam Kekal",
+    "zh": "永久删除"
+  },
+  "invoice.confirmHardDeleteTitle": {
+    "en": "Delete invoice forever?",
+    "ms": "Padam invois kekal?",
+    "zh": "永久删除发票？"
+  },
+  "invoice.confirmHardDeleteMsg": {
+    "en": "This permanently removes \"{number}\". This cannot be undone.",
+    "ms": "Ini akan memadam \"{number}\" secara kekal. Tindakan ini tidak boleh dibatalkan.",
+    "zh": "这将永久删除 \"{number}\"，无法撤销。"
+  },
+  "invoice.confirmDeleteMsg": {
+    "en": "Move \"{number}\" to trash? It can be restored within 30 days.",
+    "ms": "Alihkan \"{number}\" ke tong sampah? Ia boleh dipulihkan dalam masa 30 hari.",
+    "zh": "将 \"{number}\" 移至回收站？30 天内可恢复。"
+  },
+  "invoice.edited": {
+    "en": "Edited after validation",
+    "ms": "Disunting selepas pengesahan",
+    "zh": "验证后已编辑"
+  },
+  "invoice.editedWarning": {
     "en": "You're editing a validated invoice. The MyInvois record won't change. For official corrections, issue a credit/debit note.",
-    "ms": "Anda sedang menyunting invois yang disahkan. Rekod MyInvois tidak akan berubah. Untuk pembetulan rasmi, keluarkan nota kredit/debit.",
-    "zh": "您正在编辑已验证的发票。MyInvois 记录不会改变。如需正式更正，请签发贷方/借方通知单。"
+    "ms": "Anda sedang menyunting invois yang telah disahkan. Rekod MyInvois tidak akan berubah. Untuk pembetulan rasmi, keluarkan nota kredit/debit.",
+    "zh": "您正在编辑已验证的发票。MyInvois 记录不会更改。如需正式更正，请开具贷方/借方票据。"
   },
-  "invoice.daysUntilPermanent": {
-    "en": "{days} days until permanent deletion",
-    "ms": "{days} hari sehingga pemadaman kekal",
-    "zh": "距离永久删除还有 {days} 天"
-  },
-  "trash.emptyTitle": {
-    "en": "Trash is empty",
-    "ms": "Tong sampah kosong",
-    "zh": "回收站为空"
-  },
-  "trash.emptyDesc": {
-    "en": "Deleted invoices appear here for 30 days before permanent removal.",
-    "ms": "Invois yang dipadam muncul di sini selama 30 hari sebelum pemadaman kekal.",
-    "zh": "已删除的发票在此保留 30 天后永久删除。"
-  },
-  "archived.emptyTitle": {
-    "en": "No archived invoices",
-    "ms": "Tiada invois diarkib",
-    "zh": "无已归档发票"
-  },
-  "archived.emptyDesc": {
-    "en": "Archived invoices will appear here.",
-    "ms": "Invois yang diarkib akan muncul di sini.",
-    "zh": "已归档的发票将显示在此处。"
-  },
-  "sync.synced": {
-    "en": "Synced",
-    "ms": "Disegerak",
-    "zh": "已同步"
-  },
-  "sync.modified": {
-    "en": "Modified",
-    "ms": "Diubahsuai",
-    "zh": "已修改"
-  },
-  "sync.notBackedUp": {
-    "en": "Not backed up",
-    "ms": "Tidak disandarkan",
-    "zh": "未备份"
-  },
-  "create.numberPreview": {
-    "en": "Preview",
-    "ms": "Pratonton",
-    "zh": "预览"
-  },
-  "create.numberEditable": {
-    "en": "Number (editable)",
-    "ms": "Nombor (boleh disunting)",
-    "zh": "编号（可编辑）"
+  "dashboard.bukkuExport": {
+    "en": "Export to Bukku",
+    "ms": "Eksport ke Bukku",
+    "zh": "导出至 Bukku"
   },
   "onboarding.skip": {
     "en": "Skip",
     "ms": "Langkau",
     "zh": "跳过"
   },
-  "onboarding.next": {
-    "en": "Next",
-    "ms": "Seterusnya",
-    "zh": "下一步"
+  "welcome.stepLabel": {
+    "en": "Step {n} of 3",
+    "ms": "Langkah {n} daripada 3",
+    "zh": "第 {n} 步，共 3 步"
+  },
+  "welcome.loginTitle": {
+    "en": "Back up to Google Drive",
+    "ms": "Sandar ke Google Drive",
+    "zh": "备份到 Google Drive"
+  },
+  "onboarding.welcomeTitle": {
+    "en": "Invoicing made easy",
+    "ms": "Penginvoisan dipermudah",
+    "zh": "轻松开发票"
+  },
+  "onboarding.welcomeDesc": {
+    "en": "Snap, speak, or type — get a MyInvois-ready e-invoice in seconds.",
+    "ms": "Imbas, sebut, atau taip — dapatkan e-invois sedia MyInvois dalam beberapa saat.",
+    "zh": "拍照、语音或输入，几秒内生成符合 MyInvois 的电子发票。"
+  },
+  "onboarding.welcomeStep1": {
+    "en": "Capture by photo, voice, or manual entry",
+    "ms": "Tangkap melalui foto, suara, atau kemasukan manual",
+    "zh": "通过照片、语音或手动输入"
+  },
+  "onboarding.welcomeStep2": {
+    "en": "Auto-categorized and validated",
+    "ms": "Dikategori dan disahkan automatik",
+    "zh": "自动分类并验证"
+  },
+  "onboarding.welcomeStep3": {
+    "en": "Submit to MyInvois with one tap",
+    "ms": "Hantar ke MyInvois dengan satu ketikan",
+    "zh": "一键提交至 MyInvois"
+  },
+  "onboarding.scopeTitle": {
+    "en": "Do you need e-invoicing?",
+    "ms": "Adakah anda perlukan e-invois?",
+    "zh": "您需要电子发票吗？"
+  },
+  "onboarding.scopeDesc": {
+    "en": "LHDN is rolling out e-invoicing in phases. Check whether it applies to you yet.",
+    "ms": "LHDN melaksanakan e-invois secara berperingkat. Semak sama ada ia terpakai kepada anda.",
+    "zh": "内陆税收局正分阶段推行电子发票，查看是否已适用于您。"
+  },
+  "onboarding.scopeLink": {
+    "en": "Check if I need it",
+    "ms": "Semak jika saya perlukannya",
+    "zh": "查看我是否需要"
+  },
+  "onboarding.driveTitle": {
+    "en": "Your data stays yours",
+    "ms": "Data anda kekal milik anda",
+    "zh": "您的数据归您所有"
+  },
+  "onboarding.driveDesc": {
+    "en": "Invoices are stored on your device and backed up to your own Google Drive.",
+    "ms": "Invois disimpan pada peranti anda dan disandarkan ke Google Drive anda sendiri.",
+    "zh": "发票存储在您的设备上，并备份到您自己的 Google Drive。"
   },
   "onboarding.back": {
     "en": "Back",
     "ms": "Kembali",
     "zh": "返回"
   },
-  "onboarding.welcomeTitle": {
-    "en": "Snap. Speak. Submit.",
-    "ms": "Snap. Sebut. Hantar.",
-    "zh": "拍照、说话、提交"
-  },
-  "onboarding.welcomeDesc": {
-    "en": "Malaysian e-invoices made easy - no portal headaches, no spreadsheets.",
-    "ms": "E-invois Malaysia dipermudah - tanpa portal yang menyusahkan atau hamparan.",
-    "zh": "轻松开具马来西亚电子发票，无需繁琐门户或表格。"
-  },
-  "onboarding.welcomeStep1": {
-    "en": "Snap a receipt or speak your items",
-    "ms": "Snap resit atau sebut item anda",
-    "zh": "拍下收据或说出您的项目"
-  },
-  "onboarding.welcomeStep2": {
-    "en": "Review the auto-filled invoice",
-    "ms": "Semak invois yang diisi automatik",
-    "zh": "查看自动填写的发票"
-  },
-  "onboarding.welcomeStep3": {
-    "en": "Submit to MyInvois & get your QR",
-    "ms": "Hantar ke MyInvois & dapat QR anda",
-    "zh": "提交至 MyInvois 并获取二维码"
-  },
-  "onboarding.scopeTitle": {
-    "en": "Not sure it applies to you?",
-    "ms": "Tak pasti ia terpakai pada anda?",
-    "zh": "不确定是否适用于您？"
-  },
-  "onboarding.scopeDesc": {
-    "en": "E-invoicing rolls out in stages by revenue. Check in seconds whether you need it yet.",
-    "ms": "E-invois dilaksana berperingkat ikut pendapatan. Semak dalam beberapa saat sama ada anda perlu.",
-    "zh": "电子发票按营业额分阶段推行。几秒内查看您是否需要。"
-  },
-  "onboarding.scopeLink": {
-    "en": "Do I need e-invoicing? →",
-    "ms": "Adakah saya perlu e-invois? →",
-    "zh": "我需要电子发票吗？→"
-  },
-  "onboarding.driveTitle": {
-    "en": "Back up to Google Drive",
-    "ms": "Sandarkan ke Google Drive",
-    "zh": "备份到 Google Drive"
-  },
-  "onboarding.driveDesc": {
-    "en": "Your data stays on your device. Optionally back up to your own Google Drive so nothing is lost.",
-    "ms": "Data anda kekal pada peranti. Pilihan untuk sandar ke Google Drive anda supaya tiada yang hilang.",
-    "zh": "您的数据保存在设备上。可选择备份到您自己的 Google Drive，确保万无一失。"
+  "onboarding.next": {
+    "en": "Next",
+    "ms": "Seterusnya",
+    "zh": "下一步"
   },
   "onboarding.driveConnect": {
     "en": "Connect Google Drive",
@@ -1369,271 +1209,44 @@
     "ms": "Langkau buat masa ini",
     "zh": "暂时跳过"
   },
-  "landing.getTheApp": {
-    "en": "Get the app",
-    "ms": "Dapatkan aplikasi",
-    "zh": "获取应用"
+  "demo.seeding": {
+    "en": "Seeding example data...",
+    "ms": "Menyemai data contoh...",
+    "zh": "正在生成示例数据..."
   },
-  "landing.downloadAppNow": {
-    "en": "Download the App Now!",
-    "ms": "Muat Turun Aplikasi Sekarang!",
-    "zh": "立即下载应用！"
+  "demo.loaded": {
+    "en": "{n} example invoice{{n}} loaded",
+    "ms": "{n} invois contoh dimuatkan",
+    "zh": "已加载 {n} 张示例发票"
   },
-  "landing.downloadApk": {
-    "en": "Download APK (Android)",
-    "ms": "Muat turun APK (Android)",
-    "zh": "下载 APK（安卓）"
+  "demo.clear": {
+    "en": "Clear",
+    "ms": "Kosongkan",
+    "zh": "清除"
   },
-  "landing.apkComingSoon": {
-    "en": "APK coming soon",
-    "ms": "APK akan datang",
-    "zh": "APK 即将推出"
+  "demo.clearing": {
+    "en": "Clearing...",
+    "ms": "Mengosongkan...",
+    "zh": "清除中..."
   },
-  "landing.playstoreSoon": {
-    "en": "Coming soon on Google Play",
-    "ms": "Akan datang di Google Play",
-    "zh": "即将登陆 Google Play"
+  "demo.dismiss": {
+    "en": "Dismiss",
+    "ms": "Tutup",
+    "zh": "关闭"
   },
-  "landing.playstoreGet": {
-    "en": "Get it on Google Play",
-    "ms": "Dapatkan di Google Play",
-    "zh": "在 Google Play 获取"
+  "invoice.example": {
+    "en": "Example",
+    "ms": "Contoh",
+    "zh": "示例"
   },
-  "dashboard.recentInvoices": {
-    "en": "Recent Invoices",
-    "ms": "Invois Terkini",
-    "zh": "最近的发票"
+  "create.noItems": {
+    "en": "No items yet",
+    "ms": "Belum ada item",
+    "zh": "暂无项目"
   },
-  "invoice.edited": {
-    "en": "Edited",
-    "ms": "Disunting",
-    "zh": "已编辑"
-  },
-  "invoice.deleteForever": {
-    "en": "Delete Forever",
-    "ms": "Padam Selamanya",
-    "zh": "永久删除"
-  },
-  "invoice.confirmHardDeleteTitle": {
-    "en": "Delete invoice forever?",
-    "ms": "Padam invois selamanya?",
-    "zh": "永久删除发票？"
-  },
-  "invoice.confirmHardDeleteMsg": {
-    "en": "Invoice {number} will be permanently removed. This cannot be undone.",
-    "ms": "Invois {number} akan dipadam secara kekal. Ini tidak boleh dibatalkan.",
-    "zh": "发票 {number} 将被永久删除。此操作无法撤销。"
-  },
-  "invoice.working": {
-    "en": "Working...",
-    "ms": "Sedang memproses...",
-    "zh": "处理中..."
-  },
-  "invoice.selectedCount": {
-    "en": "{n} selected",
-    "ms": "{n} dipilih",
-    "zh": "已选择 {n} 项"
-  },
-  "landing.downloadApkShort": {
-    "en": "Download APK",
-    "ms": "Muat Turun APK",
-    "zh": "下载 APK"
-  },
-  "landing.playStoreComingSoon": {
-    "en": "Play Store coming soon",
-    "ms": "Play Store akan datang",
-    "zh": "Play Store 即将推出"
-  },
-  "landing.downloadChooseTitle": {
-    "en": "Choose how to install",
-    "ms": "Pilih cara pemasangan",
-    "zh": "选择安装方式"
-  },
-  "landing.downloadViaPlaystore": {
-    "en": "Google Play Store",
-    "ms": "Google Play Store",
-    "zh": "Google Play 商店"
-  },
-  "landing.downloadViaPlaystoreDesc": {
-    "en": "Recommended — installs and updates automatically",
-    "ms": "Disyorkan — pasang dan kemas kini automatik",
-    "zh": "推荐 — 自动安装和更新"
-  },
-  "landing.downloadViaApk": {
-    "en": "Standalone APK",
-    "ms": "APK Berdiri Sendiri",
-    "zh": "独立 APK"
-  },
-  "landing.downloadViaApkDesc": {
-    "en": "Direct download · install it yourself",
-    "ms": "Muat turun terus · pasang sendiri",
-    "zh": "直接下载 · 自行安装"
-  },
-  "guide.loginCta": {
-    "en": "Log In to Continue",
-    "ms": "Log Masuk untuk Teruskan",
-    "zh": "登录以继续"
-  },
-  "welcome.stepLabel": {
-    "en": "Step {n} of 3",
-    "ms": "Langkah {n} daripada 3",
-    "zh": "第 {n} 步，共 3 步"
-  },
-  "welcome.loginTitle": {
-    "en": "Sign in to get started",
-    "ms": "Log masuk untuk bermula",
-    "zh": "登录即可开始"
-  },
-  "calc.title": {
-    "en": "Quick revenue check",
-    "ms": "Semakan hasil pantas",
-    "zh": "快速收入查核"
-  },
-  "calc.subtitle": {
-    "en": "Enter your sales — we'll estimate your yearly revenue and tell you instantly.",
-    "ms": "Masukkan jualan anda — kami anggar hasil tahunan dan beritahu anda serta-merta.",
-    "zh": "输入您的销售额 — 我们将估算您的年收入并立即告知。"
-  },
-  "calc.inputLabel": {
-    "en": "Your average {period} sales",
-    "ms": "Purata jualan {period} anda",
-    "zh": "您的平均{period}销售额"
-  },
-  "calc.placeholder": {
-    "en": "e.g. 80,000",
-    "ms": "cth. 80,000",
-    "zh": "例如 80,000"
-  },
-  "calc.revenueHint": {
-    "en": "Enter revenue = total sales (the full amount customers pay), not your profit.",
-    "ms": "Masukkan hasil = jumlah jualan (keseluruhan amaun pelanggan bayar), bukan keuntungan anda.",
-    "zh": "请输入收入 = 总销售额（顾客支付的全部金额），而非您的利润。"
-  },
-  "calc.estimatedAnnual": {
-    "en": "Estimated annual revenue",
-    "ms": "Anggaran hasil tahunan",
-    "zh": "预估年收入"
-  },
-  "calc.resultRequired": {
-    "en": "Above RM1 million — e-invoicing required",
-    "ms": "Melebihi RM1 juta — e-invois diwajibkan",
-    "zh": "超过 RM100 万 — 需要电子发票"
-  },
-  "calc.resultExempt": {
-    "en": "Below RM1 million — currently exempt",
-    "ms": "Bawah RM1 juta — kini dikecualikan",
-    "zh": "低于 RM100 万 — 目前豁免"
-  },
-  "calc.requiredDetail": {
-    "en": "You are about {amount} over the RM1,000,000 threshold, so you have already hit it and are eligible for e-invoicing.",
-    "ms": "Anda kira-kira {amount} melebihi ambang RM1,000,000, jadi anda sudah mencapainya dan layak untuk e-invois.",
-    "zh": "您已超出 RM1,000,000 门槛约 {amount}，因此您已达标，需要使用电子发票。"
-  },
-  "calc.exemptDetail": {
-    "en": "You are about {amount} below the RM1,000,000 threshold, so you are safe for now.",
-    "ms": "Anda kira-kira {amount} di bawah ambang RM1,000,000, jadi anda selamat buat masa ini.",
-    "zh": "您距离 RM1,000,000 门槛还有约 {amount}，因此目前是安全的。"
-  },
-  "calc.breakdownTitle": {
-    "en": "Your sales broken down",
-    "ms": "Pecahan jualan anda",
-    "zh": "您的销售额明细"
-  },
-  "calc.disclaimer": {
-    "en": "Quick estimate only, not legal advice. The RM1 million threshold is measured per corporate group and IRBM rules can change.",
-    "ms": "Anggaran pantas sahaja, bukan nasihat undang-undang. Ambang RM1 juta diukur bagi setiap kumpulan korporat dan peraturan IRBM boleh berubah.",
-    "zh": "仅为快速估算，并非法律意见。RM100 万门槛按企业集团计算，且 IRBM 规则可能变动。"
-  },
-  "calc.period.day": { "en": "Day", "ms": "Hari", "zh": "每日" },
-  "calc.period.week": { "en": "Week", "ms": "Minggu", "zh": "每周" },
-  "calc.period.month": { "en": "Month", "ms": "Bulan", "zh": "每月" },
-  "calc.period.year": { "en": "Year", "ms": "Tahun", "zh": "每年" },
-  "calc.periodNoun.day": { "en": "daily", "ms": "harian", "zh": "每日" },
-  "calc.periodNoun.week": { "en": "weekly", "ms": "mingguan", "zh": "每周" },
-  "calc.periodNoun.month": { "en": "monthly", "ms": "bulanan", "zh": "每月" },
-  "calc.periodNoun.year": { "en": "yearly", "ms": "tahunan", "zh": "每年" },
-  "calc.per.day": { "en": "Per day", "ms": "Sehari", "zh": "每天" },
-  "calc.per.week": { "en": "Per week", "ms": "Seminggu", "zh": "每周" },
-  "calc.per.month": { "en": "Per month", "ms": "Sebulan", "zh": "每月" },
-  "calc.per.year": { "en": "Per year", "ms": "Setahun", "zh": "每年" },
-  "landing.heroMainTitle": {
-    "en": "Malaysian E-Invoice",
-    "ms": "E-Invois Malaysia",
-    "zh": "马来西亚电子发票"
-  },
-  "landing.heroMainTitleAccent": {
-    "en": "Made Simple",
-    "ms": "Dipermudahkan",
-    "zh": "简单易用"
-  },
-  "landing.heroDescription": {
-    "en": "Comply with LHDN requirements effortlessly. Generate, manage, and send e-invoices with QR codes in seconds.",
-    "ms": "Patuhi keperluan LHDN dengan mudah. Jana, urus, dan hantar e-invois dengan kod QR dalam beberapa saat.",
-    "zh": "轻松符合 LHDN 要求。几秒内生成、管理和发送带 QR 码的电子发票。"
-  },
-  "landing.featurePillCompliant": {
-    "en": "LHDN Compliant",
-    "ms": "Patuh LHDN",
-    "zh": "符合 LHDN"
-  },
-  "landing.featurePillQr": {
-    "en": "QR Code Ready",
-    "ms": "Sedia Kod QR",
-    "zh": "QR 码就绪"
-  },
-  "landing.featurePillInstant": {
-    "en": "Instant Generation",
-    "ms": "Penjanaan Serta-merta",
-    "zh": "即时生成"
-  },
-  "landing.viewGuide": {
-    "en": "View Guide",
-    "ms": "Lihat Panduan",
-    "zh": "查看指南"
-  },
-  "landing.lhdnQrVerified": {
-    "en": "LHDN Compliant & QR Verified",
-    "ms": "Patuh LHDN & QR Disahkan",
-    "zh": "符合 LHDN 且 QR 已验证"
-  },
-  "landing.guideScopeTitle": {
-    "en": "Do I need e-invoicing?",
-    "ms": "Adakah saya perlukan e-invois?",
-    "zh": "我需要电子发票吗？"
-  },
-  "landing.guideScopeSummary": {
-    "en": "Check scope, thresholds, and who must comply.",
-    "ms": "Semak skop, ambang, dan siapa yang mesti mematuhi.",
-    "zh": "查看适用范围、门槛及谁必须遵守。"
-  },
-  "landing.guideRegisterTitle": {
-    "en": "Register on MyTax",
-    "ms": "Daftar di MyTax",
-    "zh": "在 MyTax 注册"
-  },
-  "landing.guideRegisterSummary": {
-    "en": "Digital certificate, TIN, and role setup.",
-    "ms": "Sijil digital, TIN, dan tetapan peranan.",
-    "zh": "数字证书、TIN 及角色设置。"
-  },
-  "landing.guideAccessTitle": {
-    "en": "Get MyInvois Access",
-    "ms": "Dapatkan Akses MyInvois",
-    "zh": "获取 MyInvois 访问权限"
-  },
-  "landing.guideAccessSummary": {
-    "en": "Portal setup, ERP registration, and API keys.",
-    "ms": "Tetapan portal, pendaftaran ERP, dan kunci API.",
-    "zh": "门户设置、ERP 注册及 API 密钥。"
-  },
-  "landing.guideFirstInvoiceTitle": {
-    "en": "Your First Invoice",
-    "ms": "Invois Pertama Anda",
-    "zh": "您的第一张发票"
-  },
-  "landing.guideFirstInvoiceSummary": {
-    "en": "Create and submit e-invoices in SenangInvoice.",
-    "ms": "Cipta dan hantar e-invois dalam SenangInvoice.",
-    "zh": "在 SenangInvoice 中创建并提交电子发票。"
+  "create.noItemsHint": {
+    "en": "Add items using Camera, Voice, or Manual entry below.",
+    "ms": "Tambah item guna Kamera, Suara, atau entri Manual di bawah.",
+    "zh": "使用下方的相机、语音或手动输入添加项目。"
   }
 }

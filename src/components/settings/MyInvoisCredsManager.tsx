@@ -58,7 +58,7 @@ export function MyInvoisCredsManager() {
         <p className="text-sm text-gray-500">Your own ERP credentials. Stored only on this device, used to submit e-invoices as you.</p>
       </div>
 
-      <CredentialHint steps={STEPS} guideHref="/guide/get-myinvois-access" guideLabel="Full registration guide" />
+      <CredentialHint steps={STEPS} />
 
       {saved && !editing && (
         <div className="space-y-2">

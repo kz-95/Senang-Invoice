@@ -7,10 +7,11 @@
 //   1. stash src/app/api -> src/app/_api_stashed
 //   2. compile the Node service bundle (nodejs/services)
 //   3. next build with BUILD_TARGET=apk -> out/
-//   4. restore src/app/api (finally)
+//   4. copy nodejs/ -> out/nodejs/ (capacitor-nodejs runs the project from webDir/nodejs)
+//   5. restore src/app/api (finally)
 
 import { execSync } from 'node:child_process'
-import { existsSync, renameSync } from 'node:fs'
+import { existsSync, renameSync, rmSync, cpSync } from 'node:fs'
 
 const API = 'src/app/api'
 const STASH = 'src/app/_api_stashed'
@@ -27,8 +28,14 @@ try {
     stdio: 'inherit',
     env: { ...process.env, BUILD_TARGET: 'apk' },
   })
+
+  // capacitor-nodejs executes the Node project from `<webDir>/nodejs`. The repo keeps
+  // it at the root (so dev/build-node can compile in place); mirror it into out/ so
+  // `cap sync` carries index.js + services + node_modules into the APK assets.
+  rmSync('out/nodejs', { recursive: true, force: true })
+  cpSync('nodejs', 'out/nodejs', { recursive: true })
 } finally {
   restore() // always put api routes back, even if the build failed
 }
 
-console.log('[export-apk] static export ready in out/, node bundle in nodejs/services')
+console.log('[export-apk] static export ready in out/ (incl out/nodejs); node bundle in nodejs/services')

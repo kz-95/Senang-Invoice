@@ -35,8 +35,10 @@ export function ExtractedItemsTable() {
                 <td className="py-2 pr-2">
                   {line.description}
                   {isLow && (
-                    <span className="ml-1 text-amber-500 cursor-help" title={`Low confidence classification: ${(confidence * 100).toFixed(0)}% - check code ${line.classificationCode || 'N/A'}`}>
-                      &#9888;
+                    <span className="ml-1 text-amber-500 cursor-help inline-flex items-center" title={`Low confidence classification: ${(confidence * 100).toFixed(0)}% - check code ${line.classificationCode || 'N/A'}`}>
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                      </svg>
                     </span>
                   )}
                 </td>
@@ -52,7 +54,11 @@ export function ExtractedItemsTable() {
                   </span>
                 </td>
                 <td className="py-2 pl-2">
-                  <Button variant="ghost" size="sm" onClick={() => removeLine(i)}>&#10005;</Button>
+                  <Button variant="ghost" size="sm" onClick={() => removeLine(i)} aria-label="Remove item">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </Button>
                 </td>
               </tr>
             )

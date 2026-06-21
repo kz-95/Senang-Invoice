@@ -5,7 +5,6 @@ const FALLBACK: Record<Lang, Lang[]> = {
   en: ['en'],
   ms: ['ms', 'en'],
   zh: ['zh', 'en'],
-  rojak: ['rojak', 'ms', 'en'],
 }
 
 export function translate(key: string, lang: Lang, vars?: Record<string, string | number>): string {

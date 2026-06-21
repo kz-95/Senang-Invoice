@@ -45,6 +45,13 @@ function canUseEnvKeys() {
   return process.env.NODE_ENV !== 'production'
 }
 
+// 429/402 from any provider -> serve non-LLM reply immediately (no retry).
+function isRateLimit(err) {
+  if (!err) return false
+  return err.isRateLimit === true || err.status === 429 || err.status === 402
+    || /\b(429|402)\b/.test(err.message || '')
+}
+
 // --- service handlers (lazy-required so a load failure in one doesn't kill all) ---
 
 async function handleSubmit(req, res) {
@@ -91,37 +98,44 @@ async function handleExtract(req, res) {
     }
   }
 
+  const degradedExtract = () => {
+    const rawText = body.transcript || (body.imageBase64 ? '[Image received - OCR text not available without AI key]' : '')
+    return json(res, 200, { items: [], degraded: true, rawText })
+  }
+
   if (key) {
     try {
       return json(res, 200, { items: await extractAndMap(key, model, baseUrl, provider) })
     } catch (err) {
+      if (isRateLimit(err)) {
+        console.warn('[/api/extract] client key rate limited (429/402), serving degraded result')
+        return degradedExtract()
+      }
       console.warn('[/api/extract] client key failed:', err.message)
     }
   }
 
   if (canUseEnvKeys()) {
-    let lastError = null
     for (let i = 0; i < 6; i++) {
       try {
         return json(res, 200, { items: await extractAndMap() })
       } catch (err) {
-        lastError = err
+        if (isRateLimit(err)) {
+          console.warn('[/api/extract] env key rate limited (429/402), serving degraded result')
+          return degradedExtract()
+        }
         console.warn(`[/api/extract] env key ${i + 1}/6:`, err.message)
       }
     }
-    throw lastError || new Error('All LLM keys exhausted')
+    return degradedExtract()
   }
 
   // Degraded - no key anywhere
-  if (body.transcript || body.imageBase64) {
-    const rawText = body.transcript || (body.imageBase64 ? '[Image received - OCR text not available without AI key]' : '')
-    return json(res, 200, { items: [], degraded: true, rawText })
-  }
-  return json(res, 200, { items: [], degraded: true })
+  return degradedExtract()
 }
 
 async function handleAsk(req, res) {
-  const { answer } = require('./services/services/ai/askService')
+  const { answer, degradedAnswer } = require('./services/services/ai/askService')
   const body = JSON.parse((await readBody(req)) || '{}')
   const message = body.message
   const history = body.history || []
@@ -131,13 +145,17 @@ async function handleAsk(req, res) {
   const provider = req.headers['x-llm-provider'] || undefined
 
   if (!key && !canUseEnvKeys()) {
-    return json(res, 200, await answer({ message, history }))
+    return json(res, 200, degradedAnswer(message))
   }
 
   if (key) {
     try {
       return json(res, 200, await answer({ message, history }, key, model, baseUrl, provider))
     } catch (err) {
+      if (isRateLimit(err)) {
+        console.warn('[/api/ask] client key rate limited (429/402), serving degraded reply')
+        return json(res, 200, degradedAnswer(message))
+      }
       console.warn('[/api/ask] client key failed:', err.message)
     }
   }
@@ -147,20 +165,135 @@ async function handleAsk(req, res) {
       try {
         return json(res, 200, await answer({ message, history }))
       } catch (err) {
+        if (isRateLimit(err)) {
+          console.warn('[/api/ask] env key rate limited (429/402), serving degraded reply')
+          return json(res, 200, degradedAnswer(message))
+        }
         console.warn(`[/api/ask] env key ${i + 1}/6:`, err.message)
       }
     }
     // env keys exhausted - degraded fallback
-    return json(res, 200, await answer({ message, history }))
+    return json(res, 200, degradedAnswer(message))
   }
 
-  throw new Error('All LLM keys exhausted - no fallback available')
+  return json(res, 200, degradedAnswer(message))
 }
 
-const ROUTES = {
+async function handleLlmModels(req, res) {
+  const { getLlamaClient } = require('./services/services/ai/llmClient')
+  const body = JSON.parse((await readBody(req)) || '{}')
+  const provider = body.provider
+  const apiKey = body.apiKey || req.headers['x-llm-key']
+  const baseUrl = body.baseUrl || req.headers['x-llm-base-url']
+
+  const DEFAULT_MODELS = {
+    anthropic: ['claude-opus-4-8', 'claude-sonnet-4-6', 'claude-haiku-4-5-20251001', 'claude-3-5-sonnet-20241022'],
+    openai: ['gpt-4o', 'gpt-4o-mini', 'gpt-4-turbo', 'o3-mini'],
+    deepseek: ['deepseek-chat', 'deepseek-reasoner'],
+    ollama: ['llama3.2', 'mistral', 'gemma3', 'qwen2.5', 'deepseek-r1'],
+  }
+
+  if (provider === 'ollama') {
+    try {
+      const url = (baseUrl || 'http://localhost:11434').replace(/\/+$/, '')
+      const fetchRes = await fetch(`${url}/api/tags`, { signal: AbortSignal.timeout(5000) })
+      if (fetchRes.ok) {
+        const data = await fetchRes.json()
+        const models = (data.models ?? []).map((m) => m.name).sort()
+        if (models.length > 0) return json(res, 200, { models })
+      }
+    } catch { /* fall through to defaults */ }
+    return json(res, 200, { models: DEFAULT_MODELS.ollama })
+  }
+
+  if (provider === 'anthropic' && apiKey) {
+    try {
+      const fetchRes = await fetch('https://api.anthropic.com/v1/models', {
+        headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
+        signal: AbortSignal.timeout(5000),
+      })
+      if (fetchRes.ok) {
+        const data = await fetchRes.json()
+        const models = (data.data ?? []).map((m) => m.id).sort()
+        if (models.length > 0) return json(res, 200, { models })
+      }
+    } catch { /* fall through */ }
+    return json(res, 200, { models: DEFAULT_MODELS.anthropic })
+  }
+
+  if (apiKey) {
+    try {
+      const url = (baseUrl || 'https://api.openai.com').replace(/\/+$/, '')
+      const fetchRes = await fetch(`${url}/v1/models`, {
+        headers: { Authorization: `Bearer ${apiKey}` },
+        signal: AbortSignal.timeout(5000),
+      })
+      if (fetchRes.ok) {
+        const data = await fetchRes.json()
+        const models = (data.data ?? []).map((m) => m.id).sort().slice(0, 30)
+        if (models.length > 0) return json(res, 200, { models })
+      }
+    } catch { /* fall through */ }
+  }
+
+  return json(res, 200, { models: DEFAULT_MODELS[provider] || [] })
+}
+
+function handleSeedKeys(req, res) {
+  function seedingAllowed() {
+    if (process.env.SENANG_ALLOW_KEY_SEED === 'true') return true
+    return process.env.NODE_ENV !== 'production'
+  }
+
+  if (!seedingAllowed()) return json(res, 403, { keys: [] })
+
+  const raw = process.env.SENANG_LLM_KEYS ?? ''
+  const keys = raw
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((entry) => {
+      const idx = entry.indexOf(':')
+      if (idx === -1) return null
+      return { provider: entry.slice(0, idx).toLowerCase(), apiKey: entry.slice(idx + 1).trim() }
+    })
+    .filter((k) => k !== null && k.apiKey.length > 0)
+
+  return json(res, 200, { keys })
+}
+
+async function handleOcr(req, res) {
+  const body = JSON.parse((await readBody(req)) || '{}')
+  if (!body.image) return json(res, 400, { error: 'missing image field' })
+
+  const OCR_URL = process.env.OCR_SERVER_URL || 'http://localhost:8502/ocr'
+  try {
+    const fetchRes = await fetch(OCR_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: body.image }),
+    })
+    if (!fetchRes.ok) {
+      const err = await fetchRes.text()
+      return json(res, 502, { error: `OCR server: ${err.slice(0, 200)}` })
+    }
+    const data = await fetchRes.json()
+    return json(res, 200, data)
+  } catch (err) {
+    return json(res, 500, { error: err instanceof Error ? err.message : 'OCR failed' })
+  }
+}
+
+const POST_ROUTES = {
   '/api/submit': handleSubmit,
   '/api/extract': handleExtract,
   '/api/ask': handleAsk,
+  '/api/llm/models': handleLlmModels,
+  '/api/ocr': handleOcr,
+}
+
+const GET_ROUTES = {
+  '/api/seed-keys': handleSeedKeys,
 }
 
 http.createServer(async (req, res) => {
@@ -172,8 +305,15 @@ http.createServer(async (req, res) => {
   try {
     if (url.pathname === '/health') return json(res, 200, { ok: true })
 
-    const handler = ROUTES[url.pathname]
-    if (handler && req.method === 'POST') return await handler(req, res)
+    if (req.method === 'POST') {
+      const handler = POST_ROUTES[url.pathname]
+      if (handler) return await handler(req, res)
+    }
+
+    if (req.method === 'GET') {
+      const handler = GET_ROUTES[url.pathname]
+      if (handler) return handler(req, res)
+    }
 
     return json(res, 404, { error: 'Not found' })
   } catch (err) {

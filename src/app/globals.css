@@ -22,11 +22,15 @@
   transition: opacity 0s;
 }
 
-/* Android gesture navigation safe areas */
-@supports (padding-bottom: env(safe-area-inset-bottom)) {
-  .pb-safe {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
+/* Android gesture navigation safe areas — env() with fallback works everywhere */
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.bottom-safe {
+  bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* Respect user motion preferences */
