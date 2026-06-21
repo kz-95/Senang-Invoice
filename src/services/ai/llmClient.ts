@@ -224,7 +224,7 @@ function createGeminiClient(apiKey: string): LlmClient {
     messages: {
       async create(params) {
         try {
-          return await callGemini(apiKey, params.model, params.system, params.messages)
+          return await callGemini(apiKey, params.model, params.system, params.messages, params.max_tokens)
         } catch (err) {
           if (isRateLimitError(err)) throw err
           markCoolingDown(apiKey)
@@ -254,7 +254,7 @@ function toGeminiParts(content: unknown): Array<Record<string, unknown>> {
   return [{ text: JSON.stringify(content) }]
 }
 
-async function callGemini(apiKey: string, model: string, systemPrompt: string, messages: Array<{ role: string; content: unknown }>): Promise<LlmResponse> {
+async function callGemini(apiKey: string, model: string, systemPrompt: string, messages: Array<{ role: string; content: unknown }>, maxTokens = 1024): Promise<LlmResponse> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
 
   const userMessages = messages
@@ -267,7 +267,7 @@ async function callGemini(apiKey: string, model: string, systemPrompt: string, m
   const body: Record<string, unknown> = {
     system_instruction: { parts: [{ text: systemPrompt }] },
     contents: userMessages,
-    generationConfig: { maxOutputTokens: 1024 },
+    generationConfig: { maxOutputTokens: maxTokens },
   }
 
   const res = await fetch(url, {

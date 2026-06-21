@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, test } from 'vitest'
 import { extractLineItems } from './extractionService'
 
 const fakeClient = {
