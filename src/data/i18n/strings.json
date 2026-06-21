@@ -1134,6 +1134,36 @@
     "ms": "Muat Turun",
     "zh": "立即下载"
   },
+  "landing.downloadChooseTitle": {
+    "en": "Get Senang Inv",
+    "ms": "Dapatkan Senang Inv",
+    "zh": "获取 Senang Inv"
+  },
+  "landing.downloadViaPlaystore": {
+    "en": "Google Play Store",
+    "ms": "Google Play Store",
+    "zh": "Google Play 商店"
+  },
+  "landing.downloadViaPlaystoreDesc": {
+    "en": "Auto-updates and easy install",
+    "ms": "Kemas kini automatik dan pemasangan mudah",
+    "zh": "自动更新，安装简便"
+  },
+  "landing.playStoreComingSoon": {
+    "en": "Coming soon on Google Play",
+    "ms": "Akan datang di Google Play",
+    "zh": "即将在 Google Play 上架"
+  },
+  "landing.downloadViaApk": {
+    "en": "Download APK",
+    "ms": "Muat Turun APK",
+    "zh": "下载 APK"
+  },
+  "landing.downloadViaApkDesc": {
+    "en": "Direct download for Android devices",
+    "ms": "Muat turun terus untuk peranti Android",
+    "zh": "直接下载适用于 Android 设备"
+  },
   "landing.heroMainTitle": {
     "en": "Malaysian e-Invoice",
     "ms": "e-Invois Malaysia",
