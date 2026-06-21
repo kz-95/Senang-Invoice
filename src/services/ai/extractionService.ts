@@ -1,5 +1,5 @@
 import type { LineItem } from '@/lib/types'
-import { getLlamaClient, getModel, type LlmClient } from './llmClient'
+import { getLlamaClient, getVisionClient, getTextClient, VISION_MODEL, TEXT_MODEL, type LlmClient } from './llmClient'
 
 export interface ExtractionInput {
   imageBase64?: string
@@ -19,7 +19,17 @@ export async function extractLineItems(
   llmProvider?: string,
   clientOverride?: LlmClient
 ): Promise<LineItem[]> {
-  const client = clientOverride ?? getLlamaClient(llmKey, llmModel, llmBaseUrl, llmProvider)
+  // Route by task: an image goes to the vision model (Gemini); pure text goes
+  // to the text model (DeepSeek). An explicit clientOverride/llmKey wins (BYO).
+  const hasImage = !!input.imageBase64
+  const routedModel = llmModel ?? (hasImage ? VISION_MODEL : TEXT_MODEL)
+  const client =
+    clientOverride ??
+    (llmKey
+      ? getLlamaClient(llmKey, routedModel, llmBaseUrl, llmProvider)
+      : hasImage
+        ? getVisionClient()
+        : getTextClient())
   if (!client) return []
 
   const userContent: Array<Record<string, unknown>> = []
@@ -44,8 +54,8 @@ export async function extractLineItems(
   }
 
   const response = await client.messages.create({
-    model: getModel(llmModel),
-    max_tokens: 1024,
+    model: routedModel,
+    max_tokens: 2048,
     system: SYSTEM_PROMPT,
     messages: [{ role: 'user', content: userContent }],
   })
