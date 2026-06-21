@@ -60,7 +60,7 @@ flex flex-col flex-1 min-h-0 -mx-4 -mb-4
 
 ### LLM Key System
 - **Disabled/Greyed out** — "Coming Soon" badge on `LlmKeyManager`
-- **Hardcoded fallback key** active in `useExtraction.ts` and `useAsk.ts` (via `NEXT_PUBLIC_LLM_FALLBACK_KEY` env var)
+- **Removed (2026-06-21):** the `NEXT_PUBLIC_LLM_FALLBACK_KEY` browser-side fallback in `useExtraction.ts`/`useAsk.ts` leaked the key into the JS bundle + APK. Hooks now send a key only if the user set one (BYO); otherwise the server route uses server-side env keys (`SENANG_LLM_KEYS`). Rotate any key that shipped in a prior build.
 - `useHasLlmKey()` always returns `true` → `NoLlmBanner` never shows
 - `seedLlmKeys()` removed from `seed.ts` — no demo keys in IndexedDB
 
