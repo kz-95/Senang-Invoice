@@ -81,7 +81,7 @@ export async function answer(
 
   const response = await client.messages.create({
     model: getModel(llmModel),
-    max_tokens: 1500,
+    max_tokens: 2048,
     system: `${SYSTEM_PROMPT}\n\nKnowledge:\n${context}`,
     messages,
   })
