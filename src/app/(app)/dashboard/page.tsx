@@ -18,9 +18,9 @@ import type { Invoice } from '@/lib/types'
 
 const DocIcon = <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
 const CheckIcon = <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-const RmIcon = <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+const RmIcon = <span className="text-xs font-bold text-teal-700">RM</span>
 
-type TabId = 'active' | 'archived' | 'trash'
+type TabId = 'pending' | 'validated' | 'synced' | 'archived' | 'trash'
 
 export default function HomePage() {
   const invoices = useInvoiceListStore(s => s.invoices)
@@ -29,7 +29,7 @@ export default function HomePage() {
   const router = useRouter()
   const t = useT()
 
-  const [activeTab, setActiveTab] = useState<TabId>('active')
+  const [activeTab, setActiveTab] = useState<TabId>('pending')
   const [fromDate, setFromDate] = useState('')
   const [toDate, setToDate] = useState('')
   const clearDateFilter = () => { setFromDate(''); setToDate('') }
@@ -61,14 +61,26 @@ export default function HomePage() {
 
   const tabCounts = useMemo(() => {
     const active = invoices.filter(inv => !inv.archived && !inv.deletedAt)
+    const pending  = active.filter(inv => inv.status === 'draft')
+    const validated = active.filter(inv => inv.status === 'validated')
+    const synced   = active.filter(inv => inv.status === 'synced')
     const archived = invoices.filter(inv => inv.archived && !inv.deletedAt)
-    const trash = invoices.filter(inv => !!inv.deletedAt)
-    return { active: active.length, archived: archived.length, trash: trash.length }
+    const trash    = invoices.filter(inv => !!inv.deletedAt)
+    return { pending: pending.length, validated: validated.length, synced: synced.length, archived: archived.length, trash: trash.length }
   }, [invoices])
 
   const tabInvoices = useMemo(() => {
     let result: Invoice[]
     switch (activeTab) {
+      case 'pending':
+        result = invoices.filter(inv => !inv.archived && !inv.deletedAt && inv.status === 'draft')
+        break
+      case 'validated':
+        result = invoices.filter(inv => !inv.archived && !inv.deletedAt && inv.status === 'validated')
+        break
+      case 'synced':
+        result = invoices.filter(inv => !inv.archived && !inv.deletedAt && inv.status === 'synced')
+        break
       case 'archived':
         result = invoices.filter(inv => inv.archived && !inv.deletedAt)
         break
@@ -176,7 +188,9 @@ export default function HomePage() {
   }
 
   const tabs: { id: TabId; label: string; count: number }[] = [
-    { id: 'active', label: t('dashboard.tabActive'), count: tabCounts.active },
+    { id: 'pending', label: t('dashboard.tabPending'), count: tabCounts.pending },
+    { id: 'validated', label: t('dashboard.tabValidated'), count: tabCounts.validated },
+    { id: 'synced', label: t('dashboard.tabSynced'), count: tabCounts.synced },
     { id: 'archived', label: t('dashboard.tabArchived'), count: tabCounts.archived },
     { id: 'trash', label: t('dashboard.tabTrash'), count: tabCounts.trash },
   ]
@@ -216,13 +230,14 @@ export default function HomePage() {
       <div className="grid grid-cols-3 gap-2">
         <StatTile label={t('dashboard.invoices')} value={billableInvoices.length} icon={DocIcon} />
         <StatTile label={t('dashboard.validated')} value={validatedCount} icon={CheckIcon} />
-        <StatTile label={t('dashboard.total')} value={`RM ${formatMYRWhole(totalAmount)}`} icon={RmIcon} />
+        <StatTile label={t('dashboard.total')} value={formatMYRWhole(totalAmount)} icon={RmIcon} />
       </div>
 
       <SearchBar query={query} onQueryChange={setQuery} sortField={sortField} onSortFieldChange={setSortField} sortDir={sortDir} onSortDirToggle={toggleSortDir} />
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-gray-200" role="tablist">
+      <div className="overflow-x-auto -mx-4 px-4">
+        <div className="flex gap-1 border-b border-gray-200 min-w-max" role="tablist">
         {tabs.map(tab => (
           <button
             key={tab.id}
@@ -234,13 +249,14 @@ export default function HomePage() {
             {tab.label} ({tab.count})
           </button>
         ))}
+        </div>
       </div>
 
       {/* Bulk action bar */}
       {selectMode && ids.length > 0 && (
         <div className="flex flex-wrap gap-2 p-2 bg-teal-50 rounded-lg border border-teal-200">
           <span className="text-xs text-teal-700 self-center mr-2">{ids.length} selected</span>
-          {activeTab === 'active' && (
+          {(activeTab === 'pending' || activeTab === 'validated' || activeTab === 'synced') && (
             <>
               <Button size="sm" variant="outline" onClick={handleBulkArchive}>Archive ({ids.length})</Button>
               <Button size="sm" variant="ghost" onClick={handleBulkDelete}>Delete ({ids.length})</Button>

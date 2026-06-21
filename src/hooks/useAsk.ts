@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react'
 import { useAskStore } from '@/stores/askStore'
 import { llmKeyRepository } from '@/services/data/llmKeyRepository'
 import type { AskMessage, Lang } from '@/lib/types'
+import { safeRandomUUID } from '@/lib/crypto'
 import { apiBase } from '@/lib/apiBase'
 
 export function useAsk() {
@@ -12,7 +13,7 @@ export function useAsk() {
 
   const send = useCallback(async (text: string) => {
     const userMsg: AskMessage = {
-      id: crypto.randomUUID(),
+      id: safeRandomUUID(),
       role: 'user',
       text,
       lang: 'en',
@@ -22,6 +23,10 @@ export function useAsk() {
     setLoading(true)
 
     try {
+      // BYO key only: send the user's own key if they set one in Settings.
+      // Otherwise send NO key headers — the server route uses its server-side
+      // env keys (deepseek for text, gemini for vision). Never ship a secret
+      // into the browser bundle (no NEXT_PUBLIC_* keys).
       const llmKey = await llmKeyRepository.getPrimaryKey()
       const headers: Record<string, string> = { 'Content-Type': 'application/json' }
       if (llmKey) {
@@ -42,7 +47,7 @@ export function useAsk() {
       const data = await res.json() as { text: string; lang: Lang }
 
       const assistantMsg: AskMessage = {
-        id: crypto.randomUUID(),
+        id: safeRandomUUID(),
         role: 'assistant',
         text: data.text,
         lang: data.lang,
@@ -51,7 +56,7 @@ export function useAsk() {
       addMessage(assistantMsg)
     } catch {
       const errMsg: AskMessage = {
-        id: crypto.randomUUID(),
+        id: safeRandomUUID(),
         role: 'assistant',
         text: 'Sorry, something went wrong. Please try again.',
         lang: 'en',

@@ -1,13 +1,17 @@
-import type { SellerProfile, Buyer, LineItem, InvoiceTotals } from '@/lib/types'
+import type { SellerProfile, Buyer, LineItem, InvoiceTotals, DocType } from '@/lib/types'
 import { GENERAL_TIN } from '@/lib/constants'
 
 interface BuildUblArgs {
   seller: SellerProfile; buyer: Buyer; lines: LineItem[];
   issuedAt: string;
   invoiceNumber?: string;
+  docType?: DocType;
+  originalInvoiceUuid?: string;
   discount?: { amount: number; reason?: string };
   payment?: { method?: string; terms?: string; dueDate?: string };
   supplierRef?: string;
+  buyerRef?: string;
+  purchaseOrderId?: string;
   notes?: string;
 }
 interface BuildUblResult { ubl: object; totals: InvoiceTotals }
@@ -16,7 +20,7 @@ interface BuildUblResult { ubl: object; totals: InvoiceTotals }
 const w = (value: unknown, attrs: Record<string, unknown> = {}) => [{ _: value, ...attrs }]
 const money = (value: number) => [{ _: Number(value.toFixed(2)), currencyID: 'MYR' }]
 
-export function buildUbl({ seller, buyer, lines, issuedAt, invoiceNumber, discount, payment, supplierRef, notes }: BuildUblArgs): BuildUblResult {
+export function buildUbl({ seller, buyer, lines, issuedAt, invoiceNumber, docType, originalInvoiceUuid, discount, payment, supplierRef, buyerRef, purchaseOrderId, notes }: BuildUblArgs): BuildUblResult {
   const subtotal = lines.reduce((s, l) => s + l.amount, 0)
   const taxTotal = lines.reduce((s, l) => s + l.taxAmount, 0)
   const total = subtotal + taxTotal
@@ -42,14 +46,23 @@ export function buildUbl({ seller, buyer, lines, issuedAt, invoiceNumber, discou
   const issueDate = d.toISOString().slice(0, 10)
   const issueTime = d.toISOString().slice(11, 19) + 'Z'
 
+  const type = docType ?? '01'
+
   const invoice: Record<string, unknown> = {
     ID: w(invoiceNumber ?? `INV-${d.getTime()}`),
     IssueDate: w(issueDate),
     IssueTime: w(issueTime),
-    InvoiceTypeCode: [{ _: '01', listVersionID: '1.0' }],
+    InvoiceTypeCode: [{ _: type, listVersionID: '1.0' }],
     DocumentCurrencyCode: w('MYR'),
     TaxCurrencyCode: w('MYR'),
-    // Optional fields
+  }
+
+  if (originalInvoiceUuid && (type === '03' || type === '04')) {
+    invoice.BillingReference = [{
+      InvoiceDocumentReference: [{
+        ID: w(originalInvoiceUuid),
+      }],
+    }]
   }
 
   if (discount) {
@@ -74,6 +87,12 @@ export function buildUbl({ seller, buyer, lines, issuedAt, invoiceNumber, discou
   }
   if (notes) {
     invoice.Note = w(notes)
+  }
+  if (buyerRef) {
+    invoice.BuyerReference = w(buyerRef)
+  }
+  if (purchaseOrderId) {
+    invoice.OrderReference = [{ ID: w(purchaseOrderId) }]
   }
 
   // placeholders assembled in later tasks via Object.assign(invoice, {...})

@@ -92,7 +92,10 @@ export function BuyerSelector() {
             aria-expanded={showAddress}
             className="w-full text-left text-xs font-medium text-teal-700 flex items-center gap-1 mt-1 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
           >
-            {showAddress ? '\u25BE' : '\u25B8'} Buyer Address (optional)
+            <svg className={`w-3.5 h-3.5 transition-transform ${showAddress ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+            Buyer Address (optional)
           </button>
           {showAddress && (
             <div className="grid grid-cols-2 gap-2 mt-1">

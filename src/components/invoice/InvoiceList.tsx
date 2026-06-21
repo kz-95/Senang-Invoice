@@ -10,7 +10,7 @@ interface InvoiceListProps {
   invoices: Invoice[]
   loading: boolean
   onCreateClick: () => void
-  tab?: 'active' | 'archived' | 'trash'
+  tab?: 'pending' | 'validated' | 'synced' | 'archived' | 'trash' | 'active'
   selectMode?: boolean
   selectedIds?: Set<string>
   onToggleSelect?: (id: string) => void
@@ -24,16 +24,20 @@ export function InvoiceList({ invoices, loading, onCreateClick, tab, selectMode,
 
   if (invoices.length === 0) {
     const emptyMessages: Record<string, { title: string; description: string }> = {
+      active: { title: t('dashboard.noInvoices'), description: t('dashboard.noInvoicesDesc') },
+      pending: { title: 'No pending invoices', description: 'Invoices that failed validation will appear here.' },
+      validated: { title: t('dashboard.noInvoices'), description: t('dashboard.noInvoicesDesc') },
+      synced: { title: 'No synced invoices', description: 'Invoices backed up to Google Drive will appear here.' },
       archived: { title: 'No archived invoices', description: 'Archived invoices will appear here.' },
       trash: { title: 'Trash is empty', description: 'Deleted invoices appear here for 30 days before permanent removal.' },
-      active: { title: t('dashboard.noInvoices'), description: t('dashboard.noInvoicesDesc') },
     }
-    const msg = emptyMessages[tab ?? 'active']
+    const fallback = { title: t('dashboard.noInvoices'), description: t('dashboard.noInvoicesDesc') }
+    const msg = emptyMessages[tab ?? 'validated'] ?? fallback
     return (
       <EmptyState
         title={msg.title}
         description={msg.description}
-        action={tab === 'active' ? <Button onClick={onCreateClick}>{t('dashboard.createInvoice')}</Button> : undefined}
+        action={tab === 'active' || tab === 'validated' || tab === 'pending' || tab === 'synced' ? <Button onClick={onCreateClick}>{t('dashboard.createInvoice')}</Button> : undefined}
       />
     )
   }

@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from 'react'
 import { useAsk } from '@/hooks/useAsk'
 import { MessageBubble } from './MessageBubble'
 import { SuggestedPrompts } from './SuggestedPrompts'
-import { VoiceCapture } from '@/components/capture/VoiceCapture'
 import { Button } from '@/components/common/Button'
 import { Input } from '@/components/common/Input'
 import { Spinner } from '@/components/common/Spinner'
@@ -28,7 +27,7 @@ export function ChatWindow() {
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
-      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto pb-4" role="log" aria-live="polite">
+      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto pb-4 px-4" role="log" aria-live="polite">
         {isEmpty ? (
           <div role="status" className="flex h-full flex-col items-center justify-center gap-5 px-4 py-8 text-center">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-50 text-teal-700">
@@ -63,9 +62,9 @@ export function ChatWindow() {
 
       <form
         onSubmit={e => { e.preventDefault(); handleSend() }}
-        className="flex items-center gap-2 border-t border-gray-200 bg-white/80 pt-3 backdrop-blur"
+        className="flex items-center gap-2 border-t border-gray-200 bg-white py-3 px-4"
+        style={{ paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))' }}
       >
-        <VoiceCapture onTranscript={text => send(text)} variant="icon" disabled={loading} />
         <Input
           placeholder={t('ask.placeholder')}
           value={input}

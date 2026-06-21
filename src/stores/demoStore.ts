@@ -10,7 +10,8 @@ interface DemoStoreState {
 }
 
 export const useDemoStore = create<DemoStoreState>((set) => ({
-  unlocked: false,
+  // Default demo ON for APK — only explicit lock disables it.
+  unlocked: true,
 
   unlock: () => {
     localStorage.setItem(DEMO_KEY, '1')
@@ -18,11 +19,13 @@ export const useDemoStore = create<DemoStoreState>((set) => ({
   },
 
   lock: () => {
-    localStorage.removeItem(DEMO_KEY)
+    localStorage.setItem(DEMO_KEY, '0')
     set({ unlocked: false })
   },
 
   rehydrate: () => {
-    set({ unlocked: localStorage.getItem(DEMO_KEY) === '1' })
+    const val = localStorage.getItem(DEMO_KEY)
+    // Default unlocked; only lock if user explicitly chose to lock.
+    set({ unlocked: val !== '0' })
   },
 }))

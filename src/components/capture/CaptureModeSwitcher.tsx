@@ -27,44 +27,13 @@ export function CaptureModeSwitcher() {
     <div className="space-y-4">
       {/* Content card */}
       <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-        {/* Segmented control - inside card, at top */}
-        <div role="tablist" aria-label="Capture mode" className="mx-auto grid w-full max-w-2xl grid-cols-3 gap-1 mb-4 rounded-lg bg-gray-100 p-1">
-          {modes.map(m => {
-            const active = captureMode === m.key
-            return (
-              <button
-                key={m.key}
-                role="tab"
-                aria-selected={active}
-                onClick={() => setCaptureMode(m.key)}
-                className={`flex min-h-[48px] items-center justify-center gap-1.5 rounded-lg text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-1 ${
-                  active
-                    ? 'bg-teal-700 text-white shadow-sm'
-                    : 'bg-transparent text-gray-600 hover:bg-white'
-                }`}
-              >
-                {m.icon}
-                {m.label}
-              </button>
-            )
-          })}
-        </div>
-
+        {/* Content area */}
         {captureMode === 'camera' && (
           <CameraCapture onCapture={async (base64) => { await extract({ imageBase64: base64 }) }} />
         )}
 
         {captureMode === 'voice' && (
-          <div className="flex flex-col items-center gap-4 py-6 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-50 text-teal-700">
-              {micSvg}
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">{t('create.speakItems')}</p>
-              <p className="mt-1 text-sm text-gray-500">{t('create.speakItemsHint')}</p>
-            </div>
-            <VoiceCapture onTranscript={async (text) => { await extract({ transcript: text }) }} />
-          </div>
+          <VoiceCapture onTranscript={async (text) => { await extract({ transcript: text }) }} />
         )}
 
         {captureMode === 'manual' && <ManualEntryForm />}
@@ -86,6 +55,29 @@ export function CaptureModeSwitcher() {
             {t('create.error', { error: String(error) })}
           </p>
         )}
+
+        {/* Segmented control - at bottom */}
+        <div role="tablist" aria-label="Capture mode" className="mx-auto grid w-full max-w-2xl grid-cols-3 gap-1 mt-4 rounded-lg bg-gray-100 p-1">
+          {modes.map(m => {
+            const active = captureMode === m.key
+            return (
+              <button
+                key={m.key}
+                role="tab"
+                aria-selected={active}
+                onClick={() => setCaptureMode(m.key)}
+                className={`flex min-h-[48px] items-center justify-center gap-1.5 rounded-lg text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-1 ${
+                  active
+                    ? 'bg-teal-700 text-white shadow-sm'
+                    : 'bg-transparent text-gray-600 hover:bg-white'
+                }`}
+              >
+                {m.icon}
+                {m.label}
+              </button>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

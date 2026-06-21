@@ -3,6 +3,15 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/common/Button'
 import { useT } from '@/hooks/useT'
 
+async function isNativePlatform(): Promise<boolean> {
+  try {
+    const { Capacitor } = await import('@capacitor/core')
+    return Capacitor.isNativePlatform?.() ?? false
+  } catch {
+    return false
+  }
+}
+
 interface CameraCaptureProps {
   onCapture: (base64: string) => void
 }
@@ -37,7 +46,32 @@ export function CameraCapture({ onCapture }: CameraCaptureProps) {
     }
   }, [showWebcam])
 
+  // Native APK: open the phone's real camera app via @capacitor/camera rather
+  // than the in-WebView getUserMedia preview (which is laggy / low-res and fails
+  // on some OEM WebViews). Web browsers keep the getUserMedia webcam below.
+  const takeNativePhoto = useCallback(async () => {
+    try {
+      const { Camera, CameraResultType, CameraSource } = await import('@capacitor/camera')
+      const photo = await Camera.getPhoto({
+        quality: 90,
+        resultType: CameraResultType.Base64,
+        source: CameraSource.Camera,
+        correctOrientation: true,
+      })
+      if (photo.base64String) {
+        setPreview(`data:image/${photo.format || 'jpeg'};base64,${photo.base64String}`)
+        setPending(photo.base64String)
+      }
+    } catch {
+      // User cancelled the camera, or plugin unavailable — no-op.
+    }
+  }, [])
+
   const startWebcam = async () => {
+    if (await isNativePlatform()) {
+      await takeNativePhoto()
+      return
+    }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 } },
@@ -97,7 +131,7 @@ export function CameraCapture({ onCapture }: CameraCaptureProps) {
     return (
       <div className="space-y-3">
         <div className="relative rounded-2xl overflow-hidden bg-black">
-          <video ref={videoRef} autoPlay playsInline muted className="w-full max-h-80 object-cover" aria-label="Camera preview" />
+          <video ref={videoRef} autoPlay playsInline muted className="w-full max-h-48 object-cover" aria-label="Camera preview" />
           <canvas ref={canvasRef} className="hidden" />
         </div>
         <div className="flex gap-2">
@@ -125,7 +159,7 @@ export function CameraCapture({ onCapture }: CameraCaptureProps) {
 
       {preview ? (
         <div className="space-y-3">
-          <img src={preview} alt="Receipt preview" className="max-h-64 w-full rounded-2xl object-contain bg-gray-50" />
+          <img src={preview} alt="Receipt preview" className="max-h-48 w-full rounded-2xl object-contain bg-gray-50" />
           <div className="flex gap-2">
             <Button type="button" variant="outline" size="sm" onClick={startWebcam} className="flex-1">
               {t('create.retakeCamera')}
@@ -146,7 +180,7 @@ export function CameraCapture({ onCapture }: CameraCaptureProps) {
           onDragOver={e => { e.preventDefault(); setDragOver(true) }}
           onDragLeave={() => setDragOver(false)}
           onDrop={handleDrop}
-          className={`flex min-h-[220px] w-full flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed px-4 py-8 text-center transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 ${
+          className={`flex min-h-[140px] w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed px-4 py-4 text-center transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 ${
             dragOver
               ? 'border-teal-500 bg-teal-50'
               : 'border-gray-300 bg-gray-50 hover:border-teal-300 hover:bg-teal-50/50'

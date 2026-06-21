@@ -7,7 +7,7 @@ interface BulkActionBarProps {
   onDelete: () => void
   onRestore?: () => void
   onCancel: () => void
-  mode: 'active' | 'archived' | 'trash'
+  mode: 'pending' | 'validated' | 'synced' | 'archived' | 'trash'
   loading?: boolean
 }
 
@@ -42,7 +42,7 @@ export function BulkActionBar({
         </div>
 
         <div className="flex items-center gap-2">
-          {mode === 'active' && (
+          {(mode === 'pending' || mode === 'validated' || mode === 'synced') && (
             <button
               onClick={onArchive}
               disabled={loading}

@@ -20,6 +20,28 @@ export interface LlmResponse {
   content: Array<{ type: string; text?: string }>
 }
 
+/**
+ * Thrown when an LLM provider returns 429 (rate limit) or 402 (billing/quota).
+ * Routes catch this and fall back to a non-LLM (RAG-only) reply immediately,
+ * with no key rotation or retry. See isRateLimitError() for cross-module checks.
+ */
+export class RateLimitError extends Error {
+  readonly isRateLimit = true
+  readonly status: number
+  constructor(status = 429, message = `LLM rate limited (${status})`) {
+    super(message)
+    this.name = 'RateLimitError'
+    this.status = status
+  }
+}
+
+/** Robust check that survives across compiled-module boundaries (nodejs/ server). */
+export function isRateLimitError(err: unknown): boolean {
+  const e = err as { isRateLimit?: boolean; status?: number; message?: string } | null
+  if (!e) return false
+  return e.isRateLimit === true || e.status === 429 || e.status === 402 || /\b(429|402)\b/.test(e.message || '')
+}
+
 export interface LlmClient {
   messages: {
     create(params: {
@@ -84,8 +106,13 @@ function detectProvider(key: string, explicitProvider?: string): 'anthropic' | '
     if (explicit === 'deepseek') return 'deepseek'
     return 'openai'
   }
-  if (key.startsWith('AIza') || key.startsWith('AI')) return 'gemini'
+  if (key.startsWith('AIza') || key.startsWith('AQ') || key.startsWith('AI')) return 'gemini'
   return 'openai'
+}
+
+/** Test-only re-export of the internal provider sniffer. */
+export function detectProviderForTest(key: string) {
+  return detectProvider(key)
 }
 
 // === Key rotation ===
@@ -181,6 +208,8 @@ function createAnthropicClient(apiKey: string): LlmClient {
         try {
           return await (anthropic.messages as any).create(params)
         } catch (err) {
+          const status = (err as { status?: number })?.status
+          if (status === 429 || status === 402) throw new RateLimitError(status)
           markCoolingDown(apiKey)
           rotateKey()
           throw err
@@ -195,8 +224,9 @@ function createGeminiClient(apiKey: string): LlmClient {
     messages: {
       async create(params) {
         try {
-          return await callGemini(apiKey, params.model, params.system, params.messages)
+          return await callGemini(apiKey, params.model, params.system, params.messages, params.max_tokens)
         } catch (err) {
+          if (isRateLimitError(err)) throw err
           markCoolingDown(apiKey)
           rotateKey()
           throw err
@@ -206,20 +236,38 @@ function createGeminiClient(apiKey: string): LlmClient {
   }
 }
 
-async function callGemini(apiKey: string, model: string, systemPrompt: string, messages: Array<{ role: string; content: unknown }>): Promise<LlmResponse> {
+// Convert Anthropic-style message content (string | text/image blocks) into
+// Gemini `parts`. Images must become inlineData blobs, not stringified JSON,
+// or vision extraction silently returns nothing.
+function toGeminiParts(content: unknown): Array<Record<string, unknown>> {
+  if (typeof content === 'string') return [{ text: content }]
+  if (Array.isArray(content)) {
+    return (content as Array<Record<string, unknown>>).map(block => {
+      if (block.type === 'image' && block.source) {
+        const source = block.source as { data: string; media_type?: string }
+        return { inlineData: { mimeType: source.media_type || 'image/jpeg', data: source.data } }
+      }
+      if (block.type === 'text') return { text: (block.text as string) ?? '' }
+      return { text: JSON.stringify(block) }
+    })
+  }
+  return [{ text: JSON.stringify(content) }]
+}
+
+async function callGemini(apiKey: string, model: string, systemPrompt: string, messages: Array<{ role: string; content: unknown }>, maxTokens = 1024): Promise<LlmResponse> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
 
   const userMessages = messages
     .filter(m => m.role === 'user' || m.role === 'assistant')
     .map(m => ({
       role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: typeof m.content === 'string' ? m.content : JSON.stringify(m.content) }],
+      parts: toGeminiParts(m.content),
     }))
 
   const body: Record<string, unknown> = {
     system_instruction: { parts: [{ text: systemPrompt }] },
     contents: userMessages,
-    generationConfig: { maxOutputTokens: 1024 },
+    generationConfig: { maxOutputTokens: maxTokens },
   }
 
   const res = await fetch(url, {
@@ -229,6 +277,7 @@ async function callGemini(apiKey: string, model: string, systemPrompt: string, m
   })
 
   if (!res.ok) {
+    if (res.status === 429 || res.status === 402) throw new RateLimitError(res.status)
     const errText = await res.text()
     throw new Error(`Gemini ${res.status}: ${errText.slice(0, 200)}`)
   }
@@ -283,9 +332,7 @@ function createOpenAiClient(apiKey: string, customBaseUrl?: string): LlmClient {
           })
 
           if (res.status === 429 || res.status === 402) {
-            markCoolingDown(apiKey)
-            rotateKey()
-            throw new Error(`LLM ${res.status}: rate limited`)
+            throw new RateLimitError(res.status)
           }
 
           if (!res.ok) {
@@ -302,8 +349,9 @@ function createOpenAiClient(apiKey: string, customBaseUrl?: string): LlmClient {
           const text = json.choices?.[0]?.message?.content ?? ''
           return { content: [{ type: 'text', text }] }
         } catch (err) {
+          if (isRateLimitError(err)) throw err
           const msg = (err as Error).message
-          if (msg.includes('LLM ') || msg.includes('rate')) throw err
+          if (msg.includes('LLM ')) throw err
           markCoolingDown(apiKey)
           rotateKey()
           throw err
@@ -341,4 +389,33 @@ export async function callWithRetry(
 
 export function getModel(overrideModel?: string): string {
   return overrideModel ?? getCurrentModel()
+}
+
+// === Task-scoped client selection (vision vs text) ===
+
+export const TEXT_MODEL = 'deepseek-v4-flash'
+export const VISION_MODEL = 'gemini-2.5-flash'
+
+/** First env key matching the given provider, or null. */
+export function getEnvKeyFor(provider: KeyEntry['provider']): KeyEntry | null {
+  return getApiKeys().find(e => e.provider === provider) ?? null
+}
+
+/** Client for image/vision tasks — Gemini. Null if no gemini key configured. */
+export function getVisionClient(): LlmClient | null {
+  const entry = getEnvKeyFor('gemini')
+  if (!entry) return null
+  return getLlamaClient(entry.key, VISION_MODEL, undefined, 'gemini')
+}
+
+/** Client for text tasks — DeepSeek. Null if no deepseek key configured. */
+export function getTextClient(): LlmClient | null {
+  const entry = getEnvKeyFor('deepseek')
+  if (!entry) return null
+  return getLlamaClient(entry.key, TEXT_MODEL, PROVIDER_BASE_URL.deepseek, 'deepseek')
+}
+
+/** Test-only re-export. */
+export function getEnvKeyForTest(provider: KeyEntry['provider']): KeyEntry | null {
+  return getEnvKeyFor(provider)
 }

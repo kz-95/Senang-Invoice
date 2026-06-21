@@ -18,7 +18,9 @@ try {
   if (typeof withPWAInit === 'function') {
     wrapped = withPWAInit({
       dest: 'public',
-      disable: process.env.NODE_ENV === 'development',
+      // Disable PWA in APK builds — files are shipped locally, service worker
+      // never detects new versions and caches stale assets forever.
+      disable: process.env.NODE_ENV === 'development' || process.env.BUILD_TARGET === 'apk',
       register: true,
       workboxOptions: { skipWaiting: true },
     })(nextConfig)

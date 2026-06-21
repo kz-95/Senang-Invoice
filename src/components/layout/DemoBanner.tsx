@@ -7,6 +7,7 @@ import { profileRepository } from '@/services/data/profileRepository'
 import { llmKeyRepository } from '@/services/data/llmKeyRepository'
 import { useDemoStore } from '@/stores/demoStore'
 import { useLlmKeyStore } from '@/stores/llmKeyStore'
+import { useT } from '@/hooks/useT'
 
 export function DemoBanner() {
   const { invoices, refresh } = useInvoiceList()
@@ -15,6 +16,7 @@ export function DemoBanner() {
   const [mounted, setMounted] = useState(false)
   const unlocked = useDemoStore(s => s.unlocked)
   const rehydrate = useDemoStore(s => s.rehydrate)
+  const t = useT()
 
   // Defer localStorage read to client to avoid SSR/client mismatch.
   useEffect(() => {
@@ -22,16 +24,7 @@ export function DemoBanner() {
     setMounted(true)
   }, [rehydrate])
 
-  if (!mounted || !unlocked || dismissed) return null
-
   const hasData = invoices.length > 0
-
-  const generate = async () => {
-    setLoading('gen')
-    await seedDemoData()
-    await refresh()
-    setLoading(null)
-  }
 
   const clear = async () => {
     setLoading('clear')
@@ -43,31 +36,39 @@ export function DemoBanner() {
     setLoading(null)
   }
 
-  return (
+  // Auto-seed on first load when demo mode is active and no data exists.
+  useEffect(() => {
+    if (mounted && unlocked && !hasData && loading === null) {
+      setLoading('gen')
+      seedDemoData().then(() => {
+        refresh()
+        setLoading(null)
+      })
+    }
+  }, [mounted, unlocked, hasData, loading, refresh])
+
+  if (!mounted || !unlocked) return null
+
+  // Only show banner if user explicitly wants to manage demo data.
+  if (!hasData && loading !== 'gen') return null
+  if (hasData) return (
     <div className="bg-amber-50 border-b border-amber-200">
       <div className="max-w-2xl mx-auto px-4 py-1.5 flex items-center justify-between gap-2">
         <span className="text-xs text-amber-700">
-          {hasData ? `${invoices.length} invoice${invoices.length !== 1 ? 's' : ''}` : 'No data - load demo'}
+          {t('demo.loaded', { n: invoices.length.toString() })}
         </span>
         <div className="flex items-center gap-1.5">
           <button
-            onClick={generate}
-            disabled={loading !== null}
-            className="text-xs px-2 py-0.5 rounded bg-amber-200 text-amber-800 hover:bg-amber-300 disabled:opacity-50 transition-colors"
-          >
-            {loading === 'gen' ? 'Seeding...' : 'Generate'}
-          </button>
-          <button
             onClick={clear}
-            disabled={loading !== null || !hasData}
+            disabled={loading !== null}
             className="text-xs px-2 py-0.5 rounded border border-amber-300 text-amber-700 hover:bg-amber-100 disabled:opacity-30 transition-colors"
           >
-            {loading === 'clear' ? 'Clearing...' : 'Clear'}
+            {loading === 'clear' ? t('demo.clearing') : t('demo.clear')}
           </button>
           <button
             onClick={() => setDismissed(true)}
             className="flex items-center justify-center w-11 h-11 rounded-lg text-amber-400 hover:text-amber-600 hover:bg-amber-100"
-            aria-label="Dismiss"
+            aria-label={t('demo.dismiss')}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -77,4 +78,14 @@ export function DemoBanner() {
       </div>
     </div>
   )
+
+  if (loading === 'gen') return (
+    <div className="bg-amber-50 border-b border-amber-200">
+      <div className="max-w-2xl mx-auto px-4 py-1.5 text-center text-xs text-amber-700">
+        {t('demo.seeding')}
+      </div>
+    </div>
+  )
+
+  return null
 }

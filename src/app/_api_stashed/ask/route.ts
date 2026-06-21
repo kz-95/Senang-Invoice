@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { answer } from '@/services/ai/askService'
+import { answer, degradedAnswer } from '@/services/ai/askService'
+import { isRateLimitError } from '@/services/ai/llmClient'
 import type { Lang } from '@/lib/types'
 
 function canUseEnvKeys(): boolean {
@@ -27,6 +28,11 @@ export async function POST(req: NextRequest) {
         const result = await answer({ message: body.message, history: body.history ?? [] }, llmKey, llmModel, llmBaseUrl, llmProvider)
         return NextResponse.json(result)
       } catch (err) {
+        // 429/402 -> serve non-LLM reply immediately, no retry.
+        if (isRateLimitError(err)) {
+          console.warn('[/api/ask] Client key rate limited (429/402), serving degraded reply')
+          return NextResponse.json(degradedAnswer(body.message))
+        }
         console.warn(`[/api/ask] Client key failed: ${(err as Error).message}, falling back to env keys...`)
       }
     }
@@ -39,17 +45,21 @@ export async function POST(req: NextRequest) {
           const result = await answer({ message: body.message, history: body.history ?? [] })
           return NextResponse.json(result)
         } catch (err) {
+          // 429/402 -> stop rotating, serve non-LLM reply immediately.
+          if (isRateLimitError(err)) {
+            console.warn('[/api/ask] Env key rate limited (429/402), serving degraded reply')
+            return NextResponse.json(degradedAnswer(body.message))
+          }
           lastError = err as Error
           console.warn(`[/api/ask] Env key ${i + 1}/${maxRetries}: ${lastError.message}`)
         }
       }
 
       // All env keys exhausted - fall back to degraded
-      const result = await answer({ message: body.message, history: body.history ?? [] })
-      return NextResponse.json(result)
+      return NextResponse.json(degradedAnswer(body.message))
     }
 
-    throw new Error('All LLM keys exhausted - no fallback available')
+    return NextResponse.json(degradedAnswer(body.message))
   } catch (err) {
     const msg = err instanceof Error ? err.message : 'Ask error'
     console.error('[/api/ask]', msg)

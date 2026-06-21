@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Senang Inv</string>
+    <string name="title_activity_main">Senang Inv</string>
+    <string name="package_name">com.senanginvoice</string>
+    <string name="custom_url_scheme">com.senanginvoice</string>
+    <!-- Google OAuth redirect: replace REVERSED_CLIENT_ID with the reversed form
+         of your iOS-type OAuth client id, e.g. for 1234-abc.apps.googleusercontent.com
+         use com.googleusercontent.apps.1234-abc -->
+    <string name="google_redirect_scheme">com.googleusercontent.apps.REVERSED_CLIENT_ID</string>
+</resources>

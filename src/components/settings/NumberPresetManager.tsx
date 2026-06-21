@@ -1,10 +1,11 @@
 'use client'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useProfileStore } from '@/stores/profileStore'
 import { profileRepository } from '@/services/data/profileRepository'
 import { formatInvoiceNumber, validatePattern, getCustomTokensFromPattern, cloneDefaultPresets } from '@/lib/numbering'
 import { Button } from '@/components/common/Button'
 import { Input } from '@/components/common/Input'
+import { safeRandomUUID } from '@/lib/crypto'
 import type { NumberPreset } from '@/lib/types'
 
 export function NumberPresetManager() {
@@ -13,6 +14,15 @@ export function NumberPresetManager() {
 
   const [editingId, setEditingId] = useState<string | null>(null)
   const [addingNew, setAddingNew] = useState(false)
+
+  // Load profile from DB if store is empty (IndexedDB hydration delay on WebView)
+  useEffect(() => {
+    if (!profile) {
+      profileRepository.get().then(p => {
+        if (p) setProfile(p)
+      })
+    }
+  }, [profile, setProfile])
 
   const presets = profile?.numberingPresets ?? []
 
@@ -52,13 +62,17 @@ export function NumberPresetManager() {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium text-gray-900">{preset.name}</span>
-                  {preset.isDefault && <span className="text-xs text-teal-600 font-medium">{'\u2605'}</span>}
+                  {preset.isDefault && (
+                    <svg className="w-3.5 h-3.5 text-teal-500" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  )}
                 </div>
                 <p className="text-xs text-gray-500 font-mono">{preset.pattern}</p>
                 <p className="text-xs text-gray-400">
                   Next: {String(preset.nextSeq).padStart(4, '0')}
                   {preset.reset !== 'never' && ` (reset: ${preset.reset})`}
-                  {Object.keys(preset.customTokens).length > 0 && ` \u2022 Tokens: ${Object.keys(preset.customTokens).join(', ')}`}
+                  {Object.keys(preset.customTokens).length > 0 && ` · Tokens: ${Object.keys(preset.customTokens).join(', ')}`}
                 </p>
               </div>
               <div className="flex gap-1 shrink-0">
@@ -90,7 +104,7 @@ export function NumberPresetManager() {
       {addingNew && !editingId && (
         <PresetEditor
           preset={{
-            id: crypto.randomUUID(),
+            id: safeRandomUUID(),
             name: '',
             pattern: 'INV-{seq:0000}',
             customTokens: {},
@@ -98,9 +112,9 @@ export function NumberPresetManager() {
             nextSeq: 1,
           }}
           onSave={async (updates) => {
-            await profileRepository.addPreset(profile, {
+            await profileRepository.addPreset(profile!, {
               ...updates,
-              id: crypto.randomUUID(),
+              id: safeRandomUUID(),
               nextSeq: 1,
             } as NumberPreset)
             setAddingNew(false)

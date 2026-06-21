@@ -6,6 +6,87 @@
 - **`main` is merge-only.** Changes land on `main` exclusively via pull request merges or `git merge` from a feature branch. No direct commits, no `--force` push to `main`.
 - Push to the feature branch, then merge to `main` via PR or `git merge`.
 
+## Build Pipeline
+
+```bash
+scripts\build-apk.bat
+```
+
+Steps:
+1. Stash `src/app/api/` → `src/app/_api_stashed/` (API routes break static export)
+2. `npx next build` (production static export to `out/`)
+3. Restore API routes from stash, delete `out/sw.js` and `out/manifest.json`, copy `nodejs/` to `out/nodejs/`
+4. `npx cap sync android` + `gradlew assembleDebug`
+5. Auto-clean `.next/` and `out/` so `npm run dev` works after APK build
+
+After build, run `npm run dev` for desktop testing — Step 5 wipes production build caches.
+
+## Current Architecture
+
+### AppShell Layout
+```
+min-h-dvh flex flex-col
+  TopBar (shrink-0)
+  DemoBanner (conditional, shrink-0)
+  <main flex flex-col flex-1 overflow-y-auto overflow-x-hidden
+         max-w-2xl mx-auto px-4 py-4
+         style: paddingBottom = calc(96px + env(safe-area-inset-bottom))>
+  BottomNav (fixed bottom-0 z-40, lg:hidden)
+  Fab (conditional)
+  Snackbar
+```
+
+Key: `overflow-y-auto` on `<main>` makes all pages scrollable. Pages needing sticky-bottom (Create) use `flex-1 min-h-0` on the wrapper and `shrink-0` for the bottom bar.
+
+### Create Page Layout
+```
+flex flex-col flex-1 min-h-0 -mx-4 -my-4
+  Scroll area (flex-1 overflow-y-auto px-4 py-4)
+    PageHeader, Items Table, Editor, Buyer, Invoice Number, Advanced, Generate
+  Toolbox (shrink-0, border-t, shadow)
+    [▼ Add Items] clickable toggle bar
+    (expanded: max-h 50vh) Camera/Voice/Manual panel
+```
+
+### Ask Page Layout
+```
+flex flex-col flex-1 min-h-0 -mx-4 -mb-4
+  Title + Scope Check button (shrink-0)
+  ScopeCheckCard (conditional, shrink-0)
+  ChatWindow (flex-1 min-h-0)
+    Messages (flex-1 overflow-y-auto)
+    Input form (shrink-0, border-t, safe-area bottom padding)
+```
+
+### LLM Key System
+- **Disabled/Greyed out** — "Coming Soon" badge on `LlmKeyManager`
+- **Removed (2026-06-21):** the `NEXT_PUBLIC_LLM_FALLBACK_KEY` browser-side fallback in `useExtraction.ts`/`useAsk.ts` leaked the key into the JS bundle + APK. Hooks now send a key only if the user set one (BYO); otherwise the server route uses server-side env keys (`SENANG_LLM_KEYS`). Rotate any key that shipped in a prior build.
+- `useHasLlmKey()` always returns `true` → `NoLlmBanner` never shows
+- `seedLlmKeys()` removed from `seed.ts` — no demo keys in IndexedDB
+
+### Demo Mode
+- **Auto-seed on first load** — `DemoBanner` detects no data + unlocked, auto-runs `seedDemoData()`
+- **"Example" badge** on all seeded invoices (`invoice.id.startsWith('demo-inv-')`)
+- **Clear button** in DemoBanner removes all demo data
+- Dismiss button hides the banner
+- 6 demo invoices: 1 pending, 2 validated, 1 synced, 1 archived, 1 trash
+
+### Profile Page
+- **Advanced link** → opens MyInvois ERP Credentials modal directly (PIN gate removed)
+- Collapsible hints for TIN, SST Reg No, MSIC Code
+- Invoice Numbering Settings collapsible → inline `NumberPresetManager` CRUD
+- Profile loads from IndexedDB via `useProfile()` hook; `NumberPresetManager` has fallback DB load
+
+### RAG / Ask System
+- **Retriever** (`src/services/rag/retriever.ts`): keyword-overlap matching with `MIN_SCORE=2` threshold
+- Short tokens (B2B, TIN, QR, SST, etc.) preserved via `KEEP_SHORT` set
+- Degraded path (no LLM): returns "no matching knowledge" when 0 chunks, raw chunk text when matched
+- LLM path: lets model answer from general knowledge when 0 chunks matched
+
+### Capacitor Plugins
+- `capacitor-nodejs` (custom tgz) — Node.js runtime in APK
+- `capacitor-voice-recorder` — native mic permission for Android WebView
+
 ## Knowledge Base Maintenance
 
 When you add, remove, or change any feature, flow, or behavior in this app, update the RAG knowledge chunks in `src/data/irbm-knowledge.json` accordingly. Every user-facing change must be reflected so the Ask chat stays accurate.
@@ -20,7 +101,7 @@ When you add, remove, or change any feature, flow, or behavior in this app, upda
 
 ## Knowledge Chunk Index
 
-35 chunks in `src/data/irbm-knowledge.json`.
+36 chunks in `src/data/irbm-knowledge.json`.
 
 ### IRBM Regulations (20 chunks)
 
@@ -60,18 +141,31 @@ When you add, remove, or change any feature, flow, or behavior in this app, upda
 
 | id | topic | covers |
 |----|-------|--------|
-| `app-how-to-create` | Creating invoices | + button, capture, buyer, generate |
-| `app-capture-modes` | Camera/Voice/Manual | Three input modes explained |
+| `app-how-to-create` | Creating invoices | + button, capture modes, item list, buyer, generate |
+| `app-capture-modes` | Camera/Voice/Manual | Three input modes at bottom of card; list section above; voice 60s limit WhatsApp-style |
 | `app-ai-extraction` | AI extraction | How AI extracts items and codes |
 | `app-seller-profile` | Setting up profile | TIN, SST, MSIC, address fields |
 | `app-ask-feature` | Ask chat feature | Multilingual Q&A, scope checker |
-| `app-demo-mode` | Demo mode | Unlock, generate, clear sample data |
-| `app-llm-keys` | Managing LLM keys | Add/edit/delete/reorder keys |
-| `app-invoice-history` | Invoice history | Home screen list, search, filter |
+| `app-demo-mode` | Demo mode | Auto-seed on first load, Example tags, Clear button |
+| `app-llm-keys` | Managing LLM keys | Coming Soon — built-in key active for extraction and chat |
+| `app-invoice-history` | Invoice history | 5 tabs: Pending/Validated/Synced/Archived/Trash; date presets; search; sort; archive/trash lifecycle |
 | `app-auto-categorizer` | Auto-categorization | AI assigns classification codes with confidence scores |
-| `app-language` | Language settings | EN, MS, ZH (+ rojak fallback) |
+| `app-language` | Language settings | EN, MS, ZH |
 | `app-numbering-presets` | Numbering presets | Configurable invoice number patterns with custom tokens |
+| `app-navigation` | Bottom navigation | 5 tabs: Ask, Home, (+) Create (FAB), Profile, Settings |
+
+## Known Issues & Limitations
+
+See `docs/issues.md` for the full list of unresolved issues, attempted fixes, and suggested approaches.
+
+Key unresolved:
+- Google Drive sync not working in APK
+- OCR extraction fails in APK (429 / network / Node.js bridge)
+- Voice mic permission unreliable on Xiaomi WebView
+- No fallback chain for 429 rate limits on extraction/voice/chat
+- Next.js prefetches marketing pages causing ~1GB memory spikes in dev
 
 ## Related Docs
 
 - `docs/rag-design.md` - RAG architecture, retriever algorithm, limitations
+- `docs/issues.md` - Unresolved issues, attempted approaches, suggestions

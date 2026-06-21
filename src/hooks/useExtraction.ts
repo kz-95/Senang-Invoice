@@ -2,7 +2,6 @@
 import { useCallback, useState } from 'react'
 import { useInvoiceStore } from '@/stores/invoiceStore'
 import { llmKeyRepository } from '@/services/data/llmKeyRepository'
-import { ocrImage } from '@/services/ocr/ocrService'
 import { apiBase } from '@/lib/apiBase'
 
 export function useExtraction() {
@@ -16,14 +15,14 @@ export function useExtraction() {
     setError(null)
     setOcrProgress('')
     try {
-      let transcript = input.transcript
-
       if (input.imageBase64) {
         setOcrProgress('Scanning receipt...')
-        transcript = await ocrImage(input.imageBase64)
-        setOcrProgress('')
       }
 
+      // BYO key only: send the user's own key if they set one in Settings.
+      // Otherwise send NO key headers — the server route uses its server-side
+      // env keys (gemini for image vision, deepseek for text). Never ship a
+      // secret into the browser bundle (no NEXT_PUBLIC_* keys).
       const llmKey = await llmKeyRepository.getPrimaryKey()
       const headers: Record<string, string> = { 'Content-Type': 'application/json' }
       if (llmKey) {
@@ -38,7 +37,7 @@ export function useExtraction() {
       const res = await fetch(`${apiBase()}/api/extract`, {
         method: 'POST',
         headers,
-        body: JSON.stringify({ transcript }),
+        body: JSON.stringify({ imageBase64: input.imageBase64, transcript: input.transcript }),
       })
       if (!res.ok) throw new Error('Extraction failed')
       const data = await res.json() as { items: Array<{ description: string; qty: number; unitPrice: number; uom: string; classificationCode: string; taxType: string; taxAmount: number }> }
@@ -47,9 +46,10 @@ export function useExtraction() {
         addLine(item)
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Extraction failed')
+      setError(err instanceof Error ? err.message : 'Scan failed')
     } finally {
       setLoading(false)
+      setOcrProgress('')
     }
   }, [addLine])
 

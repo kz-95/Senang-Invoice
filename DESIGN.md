@@ -79,7 +79,7 @@ Semantic usage: `bg-success-100 text-success-800`, `bg-warning-100 text-warning-
 - **Motion:** respect `prefers-reduced-motion`; animations 150–300ms; **transform/opacity only**.
 - **Tokens, not raw hex** in components. **`tabular-nums`** for all RM amounts.
 - **No new deps** - custom Button + Tailwind only (no framer-motion, lucide, shadcn).
-- **i18n:** every user-facing string via `t()` in **EN / MS / ZH** (+ rojak fallback). MyInvois / LHDN are proper nouns - keep verbatim.
+- **i18n:** every user-facing string via `t()` in **EN / MS / ZH**. MyInvois / LHDN are proper nouns - keep verbatim.
 - **No emoji icons**; Heroicons outline only.
 
 ---

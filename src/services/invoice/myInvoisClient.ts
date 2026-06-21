@@ -1,5 +1,6 @@
 import { createHash } from 'crypto'
 import type { ValidationResult } from '@/lib/types'
+import type { SigningService } from './signingService'
 
 export interface MyInvoisConfig {
   apiBase: string
@@ -10,7 +11,11 @@ export interface MyInvoisConfig {
 
 type FetchFn = typeof fetch
 
-export function createMyInvoisClient(config: MyInvoisConfig, fetchFn: FetchFn = fetch) {
+export function createMyInvoisClient(
+  config: MyInvoisConfig,
+  fetchFn: FetchFn = fetch,
+  signingService?: SigningService
+) {
   let cached: { token: string; expiresAt: number } | null = null
 
   async function getToken(): Promise<string> {
@@ -36,9 +41,37 @@ export function createMyInvoisClient(config: MyInvoisConfig, fetchFn: FetchFn = 
 
   async function submitDocument(ublObject: object, codeNumber: string) {
     const token = await getToken()
-    const minified = JSON.stringify(ublObject)
-    const document = Buffer.from(minified, 'utf8').toString('base64')
-    const documentHash = createHash('sha256').update(minified, 'utf8').digest('base64')
+
+    let docFormat: string
+    let document: string
+    let documentHash: string
+    let signature: string | undefined
+    let certificate: string | undefined
+
+    if (signingService) {
+      const signed = await signingService.sign(ublObject as Record<string, unknown>)
+      docFormat = signed.format
+      document = signed.document
+      documentHash = signed.documentHash
+      signature = signed.signature || undefined
+      certificate = signed.certificate || undefined
+    } else {
+      const minified = JSON.stringify(ublObject)
+      docFormat = 'JSON'
+      document = Buffer.from(minified, 'utf8').toString('base64')
+      documentHash = createHash('sha256').update(minified, 'utf8').digest('base64')
+    }
+
+    const payload: Record<string, unknown> = {
+      documents: [{
+        format: docFormat,
+        document,
+        documentHash,
+        codeNumber,
+        ...(signature ? { signature } : {}),
+        ...(certificate ? { certificate } : {}),
+      }],
+    }
 
     const res = await fetchFn(`${config.apiBase}/api/v1.0/documentsubmissions`, {
       method: 'POST',
@@ -46,9 +79,7 @@ export function createMyInvoisClient(config: MyInvoisConfig, fetchFn: FetchFn = 
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        documents: [{ format: 'JSON', document, documentHash, codeNumber }],
-      }),
+      body: JSON.stringify(payload),
     })
     if (!res.ok) {
       const text = await res.text().catch(() => '')
@@ -62,6 +93,18 @@ export function createMyInvoisClient(config: MyInvoisConfig, fetchFn: FetchFn = 
   }
 
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
+
+  async function refreshOn401<T>(fn: (token: string) => Promise<T>, token: string): Promise<T> {
+    try {
+      return await fn(token)
+    } catch (err) {
+      if (err instanceof Error && err.message.includes('HTTP 401')) {
+        const newToken = await getToken()
+        return fn(newToken)
+      }
+      throw err
+    }
+  }
 
   async function getSubmission(submissionUid: string, token: string) {
     const res = await fetchFn(
@@ -86,6 +129,55 @@ export function createMyInvoisClient(config: MyInvoisConfig, fetchFn: FetchFn = 
     }
   }
 
+  async function cancelDocument(uuid: string, reason: string): Promise<{ status: string }> {
+    const token = await getToken()
+    const res = await refreshOn401(async (t) => {
+      const r = await fetchFn(`${config.apiBase}/api/v1.0/documents/${uuid}/cancel`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${t}`,
+        },
+        body: JSON.stringify({ reason }),
+      })
+      if (!r.ok) {
+        const text = await r.text().catch(() => '')
+        throw new Error(`MyInvois cancel failed (HTTP ${r.status}): ${text.slice(0, 500)}`)
+      }
+      return (await r.json()) as { status: string }
+    }, token)
+    return res
+  }
+
+  async function amendDocument(uuid: string, amendedUbl: object, codeNumber: string): Promise<{ submissionUid: string; uuid?: string }> {
+    const token = await getToken()
+    return refreshOn401(async (t) => {
+      const minified = JSON.stringify(amendedUbl)
+      const document = Buffer.from(minified, 'utf8').toString('base64')
+      const documentHash = createHash('sha256').update(minified, 'utf8').digest('base64')
+
+      const r = await fetchFn(`${config.apiBase}/api/v1.0/documents/${uuid}/amend`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${t}`,
+        },
+        body: JSON.stringify({
+          documents: [{ format: 'JSON', document, documentHash, codeNumber }],
+        }),
+      })
+      if (!r.ok) {
+        const text = await r.text().catch(() => '')
+        throw new Error(`MyInvois amend failed (HTTP ${r.status}): ${text.slice(0, 500)}`)
+      }
+      const data = (await r.json()) as {
+        submissionUid: string
+        acceptedDocuments?: { uuid: string }[]
+      }
+      return { submissionUid: data.submissionUid, uuid: data.acceptedDocuments?.[0]?.uuid }
+    }, token)
+  }
+
   async function submitAndAwait(
     ublObject: object,
     codeNumber: string,
@@ -106,7 +198,7 @@ export function createMyInvoisClient(config: MyInvoisConfig, fetchFn: FetchFn = 
     let settled: 'Valid' | 'Invalid' | null = null
     for (let i = 0; i < maxTries; i++) {
       try {
-        const sub = await getSubmission(submissionUid, token)
+        const sub = await refreshOn401((t) => getSubmission(submissionUid, t), token)
         if (sub.overallStatus === 'Valid' || sub.overallStatus === 'PartiallyValid') { settled = 'Valid'; break }
         if (sub.overallStatus === 'Invalid') { settled = 'Invalid'; break }
       } catch (err) {
@@ -122,7 +214,7 @@ export function createMyInvoisClient(config: MyInvoisConfig, fetchFn: FetchFn = 
 
     let details = null
     try {
-      details = await getDocumentDetails(docUuid, token)
+      details = await refreshOn401((t) => getDocumentDetails(docUuid, t), token)
     } catch (err) {
       console.error(`[myInvoisClient] details fetch failed: ${err instanceof Error ? err.message : err}`)
     }
@@ -137,5 +229,5 @@ export function createMyInvoisClient(config: MyInvoisConfig, fetchFn: FetchFn = 
     return { uuid: details.uuid, longId: details.longId, qrLink, validatedAt, status: 'valid', submissionUid }
   }
 
-  return { getToken, submitDocument, submitAndAwait }
+  return { getToken, submitDocument, submitAndAwait, cancelDocument, amendDocument }
 }
