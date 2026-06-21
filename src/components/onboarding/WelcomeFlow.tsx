@@ -101,12 +101,19 @@ export function WelcomeFlow({ step }: { step: number }) {
     track('drive_connect_click')
     setConnecting(true)
     try {
-      await getAccessToken()
-    } catch {
-      // OAuth may be unavailable (testing mode) - proceed regardless.
+      const token = await getAccessToken()
+      if (!token) {
+        // No client ID configured — just proceed
+        finish('complete')
+        return
+      }
+      finish('complete')
+    } catch (err: any) {
+      // Let user know Drive isn't set up yet
+      alert(err?.message || 'Drive sync unavailable — skip for now.')
+      finish('complete')
     } finally {
       setConnecting(false)
-      finish('complete')
     }
   }
 

@@ -60,10 +60,10 @@ function reversedScheme(nativeClientId: string): string {
   return `com.googleusercontent.apps.${id}`
 }
 
-async function getAccessTokenNative(): Promise<string | null> {
+async function getAccessTokenNative(): Promise<string> {
   const nativeClientId = process.env.NEXT_PUBLIC_GOOGLE_NATIVE_CLIENT_ID
   if (!nativeClientId) {
-    return null // silently — Drive sync not configured
+    throw new Error('Drive sync requires a Google OAuth Client ID. Set NEXT_PUBLIC_GOOGLE_NATIVE_CLIENT_ID in .env.local')
   }
 
   const { Browser } = await import('@capacitor/browser')
