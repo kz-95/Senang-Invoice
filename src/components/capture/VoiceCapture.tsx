@@ -43,6 +43,7 @@ function formatTime(seconds: number): string {
 }
 
 export function VoiceCapture({ onTranscript, variant = 'full', disabled = false }: VoiceCaptureProps) {
+  const t = useT()
   const [listening, setListening] = useState(false)
   const [elapsed, setElapsed] = useState(0)
   const [interimText, setInterimText] = useState('')
@@ -53,7 +54,9 @@ export function VoiceCapture({ onTranscript, variant = 'full', disabled = false 
   const accumulatedRef = useRef<string[]>([])
   const engineRef = useRef<'web' | 'native' | null>(null)
   const partialHandleRef = useRef<{ remove: () => void } | null>(null)
-  const t = useT()
+  const errorHandleRef = useRef<{ remove: () => void } | null>(null)
+  const restartCountRef = useRef(0)
+  const MAX_RESTARTS = 3
 
   const clearTimer = useCallback(() => {
     if (timerRef.current) {
@@ -63,18 +66,19 @@ export function VoiceCapture({ onTranscript, variant = 'full', disabled = false 
   }, [])
 
   const stopRecognition = useCallback(() => {
+    clearTimer()
     try { recognitionRef.current?.stop() } catch {}
-    recognitionRef.current = null
+
     if (engineRef.current === 'native') {
       partialHandleRef.current?.remove()
-      partialHandleRef.current = null
+      errorHandleRef.current?.remove()
       void import('@capacitor-community/speech-recognition')
         .then(({ SpeechRecognition }) => SpeechRecognition.stop())
         .catch(() => {})
     }
-    engineRef.current = null
-    clearTimer()
+
     setListening(false)
+    restartCountRef.current = 0
   }, [clearTimer])
 
   // Auto-stop at max duration
@@ -134,6 +138,32 @@ export function VoiceCapture({ onTranscript, variant = 'full', disabled = false 
           const text = data.matches?.[0] ?? ''
           setInterimText(text)
           accumulatedRef.current = text ? [text] : []
+        })
+
+        // Auto-restart on silence timeout — native SpeechRecognizer fires an
+        // error after ~5s of no speech. The web path handles this via onend,
+        // but the native plugin needs explicit error handling.
+        errorHandleRef.current = await (NativeSR as any).addListener('error', (data: { error?: string | number }) => {
+          const code = String(data?.error ?? '')
+          const transient = ['3', '4', '5', '6', '7', '8', 'no-speech', 'speech-timeout', 'no-match']
+          if (transient.includes(code) && timerRef.current && restartCountRef.current < MAX_RESTARTS) {
+            restartCountRef.current++
+            void (async () => {
+              try { await NativeSR.start({ language: recLang, partialResults: true, popup: false }) }
+              catch (err: any) {
+                setSpeechError(`Voice restart failed (${restartCountRef.current}/${MAX_RESTARTS}): ${err?.message || 'aborted'}`)
+                handleToggle()
+              }
+            })()
+          } else {
+            const msg = code === '3' || code === 'speech-timeout'
+              ? 'Speech timeout — tap and speak again.'
+              : code === '7' || code === '8'
+                ? 'Voice took too long — tap and speak again.'
+                : `Voice error (${code}). Tap and try again.`
+            setSpeechError(msg)
+            handleToggle()
+          }
         })
         const recLang = recognitionLangFor(useUiStore.getState().lang)
         await NativeSR.start({ language: recLang, partialResults: true, popup: false })

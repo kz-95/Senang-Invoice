@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from 'react'
 import { useAsk } from '@/hooks/useAsk'
 import { MessageBubble } from './MessageBubble'
 import { SuggestedPrompts } from './SuggestedPrompts'
-import { VoiceCapture } from '@/components/capture/VoiceCapture'
 import { Button } from '@/components/common/Button'
 import { Input } from '@/components/common/Input'
 import { Spinner } from '@/components/common/Spinner'
@@ -66,7 +65,6 @@ export function ChatWindow() {
         className="flex items-center gap-2 border-t border-gray-200 bg-white py-3 px-4"
         style={{ paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))' }}
       >
-        <VoiceCapture onTranscript={text => send(text)} variant="icon" disabled={loading} />
         <Input
           placeholder={t('ask.placeholder')}
           value={input}
