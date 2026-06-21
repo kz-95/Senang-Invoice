@@ -5,8 +5,17 @@ import { MessageBubble } from './MessageBubble'
 import { SuggestedPrompts } from './SuggestedPrompts'
 import { Button } from '@/components/common/Button'
 import { Input } from '@/components/common/Input'
-import { Spinner } from '@/components/common/Spinner'
 import { useT } from '@/hooks/useT'
+
+function TypingDots() {
+  return (
+    <div className="flex items-center gap-1 px-1 py-1" aria-label="Assistant is typing">
+      <span className="h-2 w-2 animate-bounce rounded-full bg-teal-400" style={{ animationDelay: '0ms' }} />
+      <span className="h-2 w-2 animate-bounce rounded-full bg-teal-400" style={{ animationDelay: '150ms' }} />
+      <span className="h-2 w-2 animate-bounce rounded-full bg-teal-400" style={{ animationDelay: '300ms' }} />
+    </div>
+  )
+}
 
 export function ChatWindow() {
   const { messages, send, loading } = useAsk()
@@ -51,7 +60,7 @@ export function ChatWindow() {
             {loading && (
               <div className="flex justify-start">
                 <div className="rounded-2xl rounded-bl-sm border border-gray-200 bg-white px-4 py-3 shadow-sm">
-                  <Spinner className="h-4 w-4 text-teal-700" />
+                  <TypingDots />
                 </div>
               </div>
             )}

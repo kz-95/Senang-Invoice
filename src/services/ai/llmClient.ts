@@ -168,26 +168,35 @@ function markCoolingDown(key: string): void {
 export function getLlamaClient(overrideKey?: string, overrideModel?: string, overrideBaseUrl?: string, overrideProvider?: string): LlmClient | null {
   if (overrideKey) {
     const provider = overrideProvider || detectProvider(overrideKey) || 'openai'
-    console.log(`[LLM] Using client key - provider=${provider} model=${overrideModel || '-'}`)
+    const model = overrideModel || '-'
+    const url = provider === 'gemini' ? 'https://generativelanguage.googleapis.com/v1beta' : (overrideBaseUrl || PROVIDER_BASE_URL[provider] || PROVIDER_BASE_URL.openai)
+    console.log(`[LLM] 🗝️ BYO client key | provider=${provider} model=${model} base=${url}`)
     if (provider === 'anthropic' || provider === 'claude') {
       return createAnthropicClient(overrideKey)
     }
     if (provider === 'gemini') {
       return createGeminiClient(overrideKey)
     }
-    const url = overrideBaseUrl || PROVIDER_BASE_URL[provider] || PROVIDER_BASE_URL.openai
     return createOpenAiClient(overrideKey, url)
   }
 
   const entry = getCurrentKey()
-  if (!entry) return null
+  if (!entry) {
+    console.warn('[LLM] ❌ No env keys configured — degraded RAG-only replies')
+    return null
+  }
 
   if (isCoolingDown(entry.key)) {
+    console.log(`[LLM] ⏳ Key cooling down — rotating to next...`)
     rotateKey()
     return getLlamaClient()
   }
 
-  console.log(`[LLM] Using env key #${(_keyIndex % getApiKeys().length) + 1}/${getApiKeys().length} - provider=${entry.provider} model=${getCurrentModel()}`)
+  const idx = (_keyIndex % getApiKeys().length) + 1
+  const total = getApiKeys().length
+  const model = getCurrentModel()
+  const url = entry.provider === 'gemini' ? 'https://generativelanguage.googleapis.com/v1beta' : (PROVIDER_BASE_URL[entry.provider] || PROVIDER_BASE_URL.openai)
+  console.log(`[LLM] 🔑 Env key #${idx}/${total} | provider=${entry.provider} model=${model} base=${url}`)
 
   if (entry.provider === 'anthropic') {
     return createAnthropicClient(entry.key)
@@ -196,7 +205,6 @@ export function getLlamaClient(overrideKey?: string, overrideModel?: string, ove
     return createGeminiClient(entry.key)
   }
 
-  const url = PROVIDER_BASE_URL[entry.provider] || PROVIDER_BASE_URL.openai
   return createOpenAiClient(entry.key, url)
 }
 
