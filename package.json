@@ -22,6 +22,7 @@
     "@capacitor/camera": "^8.2.0",
     "@capacitor/cli": "^8.4.1",
     "@capacitor/core": "^8.4.1",
+    "@capacitor/filesystem": "^8.1.2",
     "@codetrix-studio/capacitor-google-auth": "^3.4.0-rc.4",
     "@xmldom/xmldom": "^0.9.10",
     "capacitor-nodejs": "https://github.com/hampoelz/capacitor-nodejs/releases/download/v1.0.0-beta.10/capacitor-nodejs.tgz",
