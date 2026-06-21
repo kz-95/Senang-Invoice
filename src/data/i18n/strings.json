@@ -430,9 +430,9 @@
     "zh": "生成发票"
   },
   "create.addLine": {
-    "en": "Add Line",
-    "ms": "Tambah Baris",
-    "zh": "添加行"
+    "en": "Add",
+    "ms": "Cipta",
+    "zh": "添加"
   },
   "create.added": {
     "en": "✓ Added",
@@ -1248,5 +1248,20 @@
     "en": "Add items using Camera, Voice, or Manual entry below.",
     "ms": "Tambah item guna Kamera, Suara, atau entri Manual di bawah.",
     "zh": "使用下方的相机、语音或手动输入添加项目。"
+  },
+  "voice.speechTimeout": {
+    "en": "Speech timeout — tap and speak again.",
+    "ms": "Suara tamat masa — ketik dan cuba lagi.",
+    "zh": "语音超时——点击并重新说话。"
+  },
+  "voice.tooLong": {
+    "en": "Voice took too long — tap and speak again.",
+    "ms": "Suara terlalu lama — ketik dan cuba lagi.",
+    "zh": "语音过长——点击并重新说话。"
+  },
+  "voice.error": {
+    "en": "Voice error. Try manual entry.",
+    "ms": "Ralat suara. Cuba entri manual.",
+    "zh": "语音错误。请尝试手动输入。"
   }
 }

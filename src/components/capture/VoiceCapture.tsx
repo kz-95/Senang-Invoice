@@ -157,10 +157,10 @@ export function VoiceCapture({ onTranscript, variant = 'full', disabled = false 
             })()
           } else {
             const msg = code === '3' || code === 'speech-timeout'
-              ? 'Speech timeout — tap and speak again.'
+              ? t('voice.speechTimeout')
               : code === '7' || code === '8'
-                ? 'Voice took too long — tap and speak again.'
-                : `Voice error (${code}). Tap and try again.`
+                ? t('voice.tooLong')
+                : `${t('voice.error')} (${code})`
             setSpeechError(msg)
             handleToggle()
           }

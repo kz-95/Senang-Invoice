@@ -6,6 +6,11 @@ echo.
 echo === Building Senang Inv APK ===
 echo.
 
+echo Step 0/4: Compile Node.js services...
+call node scripts\build-node.mjs
+if %errorlevel% neq 0 ( echo BUILD FAILED - service compilation; pause; exit /b 1 )
+echo.
+
 echo Step 1/4: Stash API routes...
 if exist "src\app\_api_stashed" rmdir /s /q "src\app\_api_stashed" 2>nul
 if not exist "src\app\_api_stashed" (
