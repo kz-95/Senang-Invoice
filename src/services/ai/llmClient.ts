@@ -106,8 +106,13 @@ function detectProvider(key: string, explicitProvider?: string): 'anthropic' | '
     if (explicit === 'deepseek') return 'deepseek'
     return 'openai'
   }
-  if (key.startsWith('AIza') || key.startsWith('AI')) return 'gemini'
+  if (key.startsWith('AIza') || key.startsWith('AQ') || key.startsWith('AI')) return 'gemini'
   return 'openai'
+}
+
+/** Test-only re-export of the internal provider sniffer. */
+export function detectProviderForTest(key: string) {
+  return detectProvider(key)
 }
 
 // === Key rotation ===
