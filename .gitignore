@@ -91,5 +91,9 @@ coverage/
 nodejs/services/
 nodejs/node_modules/
 nodejs/.env.json
+nodejs/env-keys.js
 android/release.jks
 android/keystore.properties
+
+# Generated on-device key bundle — contains embedded API keys, never commit
+nodejs/env.generated.js

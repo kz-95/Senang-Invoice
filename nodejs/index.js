@@ -15,24 +15,43 @@ try {
   }
 }
 
-// Load baked env keys from .env.json (written by build-node.mjs during APK build).
-// These are the same keys from .env.local, baked into the APK so the Node.js
-// server has API keys on-device. Falls back to process.env for non-APK dev.
-const { existsSync, readFileSync } = require('node:fs')
-const { join } = require('node:path')
-const envJsonPath = join(__dirname, '.env.json')
-if (existsSync(envJsonPath)) {
+// Load baked env keys from env-keys.js (primary) or .env.json (fallback).
+// Written by build-node.mjs during APK build. Both contain the same keys
+// from .env.local, baked into the APK so the Node.js server has API keys
+// on-device. Falls back to process.env for non-APK dev.
+const { existsSync: _exists, readFileSync: _readFile } = require('node:fs')
+const { join: _join } = require('node:path')
+
+let _baked = null
+// Primary: CommonJS module (capacitor-nodejs may strip .json files)
+const _jsPath = _join(__dirname, 'env-keys.js')
+if (_exists(_jsPath)) {
   try {
-    const baked = JSON.parse(readFileSync(envJsonPath, 'utf8'))
-    for (const [k, v] of Object.entries(baked)) {
-      if (!process.env[k]) process.env[k] = v
-    }
-    console.log('[senanginvoice-node] loaded baked env keys:', Object.keys(baked).join(', '))
+    _baked = require(_jsPath)
+    console.log('[senanginvoice-node] loaded baked keys from env-keys.js:', Object.keys(_baked).join(', '))
   } catch (e) {
-    console.warn('[senanginvoice-node] failed to load .env.json:', e.message)
+    console.warn('[senanginvoice-node] failed to require env-keys.js:', e.message)
   }
+}
+// Fallback: JSON file
+if (!_baked) {
+  const _jsonPath = _join(__dirname, '.env.json')
+  if (_exists(_jsonPath)) {
+    try {
+      _baked = JSON.parse(_readFile(_jsonPath, 'utf8'))
+      console.log('[senanginvoice-node] loaded baked keys from .env.json:', Object.keys(_baked).join(', '))
+    } catch (e) {
+      console.warn('[senanginvoice-node] failed to load .env.json:', e.message)
+    }
+  }
+}
+if (_baked) {
+  for (const [k, v] of Object.entries(_baked)) {
+    if (!process.env[k]) process.env[k] = v
+  }
+  console.log('[senanginvoice-node] LLM keys active:', !!process.env.SENANG_LLM_KEYS)
 } else {
-  console.log('[senanginvoice-node] no .env.json — using process.env (dev mode)')
+  console.log('[senanginvoice-node] no baked keys — using process.env (dev mode)')
 }
 
 const http = require('http')
