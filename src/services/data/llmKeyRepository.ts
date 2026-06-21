@@ -1,4 +1,5 @@
 import { db, type LlmKeyRow } from './db'
+import { safeRandomUUID } from '@/lib/crypto'
 
 export const llmKeyRepository = {
   async getAll(): Promise<LlmKeyRow[]> {
@@ -47,7 +48,7 @@ export const llmKeyRepository = {
     if (!envKey) return
 
     await db.llmKeys.put({
-      id: crypto.randomUUID(),
+      id: safeRandomUUID(),
       label: 'Default (from env)',
       provider: envKey.startsWith('sk-ant-') ? 'anthropic' : 'openai',
       apiKey: envKey,

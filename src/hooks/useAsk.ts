@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react'
 import { useAskStore } from '@/stores/askStore'
 import { llmKeyRepository } from '@/services/data/llmKeyRepository'
 import type { AskMessage, Lang } from '@/lib/types'
+import { safeRandomUUID } from '@/lib/crypto'
 import { apiBase } from '@/lib/apiBase'
 
 export function useAsk() {
@@ -12,7 +13,7 @@ export function useAsk() {
 
   const send = useCallback(async (text: string) => {
     const userMsg: AskMessage = {
-      id: crypto.randomUUID(),
+      id: safeRandomUUID(),
       role: 'user',
       text,
       lang: 'en',
@@ -45,7 +46,7 @@ export function useAsk() {
       const data = await res.json() as { text: string; lang: Lang }
 
       const assistantMsg: AskMessage = {
-        id: crypto.randomUUID(),
+        id: safeRandomUUID(),
         role: 'assistant',
         text: data.text,
         lang: data.lang,
@@ -54,7 +55,7 @@ export function useAsk() {
       addMessage(assistantMsg)
     } catch {
       const errMsg: AskMessage = {
-        id: crypto.randomUUID(),
+        id: safeRandomUUID(),
         role: 'assistant',
         text: 'Sorry, something went wrong. Please try again.',
         lang: 'en',

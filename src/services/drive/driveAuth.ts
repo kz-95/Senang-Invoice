@@ -1,6 +1,8 @@
 const GOOGLE_TOKEN_KEY = 'google_access_token'
 const DRIVE_SCOPE = 'https://www.googleapis.com/auth/drive.file'
 
+import { safeGetRandomValues } from '@/lib/crypto'
+
 interface TokenResponse {
   access_token: string
   expires_in: number
@@ -37,14 +39,18 @@ function base64UrlEncode(bytes: Uint8Array): string {
 }
 
 function randomVerifier(): string {
-  const bytes = new Uint8Array(32)
-  crypto.getRandomValues(bytes)
+  const bytes = safeGetRandomValues(32)
   return base64UrlEncode(bytes)
 }
 
 async function challengeFromVerifier(verifier: string): Promise<string> {
-  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))
-  return base64UrlEncode(new Uint8Array(digest))
+  try {
+    const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))
+    return base64UrlEncode(new Uint8Array(digest))
+  } catch {
+    // WebView without crypto.subtle — fallback to verifier as challenge (non-PKCE)
+    return verifier
+  }
 }
 
 /** Build `com.googleusercontent.apps.<id>` reversed scheme from an iOS client id. */

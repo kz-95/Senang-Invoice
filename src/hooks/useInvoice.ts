@@ -6,6 +6,7 @@ import { useUiStore } from '@/stores/uiStore'
 import { buildUbl } from '@/services/invoice/ublBuilder'
 import { myInvoisCredsRepository } from '@/services/data/myInvoisCredsRepository'
 import { invoiceRepository } from '@/services/data/invoiceRepository'
+import { safeRandomUUID } from '@/lib/crypto'
 import { profileRepository } from '@/services/data/profileRepository'
 import { syncRepository } from '@/services/data/syncRepository'
 import { formatInvoiceNumber, cloneDefaultPresets } from '@/lib/numbering'
@@ -35,13 +36,13 @@ export function useInvoice() {
     if (!profile) {
       const msg = 'Seller profile required. Set up your profile in Settings first.'
       setError(msg)
-      addToast({ id: crypto.randomUUID(), message: msg, type: 'error' })
+      addToast({ id: safeRandomUUID(), message: msg, type: 'error' })
       return null
     }
     if (lines.length === 0) {
       const msg = 'At least one line item required'
       setError(msg)
-      addToast({ id: crypto.randomUUID(), message: msg, type: 'error' })
+      addToast({ id: safeRandomUUID(), message: msg, type: 'error' })
       return null
     }
 
@@ -50,7 +51,7 @@ export function useInvoice() {
 
     try {
       const issuedAt = new Date().toISOString()
-      const id = crypto.randomUUID()
+      const id = safeRandomUUID()
 
       await profileRepository.ensurePresets(profile)
       const presets = profile.numberingPresets
@@ -58,7 +59,7 @@ export function useInvoice() {
       if (!activePreset) {
         const msg = 'No numbering preset configured'
         setError(msg)
-        addToast({ id: crypto.randomUUID(), message: msg, type: 'error' })
+        addToast({ id: safeRandomUUID(), message: msg, type: 'error' })
         return null
       }
 
@@ -111,7 +112,7 @@ export function useInvoice() {
       if (!res.ok || validation.error) {
         const msg = validation.error ?? 'Submission failed — check MyInvois credentials in Settings'
         setError(msg)
-        useUiStore.getState().addToast({ id: crypto.randomUUID(), message: msg, type: 'error' })
+        useUiStore.getState().addToast({ id: safeRandomUUID(), message: msg, type: 'error' })
         return null
       }
 
@@ -161,7 +162,7 @@ export function useInvoice() {
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Finalization failed'
       setError(msg)
-      useUiStore.getState().addToast({ id: crypto.randomUUID(), message: msg, type: 'error' })
+      useUiStore.getState().addToast({ id: safeRandomUUID(), message: msg, type: 'error' })
       return null
     } finally {
       setLoading(false)

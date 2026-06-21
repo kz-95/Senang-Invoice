@@ -5,18 +5,8 @@ import { profileRepository } from '@/services/data/profileRepository'
 import { formatInvoiceNumber, validatePattern, getCustomTokensFromPattern, cloneDefaultPresets } from '@/lib/numbering'
 import { Button } from '@/components/common/Button'
 import { Input } from '@/components/common/Input'
+import { safeRandomUUID } from '@/lib/crypto'
 import type { NumberPreset } from '@/lib/types'
-
-/** Fallback UUID generator for Android WebViews that may lack crypto.randomUUID */
-function uuid(): string {
-  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
-    return crypto.randomUUID()
-  }
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-    const r = (Math.random() * 16) | 0
-    return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16)
-  })
-}
 
 export function NumberPresetManager() {
   const profile = useProfileStore(s => s.profile)
@@ -114,7 +104,7 @@ export function NumberPresetManager() {
       {addingNew && !editingId && (
         <PresetEditor
           preset={{
-            id: uuid(),
+            id: safeRandomUUID(),
             name: '',
             pattern: 'INV-{seq:0000}',
             customTokens: {},
@@ -124,7 +114,7 @@ export function NumberPresetManager() {
           onSave={async (updates) => {
             await profileRepository.addPreset(profile!, {
               ...updates,
-              id: uuid(),
+              id: safeRandomUUID(),
               nextSeq: 1,
             } as NumberPreset)
             setAddingNew(false)
