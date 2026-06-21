@@ -7,11 +7,11 @@
 import Anthropic from '@anthropic-ai/sdk'
 
 const PROVIDER_BASE_URL: Record<string, string> = {
-  anthropic: 'https://api.anthropic.com/v1',
-  openai: 'https://api.openai.com/v1',
-  deepseek: 'https://api.deepseek.com/v1',
-  ollama: 'http://localhost:11434/v1',
-  gemini: 'https://generativelanguage.googleapis.com/v1beta',
+  anthropic: 'https://api.anthropic.com',
+  openai: 'https://api.openai.com',
+  deepseek: 'https://api.deepseek.com',
+  ollama: 'http://localhost:11434',
+  gemini: 'https://generativelanguage.googleapis.com',
 }
 
 // === Types ===
