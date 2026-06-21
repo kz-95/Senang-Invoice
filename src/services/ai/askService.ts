@@ -61,11 +61,14 @@ export async function answer(
 
   // Degraded path - no LLM client available, return raw RAG chunks
   if (!client) {
+    console.warn('[Ask] ⚠ No LLM client available — using RAG-only degraded reply')
     return degradedAnswer(input.message)
   }
 
   const chunks = retrieve(input.message, 3)
   const lang = detectLang(input.message)
+
+  console.log(`[Ask] 📚 RAG matched ${chunks.length} chunk(s) | lang=${lang}`)
 
   const context = chunks.length > 0
     ? chunks.map(c => `[${c.topic}]: ${c.text}`).join('\n\n')
@@ -79,6 +82,7 @@ export async function answer(
     { role: 'user' as const, content: input.message },
   ]
 
+  const start = Date.now()
   const response = await client.messages.create({
     model: getModel(llmModel),
     max_tokens: 2048,
@@ -89,5 +93,6 @@ export async function answer(
   const textBlock = response.content.find(b => b.type === 'text')
   const text = textBlock && 'text' in textBlock ? textBlock.text ?? '' : 'Sorry, I could not process that.'
 
+  console.log(`[Ask] ✅ LLM response received | ${text.length} chars | ${Date.now() - start}ms`)
   return { text, lang }
 }
