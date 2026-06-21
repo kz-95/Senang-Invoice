@@ -8,6 +8,7 @@ import { MyInvoisCredsManager } from '@/components/settings/MyInvoisCredsManager
 import { NumberPresetManager } from '@/components/settings/NumberPresetManager'
 import { track } from '@/lib/analytics'
 import { useT } from '@/hooks/useT'
+import { safeRandomUUID } from '@/lib/crypto'
 
 function CollapsibleHint({ label, children }: { label: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
@@ -90,7 +91,7 @@ export function SellerProfileForm() {
       await profileRepository.ensurePresets({ ...existing ?? profile!, numberingPresets: preservedPresets })
 
       await save({
-        id: profile?.id ?? crypto.randomUUID(),
+        id: profile?.id ?? safeRandomUUID(),
         businessName: form.businessName,
         tin: form.tin,
         sstReg: form.sstReg,

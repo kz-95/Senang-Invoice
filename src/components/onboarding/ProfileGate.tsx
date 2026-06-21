@@ -4,6 +4,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { useProfileStore } from '@/stores/profileStore'
 import { useUiStore } from '@/stores/uiStore'
 import { profileRepository } from '@/services/data/profileRepository'
+import { safeRandomUUID } from '@/lib/crypto'
 
 interface ProfileGateProps {
   children: React.ReactNode
@@ -32,7 +33,7 @@ export function ProfileGate({ children }: ProfileGateProps) {
     }
 
     const toastAndRedirect = () => {
-      addToast({ id: crypto.randomUUID(), message: 'Please complete your seller profile first.', type: 'info' })
+      addToast({ id: safeRandomUUID(), message: 'Please complete your seller profile first.', type: 'info' })
       router.replace('/profile')
     }
 

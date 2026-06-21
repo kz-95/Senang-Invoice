@@ -45,6 +45,7 @@ function randomVerifier(): string {
 
 async function challengeFromVerifier(verifier: string): Promise<string> {
   try {
+    if (typeof crypto === 'undefined' || !crypto.subtle) throw new Error('crypto unavailable')
     const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))
     return base64UrlEncode(new Uint8Array(digest))
   } catch {
