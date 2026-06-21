@@ -3,7 +3,7 @@ import { detectProviderForTest, getEnvKeyForTest } from './llmClient'
 
 describe('detectProvider', () => {
   it('detects AQ-prefixed Gemini keys', () => {
-    expect(detectProviderForTest('AQ.Ab8RN6KByPyeJ')).toBe('gemini')
+    expect(detectProviderForTest('AQ.FAKE_test_key_000')).toBe('gemini')
   })
   it('still detects AIza Gemini keys', () => {
     expect(detectProviderForTest('AIzaSyXXXXXXXX')).toBe('gemini')
