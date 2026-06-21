@@ -390,3 +390,32 @@ export async function callWithRetry(
 export function getModel(overrideModel?: string): string {
   return overrideModel ?? getCurrentModel()
 }
+
+// === Task-scoped client selection (vision vs text) ===
+
+export const TEXT_MODEL = 'deepseek-v4-flash'
+export const VISION_MODEL = 'gemini-2.5-flash'
+
+/** First env key matching the given provider, or null. */
+export function getEnvKeyFor(provider: KeyEntry['provider']): KeyEntry | null {
+  return getApiKeys().find(e => e.provider === provider) ?? null
+}
+
+/** Client for image/vision tasks — Gemini. Null if no gemini key configured. */
+export function getVisionClient(): LlmClient | null {
+  const entry = getEnvKeyFor('gemini')
+  if (!entry) return null
+  return getLlamaClient(entry.key, VISION_MODEL, undefined, 'gemini')
+}
+
+/** Client for text tasks — DeepSeek. Null if no deepseek key configured. */
+export function getTextClient(): LlmClient | null {
+  const entry = getEnvKeyFor('deepseek')
+  if (!entry) return null
+  return getLlamaClient(entry.key, TEXT_MODEL, PROVIDER_BASE_URL.deepseek, 'deepseek')
+}
+
+/** Test-only re-export. */
+export function getEnvKeyForTest(provider: KeyEntry['provider']): KeyEntry | null {
+  return getEnvKeyFor(provider)
+}
