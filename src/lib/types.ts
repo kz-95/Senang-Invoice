@@ -1,7 +1,7 @@
 export type Lang = 'ms' | 'zh' | 'en'
-export type InvoiceStatus = 'draft' | 'validated' | 'synced'
+export type InvoiceStatus = 'draft' | 'validated' | 'synced' | 'cancelled' | 'pending_submission'
 
-export type DocType = '01'
+export type DocType = '01' | '03' | '04'
 
 export interface NumberPreset {
   id: string
@@ -56,6 +56,12 @@ export interface Invoice {
   deletedAt?: string;
   editedAt?: string;
   editedFields?: string[];
+  cancelledAt?: string;
+  cancelReason?: string;
+  amendedBy?: string;
+  amendmentReason?: string;
+  originalUuid?: string;
+  referencesOriginal?: { uuid: string; longId: string };
   numberConfigUsed?: {
     presetId: string
     pattern: string

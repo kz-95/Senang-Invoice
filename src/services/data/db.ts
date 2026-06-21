@@ -18,12 +18,26 @@ export interface LlmKeyRow {
 
 export interface MyInvoisCredsRow { id: string; label: string; clientId: string; clientSecret: string; updatedAt: string }
 
+export interface SubmissionQueueRow {
+  id: string
+  invoiceId: string
+  ubl: object
+  codeNumber: string
+  attempts: number
+  maxAttempts: number
+  lastAttemptAt: string
+  createdAt: string
+  status: 'queued' | 'failed'
+  lastError?: string
+}
+
 export class SenangInvoiceDb extends Dexie {
   invoices!: Table<Invoice, string>
   pdfs!: Table<{ id: string; blob: Blob }, string>
   settings!: Table<SettingsRow, string>
   llmKeys!: Table<LlmKeyRow, string>
   myInvoisCreds!: Table<MyInvoisCredsRow, string>
+  submissionQueue!: Table<SubmissionQueueRow, string>
 
   constructor() {
     super('SenangInvoiceDb')
@@ -55,6 +69,15 @@ export class SenangInvoiceDb extends Dexie {
       settings: 'key',
       llmKeys: 'id, isActive, priority',
       myInvoisCreds: 'id',
+    })
+
+    this.version(5).stores({
+      invoices: 'id, status, createdAt, archived, deletedAt',
+      pdfs: 'id',
+      settings: 'key',
+      llmKeys: 'id, isActive, priority',
+      myInvoisCreds: 'id',
+      submissionQueue: 'id, invoiceId, status',
     })
   }
 }
