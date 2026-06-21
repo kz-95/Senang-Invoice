@@ -2,6 +2,10 @@
 // framework-agnostic services compiled to ./services (see scripts/build-node.mjs).
 // The WebView flips its fetch base to http://127.0.0.1:3001 when native (apiBase()).
 
+// Load embedded keys baked in at build time (see scripts/build-node.mjs).
+// Harmless if absent (e.g. running against process.env in dev).
+try { require('./env.generated') } catch { /* no embedded env in this context */ }
+
 // Resolve the "@/*" alias used in compiled service requires. The compiled tree
 // mirrors src/ under ./services, so "@" -> "./services" (driven by package.json
 // "_moduleAliases"). Falls back to a manual register if the package isn't present.
@@ -302,22 +306,11 @@ function handleSeedKeys(req, res) {
 }
 
 async function handleOcr(req, res) {
+  const { ocrViaGemini } = require('./services/services/ocr/ocrVision')
   const body = JSON.parse((await readBody(req)) || '{}')
   if (!body.image) return json(res, 400, { error: 'missing image field' })
-
-  const OCR_URL = process.env.OCR_SERVER_URL || 'http://localhost:8502/ocr'
   try {
-    const fetchRes = await fetch(OCR_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ image: body.image }),
-    })
-    if (!fetchRes.ok) {
-      const err = await fetchRes.text()
-      return json(res, 502, { error: `OCR server: ${err.slice(0, 200)}` })
-    }
-    const data = await fetchRes.json()
-    return json(res, 200, data)
+    return json(res, 200, await ocrViaGemini(body.image))
   } catch (err) {
     return json(res, 500, { error: err instanceof Error ? err.message : 'OCR failed' })
   }
