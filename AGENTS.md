@@ -1,5 +1,12 @@
 # AGENTS.md
 
+## Docs Sync Rule
+
+- **`ignoredocs/` is the source (gitignored, local working directory).** All doc edits happen here first.
+- **`docs/` is the commit-ready backup (tracked).** After editing in `ignoredocs/`, copy the changed files to `docs/` under the same relative path.
+- **Only sync files referenced in README.md's Docs section.** Currently: `ARCHITECTURE.md`, `rag-design.md`, `issues.md`, `TECH-STACK.md`, `invoice-flow.md`.
+- Any file in `docs/` with the same name as one in `ignoredocs/` should be overwritten by the `ignoredocs/` version before commit.
+
 ## Git Workflow
 
 - **Never commit or push directly to `main`.** All work happens on feature branches (`feat/*`, `fix/*`, `chore/*`).

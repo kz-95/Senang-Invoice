@@ -25,22 +25,26 @@ MyInvois requires every business above RM1m turnover to submit UBL 2.1 e-invoice
 ## Key features
 
 - **3 capture modes:** camera, voice, manual
-- **Multi-provider AI:** Gemini, DeepSeek, Anthropic, OpenAI-compatible with key rotation and fallback
+- **AI-powered OCR** - snap a receipt photo, Gemini Vision reads items, quantities, and prices
+- **Multi-provider AI backend** - Gemini for vision, DeepSeek for text; key rotation, 429 cooldown, and fallback chain baked in (user key management UI coming soon)
 - **Full UBL 2.1 compliance** - schema-valid JSON output
 - **Branded PDF** with embedded QR code - the government portal can't export PDF
 - **Multilingual RAG chat** - ask e-invoicing questions in Malay, English, or Mandarin
 - **Local-first** - all data stays on-device in IndexedDB, no server, no account needed
 - **Offline PWA** - install on phone, works without internet
+- **Offline Android APK** - on-device AI via embedded Node.js server (`capacitor-nodejs`); extraction and chat work without cloud dependency
 - **Optional Google Drive backup** - push invoices to your own Drive
-- **Split desktop/mobile entry** - desktop is a download shell (single **Download Now** → Play Store / standalone APK chooser modal); mobile routes through a 3-step welcome flow (`/welcome/1`-`/3`, step 3 = login)
+- **Split desktop/mobile entry** - desktop shows a download shell (**Download Now** → standalone APK direct download, Play Store coming soon); mobile routes through a 3-step welcome flow (`/welcome/1`-`/3`: intro → scope check → Google Drive connect with skip)
 - **Download-first landing page** with Support & About pages, translated guide articles (EN/MS/ZH), Formspree contact form
 
 ## Demo
 
-Unlock demo mode in Settings (password: `unlock`) to explore with sample invoices from Kedai Kopi Senang - Nasi Lemak, Teh Tarik, and a catering invoice.
+Unlock demo mode in Settings (password: `unlock`). Auto-seeds 6 sample invoices from Kedai Kopi Senang (Nasi Lemak, Teh Tarik, catering) with a seller profile and numbering preset. Clear or dismiss the demo banner anytime.
 
 ## Docs
 
-- [Setup Guide](docs/SETUP.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [RAG Design](docs/rag-design.md)
+- [Issues](docs/issues.md)
+- [Tech Stack](docs/TECH-STACK.md)
+- [Invoice Flow](docs/invoice-flow.md)

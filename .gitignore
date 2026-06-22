@@ -25,7 +25,7 @@ public/workbox-*.js.map
 .DS_Store
 *.pem
 npm-debug.log*
-docs/
+ignoredocs/
 index.html
 
 # playwright

@@ -67,15 +67,17 @@ Last updated: 2026-06-21
 
 ---
 
-### 4. No Fallback Chain for 429 Rate Limits
+### 4. No Fallback Chain for 429 Rate Limits (Partially Resolved)
 
 **Symptom**: When the primary LLM key returns 429, the extraction/chat simply fails. There is no fallback to alternative keys/models.
 
-**Root cause**: The `callWithRetry()` function in `llmClient.ts` retries the SAME key up to 6 times with delay, but doesn't try alternative keys or models. The key rotation only happens when the initial `getLlamaClient()` call detects a cooldown.
+**Current status**: `llmClient.ts` now has per-key 429 cooldown tracking, rotates through all keys before giving up, and switches model type when all keys for one model are exhausted. The degraded path (`degradedAnswer`) serves RAG-only replies for Ask when all LLM providers are rate-limited. True multi-provider failover (trying Gemini after DeepSeek fails) is partially implemented via model rotation.
 
 **Attempted**:
-- `getLlamaClient()` checks per-key cooldown and skips rate-limited keys
-- Added key priority ordering with fallback flag
+- Per-key 429 cooldown tracking (60s) in `llmClient.ts` — skips rate-limited keys
+- Key rotation through all `SENANG_LLM_KEYS` before giving up
+- Model rotation: switches model type when all keys for current model are exhausted
+- Degraded path: returns RAG-only reply for Ask, empty items for Extract when all providers fail
 - API routes accept `x-llm-key`, `x-llm-model`, `x-llm-provider`, `x-llm-base-url` headers for client-provided keys
 
 **Suggested approaches**:
@@ -158,5 +160,5 @@ Last updated: 2026-06-21
 | Ask page title too high | Changed `-my-4` to `-mb-4`; added `px-4` to title row |
 | PIN gate on Advanced/ERP setup | Removed — Advanced now opens MyInvoisCredsManager directly |
 | Dashboard only 3 tabs | Expanded to 5: Pending, Validated, Synced, Archived, Trash |
-| OCR extraction fails in APK | ✅ Fixed — installed `@capacitor/camera` native plugin for photo capture |
+| OCR extraction fails in APK | ✅ Fixed — replaced Python RapidOCR with Gemini Vision API (`gemini-2.5-flash`); on-device AI via embedded Node.js server with baked LLM keys |
 | Voice/mic permission on Xiaomi | ✅ Fixed — installed `@capacitor-community/speech-recognition` for native STT, `capacitor-voice-recorder` for permission |
